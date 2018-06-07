@@ -7,7 +7,6 @@ import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
 
-import com.zhy.autolayout.config.AutoLayoutConifg;
 
 import java.util.Random;
 
@@ -78,15 +77,15 @@ public class TextUtil {
         Width, Height
     }
 
-    public static int getPx(float px, Orientation orientation) {
-        if (orientation == Orientation.Width) {
-            return (int) (px * AutoLayoutConifg.getInstance().getScreenWidth() / AutoLayoutConifg.getInstance().getDesignWidth());
-        } else if (orientation == Orientation.Height) {
-            return (int) (px * AutoLayoutConifg.getInstance().getScreenHeight() / AutoLayoutConifg.getInstance().getDesignHeight());
-        } else {
-            return 0;
-        }
-    }
+//    public static int getPx(float px, Orientation orientation) {
+//        if (orientation == Orientation.Width) {
+//            return (int) (px * AutoLayoutConifg.getInstance().getScreenWidth() / AutoLayoutConifg.getInstance().getDesignWidth());
+//        } else if (orientation == Orientation.Height) {
+//            return (int) (px * AutoLayoutConifg.getInstance().getScreenHeight() / AutoLayoutConifg.getInstance().getDesignHeight());
+//        } else {
+//            return 0;
+//        }
+//    }
 
     /**
      * 设置字符串中数字颜色
