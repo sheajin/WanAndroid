@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--Theme Style-->
     <style name="ThemeTitleTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorAccent">@color/theme</item>
@@ -18,4 +19,8 @@
         <item name="android:windowBackground">@color/white_255</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
+
+    <!--Bar Style-->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
 </resources>

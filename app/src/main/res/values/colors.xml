@@ -40,6 +40,7 @@
     <color name="text_green">#99e288</color>
 
     <color name="bg_grey">#F9F9F9</color>
+    <color name="text_bottom_select">#CCCCCC</color>
     <color name="line_grey">#D3D3D3</color>
     <color name="green">#3ddd62</color>
     <color name="change_chat_status">#21CC17</color>

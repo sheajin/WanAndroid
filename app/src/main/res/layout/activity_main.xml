@@ -4,15 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xy.wanandroid.app.ui.main.activity.MainActivity">
+    tools:context="app.ui.main.activity.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:fitsSystemWindows="false"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/common_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:background="@color/theme"
+            android:gravity="center_vertical"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:title="@string/main_title"
+            app:titleTextColor="@color/white_255">
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
+        app:layout_constraintTop_toBottomOf="@+id/appbar" />
+
+    <android.support.design.widget.BottomNavigationView
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/bottom_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/white_255"
+        app:elevation="@dimen/dp_16"
+        app:itemIconTint="@drawable/drawable_bottom_nav_color"
+        app:itemTextColor="@drawable/drawable_bottom_nav_color"
+        app:menu="@menu/menu_bottom_navigation" />
 
 </android.support.constraint.ConstraintLayout>

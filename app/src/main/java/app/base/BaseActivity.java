@@ -9,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.xy.wanandroid.R;
-
 import butterknife.ButterKnife;
 
 /**
@@ -20,22 +18,26 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mTvTitle;
     private ImageView mIvBack;
-    protected BaseActivity activity;
+    protected MyApplication context;
+    private BaseActivity activity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void setContentView(int layoutResID) {
-        super.setContentView(layoutResID);
+        setContentView(getLayoutId());
+        context = MyApplication.getInstance();
         activity = this;
         initBind();
         initUI();
         initData();
-
     }
+
+    /**
+     * 获取当前Activity的UI布局
+     *
+     * @return 布局id
+     */
+    protected abstract int getLayoutId();
 
     public void initBind() {
         ButterKnife.bind(this);
