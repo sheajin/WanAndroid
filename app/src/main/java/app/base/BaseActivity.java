@@ -19,7 +19,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     private TextView mTvTitle;
     private ImageView mIvBack;
     protected MyApplication context;
-    private BaseActivity activity;
+    protected BaseActivity activity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

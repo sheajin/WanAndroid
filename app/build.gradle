@@ -67,6 +67,7 @@ dependencies {
 
     //other
     implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
+    implementation 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'
 
     //unit test
     testImplementation 'junit:junit:4.12'

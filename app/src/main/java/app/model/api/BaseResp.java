@@ -6,8 +6,8 @@ package app.model.api;
 
 public class BaseResp<T>{
     public T data;
-    public int status;
-    public String info;
+    public int errorCode;
+    public String errorMsg;
 
     public T getData() {
         return data;
@@ -17,19 +17,19 @@ public class BaseResp<T>{
         this.data = data;
     }
 
-    public int getStatus() {
-        return status;
+    public int getErrorCode() {
+        return errorCode;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
     }
 
-    public String getInfo() {
-        return info;
+    public String getErrorMsg() {
+        return errorMsg;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
     }
 }

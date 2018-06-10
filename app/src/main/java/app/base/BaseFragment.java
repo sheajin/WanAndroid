@@ -8,7 +8,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import com.mingle.widget.LoadingView;
+import com.xy.wanandroid.R;
 
 import butterknife.ButterKnife;
 
@@ -18,9 +22,12 @@ import butterknife.ButterKnife;
 
 public abstract class BaseFragment extends Fragment implements View.OnClickListener {
     public View rootView;
+    public FrameLayout loadingView;
     protected Activity activity;
+    protected MyApplication context;
 
-    public BaseFragment() {}
+    public BaseFragment() {
+    }
 
     @Nullable
     @Override
@@ -33,7 +40,9 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         rootView = view;
+        context = MyApplication.getInstance();
         activity = getActivity();
+        loadingView = getActivity().findViewById(R.id.view_state);
         initUI();
         initData();
     }
@@ -67,18 +76,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         ((TextView) getView(id)).setText(res);
     }
 
-    protected void setClick(int... id) {
-        for (int i = 0; i < id.length; i++) {
-            getView(id[i]).setOnClickListener(this);
-        }
-    }
-
-    protected void setClick(View... view) {
-        for (int i = 0; i < view.length; i++) {
-            view[i].setOnClickListener(this);
-        }
-    }
-
     protected <T extends View> T getView(View view, int id) {
         return view.findViewById(id);
     }
@@ -92,16 +89,25 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
     }
 
-    protected void callOnClick(int... id) {
-        for (int i = 0; i < id.length; i++) {
-            getView(id[i]).callOnClick();
-        }
+    public void showLoadingView() {
+        loadingView.getChildAt(0).setVisibility(View.VISIBLE);
+        loadingView.getChildAt(1).setVisibility(View.GONE);
     }
 
-    protected void callOnClick(View... view) {
-        for (int i = 0; i < view.length; i++) {
-            view[i].callOnClick();
-        }
+    public void hideLoadingView() {
+        loadingView.getChildAt(0).setVisibility(View.GONE);
+        loadingView.getChildAt(1).setVisibility(View.GONE);
+    }
+
+    public void showErrorView() {
+        loadingView.getChildAt(0).setVisibility(View.GONE);
+        loadingView.getChildAt(1).setVisibility(View.VISIBLE);
+
+    }
+
+    public void hideErrorView() {
+        loadingView.getChildAt(0).setVisibility(View.GONE);
+        loadingView.getChildAt(1).setVisibility(View.GONE);
     }
 
     public void random() {

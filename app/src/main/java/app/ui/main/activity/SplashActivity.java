@@ -23,8 +23,6 @@ public class SplashActivity extends BaseActivity {
 
     @BindView(R.id.image_bg)
     ImageView imageBackground;
-    @BindView(R.id.tv_time)
-    TextView mTvTime;
     private Disposable timer;
     private int time = 3;
 

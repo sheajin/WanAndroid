@@ -32,18 +32,30 @@
                 android:drawableStart="@drawable/icon_author"
                 android:gravity="center_vertical"
                 android:textColor="@color/text_dark"
-                android:textSize="@dimen/sp_13"
-                tools:text="Author" />
+                android:textSize="@dimen/sp_13" />
 
-            <TextView
-                android:id="@+id/tv_type"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:textColor="@color/theme"
-                android:textSize="@dimen/sp_13"
-                tools:text="热门专题" />
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_16"
+                    android:layout_height="@dimen/dp_16"
+                    android:layout_marginStart="@dimen/dp_12"
+                    android:src="@drawable/icon_time" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_6"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_dark"
+                    android:textSize="@dimen/sp_12" />
+            </LinearLayout>
         </RelativeLayout>
 
         <TextView
@@ -61,52 +73,43 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:gravity="center_vertical">
+            android:layout_marginTop="@dimen/dp_10">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_collect"
-                    android:layout_width="@dimen/dp_25"
-                    android:layout_height="@dimen/dp_25"
-                    android:background="@drawable/drawable_article_collect" />
-
-                <ImageView
-                    android:layout_width="@dimen/dp_20"
-                    android:layout_height="@dimen/dp_20"
-                    android:layout_marginStart="@dimen/dp_12"
-                    android:src="@drawable/icon_time" />
-
-                <TextView
-                    android:id="@+id/tv_time"
+                    android:id="@+id/tv_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_6"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/text_dark"
-                    android:textSize="@dimen/sp_13"
-                    tools:text="Author" />
+                    android:textColor="@color/theme"
+                    android:textSize="@dimen/sp_14"
+                    tools:text="热门专题" />
+
+                <TextView
+                    android:id="@+id/tv_new_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_12"
+                    android:background="@drawable/drawable_shape_green"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:paddingEnd="@dimen/dp_5"
+                    android:paddingStart="@dimen/dp_5"
+                    android:textColor="@color/green"
+                    tools:text="新" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_new_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/tv_collect"
+                android:layout_width="@dimen/dp_25"
+                android:layout_height="@dimen/dp_25"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/dp_12"
-                android:background="@drawable/drawable_shape_green"
-                android:gravity="center"
-                android:paddingEnd="@dimen/dp_5"
-                android:paddingStart="@dimen/dp_5"
-                android:textColor="@color/green"
-                android:visibility="gone"
-                tools:text="新" />
+                android:background="@drawable/drawable_article_collect" />
 
         </RelativeLayout>
     </LinearLayout>

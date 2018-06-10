@@ -45,18 +45,9 @@ public class ApiStore {
                 .addInterceptor(chain -> {
                     Request original = chain.request();
                     Request.Builder requestBuilder = original.newBuilder();
-//                            .addHeader("Warmauthorization", String.valueOf(SPs.get(DollApplication.getInstance(), Constant.TOKEN, "token")))
-//                            .addHeader("Mobileplatformtype", "Android")
-//                            .addHeader("Mobileversion", String.valueOf(AppUtil.getVersionCode()))
-//                            .addHeader("Vestbag", Constant.LOGINTYPE)
-//                            .addHeader("Mobiledescription", "PhoneType:" + Build.MODEL
-//                                    + " AppVersion:" + AppUtil.getVersionName()
-//                                    + " SdkVersion:" + AppUtil.getSdkVersion());
-
                     Request request = requestBuilder.build();
                     return chain.proceed(request);
                 })
-//                .addInterceptor(new BaseUrlInterceptor())
                 .addInterceptor(new HttpLoggingInterceptor());
 
         SSLSocketFactory sslSocketFactory = getSSLSocketFactory(new Buffer().writeUtf8(AppConfig.SSL_KEY).inputStream(), new Buffer().writeUtf8(AppConfig.MIDDLE_KEY).inputStream());
