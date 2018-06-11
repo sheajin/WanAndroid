@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.base.activity.BaseActivity;
+import app.model.data.main.HomePageArticleBean;
 import app.ui.knowledge.fragment.KnowledgeFragment;
 import app.ui.main.fragment.HomePageFragment;
 import app.ui.mine.fragment.PersonalFragment;
@@ -75,7 +76,7 @@ public class MainActivity extends BaseActivity {
             ft.add(R.id.frame_layout, currentFragment);
         }
         ft.show(currentFragment);
-        ft.commit();
+        ft.commitAllowingStateLoss();
     }
 
     /**

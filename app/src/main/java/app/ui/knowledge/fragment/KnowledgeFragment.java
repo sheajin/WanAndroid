@@ -1,13 +1,20 @@
 package app.ui.knowledge.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.xy.wanandroid.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import app.base.fragment.BaseRootFragment;
+import app.ui.knowledge.activity.MyAdapter;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -20,6 +27,10 @@ public class KnowledgeFragment extends BaseRootFragment {
     Button button2;
     @BindView(R.id.button3)
     Button button3;
+    private RecyclerView mRv;
+    private List<String> list;
+    private MyAdapter adapter;
+    private Activity activity;
 
     @Override
     public int getLayoutResID() {
@@ -33,9 +44,19 @@ public class KnowledgeFragment extends BaseRootFragment {
 
     @Override
     protected void initData() {
-        Bundle bundle = getArguments();
+//        Bundle bundle = getArguments();
 //        int position = bundle.getInt("key");
 //        text.setText("knowledge" + position);
+        activity = getActivity();
+        mRv = activity.findViewById(R.id.rv);
+        mRv.setLayoutManager(new LinearLayoutManager(activity));
+        list = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            list.add("");
+        }
+
+        adapter = new MyAdapter(list,activity);
+        mRv.setAdapter(adapter);
     }
 
     public static KnowledgeFragment getInstance(int position) {

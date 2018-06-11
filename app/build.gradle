@@ -50,7 +50,8 @@ dependencies {
     implementation rootProject.ext.dependencies["adapter-rxjava2"]
     implementation rootProject.ext.dependencies["glide"]
     implementation rootProject.ext.dependencies["glide_imageview"] 
-    annotationProcessor rootProject.ext.dependencies["glide_compiler"]
+    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
+annotationProcessor rootProject.ext.dependencies["glide_compiler"]
 
     //rx
     implementation rootProject.ext.dependencies["rxjava"]
@@ -73,6 +74,7 @@ dependencies {
     implementation rootProject.ext.dependencies["multidex"]
 
     //other
+    implementation 'com.github.githubwing:ByeBurger:1.2.2'
     implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
     implementation 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'
 

@@ -37,8 +37,8 @@ public abstract class BaseRootActivity extends BaseActivity implements AbstractV
             throw new IllegalStateException("mNormalView's ParentView should be a ViewGroup.");
         }
         ViewGroup parent = (ViewGroup) mNormalView.getParent();
-        View.inflate(activity, R.layout.loading_view, parent);
-        View.inflate(activity, R.layout.error_view, parent);
+        View.inflate(activity, R.layout.view_loading, parent);
+        View.inflate(activity, R.layout.view_error, parent);
         mLoadingView = parent.findViewById(R.id.loading_group);
         mErrorView = parent.findViewById(R.id.error_group);
         mErrorView.setVisibility(View.GONE);

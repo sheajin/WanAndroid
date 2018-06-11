@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/common_toolbar"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_54"
-    android:background="@color/theme"
-    app:layout_scrollFlags="scroll|enterAlways">
+    android:layout_height="50dp"
+    app:layout_behavior="@string/bye_burger_title_behavior"
+    android:background="@drawable/blue_gradient_bg"
+    app:layout_scrollFlags="scroll|enterAlways"
+    app:navigationIcon="@drawable/ic_arrow_back_white_24dp">
 
     <TextView
         android:id="@+id/common_toolbar_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textColor="@color/white_255"
-        android:textSize="@dimen/sp_16"
-        tools:text="" />
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        tools:text="开发环境" />
 </android.support.v7.widget.Toolbar>

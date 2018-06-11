@@ -7,14 +7,30 @@
     tools:context="app.ui.main.activity.MainActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:elevation="@dimen/dp_0"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:fitsSystemWindows="false"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp">
 
-        <include layout="@layout/common_toolbar" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/common_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/blue_gradient_bg"
+            app:layout_behavior="@string/bye_burger_title_behavior"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:navigationIcon="@drawable/ic_arrow_back_white_24dp">
 
+            <TextView
+                android:id="@+id/common_toolbar_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                tools:text="开发环境" />
+        </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
@@ -24,7 +40,6 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.design.widget.BottomNavigationView
-        app:layout_scrollFlags="scroll|enterAlways"
         android:id="@+id/bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,6 +48,7 @@
         app:elevation="@dimen/dp_16"
         app:itemIconTint="@drawable/drawable_bottom_nav_color"
         app:itemTextColor="@drawable/drawable_bottom_nav_color"
+        app:layout_behavior="@string/bye_burger_bottom_behavior"
         app:menu="@menu/menu_bottom_navigation" />
 
 </android.support.design.widget.CoordinatorLayout>
