@@ -49,13 +49,20 @@ dependencies {
     implementation rootProject.ext.dependencies["converter-gson"]
     implementation rootProject.ext.dependencies["adapter-rxjava2"]
     implementation rootProject.ext.dependencies["glide"]
-    implementation rootProject.ext.dependencies["glide_imageview"]
+    implementation rootProject.ext.dependencies["glide_imageview"] 
     annotationProcessor rootProject.ext.dependencies["glide_compiler"]
 
     //rx
     implementation rootProject.ext.dependencies["rxjava"]
     implementation rootProject.ext.dependencies["rxandroid"]
     implementation rootProject.ext.dependencies["rxpermissions"]
+
+    //dagger
+    implementation rootProject.ext.dependencies["dagger"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    implementation rootProject.ext.dependencies["dagger-android"]
+    implementation rootProject.ext.dependencies["dagger-android-support"]
+    annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
 
     //annotate
     implementation rootProject.ext.dependencies["eventbus"]

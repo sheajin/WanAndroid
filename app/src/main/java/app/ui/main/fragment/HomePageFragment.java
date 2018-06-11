@@ -2,8 +2,6 @@ package app.ui.main.fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.FrameLayout;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xy.wanandroid.R;
@@ -11,24 +9,17 @@ import com.xy.wanandroid.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.base.BaseFragment;
-import app.model.api.ApiService;
-import app.model.api.ApiStore;
-import app.model.api.BaseResp;
-import app.model.api.HttpObserver;
+import app.base.fragment.BaseRootFragment;
+import app.model.constant.Constant;
 import app.model.contract.HomePageContract;
 import app.model.data.main.HomePageArticleBean;
 import app.presenter.main.HomePagePresenter;
 import app.ui.main.adapter.HomePageAdapter;
-import app.util.app.LogUtil;
 import app.util.app.RecyclerViewUtil;
 import butterknife.BindView;
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
-public class HomePageFragment extends BaseFragment implements HomePageContract.View {
-    @BindView(R.id.smartRefreshLayout)
+public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implements HomePageContract.View {
+    @BindView(R.id.normal_view)
     SmartRefreshLayout smartRefreshLayout;
     @BindView(R.id.rv)
     RecyclerView mRv;
@@ -36,7 +27,6 @@ public class HomePageFragment extends BaseFragment implements HomePageContract.V
     private List<HomePageArticleBean.DatasBean> articleList;
     private HomePageAdapter adapter;
     private HomePagePresenter presenter;
-    private int page = 0;
 
     @Override
     public int getLayoutResID() {
@@ -49,44 +39,50 @@ public class HomePageFragment extends BaseFragment implements HomePageContract.V
 
     @Override
     protected void initUI() {
-        showLoadingView();
+        super.initUI();
+        showLoading();
         RecyclerViewUtil.nestedRecyclerView(mRv, new LinearLayoutManager(context));
     }
 
     @Override
     protected void initData() {
+        setRefresh();
         articleList = new ArrayList<>();
         presenter = new HomePagePresenter(this);
-//        presenter.getHomepageList(page);
+        presenter.getHomepageList(Constant.ZERO);
         adapter = new HomePageAdapter(R.layout.item_homepage, articleList);
-        setRefresh();
+        mRv.setAdapter(adapter);
     }
 
-
     @Override
-    public void getHomepageListOk(HomePageArticleBean datasBean) {
-//        hideLoadingView(loadingView);
-        articleList.clear();
-        articleList.addAll(datasBean.getDatas());
-        mRv.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+    public void getHomepageListOk(HomePageArticleBean dataBean, boolean isRefresh) {
+        if (adapter == null) {
+            return;
+        }
+        if (isRefresh) {
+            articleList = dataBean.getDatas();
+            adapter.replaceData(dataBean.getDatas());
+        } else {
+            articleList.addAll(dataBean.getDatas());
+            adapter.addData(dataBean.getDatas());
+        }
+        showNormal();
     }
 
     @Override
     public void getHomepageListErr(String info) {
-
+        showError();
     }
 
     private void setRefresh() {
         smartRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            page = 0;
-            presenter.getHomepageList(page);
+            presenter.autoRefresh();
             refreshLayout.finishRefresh(1000);
         });
         smartRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
-            page++;
-            presenter.getHomepageList(page);
+            presenter.loadMore();
             refreshLayout.finishLoadMore(1000);
         });
     }
+
 }

@@ -15,5 +15,5 @@
         android:layout_gravity="center"
         android:textColor="@color/white_255"
         android:textSize="@dimen/sp_16"
-        tools:text="开发环境" />
+        tools:text="" />
 </android.support.v7.widget.Toolbar>

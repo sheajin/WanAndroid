@@ -2,14 +2,13 @@ package app.ui.main.activity;
 
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.xy.wanandroid.R;
 
 import java.util.concurrent.TimeUnit;
 
-import app.base.BaseActivity;
-import app.base.MyApplication;
+import app.base.activity.BaseActivity;
+import app.base.app.MyApplication;
 import app.util.app.JumpUtil;
 import app.util.glide.GlideUtil;
 import butterknife.BindView;

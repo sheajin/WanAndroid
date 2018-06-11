@@ -5,5 +5,7 @@
     <string name="home_pager">首页</string>
     <string name="knowledge_hierarchy">知识体系</string>
     <string name="tab_mine">我的</string>
-    <string name="loading">加载中...</string>
+    <string name="data_loading">加载中...</string>
+    <string name="data_load_error">加载失败,请重试</string>
+    <string name="bye_burger_bottom_behavior">com.wingsofts.byeburgernavigationview.ByeBurgerBottomBehavior</string>
 </resources>

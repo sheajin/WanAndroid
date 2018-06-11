@@ -1,5 +1,7 @@
 package app.model.contract;
 
+import app.base.presenter.AbsPresenter;
+import app.base.view.AbstractView;
 import app.model.data.main.HomePageArticleBean;
 
 /**
@@ -8,16 +10,21 @@ import app.model.data.main.HomePageArticleBean;
 
 public class HomePageContract {
 
-    public interface View {
+    public interface View extends AbstractView {
 
-        void getHomepageListOk(HomePageArticleBean datasBean);
+        void getHomepageListOk(HomePageArticleBean dataBean, boolean isRefresh);
 
         void getHomepageListErr(String info);
 
     }
 
-    public interface Presenter {
+    public interface Presenter extends AbsPresenter<View> {
+
+        void autoRefresh();
+
+        void loadMore();
 
         void getHomepageList(int page);
     }
 }
+

@@ -1,4 +1,4 @@
-package app.base;
+package app.base.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import app.base.app.MyApplication;
 import butterknife.ButterKnife;
 
 /**
@@ -16,8 +17,6 @@ import butterknife.ButterKnife;
  */
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView mTvTitle;
-    private ImageView mIvBack;
     protected MyApplication context;
     protected BaseActivity activity;
 
@@ -30,7 +29,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         initBind();
         initUI();
         initData();
+//        initToolbar();
     }
+
+    protected  void initToolbar(){}
 
     /**
      * 获取当前Activity的UI布局

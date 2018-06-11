@@ -5,8 +5,8 @@ package app.model.constant;
  */
 
 public class EventConstant {
-    public static int LOGOUT = 1;
-    public static int RELOGIN = 2;
-    public static int PLAYHISTORY = 3;
+
+    public static final int NETWORKNORMAL = 998;
+    public static int NETWORKNONE = 999;
 
 }

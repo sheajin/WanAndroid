@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import com.xy.wanandroid.R;
 
-import app.base.BaseFragment;
+import app.base.fragment.BaseFragment;
 import butterknife.BindView;
 
 public class PersonalFragment extends BaseFragment {
