@@ -4,14 +4,18 @@ package app.ui.main.activity;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.xy.wanandroid.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import app.base.BaseActivity;
+import app.base.activity.BaseActivity;
 import app.ui.knowledge.fragment.KnowledgeFragment;
 import app.ui.main.fragment.HomePageFragment;
 import app.ui.mine.fragment.PersonalFragment;
@@ -23,6 +27,10 @@ public class MainActivity extends BaseActivity {
     FrameLayout frameLayout;
     @BindView(R.id.bottom_navigation_view)
     BottomNavigationView mBottomNavigation;
+    @BindView(R.id.common_toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.common_toolbar_title_tv)
+    TextView mTitleTv;
 
     private List<Fragment> fragments;
     private int lastIndex;
@@ -42,6 +50,7 @@ public class MainActivity extends BaseActivity {
     protected void initData() {
         initNavigation();
     }
+
 
     private void initFragment() {
         fragments = new ArrayList<>();

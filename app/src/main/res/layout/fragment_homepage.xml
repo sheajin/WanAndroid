@@ -6,7 +6,7 @@
     tools:context="app.ui.main.fragment.HomePageFragment">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/smartRefreshLayout"
+        android:id="@+id/normal_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

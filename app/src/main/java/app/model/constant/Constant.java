@@ -9,11 +9,11 @@ public class Constant {
      * int
      */
     public static final int REQUEST_SUCCESS = 1;
-    public static int AUTOPLAY = 5000;
+    public static final int ZERO = 0;
     /**
      * String
      */
-    public static final String LOGINTYPE = "0";
+    public static int AUTOPLAY = 5000;
     public static String TOKEN = "token";
 }
 
