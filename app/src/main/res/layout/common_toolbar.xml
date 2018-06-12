@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/common_toolbar"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    app:layout_behavior="@string/bye_burger_title_behavior"
-    android:background="@drawable/blue_gradient_bg"
-    app:layout_scrollFlags="scroll|enterAlways"
-    app:navigationIcon="@drawable/ic_arrow_back_white_24dp">
+    app:title="@string/app_name"
+    app:titleTextColor="@color/white_255"
+    android:background="@color/theme"
+    app:layout_scrollFlags="scroll|enterAlways">
 
-    <TextView
-        android:id="@+id/common_toolbar_title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="#ffffff"
-        android:textSize="16sp"
-        tools:text="开发环境" />
+    <!--<TextView-->
+        <!--android:id="@+id/toolbar_title"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:textSize="16sp" />-->
 </android.support.v7.widget.Toolbar>

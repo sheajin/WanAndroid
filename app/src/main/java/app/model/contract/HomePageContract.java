@@ -1,7 +1,10 @@
 package app.model.contract;
 
+import java.util.List;
+
 import app.base.presenter.AbsPresenter;
 import app.base.view.AbstractView;
+import app.model.data.main.BannerBean;
 import app.model.data.main.HomePageArticleBean;
 
 /**
@@ -16,6 +19,10 @@ public class HomePageContract {
 
         void getHomepageListErr(String info);
 
+        void getBannerOk(List<BannerBean> bannerBean);
+
+        void getBannerErr(String info);
+
     }
 
     public interface Presenter extends AbsPresenter<View> {
@@ -25,6 +32,8 @@ public class HomePageContract {
         void loadMore();
 
         void getHomepageList(int page);
+
+        void getBanner();
     }
 }
 

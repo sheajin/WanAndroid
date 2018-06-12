@@ -1,7 +1,7 @@
 package app.ui.main.viewholder;
 
-import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -21,14 +21,14 @@ public class HomePageViewHolder extends BaseViewHolder {
     TextView mTvType;
     @BindView(R.id.tv_content)
     TextView mTvContent;
-    @BindView(R.id.tv_collect)
-    TextView mTvCollect;
+    @BindView(R.id.image_collect)
+    ImageView mImageCollect;
     @BindView(R.id.tv_time)
     TextView mTvTime;
-    @BindView(R.id.tv_new_tag)
-    TextView mTvNewTag;
-    @BindView(R.id.item_card_homepage)
-    CardView cardHomepage;
+    @BindView(R.id.tv_project_tag)
+    TextView mTvProjectTag;
+    @BindView(R.id.tv_hot_tag)
+    TextView mTvHotTag;
 
     public HomePageViewHolder(View view) {
         super(view);

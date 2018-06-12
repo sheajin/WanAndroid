@@ -5,13 +5,12 @@ import android.view.ViewGroup;
 
 import com.xy.wanandroid.R;
 
-import app.base.view.AbstractView;
-
 /**
  * Created by jxy on 2018/6/11.
  */
 
-public abstract class BaseRootActivity extends BaseActivity implements AbstractView {
+public abstract class BaseRootActivity extends BaseActivity {
+
     private static final int NORMAL_STATE = 0;
     private static final int LOADING_STATE = 1;
     public static final int ERROR_STATE = 2;

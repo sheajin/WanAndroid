@@ -9,6 +9,7 @@
     android:layout_marginLeft="@dimen/dp_12"
     android:layout_marginRight="@dimen/dp_12"
     android:layout_marginTop="@dimen/dp_8"
+    android:foreground="?android:attr/selectableItemBackground"
     app:cardBackgroundColor="@color/white_255"
     app:cardCornerRadius="@dimen/dp_3"
     app:cardElevation="@dimen/dp_2">
@@ -60,7 +61,7 @@
 
         <TextView
             android:id="@+id/tv_content"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
             android:ellipsize="end"
@@ -90,26 +91,46 @@
                     android:textSize="@dimen/sp_14"
                     tools:text="热门专题" />
 
-                <TextView
-                    android:id="@+id/tv_new_tag"
+                <RelativeLayout
+                    android:id="@+id/view_tag"
                     android:layout_width="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_12"
-                    android:background="@drawable/drawable_shape_green"
-                    android:gravity="center"
-                    android:visibility="gone"
-                    android:paddingEnd="@dimen/dp_5"
-                    android:paddingStart="@dimen/dp_5"
-                    android:textColor="@color/green"
-                    tools:text="新" />
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tv_project_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/drawable_shape_green"
+                        android:gravity="center"
+                        android:paddingEnd="@dimen/dp_5"
+                        android:paddingStart="@dimen/dp_5"
+                        android:textColor="@color/green"
+                        android:visibility="gone"
+                        tools:text="新" />
+
+                    <TextView
+                        android:id="@+id/tv_hot_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/drawable_shape_red"
+                        android:gravity="center"
+                        android:paddingEnd="@dimen/dp_5"
+                        android:paddingStart="@dimen/dp_5"
+                        android:textColor="@color/red"
+                        android:visibility="gone"
+                        tools:text="热门" />
+                </RelativeLayout>
+
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_collect"
+            <ImageView
+                android:id="@+id/image_collect"
                 android:layout_width="@dimen/dp_25"
                 android:layout_height="@dimen/dp_25"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/drawable_article_collect" />
+                android:src="@drawable/icon_no_collect" />
 
         </RelativeLayout>
     </LinearLayout>

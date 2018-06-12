@@ -32,7 +32,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initUI() {
-        GlideUtil.loadImage(MyApplication.getInstance(), R.drawable.splash_new, imageBackground);
+        GlideUtil.loadImage(MyApplication.getInstance(), R.drawable.splash, imageBackground);
     }
 
     @Override
@@ -52,6 +52,8 @@ public class SplashActivity extends BaseActivity {
     void click(View view) {
         switch (view.getId()) {
             case R.id.tv_time:
+                if (!timer.isDisposed())
+                    timer.dispose();
                 jump();
                 break;
         }

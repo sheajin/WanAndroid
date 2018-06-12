@@ -13,24 +13,7 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         app:elevation="0dp">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/common_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/blue_gradient_bg"
-            app:layout_behavior="@string/bye_burger_title_behavior"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:navigationIcon="@drawable/ic_arrow_back_white_24dp">
-
-            <TextView
-                android:id="@+id/common_toolbar_title_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#ffffff"
-                android:textSize="16sp"
-                tools:text="开发环境" />
-        </android.support.v7.widget.Toolbar>
+        <include layout="@layout/common_toolbar" />
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
@@ -38,6 +21,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/float_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:borderWidth="0dp"
+        android:src="@drawable/icon_up_arrow"
+        android:layout_marginBottom="@dimen/dp_70"
+        android:layout_marginEnd="@dimen/dp_12"
+        app:layout_behavior="@string/bye_burger_float_behavior" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation_view"

@@ -15,5 +15,9 @@ public class Constant {
      */
     public static int AUTOPLAY = 5000;
     public static String TOKEN = "token";
+
+    public static int HOMEPAGESCROLLTOTOP = 1;
+    public static final String ARTICLE_TITLE = "article_title";
+    public static final String ARTICLE_LINK = "article_link";
 }
 

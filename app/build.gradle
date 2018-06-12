@@ -34,13 +34,14 @@ dependencies {
     implementation rootProject.ext.dependencies["cardview-v7"]
     implementation rootProject.ext.dependencies["support-v4"]
     implementation rootProject.ext.dependencies["design"]
-    implementation rootProject.ext.dependencies["constraint-layout"]
+    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
 
     //ui
     implementation rootProject.ext.dependencies["SmartRefreshLayout"]
     implementation rootProject.ext.dependencies["SmartRefreshHeader"]
     implementation rootProject.ext.dependencies["banner"]
     implementation rootProject.ext.dependencies["circleimageview"]
+    implementation rootProject.ext.dependencies["agentweb"]
 
     //net
     implementation rootProject.ext.dependencies["okhttp"]
@@ -49,9 +50,7 @@ dependencies {
     implementation rootProject.ext.dependencies["converter-gson"]
     implementation rootProject.ext.dependencies["adapter-rxjava2"]
     implementation rootProject.ext.dependencies["glide"]
-    implementation rootProject.ext.dependencies["glide_imageview"] 
-    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
-annotationProcessor rootProject.ext.dependencies["glide_compiler"]
+    annotationProcessor rootProject.ext.dependencies["glide_compiler"]
 
     //rx
     implementation rootProject.ext.dependencies["rxjava"]
@@ -74,7 +73,7 @@ annotationProcessor rootProject.ext.dependencies["glide_compiler"]
     implementation rootProject.ext.dependencies["multidex"]
 
     //other
-    implementation 'com.github.githubwing:ByeBurger:1.2.2'
+    implementation rootProject.ext.dependencies["ByeBurger"]
     implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
     implementation 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'
 
