@@ -11,4 +11,8 @@
     <string name="share_view">shareView</string>
     <string name="project">项目</string>
     <string name="hot">热门</string>
+    <string name="reload_content">重新加载</string>
+    <string name="share_title">分享</string>
+    <string name="like_title">收藏</string>
+    <string name="browser_title">使用系统浏览器打开</string>
 </resources>

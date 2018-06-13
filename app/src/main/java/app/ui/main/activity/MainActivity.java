@@ -5,7 +5,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.xy.wanandroid.R;
@@ -15,26 +16,20 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.base.activity.BaseActivity;
+import app.base.activity.BaseRootActivity;
 import app.model.constant.EventConstant;
 import app.model.constant.MessageEvent;
 import app.ui.knowledge.fragment.KnowledgeFragment;
 import app.ui.main.fragment.HomePageFragment;
 import app.ui.mine.fragment.PersonalFragment;
-import app.util.app.LogUtil;
 import app.util.app.ToastUtil;
-import app.util.network.NetUtils;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseRootActivity {
 
     @BindView(R.id.bottom_navigation_view)
     BottomNavigationView mBottomNavigation;
-    @BindView(R.id.common_toolbar)
-    Toolbar mToolbar;
-    @BindView(R.id.float_button)
-    FloatingActionButton actionButton;
 
     private List<Fragment> fragments;
     private int lastIndex;
@@ -54,6 +49,12 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initData() {
         initNavigation();
+    }
+
+    @Override
+    protected void initToolbar() {
+        super.initToolbar();
+        mToolBar.setTitle(getString(R.string.hot));
     }
 
     private void initFragment() {
@@ -111,17 +112,36 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-//    @Override
-//    public void onNetChange(int netMobile) {
-//        super.onNetChange(netMobile);
-//        if (netMobile == NetUtils.NETWORK_WIFI) {
-//            LogUtil.e("NETWORK_WIFI");
-//        } else if (netMobile == NetUtils.NETWORK_MOBILE) {
-//            LogUtil.e("NETWORK_MOBILE");
-//        } else if (netMobile == NetUtils.NETWORK_NONE) {
-//            LogUtil.e("NETWORK_NONE");
-//        }
-//    }
+    /**
+     * 创建menu
+     *
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    /**
+     * menu选择
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_main_hot:
+                ToastUtil.show(context, "hot");
+                break;
+            case R.id.menu_main_search:
+                ToastUtil.show(context, "search");
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onBackPressed() {

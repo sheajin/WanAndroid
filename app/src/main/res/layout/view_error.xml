@@ -7,13 +7,29 @@
     android:orientation="vertical"
     android:visibility="gone">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dp_180"
-        android:layout_centerInParent="true"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:lineSpacingMultiplier="1.4"
-        android:text="@string/data_load_error"
-        android:textColor="@color/homepage_color" />
+        android:orientation="vertical">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_180"
+            android:lineSpacingMultiplier="1.4"
+            android:text="@string/data_load_error"
+            android:textColor="@color/homepage_color" />
+
+        <TextView
+            android:id="@+id/tv_reload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_30"
+            android:background="@drawable/drawable_reload"
+            android:paddingBottom="@dimen/dp_10"
+            android:paddingEnd="@dimen/dp_20"
+            android:paddingStart="@dimen/dp_20"
+            android:paddingTop="@dimen/dp_10"
+            android:text="@string/reload_content" />
+    </LinearLayout>
 </RelativeLayout>

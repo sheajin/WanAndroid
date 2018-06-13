@@ -3,6 +3,9 @@ package app.base.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+
+import com.xy.wanandroid.R;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -23,6 +26,7 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity extends AppCompatActivity implements AbstractView, NetworkBroadcastReceiver.NetEvent {
     protected MyApplication context;
     protected BaseActivity activity;
+    protected Toolbar mToolBar;
     public static NetworkBroadcastReceiver.NetEvent eventActivity;
     private int netMobile;
 
@@ -40,6 +44,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Abstract
     }
 
     protected void initToolbar() {
+        mToolBar = findViewById(R.id.toolbar_common);
+        setSupportActionBar(mToolBar);
+//        mToolBar.setNavigationOnClickListener(v -> finish());
     }
 
     /**
@@ -93,6 +100,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Abstract
             LogUtil.e("NETWORK_NONE");
             return false;
         } else{
+            reload();
             LogUtil.e("NETWORK_NORMAL");
             return true;
         }

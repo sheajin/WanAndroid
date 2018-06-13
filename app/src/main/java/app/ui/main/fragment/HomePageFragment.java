@@ -148,6 +148,13 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
         LogUtil.e(info);
     }
 
+    @Override
+    public void reload() {
+        super.reload();
+        presenter.getBanner();
+        presenter.autoRefresh();
+    }
+
     /**
      * SmartRefreshLayout刷新加载
      */

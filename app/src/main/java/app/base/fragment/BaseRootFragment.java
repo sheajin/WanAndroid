@@ -42,6 +42,7 @@ public abstract class BaseRootFragment<T extends BasePresenter> extends BaseFrag
         View.inflate(activity, R.layout.view_error, parent);
         mLoadingView = parent.findViewById(R.id.loading_group);
         mErrorView = parent.findViewById(R.id.error_group);
+        mErrorView.setOnClickListener(v -> reload());
         mErrorView.setVisibility(View.GONE);
         mLoadingView.setVisibility(View.GONE);
         mNormalView.setVisibility(View.VISIBLE);

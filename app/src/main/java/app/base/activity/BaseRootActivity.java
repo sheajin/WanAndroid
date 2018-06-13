@@ -24,6 +24,11 @@ public abstract class BaseRootActivity extends BaseActivity {
     }
 
     @Override
+    protected void initToolbar() {
+        super.initToolbar();
+    }
+
+    @Override
     protected void initUI() {
         if (activity == null) {
             return;
@@ -40,6 +45,7 @@ public abstract class BaseRootActivity extends BaseActivity {
         View.inflate(activity, R.layout.view_error, parent);
         mLoadingView = parent.findViewById(R.id.loading_group);
         mErrorView = parent.findViewById(R.id.error_group);
+        mErrorView.setOnClickListener(v -> reload());
         mErrorView.setVisibility(View.GONE);
         mLoadingView.setVisibility(View.GONE);
         mNormalView.setVisibility(View.VISIBLE);

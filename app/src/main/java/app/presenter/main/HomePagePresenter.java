@@ -11,6 +11,7 @@ import app.model.constant.Constant;
 import app.model.contract.HomePageContract;
 import app.model.data.main.BannerBean;
 import app.model.data.main.HomePageArticleBean;
+import app.util.app.LogUtil;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -63,7 +64,15 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
 
                     @Override
                     public void onErrorInfo(BaseResp<HomePageArticleBean> articleBean) {
-                        view.getHomepageListErr(articleBean.getErrorMsg());
+                        if (articleBean.getData() == null) {
+                            view.getHomepageListErr(articleBean.getErrorMsg());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        view.getHomepageListErr(e.getMessage());
                     }
                 });
     }

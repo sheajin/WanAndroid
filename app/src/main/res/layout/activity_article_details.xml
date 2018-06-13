@@ -6,14 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/article_detail_toolbar"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_54"
-        android:background="@color/theme"
-        app:navigationIcon="@drawable/icon_back"
-        app:titleTextAppearance="@style/Toolbar.TitleText"
-        app:titleTextColor="@color/white_255" />
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/article_toolbar"
+            style="@style/Toolbar.TitleText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_54"
+            android:background="@color/theme"
+            app:navigationIcon="@drawable/icon_back"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            app:titleTextColor="@color/white_255" />
+    </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
         android:id="@+id/article_detail_web_view"
