@@ -111,17 +111,17 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    @Override
-    public void onNetChange(int netMobile) {
-        super.onNetChange(netMobile);
-        if (netMobile == NetUtils.NETWORK_WIFI) {
-            LogUtil.e("NETWORK_WIFI");
-        } else if (netMobile == NetUtils.NETWORK_MOBILE) {
-            LogUtil.e("NETWORK_MOBILE");
-        } else if (netMobile == NetUtils.NETWORK_NONE) {
-            LogUtil.e("NETWORK_NONE");
-        }
-    }
+//    @Override
+//    public void onNetChange(int netMobile) {
+//        super.onNetChange(netMobile);
+//        if (netMobile == NetUtils.NETWORK_WIFI) {
+//            LogUtil.e("NETWORK_WIFI");
+//        } else if (netMobile == NetUtils.NETWORK_MOBILE) {
+//            LogUtil.e("NETWORK_MOBILE");
+//        } else if (netMobile == NetUtils.NETWORK_NONE) {
+//            LogUtil.e("NETWORK_NONE");
+//        }
+//    }
 
     @Override
     public void onBackPressed() {

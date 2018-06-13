@@ -20,6 +20,7 @@ public class NetworkBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         // 如果相等的话就说明网络状态发生了变化
         if (intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
+            NetUtils.init(context);
             int netWorkState = NetUtils.getNetWorkState();
             // 接口回调传过去状态的类型
             eventActivity.onNetChange(netWorkState);

@@ -32,7 +32,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initUI() {
-        GlideUtil.loadImage(MyApplication.getInstance(), R.drawable.splash, imageBackground);
+        GlideUtil.loadImage(MyApplication.getInstance(), R.drawable.image_splash, imageBackground);
     }
 
     @Override

@@ -38,6 +38,7 @@ public class JumpUtil {
      */
     public static void overlay(Context context, Class<? extends Activity> targetClazz, Bundle bundle) {
         Intent mIntent = new Intent(context, targetClazz);
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (bundle != null) {
             mIntent.putExtras(bundle);
         }

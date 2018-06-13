@@ -25,10 +25,8 @@ public class HomePageViewHolder extends BaseViewHolder {
     ImageView mImageCollect;
     @BindView(R.id.tv_time)
     TextView mTvTime;
-    @BindView(R.id.tv_project_tag)
-    TextView mTvProjectTag;
-    @BindView(R.id.tv_hot_tag)
-    TextView mTvHotTag;
+    @BindView(R.id.tv_tag)
+    TextView mTvTag;
 
     public HomePageViewHolder(View view) {
         super(view);

@@ -89,39 +89,20 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/theme"
                     android:textSize="@dimen/sp_14"
-                    tools:text="热门专题" />
-
-                <RelativeLayout
-                    android:id="@+id/view_tag"
-                    android:layout_width="wrap_content"
-                    android:layout_marginStart="@dimen/dp_10"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    tools:text="专题" />
 
                     <TextView
-                        android:id="@+id/tv_project_tag"
+                        android:id="@+id/tv_tag"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/drawable_shape_green"
                         android:gravity="center"
+                        android:layout_marginStart="@dimen/dp_10"
                         android:paddingEnd="@dimen/dp_5"
                         android:paddingStart="@dimen/dp_5"
                         android:textColor="@color/green"
                         android:visibility="gone"
                         tools:text="新" />
-
-                    <TextView
-                        android:id="@+id/tv_hot_tag"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/drawable_shape_red"
-                        android:gravity="center"
-                        android:paddingEnd="@dimen/dp_5"
-                        android:paddingStart="@dimen/dp_5"
-                        android:textColor="@color/red"
-                        android:visibility="gone"
-                        tools:text="热门" />
-                </RelativeLayout>
 
             </LinearLayout>
 

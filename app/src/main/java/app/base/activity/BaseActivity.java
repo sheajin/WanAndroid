@@ -32,6 +32,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Abstract
         setContentView(getLayoutId());
         context = MyApplication.getInstance();
         activity = this;
+        eventActivity = this;
         initBind();
         initToolbar();
         initUI();
@@ -88,16 +89,13 @@ public abstract class BaseActivity extends AppCompatActivity implements Abstract
      * @return true 有网, false 没有网络.
      */
     public boolean isNetConnect() {
-        if (netMobile == NetUtils.NETWORK_WIFI) {
-            LogUtil.e("NETWORK_WIFI");
-            return true;
-        } else if (netMobile == NetUtils.NETWORK_MOBILE) {
-            return true;
-        } else if (netMobile == NetUtils.NETWORK_NONE) {
+        if (netMobile == NetUtils.NETWORK_NONE) {
             LogUtil.e("NETWORK_NONE");
             return false;
+        } else{
+            LogUtil.e("NETWORK_NORMAL");
+            return true;
         }
-        return false;
     }
 
     @Override

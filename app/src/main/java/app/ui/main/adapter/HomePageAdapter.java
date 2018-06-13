@@ -24,7 +24,7 @@ public class HomePageAdapter extends BaseQuickAdapter<HomePageArticleBean.DatasB
 
     @Override
     protected void convert(HomePageViewHolder helper, HomePageArticleBean.DatasBean article) {
-        helper.getView(R.id.view_tag).setVisibility(View.GONE);
+        helper.getView(R.id.tv_tag).setVisibility(View.GONE);
         if (!TextUtils.isEmpty(article.getTitle())) {
             helper.setText(R.id.tv_content, article.getTitle());
         }
@@ -39,13 +39,15 @@ public class HomePageAdapter extends BaseQuickAdapter<HomePageArticleBean.DatasB
             helper.setText(R.id.tv_type, classifyName);
         }
         if (article.getSuperChapterName().contains(mContext.getString(R.string.project))) {
-            helper.getView(R.id.view_tag).setVisibility(View.VISIBLE);
-            helper.getView(R.id.tv_project_tag).setVisibility(View.VISIBLE);
-            helper.setText(R.id.tv_project_tag, mContext.getString(R.string.project));
+            helper.getView(R.id.tv_tag).setVisibility(View.VISIBLE);
+            helper.setText(R.id.tv_tag, mContext.getString(R.string.project));
+            helper.setTextColor(R.id.tv_tag,mContext.getResources().getColor(R.color.green));
+            helper.setBackgroundRes(R.id.tv_tag,R.drawable.drawable_shape_green);
         } else if (article.getSuperChapterName().contains(mContext.getString(R.string.hot))) {
-            helper.getView(R.id.view_tag).setVisibility(View.VISIBLE);
-            helper.getView(R.id.tv_hot_tag).setVisibility(View.VISIBLE);
-            helper.setText(R.id.tv_hot_tag, mContext.getString(R.string.hot));
+            helper.getView(R.id.tv_tag).setVisibility(View.VISIBLE);
+            helper.setText(R.id.tv_tag, mContext.getString(R.string.hot));
+            helper.setTextColor(R.id.tv_tag,mContext.getResources().getColor(R.color.red));
+            helper.setBackgroundRes(R.id.tv_tag,R.drawable.drawable_shape_red);
         }
         helper.addOnClickListener(R.id.tv_type);
         helper.addOnClickListener(R.id.image_collect);
