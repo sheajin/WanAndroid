@@ -3,8 +3,10 @@ package app.ui.main.activity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
@@ -41,6 +43,11 @@ public class ArticleDetailsActivity extends BaseRootActivity {
         getBundleData();
         setSupportActionBar(mArticleToolbar);
         getSupportActionBar().setTitle(title);
+        mArticleToolbar.setNavigationOnClickListener(v -> {
+            if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+                finish();
+            }
+        });
     }
 
     @Override
@@ -138,5 +145,16 @@ public class ArticleDetailsActivity extends BaseRootActivity {
         super.onDestroy();
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        super.onKeyDown(keyCode, event);
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (getFragmentManager().getBackStackEntryCount() == 0) {
+                finish();
+                return true;
+            }
+        }
+        return true;
+    }
 
 }

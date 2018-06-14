@@ -2,9 +2,9 @@ package app.model.api;
 
 import java.util.List;
 
-import app.model.data.knowledge.KnowledgeListBean;
-import app.model.data.main.BannerBean;
-import app.model.data.main.HomePageArticleBean;
+import app.data.knowledge.KnowledgeListBean;
+import app.data.main.BannerBean;
+import app.data.main.HomePageArticleBean;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

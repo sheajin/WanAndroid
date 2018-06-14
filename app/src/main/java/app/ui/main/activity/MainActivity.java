@@ -4,6 +4,7 @@ package app.ui.main.activity;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +32,8 @@ public class MainActivity extends BaseRootActivity {
 
     @BindView(R.id.bottom_navigation_view)
     BottomNavigationView mBottomNavigation;
+    @BindView(R.id.toolbar_common)
+    Toolbar mToolBar;
 
     private List<Fragment> fragments;
     private int lastIndex;
@@ -54,7 +57,7 @@ public class MainActivity extends BaseRootActivity {
 
     @Override
     protected void initToolbar() {
-        super.initToolbar();
+        setSupportActionBar(mToolBar);
     }
 
     private void initFragment() {

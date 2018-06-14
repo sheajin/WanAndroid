@@ -8,8 +8,8 @@ import app.model.api.ApiStore;
 import app.model.api.BaseResp;
 import app.model.api.HttpObserver;
 import app.model.constant.Constant;
-import app.model.contract.KnowledgeContract;
-import app.model.data.knowledge.KnowledgeListBean;
+import app.contract.KnowledgeContract;
+import app.data.knowledge.KnowledgeListBean;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 

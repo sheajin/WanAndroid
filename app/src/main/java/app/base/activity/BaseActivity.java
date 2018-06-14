@@ -43,10 +43,10 @@ public abstract class BaseActivity extends AppCompatActivity implements Abstract
         initData();
     }
 
+    /**
+     * init ToolBar
+     */
     protected void initToolbar() {
-        mToolBar = findViewById(R.id.toolbar_common);
-        setSupportActionBar(mToolBar);
-//        mToolBar.setNavigationOnClickListener(v -> finish());
     }
 
     /**

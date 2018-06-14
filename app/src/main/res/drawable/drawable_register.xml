@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/colorAccent">
-    <item android:drawable="@color/colorPrimaryDark"/>
+    android:color="@color/theme">
+    <item android:drawable="@drawable/drawable_register_pressed"/>
 </ripple>
-<!--<selector xmlns:android="http://schemas.android.com/apk/res/android">-->
-
-    <!--<item android:state_pressed="true">-->
-        <!--<shape>-->
-            <!--<corners android:radius="@dimen/dp_6" />-->
-
-            <!--<solid android:color="@color/theme_pressed" />-->
-        <!--</shape>-->
-    <!--</item>-->
-
-    <!--<item android:state_pressed="false">-->
-        <!--<shape>-->
-            <!--<corners android:radius="@dimen/dp_6" />-->
-
-            <!--<solid android:color="@color/theme" />-->
-        <!--</shape>-->
-    <!--</item>-->
-
-
-<!--</selector>-->

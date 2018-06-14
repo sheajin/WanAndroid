@@ -9,7 +9,7 @@ import com.xy.wanandroid.R;
 
 import java.util.List;
 
-import app.model.data.main.HomePageArticleBean;
+import app.data.main.HomePageArticleBean;
 import app.ui.main.viewholder.HomePageViewHolder;
 
 /**

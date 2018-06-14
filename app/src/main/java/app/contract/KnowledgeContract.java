@@ -1,10 +1,10 @@
-package app.model.contract;
+package app.contract;
 
 import java.util.List;
 
 import app.base.presenter.AbsPresenter;
 import app.base.view.AbstractView;
-import app.model.data.knowledge.KnowledgeListBean;
+import app.data.knowledge.KnowledgeListBean;
 
 /**
  * Created by jxy on 2018/6/14.

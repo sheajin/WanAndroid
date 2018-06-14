@@ -1,11 +1,11 @@
-package app.model.contract;
+package app.contract;
 
 import java.util.List;
 
 import app.base.presenter.AbsPresenter;
 import app.base.view.AbstractView;
-import app.model.data.main.BannerBean;
-import app.model.data.main.HomePageArticleBean;
+import app.data.main.BannerBean;
+import app.data.main.HomePageArticleBean;
 
 /**
  * Created by jxy on 2018/2/2.

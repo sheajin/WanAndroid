@@ -8,7 +8,7 @@ import com.xy.wanandroid.R;
 
 import java.util.List;
 
-import app.model.data.knowledge.KnowledgeListBean;
+import app.data.knowledge.KnowledgeListBean;
 
 /**
  * Created by jxy on 2018/6/14.

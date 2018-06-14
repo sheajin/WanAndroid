@@ -1,4 +1,4 @@
-package app.model.data.knowledge;
+package app.data.knowledge;
 
 import java.util.List;
 

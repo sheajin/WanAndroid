@@ -8,10 +8,9 @@ import app.model.api.ApiStore;
 import app.model.api.BaseResp;
 import app.model.api.HttpObserver;
 import app.model.constant.Constant;
-import app.model.contract.HomePageContract;
-import app.model.data.main.BannerBean;
-import app.model.data.main.HomePageArticleBean;
-import app.util.app.LogUtil;
+import app.contract.HomePageContract;
+import app.data.main.BannerBean;
+import app.data.main.HomePageArticleBean;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 

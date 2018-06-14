@@ -1,4 +1,4 @@
-package app.model.data.main;
+package app.data.main;
 
 import java.util.List;
 

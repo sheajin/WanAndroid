@@ -5,7 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <!--主题色-->
     <color name="theme">#03A9F4</color>
-    <color name="theme_pressed">#0c8bc4</color>
+    <color name="theme_pressed">#44a7d4</color>
     <!--文字-->
     <!--背景色-->
     <color name="transparent">#00000000</color>

@@ -1,4 +1,4 @@
-package app.model.data.main;
+package app.data.main;
 
 /**
  * Created by jxy on 2018/6/12.
