@@ -4,6 +4,7 @@
     <string name="main_title">玩Android</string>
     <string name="home_pager">首页</string>
     <string name="knowledge_hierarchy">知识体系</string>
+    <string name="tab_project">项目</string>
     <string name="tab_mine">我的</string>
     <string name="data_loading">加载中...</string>
     <string name="data_load_error">加载失败,请重试</string>
@@ -15,4 +16,5 @@
     <string name="share_title">分享</string>
     <string name="like_title">收藏</string>
     <string name="browser_title">使用系统浏览器打开</string>
+    <string name="load_more_no_data">没有更多数据了~</string>
 </resources>

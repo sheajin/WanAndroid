@@ -8,14 +8,20 @@ import android.support.v4.app.Fragment;
 
 /**
  * 类描述：Activity 界面跳转
- * 创建人：毛化磊
  * 创建时间：2016/10/10 16:26
  * 修改人：
  * 修改时间：
  * 修改备注：
  */
 public class JumpUtil {
-
+//    private static JumpUtil instance;
+//
+//    public static JumpUtil getInstance(){
+//        if (instance == null){
+//            instance = new JumpUtil();
+//        }
+//        return  instance;
+//    }
 
     /**
      * 不带参数的跳转
@@ -30,7 +36,7 @@ public class JumpUtil {
     }
 
     /**
-     * 带参数的跳转
+     * 带参数不带动画的跳转
      *
      * @param context
      * @param targetClazz
@@ -43,6 +49,22 @@ public class JumpUtil {
             mIntent.putExtras(bundle);
         }
         context.startActivity(mIntent);
+    }
+
+    /**
+     * 带参数,共享元素跳转
+     *
+     * @param context
+     * @param targetClazz
+     * @param bundle
+     */
+    public static void overlay(Context context, Class<? extends Activity> targetClazz, Bundle bundle, Bundle options) {
+        Intent mIntent = new Intent(context, targetClazz);
+        if (bundle != null) {
+            mIntent.putExtras(bundle);
+        }
+        mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(mIntent, options);
     }
 
     /**
@@ -61,8 +83,6 @@ public class JumpUtil {
         }
         context.startActivity(mIntent);
     }
-
-
 
 
     /**

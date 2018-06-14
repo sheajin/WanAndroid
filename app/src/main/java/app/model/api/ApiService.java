@@ -2,6 +2,7 @@ package app.model.api;
 
 import java.util.List;
 
+import app.model.data.knowledge.KnowledgeListBean;
 import app.model.data.main.BannerBean;
 import app.model.data.main.HomePageArticleBean;
 import io.reactivex.Observable;
@@ -24,4 +25,10 @@ public interface ApiService {
      */
     @GET("banner/json")
     Observable<BaseResp<List<BannerBean>>> getBanner();
+
+    /**
+     * 知识体系列表
+     */
+    @GET("tree/json")
+    Observable<BaseResp<List<KnowledgeListBean>>> getKnowledgeList();
 }

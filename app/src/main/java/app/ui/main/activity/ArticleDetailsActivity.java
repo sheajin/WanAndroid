@@ -1,7 +1,6 @@
 package app.ui.main.activity;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,6 +12,8 @@ import android.widget.LinearLayout;
 
 import com.just.agentweb.AgentWeb;
 import com.xy.wanandroid.R;
+
+import java.lang.reflect.Method;
 
 import app.base.activity.BaseRootActivity;
 import app.model.constant.Constant;
@@ -94,6 +95,29 @@ public class ArticleDetailsActivity extends BaseRootActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * 让菜单同时显示图标和文字
+     *
+     * @param featureId Feature id
+     * @param menu      Menu
+     * @return menu if opened
+     */
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        if (menu != null) {
+            if (menu.getClass().getSimpleName().equalsIgnoreCase("MenuBuilder")) {
+                try {
+                    Method method = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
+                    method.setAccessible(true);
+                    method.invoke(menu, true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return super.onMenuOpened(featureId, menu);
     }
 
     @Override

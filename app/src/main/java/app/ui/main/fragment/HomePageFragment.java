@@ -1,5 +1,7 @@
 package app.ui.main.fragment;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -138,8 +140,9 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
             Bundle bundle = new Bundle();
             bundle.putString(Constant.ARTICLE_TITLE, titleList.get(position));
             bundle.putString(Constant.ARTICLE_LINK, linkList.get(position));
-            if (!TextUtils.isEmpty(linkList.get(position)))
+            if (!TextUtils.isEmpty(linkList.get(position))) {
                 JumpUtil.overlay(context, ArticleDetailsActivity.class, bundle);
+            }
         });
     }
 
@@ -169,12 +172,18 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
         });
     }
 
+    /**
+     * @param adapter
+     * @param view     共享元素跳转,元素为点击的view
+     * @param position
+     */
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         Bundle bundle = new Bundle();
         bundle.putString(Constant.ARTICLE_TITLE, mAdapter.getData().get(position).getTitle());
         bundle.putString(Constant.ARTICLE_LINK, mAdapter.getData().get(position).getLink());
-        JumpUtil.overlay(context, ArticleDetailsActivity.class, bundle);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(activity, view, getString(R.string.share_view));
+        startActivity(new Intent(activity, ArticleDetailsActivity.class).putExtras(bundle), options.toBundle());
     }
 
     @Override

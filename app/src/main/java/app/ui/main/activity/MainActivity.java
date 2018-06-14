@@ -2,7 +2,6 @@ package app.ui.main.activity;
 
 
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
@@ -22,6 +21,8 @@ import app.model.constant.MessageEvent;
 import app.ui.knowledge.fragment.KnowledgeFragment;
 import app.ui.main.fragment.HomePageFragment;
 import app.ui.mine.fragment.PersonalFragment;
+import app.ui.project.ProjectFragment;
+import app.util.app.BottomNavigationViewHelper;
 import app.util.app.ToastUtil;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -54,14 +55,14 @@ public class MainActivity extends BaseRootActivity {
     @Override
     protected void initToolbar() {
         super.initToolbar();
-        mToolBar.setTitle(getString(R.string.hot));
     }
 
     private void initFragment() {
         fragments = new ArrayList<>();
         fragments.add(HomePageFragment.getInstance());
-        fragments.add(KnowledgeFragment.getInstance(2));
-        fragments.add(PersonalFragment.getInstance(3));
+        fragments.add(KnowledgeFragment.getInstance());
+        fragments.add(ProjectFragment.getInstance());
+        fragments.add(PersonalFragment.getInstance());
     }
 
     @OnClick(R.id.float_button)
@@ -96,6 +97,7 @@ public class MainActivity extends BaseRootActivity {
      * bottom选择器
      */
     private void initNavigation() {
+        BottomNavigationViewHelper.disableShiftMode(mBottomNavigation);
         mBottomNavigation.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.tab_main:
@@ -104,8 +106,11 @@ public class MainActivity extends BaseRootActivity {
                 case R.id.tab_knowledge:
                     selectFragment(1);
                     break;
-                case R.id.tab_mine:
+                case R.id.tab_project:
                     selectFragment(2);
+                    break;
+                case R.id.tab_mine:
+                    selectFragment(3);
                     break;
             }
             return true;

@@ -1,20 +1,10 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!-- Customize your theme here. -->
-        <!-- Set menu background and text color -->
-        <item name="android:itemBackground">#ffffff</item>
-        <item name="android:textColor">#000000</item>
-
-        //沉浸状态栏
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowDisablePreview">true</item>
-
     </style>
 
     <!--Theme Style-->
@@ -24,11 +14,11 @@
         <item name="colorPrimaryDark">@color/theme</item>
         <item name="colorPrimary">@color/theme</item>
         <item name="android:background">@color/transparent</item>
-        <!--<item name="android:windowNoTitle">true</item>-->
+        <!--<item name="android:windowAnimationStyle">@style/windowAnimation</item>-->
+        <!--<item name="android:windowContentTransitions">true</item>-->
         <item name="android:windowBackground">@color/white_255</item>
-        <item name="android:itemBackground">#ffffff</item>
-        <item name="android:textColor">#000000</item>
-        //沉浸状态栏
+        <item name="android:itemBackground">@color/white_255</item>
+        <item name="android:textColor">@color/black_255</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowDisablePreview">true</item>
     </style>
@@ -38,6 +28,20 @@
     <!--ToolBar文字 style-->
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">@dimen/sp_16</item>
+        <item name="colorControlNormal">@color/white_255</item>
     </style>
 
+    <style name="AppTheme.Toolbar" parent="Widget.AppCompat.ActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_54</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
+
+    <!--跳转动画-->
+    <style name="windowAnimation">
+        <item name="android:activityOpenEnterAnimation">@anim/push_left_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/push_left_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/push_right_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/push_right_out</item>
+    </style>
 </resources>

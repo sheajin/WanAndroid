@@ -30,14 +30,15 @@
         android:supportsRtl="true"
         android:theme="@style/ThemeTitleTheme"
         tools:replace="android:allowBackup">
-        <!--BroadCastReceiver-->
+
+        <!-- BroadCastReceiver -->
         <receiver android:name="app.util.network.NetworkBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
 
-        <!--Activity-->
+        <!-- Activity -->
         <activity android:name="app.ui.main.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,7 +47,11 @@
             </intent-filter>
         </activity>
         <activity android:name="app.ui.main.activity.MainActivity" />
-        <activity android:name="app.ui.main.activity.ArticleDetailsActivity" />
+        <activity
+            android:name="app.ui.main.activity.ArticleDetailsActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
+        <activity android:name="app.ui.project.ProjectFragment"></activity>
     </application>
 
 </manifest>
