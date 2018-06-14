@@ -153,7 +153,7 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
 
     @Override
     public void reload() {
-        super.reload();
+        showLoading();
         presenter.getBanner();
         presenter.autoRefresh();
     }

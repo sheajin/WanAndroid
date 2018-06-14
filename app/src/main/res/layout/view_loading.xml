@@ -19,6 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_20"
+            android:textSize="@dimen/sp_16"
+            android:textColor="@color/homepage_color"
             android:text="@string/data_loading" />
     </LinearLayout>
 </RelativeLayout>

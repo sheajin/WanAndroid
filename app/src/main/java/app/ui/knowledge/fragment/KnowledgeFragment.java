@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.base.fragment.BaseRootFragment;
+import app.model.constant.EventConstant;
+import app.model.constant.MessageEvent;
 import app.model.contract.KnowledgeContract;
 import app.model.data.knowledge.KnowledgeListBean;
 import app.presenter.knowledge.KnowledgePresenter;
@@ -53,6 +55,12 @@ public class KnowledgeFragment extends BaseRootFragment<KnowledgePresenter> impl
         return new KnowledgeFragment();
     }
 
+    public void onMessageEvent(MessageEvent event) {
+        if (event.getCode() == EventConstant.HOMEPAGESCROLLTOTOP) {
+            mRv.smoothScrollToPosition(0);
+        }
+    }
+
     @Override
     public void getKnowledgeListOk(List<KnowledgeListBean> dataBean, boolean isRefresh) {
         if (mAdapter == null) {
@@ -74,6 +82,7 @@ public class KnowledgeFragment extends BaseRootFragment<KnowledgePresenter> impl
 
     @Override
     public void reload() {
+        showLoading();
         presenter.getKnowledgeList();
     }
 

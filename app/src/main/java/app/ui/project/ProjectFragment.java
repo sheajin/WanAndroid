@@ -8,7 +8,6 @@ public class ProjectFragment extends BaseRootFragment {
 
     @Override
     protected void initUI() {
-        super.initUI();
     }
 
     @Override

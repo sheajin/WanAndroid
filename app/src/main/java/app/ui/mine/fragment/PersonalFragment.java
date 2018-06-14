@@ -13,7 +13,6 @@ public class PersonalFragment extends BaseRootFragment {
 
     @Override
     protected void initUI() {
-        super.initUI();
     }
 
     @Override
