@@ -37,6 +37,7 @@
     <color name="text_hint">#c7c7cd</color>
     <color name="text_light">#E3E3E5</color>
     <color name="text_black">#484848</color>
+    <color name="text_deep">#686868</color>
     <color name="text_dark">#878787</color>
     <color name="text_grey">#999999</color>
     <color name="text_green">#99e288</color>

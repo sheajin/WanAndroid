@@ -1,8 +1,12 @@
 package app.ui.knowledge.fragment;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xy.wanandroid.R;
 
@@ -10,16 +14,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.base.fragment.BaseRootFragment;
+import app.model.constant.Constant;
 import app.model.constant.EventConstant;
 import app.model.constant.MessageEvent;
 import app.contract.KnowledgeContract;
 import app.data.knowledge.KnowledgeListBean;
 import app.presenter.knowledge.KnowledgePresenter;
+import app.ui.knowledge.activity.KnowledgeClassifyActivity;
 import app.ui.knowledge.adapter.KnowledgeAdapter;
 import app.util.app.ToastUtil;
 import butterknife.BindView;
 
-public class KnowledgeFragment extends BaseRootFragment<KnowledgePresenter> implements KnowledgeContract.View {
+public class KnowledgeFragment extends BaseRootFragment<KnowledgePresenter> implements KnowledgeContract.View,KnowledgeAdapter.OnItemClickListener {
     @BindView(R.id.normal_view)
     SmartRefreshLayout smartRefreshLayout;
     @BindView(R.id.rv)
@@ -48,6 +54,7 @@ public class KnowledgeFragment extends BaseRootFragment<KnowledgePresenter> impl
         presenter = new KnowledgePresenter(this);
         presenter.getKnowledgeList();
         mAdapter = new KnowledgeAdapter(R.layout.item_knowledge, knowledgeList);
+        mAdapter.setOnItemClickListener(this);
         mRv.setAdapter(mAdapter);
     }
 
@@ -56,7 +63,7 @@ public class KnowledgeFragment extends BaseRootFragment<KnowledgePresenter> impl
     }
 
     public void onMessageEvent(MessageEvent event) {
-        if (event.getCode() == EventConstant.HOMEPAGESCROLLTOTOP) {
+        if (event.getCode() == EventConstant.SCROLLTOTOP) {
             mRv.smoothScrollToPosition(0);
         }
     }
@@ -100,4 +107,11 @@ public class KnowledgeFragment extends BaseRootFragment<KnowledgePresenter> impl
         });
     }
 
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(activity, view, getString(R.string.share_view));
+        Intent intent = new Intent(activity, KnowledgeClassifyActivity.class);
+        intent.putExtra(Constant.KNOWLEDGE,mAdapter.getData().get(position));
+        startActivity(intent,options.toBundle());
+    }
 }

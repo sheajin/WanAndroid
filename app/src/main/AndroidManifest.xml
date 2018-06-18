@@ -30,6 +30,7 @@
         android:supportsRtl="true"
         android:theme="@style/ThemeTitleTheme"
         tools:replace="android:allowBackup">
+
         <!-- BroadCastReceiver -->
         <receiver android:name="app.util.network.NetworkBroadcastReceiver">
             <intent-filter>
@@ -51,6 +52,9 @@
             android:launchMode="singleTask" />
         <activity android:name="app.ui.login.RegisterActivity" />
         <activity android:name="app.ui.login.LoginActivity" />
+        <activity android:name="app.ui.mine.activity.MyCollectActivity" />
+        <activity android:name="app.ui.mine.activity.AboutUsActivity" />
+        <activity android:name="app.ui.knowledge.activity.KnowledgeClassifyActivity" />
     </application>
 
 </manifest>

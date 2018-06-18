@@ -43,11 +43,7 @@ public class ArticleDetailsActivity extends BaseRootActivity {
         getBundleData();
         setSupportActionBar(mArticleToolbar);
         getSupportActionBar().setTitle(title);
-        mArticleToolbar.setNavigationOnClickListener(v -> {
-            if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
-                finish();
-            }
-        });
+        mArticleToolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
 
     @Override
@@ -145,16 +141,16 @@ public class ArticleDetailsActivity extends BaseRootActivity {
         super.onDestroy();
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        super.onKeyDown(keyCode, event);
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (getFragmentManager().getBackStackEntryCount() == 0) {
-                finish();
-                return true;
-            }
-        }
-        return true;
-    }
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        super.onKeyDown(keyCode, event);
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            if (getFragmentManager().getBackStackEntryCount() == 0) {
+//                finish();
+//                return true;
+//            }
+//        }
+//        return true;
+//    }
 
 }

@@ -59,7 +59,7 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
     }
 
     public void onMessageEvent(MessageEvent event) {
-        if (event.getCode() == EventConstant.HOMEPAGESCROLLTOTOP) {
+        if (event.getCode() == EventConstant.SCROLLTOTOP) {
             mRv.smoothScrollToPosition(0);
         }
     }

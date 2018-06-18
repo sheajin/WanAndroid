@@ -2,6 +2,7 @@ package app.ui.main.activity;
 
 
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
@@ -22,7 +23,7 @@ import app.model.constant.MessageEvent;
 import app.ui.knowledge.fragment.KnowledgeFragment;
 import app.ui.main.fragment.HomePageFragment;
 import app.ui.mine.fragment.PersonalFragment;
-import app.ui.project.ProjectFragment;
+import app.ui.project.fragment.ProjectFragment;
 import app.util.app.BottomNavigationViewHelper;
 import app.util.app.ToastUtil;
 import butterknife.BindView;
@@ -32,6 +33,8 @@ public class MainActivity extends BaseRootActivity {
 
     @BindView(R.id.bottom_navigation_view)
     BottomNavigationView mBottomNavigation;
+    @BindView(R.id.float_button)
+    FloatingActionButton mFloatingButton;
     @BindView(R.id.toolbar_common)
     Toolbar mToolBar;
 
@@ -72,7 +75,7 @@ public class MainActivity extends BaseRootActivity {
     void click(View view) {
         switch (view.getId()) {
             case R.id.float_button:
-                EventBus.getDefault().post(new MessageEvent(EventConstant.HOMEPAGESCROLLTOTOP, ""));
+                EventBus.getDefault().post(new MessageEvent(EventConstant.SCROLLTOTOP, ""));
                 break;
         }
     }
@@ -104,15 +107,19 @@ public class MainActivity extends BaseRootActivity {
         mBottomNavigation.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.tab_main:
+                    mFloatingButton.setVisibility(View.VISIBLE);
                     selectFragment(0);
                     break;
                 case R.id.tab_knowledge:
+                    mFloatingButton.setVisibility(View.VISIBLE);
                     selectFragment(1);
                     break;
                 case R.id.tab_project:
+                    mFloatingButton.setVisibility(View.VISIBLE);
                     selectFragment(2);
                     break;
                 case R.id.tab_mine:
+                    mFloatingButton.setVisibility(View.GONE);
                     selectFragment(3);
                     break;
             }

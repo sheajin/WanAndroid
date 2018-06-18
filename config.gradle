@@ -38,6 +38,8 @@ ext {
             "banner"                            : "com.youth.banner:banner:${version["banner"]}",
             "circleimageview"                   : "de.hdodenhof:circleimageview:${version["circleimageview"]}",
             "agentweb"                          : "com.just.agentweb:agentweb:4.0.2",
+            "FlycoTabLayout_Lib"                : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar",
+            "shapeLoadingView"                  : "com.github.zzz40500:android-shapeLoadingView:1.0.3.2",
 
             //net
             "okhttp"                            : "com.squareup.okhttp3:okhttp:${version["okhttpVersion"]}",

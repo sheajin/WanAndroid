@@ -42,6 +42,8 @@ dependencies {
     implementation rootProject.ext.dependencies["banner"]
     implementation rootProject.ext.dependencies["circleimageview"]
     implementation rootProject.ext.dependencies["agentweb"]
+    implementation rootProject.ext.dependencies["FlycoTabLayout_Lib"]
+    implementation rootProject.ext.dependencies["shapeLoadingView"]
 
     //net
     implementation rootProject.ext.dependencies["okhttp"]
@@ -75,7 +77,6 @@ dependencies {
     //other
     implementation rootProject.ext.dependencies["ByeBurger"]
     implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
-    implementation 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'
 
     //unit test
     testImplementation 'junit:junit:4.12'

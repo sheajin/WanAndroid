@@ -6,5 +6,7 @@ package app.model.constant;
 
 public class EventConstant {
 
-    public static int HOMEPAGESCROLLTOTOP = 1;
+    public static int SCROLLTOTOP = 1;
+    public static int PROJECTLOADERR = 2;
+    public static int KNOWLEDGESCROLL = 3;
 }
