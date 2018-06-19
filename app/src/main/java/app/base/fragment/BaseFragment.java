@@ -34,6 +34,10 @@ public abstract class BaseFragment<T extends AbsPresenter> extends Fragment impl
     protected MyApplication context;
     public static NetworkBroadcastReceiver.NetEvent eventFragment;
     private int netMobile;
+    //Fragment的View加载完毕的标记
+    private boolean isViewCreated;
+    //Fragment对用户可见的标记
+    private boolean isUIVisible;
 
     public BaseFragment() {
     }
@@ -50,11 +54,37 @@ public abstract class BaseFragment<T extends AbsPresenter> extends Fragment impl
         rootView = view;
         activity = getActivity();
         context = MyApplication.getInstance();
+        isViewCreated = true;
         initBind(view);
         initUI();
         initData();
-        initToolbar();
     }
+
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//        // 创建时要判断是否已经显示给用户，加载数据
+//        onVisibleToUser();
+//    }
+//
+//    private void onVisibleToUser() {
+//        // 如果已经初始化完成，并且显示给用户
+//        if (isUIVisible && getUserVisibleHint()) {
+//            initData();
+//        }
+//    }
+//
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        super.setUserVisibleHint(isVisibleToUser);
+//        onVisibleToUser();
+//    }
+//
+//    public void lazyLoad() {
+//        if (isViewCreated && isUIVisible) {
+//            initData();
+//        }
+//    }
 
     public void initBind(View view) {
         ButterKnife.bind(this, view);
@@ -72,9 +102,6 @@ public abstract class BaseFragment<T extends AbsPresenter> extends Fragment impl
      * 数据初始化
      */
     protected abstract void initData();
-
-    protected void initToolbar() {
-    }
 
     @Override
     public void onAttach(Activity activity) {

@@ -92,10 +92,12 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
             mRv.smoothScrollToPosition(0);
         }
     }
+
     @Override
     public void onStop() {
         super.onStop();
-        banner.stopAutoPlay();
+        if (banner != null)
+            banner.stopAutoPlay();
     }
 
     @Override
