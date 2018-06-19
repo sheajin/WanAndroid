@@ -5,6 +5,15 @@ package app.model.constant;
  */
 
 public class EventConstant {
-
-    public static int HOMEPAGESCROLLTOTOP = 1;
+    /**
+     * 滑到顶部
+     */
+    public static int MAINSCROLLTOTOP = 101;
+    public static int KNOWLEDGESCROLLTOTOP = 102;
+    public static int PROJECTSCROLLTOTOP = 103;
+    public static int KNOWLEDGECLASSIFYSCROLLTOTOP = 104;
+    /**
+     * 项目列表加载失败
+     */
+    public static int PROJECTLOADERR = 105;
 }

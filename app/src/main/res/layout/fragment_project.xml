@@ -3,6 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.ui.project.ProjectFragment">
+    android:background="@color/grey"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="app.ui.project.fragment.ProjectFragment">
 
+    <LinearLayout
+    android:id="@+id/normal_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="UselessParent">
+
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/project_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:background="@drawable/blue_gradient_bg"
+        android:paddingLeft="@dimen/dp_5"
+        android:paddingRight="@dimen/dp_5"
+        app:tl_indicator_color="@color/white"
+        app:tl_textSelectColor="@color/black_255"
+        app:tl_textUnselectColor="@color/black_30"
+        app:tl_divider_color="@color/theme"
+        app:tl_divider_width="@dimen/dp_1"
+        app:tl_divider_padding="@dimen/dp_10"
+        app:tl_indicator_corner_radius="@dimen/dp_5"
+        app:tl_indicator_margin_left="@dimen/dp_5"
+        app:tl_indicator_margin_right="@dimen/dp_5"
+        app:tl_indicator_style="BLOCK"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager_project"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
 </android.support.constraint.ConstraintLayout>

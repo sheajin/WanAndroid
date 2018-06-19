@@ -2,6 +2,7 @@ package app.ui.main.activity;
 
 
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
@@ -17,12 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.base.activity.BaseRootActivity;
+import app.base.presenter.BasePresenter;
 import app.model.constant.EventConstant;
 import app.model.constant.MessageEvent;
 import app.ui.knowledge.fragment.KnowledgeFragment;
 import app.ui.main.fragment.HomePageFragment;
 import app.ui.mine.fragment.PersonalFragment;
-import app.ui.project.ProjectFragment;
+import app.ui.project.fragment.ProjectFragment;
 import app.util.app.BottomNavigationViewHelper;
 import app.util.app.ToastUtil;
 import butterknife.BindView;
@@ -32,10 +34,13 @@ public class MainActivity extends BaseRootActivity {
 
     @BindView(R.id.bottom_navigation_view)
     BottomNavigationView mBottomNavigation;
+    @BindView(R.id.float_button)
+    FloatingActionButton mFloatingButton;
     @BindView(R.id.toolbar_common)
     Toolbar mToolBar;
 
     private List<Fragment> fragments;
+    private BasePresenter presenter;
     private int lastIndex;
     private long mExitTime;
 
@@ -46,6 +51,7 @@ public class MainActivity extends BaseRootActivity {
 
     @Override
     protected void initUI() {
+        presenter = new BasePresenter();
         initFragment();
         selectFragment(0);
     }
@@ -72,7 +78,21 @@ public class MainActivity extends BaseRootActivity {
     void click(View view) {
         switch (view.getId()) {
             case R.id.float_button:
-                EventBus.getDefault().post(new MessageEvent(EventConstant.HOMEPAGESCROLLTOTOP, ""));
+                scrollToTop();
+                break;
+        }
+    }
+
+    private void scrollToTop() {
+        switch (presenter.getCurrentPage()) {
+            case 0:
+                EventBus.getDefault().post(new MessageEvent(EventConstant.MAINSCROLLTOTOP, ""));
+                break;
+            case 1:
+                EventBus.getDefault().post(new MessageEvent(EventConstant.KNOWLEDGESCROLLTOTOP, ""));
+                break;
+            case 2:
+                EventBus.getDefault().post(new MessageEvent(EventConstant.PROJECTSCROLLTOTOP, ""));
                 break;
         }
     }
@@ -94,6 +114,7 @@ public class MainActivity extends BaseRootActivity {
         }
         ft.show(currentFragment);
         ft.commitAllowingStateLoss();
+        presenter.setCurrentPage(position);
     }
 
     /**
@@ -104,15 +125,19 @@ public class MainActivity extends BaseRootActivity {
         mBottomNavigation.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.tab_main:
+                    mFloatingButton.setVisibility(View.VISIBLE);
                     selectFragment(0);
                     break;
                 case R.id.tab_knowledge:
+                    mFloatingButton.setVisibility(View.VISIBLE);
                     selectFragment(1);
                     break;
                 case R.id.tab_project:
+                    mFloatingButton.setVisibility(View.VISIBLE);
                     selectFragment(2);
                     break;
                 case R.id.tab_mine:
+                    mFloatingButton.setVisibility(View.GONE);
                     selectFragment(3);
                     break;
             }

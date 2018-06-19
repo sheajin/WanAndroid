@@ -58,12 +58,6 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
         return new HomePageFragment();
     }
 
-    public void onMessageEvent(MessageEvent event) {
-        if (event.getCode() == EventConstant.HOMEPAGESCROLLTOTOP) {
-            mRv.smoothScrollToPosition(0);
-        }
-    }
-
     @Override
     protected void initUI() {
         super.initUI();
@@ -92,6 +86,12 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
         mRv.setAdapter(mAdapter);
     }
 
+
+    public void onMessageEvent(MessageEvent event) {
+        if (event.getCode() == EventConstant.MAINSCROLLTOTOP) {
+            mRv.smoothScrollToPosition(0);
+        }
+    }
     @Override
     public void onStop() {
         super.onStop();

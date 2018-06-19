@@ -105,6 +105,7 @@
     <dimen name="dp_150">150dp</dimen>
     <dimen name="dp_152">152dp</dimen>
     <dimen name="dp_157">157dp</dimen>
+    <dimen name="dp_160">160dp</dimen>
     <dimen name="dp_168">168dp</dimen>
     <dimen name="dp_170">170dp</dimen>
     <dimen name="dp_180">180dp</dimen>
@@ -146,5 +147,6 @@
     <dimen name="sp_28">28sp</dimen>
     <dimen name="sp_36">36sp</dimen>
     <dimen name="sp_48">48sp</dimen>
+
 
 </resources>

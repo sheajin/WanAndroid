@@ -41,7 +41,7 @@ public class ArticleDetailsActivity extends BaseRootActivity {
         getBundleData();
         setSupportActionBar(mArticleToolbar);
         getSupportActionBar().setTitle(title);
-        mArticleToolbar.setNavigationOnClickListener(v -> finish());
+        mArticleToolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
 
     @Override

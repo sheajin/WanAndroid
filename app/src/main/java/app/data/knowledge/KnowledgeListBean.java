@@ -1,12 +1,13 @@
 package app.data.knowledge;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by jxy on 2018/6/14.
  */
 
-public class KnowledgeListBean {
+public class KnowledgeListBean implements Serializable{
     /**
      * children : [{"children":[],"courseId":13,"id":60,"name":"Android Studio相关","order":1000,"parentChapterId":150,"visible":1},{"children":[],"courseId":13,"id":169,"name":"gradle","order":1001,"parentChapterId":150,"visible":1},{"children":[],"courseId":13,"id":269,"name":"官方发布","order":1002,"parentChapterId":150,"visible":1}]
      * courseId : 13
@@ -81,7 +82,7 @@ public class KnowledgeListBean {
         this.children = children;
     }
 
-    public static class ChildrenBean {
+    public static class ChildrenBean implements Serializable{
         /**
          * children : []
          * courseId : 13

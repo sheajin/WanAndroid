@@ -9,6 +9,7 @@ import app.base.view.AbstractView;
 public class BasePresenter<T extends AbstractView> implements AbsPresenter<T> {
 
     protected T mView;
+    protected int currentPage;
 
     @Override
     public void attachView(T view) {
@@ -18,5 +19,13 @@ public class BasePresenter<T extends AbstractView> implements AbsPresenter<T> {
     @Override
     public void detachView() {
         this.mView = null;
+    }
+
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
     }
 }

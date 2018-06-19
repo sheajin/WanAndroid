@@ -20,7 +20,7 @@ import okio.BufferedSource;
  * Created by JinXinYi on 2018/1/7.
  */
 
-public class HttpLoggingInterceptor implements Interceptor{
+public class HttpLoggingInterceptor implements Interceptor {
     private final Charset UTF8 = Charset.forName("UTF-8");
 
     @Override
@@ -28,7 +28,7 @@ public class HttpLoggingInterceptor implements Interceptor{
         Request request = chain.request();
         RequestBody requestBody = request.body();
         String body = null;
-        if(requestBody != null) {
+        if (requestBody != null) {
             Buffer buffer = new Buffer();
             requestBody.writeTo(buffer);
             Charset charset = UTF8;
@@ -40,10 +40,11 @@ public class HttpLoggingInterceptor implements Interceptor{
         }
 
         Log.e("jxy",
-                "发送请求: method："+request.method()
-                        + "\nurl："+request.url()
-                        + "\n请求头：" + request.headers()
-                        + "\n请求参数: " + body);
+                "发送请求: method：" + request.method()
+                        + "\nurl：" + request.url());
+//                        + "\n请求头：" + request.headers()
+//                        + "\n请求参数: " + body
+
         long startNs = System.nanoTime();
         Response response = chain.proceed(request);
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
@@ -52,27 +53,27 @@ public class HttpLoggingInterceptor implements Interceptor{
         String rBody = null;
 
 //        if(HttpEngine.hasBody(response)) {
-            BufferedSource source = responseBody.source();
-            source.request(Long.MAX_VALUE); // Buffer the entire body.
-            Buffer buffer = source.buffer();
+        BufferedSource source = responseBody.source();
+        source.request(Long.MAX_VALUE); // Buffer the entire body.
+        Buffer buffer = source.buffer();
 
-            Charset charset = UTF8;
-            MediaType contentType = responseBody.contentType();
-            if (contentType != null) {
-                try {
-                    charset = contentType.charset(UTF8);
-                } catch (UnsupportedCharsetException e) {
-                    e.printStackTrace();
-                }
+        Charset charset = UTF8;
+        MediaType contentType = responseBody.contentType();
+        if (contentType != null) {
+            try {
+                charset = contentType.charset(UTF8);
+            } catch (UnsupportedCharsetException e) {
+                e.printStackTrace();
             }
-            rBody = buffer.clone().readString(charset);
+        }
+        rBody = buffer.clone().readString(charset);
 //        }
 
         Log.e("jxy",
                 "收到响应: code:" + response.code()
 //                + "\n请求url："+response.request().url()
 //                + "\n请求body：" + body
-                + "\nResponse: " + rBody);
+                        + "\nResponse: " + rBody);
 
         return response;
     }
