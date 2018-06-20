@@ -11,6 +11,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xy.wanandroid.R;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +56,7 @@ public class KnowledgeListFragment extends BaseRootFragment<KnowledgeClassifyPre
     @Override
     protected void initUI() {
         super.initUI();
+        showLoading();
         mRv.setLayoutManager(new LinearLayoutManager(activity));
     }
 
@@ -94,6 +97,7 @@ public class KnowledgeListFragment extends BaseRootFragment<KnowledgeClassifyPre
     public void getKnowledgeClassifyListErr(String info) {
         ToastUtil.show(context, info);
         showError();
+        EventBus.getDefault().post(new MessageEvent(EventConstant.KNOWLEDGELOADERR, ""));
     }
 
     private void setRefresh() {

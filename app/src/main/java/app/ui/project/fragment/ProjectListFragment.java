@@ -56,6 +56,7 @@ public class ProjectListFragment extends BaseRootFragment implements ProjectList
     @Override
     protected void initUI() {
         super.initUI();
+        showLoading();
         mRv.setLayoutManager(new LinearLayoutManager(activity));
     }
 

@@ -42,7 +42,6 @@ public class ProjectFragment extends BaseRootFragment<ProjectPresenter> implemen
     @Override
     protected void initUI() {
         super.initUI();
-        showLoading();
         presenter = new ProjectPresenter(this);
     }
 
@@ -97,6 +96,7 @@ public class ProjectFragment extends BaseRootFragment<ProjectPresenter> implemen
         if (presenter != null) {
             presenter.getProjectTitle();
         }
+        showLoading();
     }
 
     @Override

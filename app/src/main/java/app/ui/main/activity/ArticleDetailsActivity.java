@@ -41,7 +41,7 @@ public class ArticleDetailsActivity extends BaseRootActivity {
         getBundleData();
         setSupportActionBar(mArticleToolbar);
         getSupportActionBar().setTitle(title);
-        mArticleToolbar.setNavigationOnClickListener(v -> onBackPressed());
+        mArticleToolbar.setNavigationOnClickListener(v -> onBackPressedSupport());
     }
 
     @Override
@@ -105,6 +105,7 @@ public class ArticleDetailsActivity extends BaseRootActivity {
      * @param menu      Menu
      * @return menu if opened
      */
+    @SuppressLint("PrivateApi")
     @Override
     public boolean onMenuOpened(int featureId, Menu menu) {
         if (menu != null) {
@@ -137,5 +138,14 @@ public class ArticleDetailsActivity extends BaseRootActivity {
     public void onDestroy() {
         mAgentWeb.getWebLifeCycle().onDestroy();
         super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressedSupport() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+            pop();
+        } else {
+            supportFinishAfterTransition();
+        }
     }
 }

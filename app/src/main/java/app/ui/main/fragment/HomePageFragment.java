@@ -20,13 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.base.fragment.BaseRootFragment;
-import app.model.constant.Constant;
-import app.model.constant.EventConstant;
-import app.model.constant.MessageEvent;
 import app.contract.HomePageContract;
 import app.data.main.BannerBean;
 import app.data.main.HomePageArticleBean;
+import app.model.constant.Constant;
+import app.model.constant.EventConstant;
+import app.model.constant.MessageEvent;
 import app.presenter.main.HomePagePresenter;
+import app.ui.knowledge.activity.KnowledgeClassifyActivity;
 import app.ui.main.activity.ArticleDetailsActivity;
 import app.ui.main.adapter.HomePageAdapter;
 import app.util.app.JumpUtil;
@@ -85,7 +86,6 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
         mAdapter.setOnItemChildClickListener(this);
         mRv.setAdapter(mAdapter);
     }
-
 
     public void onMessageEvent(MessageEvent event) {
         if (event.getCode() == EventConstant.MAINSCROLLTOTOP) {
@@ -200,7 +200,15 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
                 mAdapter.notifyDataSetChanged();
                 break;
             case R.id.tv_type:
-
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(activity, view, getString(R.string.share_view));
+                Intent intent = new Intent(activity, KnowledgeClassifyActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean(Constant.HOMEPAGE_TAG, true);
+                bundle.putInt(Constant.HOMEPAGE_CID, mAdapter.getData().get(position).getChapterId());
+                bundle.putString(Constant.HOMEPAGE_CNAME, mAdapter.getData().get(position).getChapterName());
+                bundle.putString(Constant.HOMEPAGE_SUPERCNAME, mAdapter.getData().get(position).getSuperChapterName());
+                intent.putExtras(bundle);
+                startActivity(intent, options.toBundle());
                 break;
         }
     }

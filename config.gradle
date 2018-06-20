@@ -23,6 +23,7 @@ ext {
             eventbus                : "3.1.1",
             glideVersion            : "4.0.0",
             butterknifeVersion      : "8.8.1",
+            fragmentation           : "1.3.5",
     ]
 
     dependencies = [
@@ -73,6 +74,7 @@ ext {
             //other
             "BaseRecyclerViewAdapterHelper"     : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34",
             "ByeBurger"                         : "com.github.githubwing:ByeBurger:${version["ByeBurger"]}",
+            "fragmentation"                     : "me.yokeyword:fragmentation:${version["fragmentation"]}",
 //            "logger"                            : "com.orhanobut:logger:2.1.1",
 
             //unit test , 为了整合mockito和PowerMockito，mockito暂时最高只支持2.8.9

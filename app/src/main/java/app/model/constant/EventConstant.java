@@ -13,7 +13,8 @@ public class EventConstant {
     public static int PROJECTSCROLLTOTOP = 103;
     public static int KNOWLEDGECLASSIFYSCROLLTOTOP = 104;
     /**
-     * 项目列表加载失败
+     * 列表加载失败
      */
     public static int PROJECTLOADERR = 105;
+    public static int KNOWLEDGELOADERR = 106;
 }

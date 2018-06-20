@@ -1,6 +1,7 @@
 package app.ui.knowledge.activity;
 
 
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -15,7 +16,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.base.activity.BaseRootActivity;
+import app.base.activity.BaseActivity;
 import app.base.adapter.SimpleFragmentStateAdapter;
 import app.data.knowledge.KnowledgeListBean;
 import app.model.constant.Constant;
@@ -25,7 +26,7 @@ import app.ui.knowledge.fragment.KnowledgeListFragment;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class KnowledgeClassifyActivity extends BaseRootActivity {
+public class KnowledgeClassifyActivity extends BaseActivity {
     @BindView(R.id.knowledge_toolbar)
     Toolbar mKnowledgeToolbar;
     @BindView(R.id.knowledge_tab_layout)
@@ -52,8 +53,16 @@ public class KnowledgeClassifyActivity extends BaseRootActivity {
     }
 
     @Override
+    public void onMessageEvent(MessageEvent event) {
+        super.onMessageEvent(event);
+        if (event.getCode() == EventConstant.KNOWLEDGELOADERR) {
+            showError();
+        }
+    }
+
+    @Override
     protected void initUI() {
-        super.initUI();
+
     }
 
     @Override
@@ -61,10 +70,17 @@ public class KnowledgeClassifyActivity extends BaseRootActivity {
         titles = new ArrayList<>();
         fragments = new ArrayList<>();
         adapter = new SimpleFragmentStateAdapter(getSupportFragmentManager(), fragments);
-        getBundleData();
+        if (getIntent().getBooleanExtra(Constant.HOMEPAGE_TAG, false)) {
+            getHomepageBundleData();
+        } else {
+            getKnowledgeBundleData();
+        }
     }
 
-    private void getBundleData() {
+    /**
+     * 获取从知识列表传来的数据
+     */
+    private void getKnowledgeBundleData() {
         KnowledgeListBean knowledgeListBean = (KnowledgeListBean) getIntent().getSerializableExtra(Constant.KNOWLEDGE);
         if (knowledgeListBean != null) {
             fragments.clear();
@@ -73,6 +89,23 @@ public class KnowledgeClassifyActivity extends BaseRootActivity {
                 titles.add(childrenBean.getName());
                 fragments.add(KnowledgeListFragment.getInstance(childrenBean.getId()));
             }
+        }
+        initTabAndPager(titles.toArray(new String[titles.size()]));
+    }
+
+    /**
+     * 获取从主列表传来的数据
+     */
+    private void getHomepageBundleData() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            int cId = bundle.getInt(Constant.HOMEPAGE_CID);
+            String cName = bundle.getString(Constant.HOMEPAGE_CNAME);
+            String superCName = bundle.getString(Constant.HOMEPAGE_SUPERCNAME);
+            fragments.clear();
+            getSupportActionBar().setTitle(superCName);
+            titles.add(cName);
+            fragments.add(KnowledgeListFragment.getInstance(cId));
         }
         initTabAndPager(titles.toArray(new String[titles.size()]));
     }

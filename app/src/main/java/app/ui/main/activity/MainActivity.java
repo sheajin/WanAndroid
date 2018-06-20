@@ -177,7 +177,7 @@ public class MainActivity extends BaseRootActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressedSupport() {
         if ((System.currentTimeMillis() - mExitTime) > 2000) {
             ToastUtil.show(context, getString(R.string.exit_system));
             mExitTime = System.currentTimeMillis();

@@ -12,7 +12,9 @@ import app.base.presenter.BasePresenter;
  */
 
 public abstract class BaseRootFragment<T extends BasePresenter> extends BaseFragment {
-
+    /**
+     * 处理页面加载中、页面加载失败
+     */
     private static final int NORMAL_STATE = 0;
     private static final int LOADING_STATE = 1;
     public static final int ERROR_STATE = 2;
@@ -84,7 +86,7 @@ public abstract class BaseRootFragment<T extends BasePresenter> extends BaseFrag
                 if (mNormalView == null) {
                     return;
                 }
-                mNormalView.setVisibility(View.INVISIBLE);
+                mNormalView.setVisibility(View.GONE);
                 break;
             case LOADING_STATE:
                 mLoadingView.setVisibility(View.GONE);

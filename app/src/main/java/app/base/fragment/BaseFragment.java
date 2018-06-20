@@ -13,8 +13,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import javax.inject.Inject;
-
 import app.base.app.MyApplication;
 import app.base.presenter.AbsPresenter;
 import app.base.view.AbstractView;
@@ -28,17 +26,12 @@ import butterknife.ButterKnife;
  * Created by jxy on 2018/1/13.
  */
 
-public abstract class BaseFragment<T extends AbsPresenter> extends Fragment implements AbstractView, NetworkBroadcastReceiver.NetEvent {
+public abstract class BaseFragment<T extends AbsPresenter> extends BaseSupportFragment implements AbstractView, NetworkBroadcastReceiver.NetEvent {
     public View rootView;
     protected Activity activity;
     protected MyApplication context;
     public static NetworkBroadcastReceiver.NetEvent eventFragment;
     private int netMobile;
-    //Fragment的View加载完毕的标记
-    private boolean isViewCreated;
-    //Fragment对用户可见的标记
-    private boolean isUIVisible;
-
     public BaseFragment() {
     }
 
@@ -54,54 +47,20 @@ public abstract class BaseFragment<T extends AbsPresenter> extends Fragment impl
         rootView = view;
         activity = getActivity();
         context = MyApplication.getInstance();
-        isViewCreated = true;
         initBind(view);
-        initUI();
-        initData();
+//        initUI();
+//        initData();
     }
 
-//    @Override
-//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        // 创建时要判断是否已经显示给用户，加载数据
-//        onVisibleToUser();
-//    }
-//
-//    private void onVisibleToUser() {
-//        // 如果已经初始化完成，并且显示给用户
-//        if (isUIVisible && getUserVisibleHint()) {
-//            initData();
-//        }
-//    }
-//
-//    @Override
-//    public void setUserVisibleHint(boolean isVisibleToUser) {
-//        super.setUserVisibleHint(isVisibleToUser);
-//        onVisibleToUser();
-//    }
-//
-//    public void lazyLoad() {
-//        if (isViewCreated && isUIVisible) {
-//            initData();
-//        }
-//    }
 
     public void initBind(View view) {
         ButterKnife.bind(this, view);
-        EventBus.getDefault().register(this);
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     public abstract int getLayoutResID();
-
-    /**
-     * 界面初始化
-     */
-    protected abstract void initUI();
-
-    /**
-     * 数据初始化
-     */
-    protected abstract void initData();
 
     @Override
     public void onAttach(Activity activity) {
@@ -112,7 +71,9 @@ public abstract class BaseFragment<T extends AbsPresenter> extends Fragment impl
     @Override
     public void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
     }
 
     /**

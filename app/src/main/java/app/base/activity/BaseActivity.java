@@ -18,12 +18,13 @@ import app.util.app.LogUtil;
 import app.util.network.NetUtils;
 import app.util.network.NetworkBroadcastReceiver;
 import butterknife.ButterKnife;
+import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * Created by jxy on 2018/1/8.
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements AbstractView, NetworkBroadcastReceiver.NetEvent {
+public abstract class BaseActivity extends SupportActivity implements AbstractView, NetworkBroadcastReceiver.NetEvent {
     protected MyApplication context;
     protected BaseActivity activity;
     protected Toolbar mToolBar;
