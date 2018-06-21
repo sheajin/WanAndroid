@@ -29,6 +29,12 @@
     <string name="about_us">关于我们</string>
     <string name="logout">退出登录</string>
     <string name="logout_sure">确定要退出登录吗?</string>
+    <string name="delete_history_sure">确定要删除历史记录吗?</string>
     <string name="sure">确定</string>
     <string name="cancel">取消</string>
+    <string name="hot_search">热搜</string>
+    <string name="search_history">搜索历史</string>
+    <string name="clear">清空</string>
+    <string name="search_title">Search</string>
+    <string name="input_search_content">输入你想查询的内容..</string>
 </resources>

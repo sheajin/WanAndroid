@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/normal_view"
     android:background="@color/grey"
-    tools:context="app.ui.knowledge.activity.KnowledgeClassifyActivity">
+    tools:context=".ui.knowledge.activity.KnowledgeClassifyActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"

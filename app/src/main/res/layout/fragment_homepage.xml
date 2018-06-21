@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context="app.ui.main.fragment.HomePageFragment">
+    tools:context=".ui.main.fragment.HomePageFragment">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/normal_view"

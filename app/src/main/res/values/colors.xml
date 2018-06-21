@@ -59,5 +59,6 @@
     <color name="finish">#767676</color>
     <color name="popup_window">#80000000</color>
     <color name="theme_bgs">#EEF8FC</color>
+    <color name="while_most_color">#e4e4e4</color>
 
 </resources>

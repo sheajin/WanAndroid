@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.ui.main.activity.SplashActivity">
+    tools:context=".ui.main.activity.SplashActivity">
 
     <ImageView
         android:id="@+id/image_bg"

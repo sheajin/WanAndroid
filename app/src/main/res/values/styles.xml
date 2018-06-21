@@ -14,11 +14,11 @@
         <item name="colorPrimaryDark">@color/theme</item>
         <item name="colorPrimary">@color/theme</item>
         <item name="android:background">@color/transparent</item>
+        <item name="android:textColor">@color/black_255</item>
         <!--<item name="android:windowAnimationStyle">@style/windowAnimation</item>-->
         <!--<item name="android:windowContentTransitions">true</item>-->
         <item name="android:windowBackground">@color/white_255</item>
         <item name="android:itemBackground">@color/white_255</item>
-        <item name="android:textColor">@color/black_255</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowDisablePreview">true</item>
     </style>
@@ -50,6 +50,11 @@
         <item name="android:windowBackground">@color/transparent</item> <!-- 背景透明 -->
         <item name="android:windowNoTitle">true</item> <!-- 没有标题 -->
         <item name="android:backgroundDimEnabled">true</item> <!-- 背景模糊 -->
+    </style>
+
+    <!--搜索栏 光标颜色-->
+    <style name="EditText" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorAccent">@color/white_90</item>
     </style>
 
 
