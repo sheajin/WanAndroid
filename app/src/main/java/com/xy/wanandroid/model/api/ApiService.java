@@ -2,10 +2,10 @@ package com.xy.wanandroid.model.api;
 
 import com.xy.wanandroid.data.knowledge.KnowledgeClassifyListBean;
 import com.xy.wanandroid.data.knowledge.KnowledgeListBean;
+import com.xy.wanandroid.data.login.UserInfo;
 import com.xy.wanandroid.data.main.BannerBean;
 import com.xy.wanandroid.data.main.HomePageArticleBean;
 import com.xy.wanandroid.data.main.SearchHot;
-import com.xy.wanandroid.data.main.SearchResult;
 import com.xy.wanandroid.data.project.ProjectBean;
 import com.xy.wanandroid.data.project.ProjectListBean;
 
@@ -71,6 +71,25 @@ public interface ApiService {
      */
     @POST("article/query/{page}/json")
     @FormUrlEncoded
-    Observable<BaseResp<SearchResult>> getSearchResult(@Path("page") int page, @Field("k") String key);
+    Observable<BaseResp<HomePageArticleBean>> getSearchResult(@Path("page") int page, @Field("k") String key);
 
+    /**
+     * 常用网站
+     */
+    @GET("friend/json")
+    Observable<BaseResp<List<SearchHot>>> getHotWeb();
+
+    /**
+     * 注册
+     */
+    @POST("user/register")
+    @FormUrlEncoded
+    Observable<BaseResp<UserInfo>> register(@Field("username") String username, @Field("password") String password, @Field("repassword") String repassword);
+
+    /**
+     * 登录
+     */
+    @POST("user/login")
+    @FormUrlEncoded
+    Observable<BaseResp<UserInfo>> login(@Field("username") String username, @Field("password") String password);
 }

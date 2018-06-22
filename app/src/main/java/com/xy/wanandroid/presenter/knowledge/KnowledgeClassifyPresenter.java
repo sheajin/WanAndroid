@@ -5,10 +5,9 @@ import com.xy.wanandroid.contract.KnowledgeClassifyContract;
 import com.xy.wanandroid.data.knowledge.KnowledgeClassifyListBean;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;
+import com.xy.wanandroid.model.api.BaseResp;
 import com.xy.wanandroid.model.api.HttpObserver;
 import com.xy.wanandroid.model.constant.Constant;
-
-import com.xy.wanandroid.model.api.BaseResp;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -57,21 +56,15 @@ public class KnowledgeClassifyPresenter extends BasePresenter<KnowledgeClassifyC
                 .subscribe(new HttpObserver<BaseResp<KnowledgeClassifyListBean>>() {
                     @Override
                     public void onNext(BaseResp<KnowledgeClassifyListBean> baseResp) {
-                        if (baseResp.getErrorCode() == Constant.ZERO) {
+                        if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
                             view.getKnowledgeClassifyListOk(baseResp.getData(), isRefresh);
-                        }
-                    }
-
-                    @Override
-                    public void onErrorInfo(BaseResp<KnowledgeClassifyListBean> listBaseResp) {
-                        if (listBaseResp.getErrorCode() < Constant.ZERO) {
-                            view.getKnowledgeClassifyListErr(listBaseResp.getErrorMsg());
+                        } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
+                            view.getKnowledgeClassifyListErr(baseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        super.onError(e);
                         view.getKnowledgeClassifyListErr(e.getMessage());
                     }
                 });

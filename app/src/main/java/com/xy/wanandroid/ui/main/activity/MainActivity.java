@@ -13,6 +13,7 @@ import android.view.View;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseRootActivity;
 import com.xy.wanandroid.base.presenter.BasePresenter;
+import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.model.constant.EventConstant;
 import com.xy.wanandroid.model.constant.MessageEvent;
 import com.xy.wanandroid.ui.knowledge.fragment.KnowledgeFragment;
@@ -21,6 +22,7 @@ import com.xy.wanandroid.ui.mine.fragment.PersonalFragment;
 import com.xy.wanandroid.ui.project.fragment.ProjectFragment;
 import com.xy.wanandroid.util.app.BottomNavigationViewHelper;
 import com.xy.wanandroid.util.app.JumpUtil;
+import com.xy.wanandroid.util.app.SharedPreferenceUtil;
 import com.xy.wanandroid.util.app.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -186,6 +188,7 @@ public class MainActivity extends BaseRootActivity {
             ToastUtil.show(context, getString(R.string.exit_system));
             mExitTime = System.currentTimeMillis();
         } else {
+            SharedPreferenceUtil.put(activity, Constant.ISLOGIN, Constant.FALSE);
             finish();
         }
     }

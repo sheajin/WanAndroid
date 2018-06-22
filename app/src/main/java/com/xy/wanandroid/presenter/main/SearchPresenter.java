@@ -38,14 +38,14 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new HttpObserver<BaseResp<List<SearchHot>>>() {
                     @Override
-                    public void onNext(BaseResp<List<SearchHot>> listBaseResp) {
-                        if (listBaseResp.getErrorCode() == Constant.ZERO) {
-                            view.getSearchHotOk(listBaseResp.getData());
+                    public void onNext(BaseResp<List<SearchHot>> baseResp) {
+                        if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
+                            view.getSearchHotOk(baseResp.getData());
                         }
                     }
 
                     @Override
-                    public void onErrorInfo(BaseResp<List<SearchHot>> listBaseResp) {
+                    public void onError(Throwable e) {
 
                     }
                 });

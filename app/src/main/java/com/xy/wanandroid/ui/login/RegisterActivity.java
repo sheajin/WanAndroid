@@ -6,11 +6,16 @@ import android.widget.EditText;
 
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseActivity;
+import com.xy.wanandroid.contract.RegisterContract;
+import com.xy.wanandroid.data.login.UserInfo;
+import com.xy.wanandroid.presenter.login.RegisterPresenter;
+import com.xy.wanandroid.util.app.JumpUtil;
+import com.xy.wanandroid.util.app.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class RegisterActivity extends BaseActivity {
+public class RegisterActivity extends BaseActivity implements RegisterContract.View {
 
     @BindView(R.id.toolbar_register)
     Toolbar mToolbarRegister;
@@ -22,6 +27,7 @@ public class RegisterActivity extends BaseActivity {
     EditText mEtEnsurePassword;
 
     private String username,password,ensurePassword;
+    private RegisterPresenter presenter;
 
     @Override
     protected int getLayoutId() {
@@ -37,7 +43,7 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     protected void initUI() {
-
+        presenter = new RegisterPresenter(this);
     }
 
     @Override
@@ -49,10 +55,35 @@ public class RegisterActivity extends BaseActivity {
     void click(View view){
         switch (view.getId()){
             case R.id.btn_register:
-                username = mEtUsername.getText().toString().trim();
-                password = mEtPassword.getText().toString().trim();
-                ensurePassword = mEtEnsurePassword.getText().toString().trim();
+                if (check())
+                    presenter.register(username, password, ensurePassword);
                 break;
         }
+    }
+
+    private boolean check() {
+        username = mEtUsername.getText().toString().trim();
+        password = mEtPassword.getText().toString().trim();
+        ensurePassword = mEtEnsurePassword.getText().toString().trim();
+        if (username.length() < 6 || password.length() < 6) {
+            ToastUtil.show(context, getString(R.string.username_incorrect));
+            return false;
+        } else if (!password.equals(ensurePassword)) {
+            ToastUtil.show(context, getString(R.string.password_incorrect));
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void registerOk(UserInfo register) {
+        ToastUtil.show(context, getString(R.string.register_ok));
+        JumpUtil.overlay(activity, LoginActivity.class);
+        finish();
+    }
+
+    @Override
+    public void registerErr(String info) {
+        ToastUtil.show(context, info);
     }
 }

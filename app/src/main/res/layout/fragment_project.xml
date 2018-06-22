@@ -15,6 +15,7 @@
     tools:ignore="UselessParent">
 
     <com.flyco.tablayout.SlidingTabLayout
+        android:visibility="invisible"
         android:id="@+id/project_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_48"

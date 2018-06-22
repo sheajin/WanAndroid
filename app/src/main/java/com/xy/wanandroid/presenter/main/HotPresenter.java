@@ -1,8 +1,8 @@
-package com.xy.wanandroid.presenter.project;
+package com.xy.wanandroid.presenter.main;
 
 import com.xy.wanandroid.base.presenter.BasePresenter;
-import com.xy.wanandroid.contract.ProjectContract;
-import com.xy.wanandroid.data.project.ProjectBean;
+import com.xy.wanandroid.contract.HotContract;
+import com.xy.wanandroid.data.main.SearchHot;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;
 import com.xy.wanandroid.model.api.BaseResp;
@@ -15,37 +15,38 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by jxy on 2018/6/17.
+ * Created by jxy on 2018/6/22.
  */
-public class ProjectPresenter extends BasePresenter<ProjectContract.View> implements ProjectContract.Presenter {
 
-    private ProjectContract.View view;
+public class HotPresenter extends BasePresenter<HotContract.View> implements HotContract.Presenter {
 
-    public ProjectPresenter(ProjectContract.View view) {
+    private HotContract.View view;
+
+    public HotPresenter(HotContract.View view) {
         this.view = view;
     }
 
-
     @Override
-    public void getProjectTitle() {
+    public void getHotWeb() {
         ApiStore.createApi(ApiService.class)
-                .getProjectTitle()
+                .getHotWeb()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new HttpObserver<BaseResp<List<ProjectBean>>>() {
+                .subscribe(new HttpObserver<BaseResp<List<SearchHot>>>() {
                     @Override
-                    public void onNext(BaseResp<List<ProjectBean>> listBaseResp) {
+                    public void onNext(BaseResp<List<SearchHot>> listBaseResp) {
                         if (listBaseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.getProjectTitleOk(listBaseResp.getData());
+                            view.getHotWebOk(listBaseResp.getData());
                         } else if (listBaseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.getProjectTitleErr(listBaseResp.getErrorMsg());
+                            view.getHotWebErr(listBaseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.getProjectTitleErr(e.getMessage());
+                        view.getHotWebErr(e.getMessage());
                     }
                 });
     }
+
 }

@@ -41,10 +41,12 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:id="@+id/tv_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_20"
                     android:text="@string/click_head_login"
+                    android:textSize="@dimen/sp_16"
                     android:textColor="@color/homepage_color" />
             </LinearLayout>
 
@@ -55,7 +57,7 @@
             android:id="@+id/view_collect"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_46"
-            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_12"
             android:background="@color/white_255">
 
             <ImageView
@@ -161,12 +163,13 @@
         </RelativeLayout>
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_logout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_40"
             android:layout_marginEnd="@dimen/dp_110"
             android:layout_marginStart="@dimen/dp_110"
-            android:layout_marginTop="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_50"
             android:background="@drawable/drawable_logout"
             android:gravity="center"
             android:text="@string/logout"

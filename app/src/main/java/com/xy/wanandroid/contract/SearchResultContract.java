@@ -2,6 +2,7 @@ package com.xy.wanandroid.contract;
 
 import com.xy.wanandroid.base.presenter.AbsPresenter;
 import com.xy.wanandroid.base.view.AbstractView;
+import com.xy.wanandroid.data.main.HomePageArticleBean;
 import com.xy.wanandroid.data.main.SearchResult;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class SearchResultContract {
 
     public interface View extends AbstractView {
 
-        void getSearchResultOk(SearchResult searchResult, boolean isRefresh);
+        void getSearchResultOk(HomePageArticleBean searchResult, boolean isRefresh);
 
         void getSearchResultErr(String info);
 

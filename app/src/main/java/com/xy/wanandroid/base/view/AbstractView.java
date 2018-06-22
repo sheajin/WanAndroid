@@ -26,6 +26,11 @@ public interface AbstractView {
     void showLoading();
 
     /**
+     * Show empty
+     */
+    void showEmpty();
+
+    /**
      * Reload
      */
     void reload();

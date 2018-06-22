@@ -2,15 +2,12 @@ package com.xy.wanandroid.presenter.main;
 
 import com.xy.wanandroid.base.presenter.BasePresenter;
 import com.xy.wanandroid.contract.SearchResultContract;
-import com.xy.wanandroid.data.main.SearchResult;
+import com.xy.wanandroid.data.main.HomePageArticleBean;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;
 import com.xy.wanandroid.model.api.BaseResp;
 import com.xy.wanandroid.model.api.HttpObserver;
 import com.xy.wanandroid.model.constant.Constant;
-import com.xy.wanandroid.util.app.LogUtil;
-
-import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -49,24 +46,18 @@ public class SearchResultPresenter extends BasePresenter<SearchResultContract.Vi
                 .getSearchResult(page, key)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new HttpObserver<BaseResp<SearchResult>>() {
+                .subscribe(new HttpObserver<BaseResp<HomePageArticleBean>>() {
                     @Override
-                    public void onNext(BaseResp<SearchResult> listBaseResp) {
-                        if (listBaseResp.getErrorCode() == Constant.ZERO) {
+                    public void onNext(BaseResp<HomePageArticleBean> listBaseResp) {
+                        if (listBaseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
                             view.getSearchResultOk(listBaseResp.getData(), isRefresh);
-                        }
-                    }
-
-                    @Override
-                    public void onErrorInfo(BaseResp<SearchResult> listBaseResp) {
-                        if (listBaseResp.getData() == null) {
+                        } else if (listBaseResp.getErrorCode() == Constant.REQUEST_ERROR) {
                             view.getSearchResultErr(listBaseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        super.onError(e);
                         view.getSearchResultErr(e.getMessage());
                     }
                 });

@@ -4,12 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dp_60"
-        android:layout_marginStart="@dimen/dp_60"
+        android:layout_height="120dp"
+        android:layout_marginStart="@dimen/dp_30"
+        android:layout_marginEnd="@dimen/dp_30"
         android:background="@drawable/drawable_dialog_logout"
         android:orientation="vertical">
 

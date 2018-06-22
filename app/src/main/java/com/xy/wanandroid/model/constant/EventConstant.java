@@ -17,4 +17,8 @@ public class EventConstant {
      */
     public static int PROJECTLOADERR = 105;
     public static int KNOWLEDGELOADERR = 106;
+    /**
+     * 登陆成功
+     */
+    public static int LOGINSUCCESS = 111;
 }

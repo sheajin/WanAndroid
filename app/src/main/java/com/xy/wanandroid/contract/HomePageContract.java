@@ -1,5 +1,6 @@
 package com.xy.wanandroid.contract;
 
+import com.xy.wanandroid.data.login.UserInfo;
 import com.xy.wanandroid.data.main.BannerBean;
 
 import java.util.List;
@@ -24,6 +25,10 @@ public class HomePageContract {
 
         void getBannerErr(String info);
 
+        void loginSuccess(UserInfo userInfo);
+
+        void loginErr(String info);
+
     }
 
     public interface Presenter extends AbsPresenter<View> {
@@ -35,6 +40,8 @@ public class HomePageContract {
         void getHomepageList(int page);
 
         void getBanner();
+
+        void loginAndLoad();
     }
 }
 

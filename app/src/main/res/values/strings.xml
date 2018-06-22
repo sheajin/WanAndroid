@@ -17,6 +17,7 @@
     <string name="like_title">收藏</string>
     <string name="browser_title">使用系统浏览器打开</string>
     <string name="load_more_no_data">没有更多数据了~</string>
+    <string name="no_more_data">暂时还没有数据~</string>
     <string name="please_enter_username">请输入用户名</string>
     <string name="please_enter_password">请输入密码</string>
     <string name="please_reenter_password">请再次输入密码</string>
@@ -37,4 +38,13 @@
     <string name="clear">清空</string>
     <string name="search_title">Search</string>
     <string name="input_search_content">输入你想查询的内容..</string>
+    <string name="hot_address">常用网站</string>
+    <string name="username_incorrect">用户名或密码长度必须大于6位</string>
+    <string name="password_incorrect">两次输入的密码不一致</string>
+    <string name="register_ok">注册成功,快去登录吧</string>
+    <string name="auto_login_ok">自动登陆成功</string>
+    <string name="login_ok">登陆成功</string>
+    <string name="login_err">登陆失败</string>
+    <string name="logout_ok">登出成功</string>
+    <string name="please_login">请先登录</string>
 </resources>

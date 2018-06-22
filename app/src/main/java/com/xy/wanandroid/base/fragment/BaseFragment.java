@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.xy.wanandroid.base.app.MyApplication;
 import com.xy.wanandroid.base.presenter.AbsPresenter;
+import com.xy.wanandroid.base.view.AbstractView;
 import com.xy.wanandroid.model.constant.MessageEvent;
 import com.xy.wanandroid.util.network.NetUtils;
 import com.xy.wanandroid.util.network.NetworkBroadcastReceiver;
@@ -18,16 +19,15 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import com.xy.wanandroid.base.view.AbstractView;
-
 import butterknife.ButterKnife;
+import me.yokeyword.fragmentation.SupportFragment;
 
 
 /**
  * Created by jxy on 2018/1/13.
  */
 
-public abstract class BaseFragment<T extends AbsPresenter> extends BaseSupportFragment implements AbstractView, NetworkBroadcastReceiver.NetEvent {
+public abstract class BaseFragment<T extends AbsPresenter> extends SupportFragment implements AbstractView, NetworkBroadcastReceiver.NetEvent {
     public View rootView;
     protected Activity activity;
     protected MyApplication context;
@@ -49,10 +49,24 @@ public abstract class BaseFragment<T extends AbsPresenter> extends BaseSupportFr
         activity = getActivity();
         context = MyApplication.getInstance();
         initBind(view);
-//        initUI();
-//        initData();
     }
 
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        initUI();
+        initData();
+    }
+
+    /**
+     * 界面初始化
+     */
+    protected abstract void initUI();
+
+    /**
+     * 数据初始化
+     */
+    protected abstract void initData();
 
     public void initBind(View view) {
         ButterKnife.bind(this, view);
@@ -114,6 +128,11 @@ public abstract class BaseFragment<T extends AbsPresenter> extends BaseSupportFr
 
     @Override
     public void showNormal() {
+
+    }
+
+    @Override
+    public void showEmpty() {
 
     }
 

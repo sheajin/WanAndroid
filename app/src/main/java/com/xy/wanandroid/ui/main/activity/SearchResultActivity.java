@@ -1,25 +1,30 @@
 package com.xy.wanandroid.ui.main.activity;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseRootActivity;
 import com.xy.wanandroid.contract.SearchResultContract;
-import com.xy.wanandroid.data.main.SearchResult;
+import com.xy.wanandroid.data.main.HomePageArticleBean;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.presenter.main.SearchResultPresenter;
-import com.xy.wanandroid.ui.main.adapter.SearchResultAdapter;
+import com.xy.wanandroid.ui.main.adapter.HomePageAdapter;
+import com.xy.wanandroid.util.app.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-public class SearchResultActivity extends BaseRootActivity implements SearchResultContract.View {
+public class SearchResultActivity extends BaseRootActivity implements SearchResultContract.View, HomePageAdapter.OnItemClickListener, HomePageAdapter.OnItemChildClickListener {
 
     @BindView(R.id.article_toolbar)
     Toolbar mArticleToolbar;
@@ -29,8 +34,8 @@ public class SearchResultActivity extends BaseRootActivity implements SearchResu
     RecyclerView mRv;
 
     private String key;
-    private List<SearchResult.DatasBean> resultList;
-    private SearchResultAdapter mAdapter;
+    private List<HomePageArticleBean.DatasBean> resultList;
+    private HomePageAdapter mAdapter;
     private SearchResultPresenter presenter;
 
     @Override
@@ -67,23 +72,31 @@ public class SearchResultActivity extends BaseRootActivity implements SearchResu
         resultList = new ArrayList<>();
         presenter = new SearchResultPresenter(this);
         presenter.getSearchResult(0, key);
-        mAdapter = new SearchResultAdapter(R.layout.item_homepage, resultList);
+        mAdapter = new HomePageAdapter(R.layout.item_homepage, resultList);
+        mAdapter.setOnItemClickListener(this);
+        mAdapter.setOnItemChildClickListener(this);
         mRv.setAdapter(mAdapter);
     }
 
     @Override
-    public void getSearchResultOk(SearchResult searchResult, boolean isRefresh) {
+    public void getSearchResultOk(HomePageArticleBean searchResult, boolean isRefresh) {
         if (mAdapter == null) {
             return;
         }
         if (isRefresh) {
             resultList = searchResult.getDatas();
             mAdapter.replaceData(searchResult.getDatas());
+            showNormal();
+            if (searchResult.getDatas().size() == 0)
+                showEmpty();
         } else {
-            resultList.addAll(searchResult.getDatas());
-            mAdapter.addData(searchResult.getDatas());
+            if (searchResult.getDatas().size() > 0) {
+                resultList.addAll(searchResult.getDatas());
+                mAdapter.addData(searchResult.getDatas());
+            } else {
+                ToastUtil.show(context, getString(R.string.load_more_no_data));
+            }
         }
-        showNormal();
     }
 
     @Override
@@ -103,5 +116,19 @@ public class SearchResultActivity extends BaseRootActivity implements SearchResu
             presenter.loadMore(key);
             refreshLayout.finishLoadMore(1000);
         });
+    }
+
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        Bundle bundle = new Bundle();
+        bundle.putString(Constant.ARTICLE_TITLE, mAdapter.getData().get(position).getTitle());
+        bundle.putString(Constant.ARTICLE_LINK, mAdapter.getData().get(position).getLink());
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(activity, view, getString(R.string.share_view));
+        startActivity(new Intent(activity, ArticleDetailsActivity.class).putExtras(bundle), options.toBundle());
+    }
+
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+
     }
 }

@@ -8,13 +8,13 @@ public class Constant {
     /**
      * int
      */
-    public static final int REQUEST_SUCCESS = 1;
-    public static final int ZERO = 0;
-    public static int AUTOPLAY = 5000;
+    public static final int REQUEST_ERROR = -1;
+    public static final int REQUEST_SUCCESS = 0;
     /**
      * String
      */
     public static String TOKEN = "token";
+    public static final boolean FALSE = false;
     public static String NETBROADCAST = "CONNECTIVITY_CHANGE";
 
 
@@ -37,5 +37,19 @@ public class Constant {
      */
     public static final String DEFAULT = "default";
     public static final String SEARCH_HISTORY = "search_history";
+
+    /**
+     * user info
+     */
+    public static final String USERNAME = "username";
+    public static final String PASSWORD = "password";
+    public static final String ISLOGIN = "is_login";
+
+    /**
+     * data
+     */
+    public static final String LOGINDATA = "login_data";
+    public static final String BANNERDATA = "banner_data";
+    public static final String HOMEPAGEDATA = "homepage_data";
 }
 

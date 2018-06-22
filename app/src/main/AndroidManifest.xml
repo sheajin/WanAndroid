@@ -59,7 +59,8 @@
         <activity android:name=".ui.knowledge.activity.KnowledgeClassifyActivity" />
         <activity android:name=".ui.main.activity.HotActivity" />
         <activity android:name=".ui.main.activity.SearchActivity" />
-        <activity android:name=".ui.main.activity.SearchResultActivity"></activity>
+        <activity android:name=".ui.main.activity.SearchResultActivity" />
+        <activity android:name=".ui.mine.activity.MyLabelActivity"></activity>
     </application>
 
 </manifest>

@@ -1,16 +1,15 @@
 package com.xy.wanandroid.presenter.knowledge;
 
 import com.xy.wanandroid.base.presenter.BasePresenter;
+import com.xy.wanandroid.contract.KnowledgeContract;
 import com.xy.wanandroid.data.knowledge.KnowledgeListBean;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;
+import com.xy.wanandroid.model.api.BaseResp;
 import com.xy.wanandroid.model.api.HttpObserver;
 import com.xy.wanandroid.model.constant.Constant;
 
 import java.util.List;
-
-import com.xy.wanandroid.model.api.BaseResp;
-import com.xy.wanandroid.contract.KnowledgeContract;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -58,14 +57,9 @@ public class KnowledgePresenter extends BasePresenter<KnowledgeContract.View> im
                 .subscribe(new HttpObserver<BaseResp<List<KnowledgeListBean>>>() {
                     @Override
                     public void onNext(BaseResp<List<KnowledgeListBean>> baseResp) {
-                        if (baseResp.getErrorCode() == Constant.ZERO) {
+                        if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
                             view.getKnowledgeListOk(baseResp.getData(), isRefresh);
-                        }
-                    }
-
-                    @Override
-                    public void onErrorInfo(BaseResp<List<KnowledgeListBean>> baseResp) {
-                        if (baseResp.getErrorCode() != Constant.ZERO) {
+                        } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
                             view.getKnowledgeListErr(baseResp.getErrorMsg());
                         }
                     }

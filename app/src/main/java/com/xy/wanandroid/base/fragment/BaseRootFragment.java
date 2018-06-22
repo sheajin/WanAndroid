@@ -12,14 +12,16 @@ import com.xy.wanandroid.base.presenter.BasePresenter;
 
 public abstract class BaseRootFragment<T extends BasePresenter> extends BaseFragment {
     /**
-     * 处理页面加载中、页面加载失败
+     * 处理页面加载中、页面加载失败、页面没数据
      */
     private static final int NORMAL_STATE = 0;
     private static final int LOADING_STATE = 1;
     public static final int ERROR_STATE = 2;
+    public static final int EMPTY_STATE = 3;
 
     private View mErrorView;
     private View mLoadingView;
+    private View mEmptyView;
     private ViewGroup mNormalView;
     private int currentState = NORMAL_STATE;
 
@@ -41,10 +43,13 @@ public abstract class BaseRootFragment<T extends BasePresenter> extends BaseFrag
         ViewGroup parent = (ViewGroup) mNormalView.getParent();
         View.inflate(activity, R.layout.view_loading, parent);
         View.inflate(activity, R.layout.view_error, parent);
+        View.inflate(activity, R.layout.view_empty, parent);
         mLoadingView = parent.findViewById(R.id.loading_group);
         mErrorView = parent.findViewById(R.id.error_group);
+        mEmptyView = parent.findViewById(R.id.empty_group);
         mErrorView.setOnClickListener(v -> reload());
         mErrorView.setVisibility(View.GONE);
+        mEmptyView.setVisibility(View.GONE);
         mLoadingView.setVisibility(View.GONE);
         mNormalView.setVisibility(View.VISIBLE);
     }
@@ -70,6 +75,16 @@ public abstract class BaseRootFragment<T extends BasePresenter> extends BaseFrag
     }
 
     @Override
+    public void showEmpty() {
+        if (currentState == EMPTY_STATE) {
+            return;
+        }
+        hideCurrentView();
+        currentState = EMPTY_STATE;
+        mEmptyView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void showNormal() {
         if (currentState == NORMAL_STATE) {
             return;
@@ -92,6 +107,9 @@ public abstract class BaseRootFragment<T extends BasePresenter> extends BaseFrag
                 break;
             case ERROR_STATE:
                 mErrorView.setVisibility(View.GONE);
+                break;
+            case EMPTY_STATE:
+                mEmptyView.setVisibility(View.GONE);
             default:
                 break;
         }

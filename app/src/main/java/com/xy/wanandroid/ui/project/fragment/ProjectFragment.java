@@ -3,21 +3,22 @@ package com.xy.wanandroid.ui.project.fragment;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.adapter.SimpleFragmentStateAdapter;
+import com.xy.wanandroid.base.fragment.BaseRootFragment;
 import com.xy.wanandroid.contract.ProjectContract;
+import com.xy.wanandroid.data.project.ProjectBean;
 import com.xy.wanandroid.model.constant.EventConstant;
 import com.xy.wanandroid.model.constant.MessageEvent;
+import com.xy.wanandroid.presenter.project.ProjectPresenter;
+import com.xy.wanandroid.util.app.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.xy.wanandroid.base.fragment.BaseRootFragment;
-import com.xy.wanandroid.data.project.ProjectBean;
-import com.xy.wanandroid.presenter.project.ProjectPresenter;
-import com.xy.wanandroid.util.app.ToastUtil;
 import butterknife.BindView;
 
 public class ProjectFragment extends BaseRootFragment<ProjectPresenter> implements ProjectContract.View {
@@ -60,6 +61,7 @@ public class ProjectFragment extends BaseRootFragment<ProjectPresenter> implemen
 
     @Override
     public void getProjectTitleOk(List<ProjectBean> dataBean) {
+        mProjectTabLayout.setVisibility(View.VISIBLE);
         projectList.clear();
         fragments.clear();
         titles.clear();

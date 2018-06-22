@@ -1,16 +1,22 @@
 package com.xy.wanandroid.ui.mine.fragment;
 
 import android.view.View;
+import android.widget.TextView;
 
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.fragment.BaseFragment;
+import com.xy.wanandroid.model.constant.Constant;
+import com.xy.wanandroid.model.constant.EventConstant;
+import com.xy.wanandroid.model.constant.MessageEvent;
 import com.xy.wanandroid.ui.login.LoginActivity;
 import com.xy.wanandroid.ui.mine.activity.AboutUsActivity;
+import com.xy.wanandroid.ui.mine.activity.MyCollectActivity;
+import com.xy.wanandroid.ui.mine.activity.MyLabelActivity;
 import com.xy.wanandroid.util.app.JumpUtil;
+import com.xy.wanandroid.util.app.SharedPreferenceUtil;
+import com.xy.wanandroid.util.app.ToastUtil;
 import com.xy.wanandroid.util.glide.GlideUtil;
 import com.xy.wanandroid.util.widget.CommonAlertDialog;
-
-import com.xy.wanandroid.ui.mine.activity.MyCollectActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -19,7 +25,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class PersonalFragment extends BaseFragment {
     @BindView(R.id.image_head)
     CircleImageView imageHead;
-
+    @BindView(R.id.tv_username)
+    TextView mTvName;
+    @BindView(R.id.tv_logout)
+    TextView mTvLogout;
+    private boolean isLogin;
 
     @Override
     public int getLayoutResID() {
@@ -33,7 +43,11 @@ public class PersonalFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-
+        isLogin = (Boolean) SharedPreferenceUtil.get(activity, Constant.ISLOGIN, Constant.FALSE);
+        String username = (String) SharedPreferenceUtil.get(activity, Constant.USERNAME, Constant.DEFAULT);
+        mTvLogout.setVisibility(isLogin ? View.VISIBLE : View.GONE);
+        mTvName.setText(isLogin ? username : getString(R.string.click_head_login));
+        imageHead.setEnabled(!isLogin);
     }
 
     public static PersonalFragment getInstance() {
@@ -47,10 +61,18 @@ public class PersonalFragment extends BaseFragment {
                 JumpUtil.overlay(context, LoginActivity.class);
                 break;
             case R.id.view_collect:
-                JumpUtil.overlay(context, MyCollectActivity.class);
+                if (isLogin) {
+                    JumpUtil.overlay(context, MyCollectActivity.class);
+                } else {
+                    ToastUtil.show(activity,getString(R.string.please_login));
+                }
                 break;
             case R.id.view_label:
-
+                if (isLogin) {
+                    JumpUtil.overlay(context, MyLabelActivity.class);
+                } else {
+                    ToastUtil.show(activity,getString(R.string.please_login));
+                }
                 break;
             case R.id.view_about:
                 JumpUtil.overlay(context, AboutUsActivity.class);
@@ -61,7 +83,17 @@ public class PersonalFragment extends BaseFragment {
         }
     }
 
-    private void logout() {
+    @Override
+    public void onMessageEvent(MessageEvent event) {
+        super.onMessageEvent(event);
+        if (event.getCode() == EventConstant.LOGINSUCCESS)
+            initData();
+    }
 
+    private void logout() {
+        ToastUtil.show(activity, getString(R.string.login_err));
+        CommonAlertDialog.newInstance().cancelDialog(true);
+        SharedPreferenceUtil.clear(activity);
+        initData();
     }
 }

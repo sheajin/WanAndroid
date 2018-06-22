@@ -12,27 +12,32 @@ import android.widget.LinearLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xy.wanandroid.R;
+import com.xy.wanandroid.base.fragment.BaseRootFragment;
 import com.xy.wanandroid.contract.HomePageContract;
+import com.xy.wanandroid.data.login.UserInfo;
 import com.xy.wanandroid.data.main.BannerBean;
 import com.xy.wanandroid.data.main.HomePageArticleBean;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.model.constant.EventConstant;
 import com.xy.wanandroid.model.constant.MessageEvent;
+import com.xy.wanandroid.presenter.main.HomePagePresenter;
 import com.xy.wanandroid.ui.knowledge.activity.KnowledgeClassifyActivity;
+import com.xy.wanandroid.ui.main.activity.ArticleDetailsActivity;
 import com.xy.wanandroid.ui.main.adapter.HomePageAdapter;
 import com.xy.wanandroid.util.app.JumpUtil;
 import com.xy.wanandroid.util.app.LogUtil;
+import com.xy.wanandroid.util.app.SharedPreferenceUtil;
+import com.xy.wanandroid.util.app.ToastUtil;
+import com.xy.wanandroid.util.glide.GlideImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.xy.wanandroid.base.fragment.BaseRootFragment;
-import com.xy.wanandroid.presenter.main.HomePagePresenter;
-import com.xy.wanandroid.ui.main.activity.ArticleDetailsActivity;
-import com.xy.wanandroid.util.glide.GlideImageLoader;
 import butterknife.BindView;
 
 public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implements HomePageContract.View, HomePageAdapter.OnItemClickListener, BaseQuickAdapter.OnItemChildClickListener {
@@ -78,8 +83,12 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
         imageList = new ArrayList<>();
         titleList = new ArrayList<>();
         presenter = new HomePagePresenter(this);
-        presenter.getBanner();
-        presenter.getHomepageList(Constant.ZERO);
+        if (SharedPreferenceUtil.get(activity, Constant.USERNAME, Constant.DEFAULT).equals(Constant.DEFAULT)) {
+            presenter.getBanner();
+            presenter.getHomepageList(0);
+        } else {
+            presenter.loginAndLoad();
+        }
         mAdapter = new HomePageAdapter(R.layout.item_homepage, articleList);
         mAdapter.addHeaderView(bannerView);
         mAdapter.setOnItemClickListener(this);
@@ -151,6 +160,18 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
     @Override
     public void getBannerErr(String info) {
         LogUtil.e(info);
+    }
+
+    @Override
+    public void loginSuccess(UserInfo userInfo) {
+        ToastUtil.show(activity, getString(R.string.auto_login_ok));
+        SharedPreferenceUtil.put(activity, Constant.ISLOGIN, true);
+        EventBus.getDefault().post(new MessageEvent(EventConstant.LOGINSUCCESS, ""));
+    }
+
+    @Override
+    public void loginErr(String info) {
+        ToastUtil.show(activity, info);
     }
 
     @Override

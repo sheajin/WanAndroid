@@ -97,6 +97,11 @@ public class SearchActivity extends BaseRootActivity implements SearchContract.V
         presenter.readSearchHistory(context, historyList);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     /**
      * 使用SearchView设置ToolBar搜索栏
      */
@@ -113,9 +118,12 @@ public class SearchActivity extends BaseRootActivity implements SearchContract.V
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                historyList.add(query);
-                mAdapter.notifyDataSetChanged();
-                presenter.saveSearchHistory(context, historyList);
+                if (!historyList.contains(query)) {
+                    historyList.add(query);
+                    mAdapter.notifyDataSetChanged();
+                    presenter.saveSearchHistory(context, historyList);
+                    jumpToResult(query);
+                }
                 return true;
             }
 
@@ -152,12 +160,11 @@ public class SearchActivity extends BaseRootActivity implements SearchContract.V
         mFlowSearch.setAdapter(tagAdapter);
         mFlowSearch.setOnTagClickListener((view, position1, parent1) -> {
             String name = hotList.get(position1).getName();
-            historyList.add(name);
-            presenter.saveSearchHistory(context, historyList);
-            Bundle bundle = new Bundle();
-            bundle.putString(Constant.SEARCH_RESULT_TITLE, name);
-            JumpUtil.overlay(context, SearchResultActivity.class, bundle);
-            finish();
+            if (!historyList.contains(name)) {
+                historyList.add(name);
+                presenter.saveSearchHistory(context, historyList);
+            }
+            jumpToResult(name);
             return true;
         });
     }
@@ -171,15 +178,18 @@ public class SearchActivity extends BaseRootActivity implements SearchContract.V
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        Bundle bundle = new Bundle();
-        bundle.putString(Constant.SEARCH_RESULT_TITLE, mAdapter.getData().get(position));
-        JumpUtil.overlay(context, SearchResultActivity.class, bundle);
-        finish();
+        jumpToResult(mAdapter.getData().get(position));
     }
 
     @Override
     public void onBackPressedSupport() {
         super.onBackPressedSupport();
         CommonUtil.hideKeyBoard();
+    }
+
+    private void jumpToResult(String key) {
+        Bundle bundle = new Bundle();
+        bundle.putString(Constant.SEARCH_RESULT_TITLE, key);
+        JumpUtil.overlay(context, SearchResultActivity.class, bundle);
     }
 }

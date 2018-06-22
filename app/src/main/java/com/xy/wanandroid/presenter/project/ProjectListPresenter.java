@@ -3,14 +3,13 @@ package com.xy.wanandroid.presenter.project;
 
 import com.xy.wanandroid.base.presenter.BasePresenter;
 import com.xy.wanandroid.contract.ProjectListContract;
+import com.xy.wanandroid.data.project.ProjectListBean;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;
+import com.xy.wanandroid.model.api.BaseResp;
 import com.xy.wanandroid.model.api.HttpObserver;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.util.app.LogUtil;
-
-import com.xy.wanandroid.data.project.ProjectListBean;
-import com.xy.wanandroid.model.api.BaseResp;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -61,21 +60,15 @@ public class ProjectListPresenter extends BasePresenter<ProjectListContract.View
                 .subscribe(new HttpObserver<BaseResp<ProjectListBean>>() {
                     @Override
                     public void onNext(BaseResp<ProjectListBean> listBaseResp) {
-                        if (listBaseResp.getErrorCode() == Constant.ZERO) {
+                        if (listBaseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
                             view.getProjectListOk(listBaseResp.getData(), isRefresh);
-                        }
-                    }
-
-                    @Override
-                    public void onErrorInfo(BaseResp<ProjectListBean> listBaseResp) {
-                        if (listBaseResp.getErrorCode() < Constant.ZERO) {
+                        } else if (listBaseResp.getErrorCode() == Constant.REQUEST_ERROR) {
                             view.getProjectListErr(listBaseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        super.onError(e);
                         view.getProjectListErr(e.getMessage());
                     }
                 });

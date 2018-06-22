@@ -19,10 +19,7 @@ public abstract class HttpObserver<T> implements Observer<T> {
     }
 
     @Override
-    public void onError(Throwable e){
+    public abstract void onError(Throwable e);
 
-    }
-
-    public abstract void onErrorInfo(T t);
 }
 

@@ -1,6 +1,8 @@
 package com.xy.wanandroid.ui.main.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -92,7 +94,9 @@ public class ArticleDetailsActivity extends BaseRootActivity {
                 ToastUtil.show(context, "collect");
                 break;
             case R.id.menu_article_browser:
-                ToastUtil.show(context, "browser");
+                Uri uri = Uri.parse(articleLink);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);

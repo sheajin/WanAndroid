@@ -112,6 +112,11 @@ public abstract class BaseActivity extends SupportActivity implements AbstractVi
     }
 
     @Override
+    public void showEmpty() {
+
+    }
+
+    @Override
     public void showLoading() {
 
     }
