@@ -13,9 +13,14 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.just.agentweb.AgentWeb;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.editorpage.ShareActivity;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseRootActivity;
 import com.xy.wanandroid.model.constant.Constant;
+import com.xy.wanandroid.util.app.LogUtil;
 import com.xy.wanandroid.util.app.ToastUtil;
 
 import java.lang.reflect.Method;
@@ -32,6 +37,7 @@ public class ArticleDetailsActivity extends BaseRootActivity {
     private String title;
     private String articleLink;
     private AgentWeb mAgentWeb;
+    private UMShareListener umShareListener;
 
     @Override
     protected int getLayoutId() {
@@ -44,6 +50,7 @@ public class ArticleDetailsActivity extends BaseRootActivity {
         setSupportActionBar(mArticleToolbar);
         getSupportActionBar().setTitle(title);
         mArticleToolbar.setNavigationOnClickListener(v -> onBackPressedSupport());
+
     }
 
     @Override
@@ -89,18 +96,47 @@ public class ArticleDetailsActivity extends BaseRootActivity {
         switch (item.getItemId()) {
             case R.id.menu_article_share:
                 ToastUtil.show(context, "share");
-                break;
-            case R.id.menu_article_collect:
-                ToastUtil.show(context, "collect");
-                break;
-            case R.id.menu_article_browser:
-                Uri uri = Uri.parse(articleLink);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
+
+        new ShareAction(this)
+                .withText("hello")
+                .setPlatform( SHARE_MEDIA.WEIXIN)
+                .setCallback(new UMShareListener() {
+                    @Override
+                    public void onStart(SHARE_MEDIA share_media) {
+                        LogUtil.e("share onStart");
+                    }
+
+                    @Override
+                    public void onResult(SHARE_MEDIA share_media) {
+                        LogUtil.e("share onResult");
+                    }
+
+                    @Override
+                    public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+                        LogUtil.e("share onError" + throwable.getMessage());
+                    }
+
+                    @Override
+                    public void onCancel(SHARE_MEDIA share_media) {
+                        LogUtil.e("share onCancel");
+                    }
+                }).share();
+
+        break;
+        case R.id.menu_article_collect:
+        ToastUtil.show(context, "collect");
+        break;
+        case R.id.menu_article_browser:
+        Uri uri = Uri.parse(articleLink);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+        break;
     }
+        return super.
+
+    onOptionsItemSelected(item);
+
+}
 
     /**
      * 让菜单同时显示图标和文字
@@ -152,4 +188,6 @@ public class ArticleDetailsActivity extends BaseRootActivity {
             supportFinishAfterTransition();
         }
     }
+
+
 }

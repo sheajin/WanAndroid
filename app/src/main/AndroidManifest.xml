@@ -37,6 +37,13 @@
                 <action android:name="CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
+        <!--UMeng Share-->
+        <activity
+            android:name="wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
         <!-- Activity -->
         <activity android:name=".ui.main.activity.SplashActivity">
             <intent-filter>
@@ -60,7 +67,7 @@
         <activity android:name=".ui.main.activity.HotActivity" />
         <activity android:name=".ui.main.activity.SearchActivity" />
         <activity android:name=".ui.main.activity.SearchResultActivity" />
-        <activity android:name=".ui.mine.activity.MyLabelActivity"></activity>
+        <activity android:name=".ui.mine.activity.MyLabelActivity"/>
     </application>
 
 </manifest>
