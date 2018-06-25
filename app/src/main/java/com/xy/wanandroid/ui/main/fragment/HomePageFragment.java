@@ -22,6 +22,7 @@ import com.xy.wanandroid.model.constant.EventConstant;
 import com.xy.wanandroid.model.constant.MessageEvent;
 import com.xy.wanandroid.presenter.main.HomePagePresenter;
 import com.xy.wanandroid.ui.knowledge.activity.KnowledgeClassifyActivity;
+import com.xy.wanandroid.ui.login.LoginActivity;
 import com.xy.wanandroid.ui.main.activity.ArticleDetailsActivity;
 import com.xy.wanandroid.ui.main.adapter.HomePageAdapter;
 import com.xy.wanandroid.util.app.JumpUtil;
@@ -54,6 +55,7 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
     private HomePagePresenter presenter;
     private Banner banner;
     private LinearLayout bannerView;
+    private int clickPosition;
 
     @Override
     public int getLayoutResID() {
@@ -100,6 +102,9 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
         if (event.getCode() == EventConstant.MAINSCROLLTOTOP) {
             mRv.smoothScrollToPosition(0);
         }
+//        else if (event.getCode() == EventConstant.LOGINSUCCESS) {
+//            presenter.getHomepageList(0);
+//        }
     }
 
     @Override
@@ -175,6 +180,35 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
     }
 
     @Override
+    public void collectArticleOK(String info) {
+        if (mAdapter != null && mAdapter.getData().size() > clickPosition) {
+            ToastUtil.show(activity, getString(R.string.collect_success));
+            mAdapter.getData().get(clickPosition).setCollect(true);
+            mAdapter.setData(clickPosition, mAdapter.getData().get(clickPosition));
+        }
+    }
+
+    @Override
+    public void collectArticleErr(String info) {
+        ToastUtil.show(activity, getString(R.string.please_login));
+        JumpUtil.overlay(activity, LoginActivity.class);
+    }
+
+    @Override
+    public void cancelCollectArticleOK(String info) {
+        if (mAdapter != null && mAdapter.getData().size() > clickPosition) {
+            ToastUtil.show(activity, getString(R.string.cancel_collect_success));
+            mAdapter.getData().get(clickPosition).setCollect(false);
+            mAdapter.setData(clickPosition, mAdapter.getData().get(clickPosition));
+        }
+    }
+
+    @Override
+    public void cancelCollectArticleErr(String info) {
+        ToastUtil.show(activity, info);
+    }
+
+    @Override
     public void reload() {
         showLoading();
         presenter.getBanner();
@@ -211,14 +245,19 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
 
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        clickPosition = position;
         switch (view.getId()) {
             case R.id.image_collect:
-                if (mAdapter.getData().get(position).isCollect()) {
-                    mAdapter.getData().get(position).setCollect(false);
+                if ((Boolean) SharedPreferenceUtil.get(context, Constant.ISLOGIN, Constant.FALSE)) {
+                    if (mAdapter.getData().get(clickPosition).isCollect()) {
+                        presenter.cancelCollectArticle(mAdapter.getData().get(clickPosition).getId());
+                    } else {
+                        presenter.collectArticle(mAdapter.getData().get(clickPosition).getId());
+                    }
                 } else {
-                    mAdapter.getData().get(position).setCollect(true);
+                    ToastUtil.show(activity, getString(R.string.please_login));
+                    JumpUtil.overlay(activity, LoginActivity.class);
                 }
-                mAdapter.notifyDataSetChanged();
                 break;
             case R.id.tv_type:
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(activity, view, getString(R.string.share_view));

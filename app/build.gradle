@@ -53,7 +53,6 @@ dependencies {
     implementation rootProject.ext.dependencies["support-v4"]
     implementation rootProject.ext.dependencies["design"]
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-
     //ui
     implementation rootProject.ext.dependencies["SmartRefreshLayout"]
     implementation rootProject.ext.dependencies["SmartRefreshHeader"]
@@ -63,7 +62,6 @@ dependencies {
     implementation rootProject.ext.dependencies["FlycoTabLayout_Lib"]
     implementation rootProject.ext.dependencies["shapeLoadingView"]
     implementation rootProject.ext.dependencies["flowlayout"]
-
     //net
     implementation rootProject.ext.dependencies["okhttp"]
     implementation rootProject.ext.dependencies["logging-interceptor"]
@@ -72,36 +70,29 @@ dependencies {
     implementation rootProject.ext.dependencies["adapter-rxjava2"]
     implementation rootProject.ext.dependencies["glide"]
     annotationProcessor rootProject.ext.dependencies["glide_compiler"]
-
     //rx
     implementation rootProject.ext.dependencies["rxjava"]
     implementation rootProject.ext.dependencies["rxandroid"]
     implementation rootProject.ext.dependencies["rxpermissions"]
-
     //dagger
     implementation rootProject.ext.dependencies["dagger"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
     implementation rootProject.ext.dependencies["dagger-android"]
     implementation rootProject.ext.dependencies["dagger-android-support"]
     annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
-
     //annotate
     implementation rootProject.ext.dependencies["eventbus"]
     implementation rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
-
     //MultiDex
     implementation rootProject.ext.dependencies["multidex"]
-
     //other
     implementation rootProject.ext.dependencies["ByeBurger"]
     implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
     implementation rootProject.ext.dependencies["fragmentation"]
-
     //unit test
     testImplementation 'junit:junit:4.12'
     testImplementation rootProject.ext.dependencies["junit"]
     androidTestImplementation rootProject.ext.dependencies["runner"]
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
 }

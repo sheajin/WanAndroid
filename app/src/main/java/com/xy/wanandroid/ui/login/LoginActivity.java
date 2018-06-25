@@ -84,7 +84,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         SharedPreferenceUtil.put(activity, Constant.USERNAME, userInfo.getUsername());
         SharedPreferenceUtil.put(activity, Constant.PASSWORD, userInfo.getPassword());
         SharedPreferenceUtil.put(activity, Constant.ISLOGIN, true);
-        EventBus.getDefault().post(new MessageEvent(EventConstant.LOGINSUCCESS, ""));
+
         finish();
     }
 

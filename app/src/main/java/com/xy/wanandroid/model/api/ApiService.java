@@ -6,6 +6,7 @@ import com.xy.wanandroid.data.login.UserInfo;
 import com.xy.wanandroid.data.main.BannerBean;
 import com.xy.wanandroid.data.main.HomePageArticleBean;
 import com.xy.wanandroid.data.main.SearchHot;
+import com.xy.wanandroid.data.mine.CollectBean;
 import com.xy.wanandroid.data.project.ProjectBean;
 import com.xy.wanandroid.data.project.ProjectListBean;
 
@@ -92,4 +93,22 @@ public interface ApiService {
     @POST("user/login")
     @FormUrlEncoded
     Observable<BaseResp<UserInfo>> login(@Field("username") String username, @Field("password") String password);
+
+    /**
+     * 收藏文章
+     */
+    @POST("lg/collect/{id}/json")
+    Observable<BaseResp> collectArticle(@Path("id") int id);
+
+    /**
+     * 取消收藏文章
+     */
+    @POST("lg/uncollect_originId/{id}/json")
+    Observable<BaseResp> cancelCollectArticle(@Path("id") int id);
+
+    /**
+     * 收藏文章列表
+     */
+    @GET("lg/collect/list/{id}/json")
+    Observable<BaseResp<CollectBean>> getCollectList(@Path("id") int id);
 }

@@ -1,13 +1,12 @@
 package com.xy.wanandroid.contract;
 
-import com.xy.wanandroid.data.login.UserInfo;
-import com.xy.wanandroid.data.main.BannerBean;
-
-import java.util.List;
-
 import com.xy.wanandroid.base.presenter.AbsPresenter;
 import com.xy.wanandroid.base.view.AbstractView;
+import com.xy.wanandroid.data.login.UserInfo;
+import com.xy.wanandroid.data.main.BannerBean;
 import com.xy.wanandroid.data.main.HomePageArticleBean;
+
+import java.util.List;
 
 /**
  * Created by jxy on 2018/2/2.
@@ -29,6 +28,13 @@ public class HomePageContract {
 
         void loginErr(String info);
 
+        void collectArticleOK(String info);
+
+        void collectArticleErr(String info);
+
+        void cancelCollectArticleOK(String info);
+
+        void cancelCollectArticleErr(String info);
     }
 
     public interface Presenter extends AbsPresenter<View> {
@@ -42,6 +48,10 @@ public class HomePageContract {
         void getBanner();
 
         void loginAndLoad();
+
+        void collectArticle(int id);
+
+        void cancelCollectArticle(int id);
     }
 }
 

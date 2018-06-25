@@ -1,6 +1,5 @@
 package com.xy.wanandroid.ui.main.activity;
 
-
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;

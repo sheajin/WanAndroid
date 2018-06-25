@@ -2,6 +2,7 @@ package com.xy.wanandroid.model.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.xy.wanandroid.model.cookie.CookiesManager;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,7 +49,8 @@ public class ApiStore {
                     Request request = requestBuilder.build();
                     return chain.proceed(request);
                 })
-                .addInterceptor(new HttpLoggingInterceptor());
+                .addInterceptor(new HttpLoggingInterceptor())
+                .cookieJar(new CookiesManager());
 
         SSLSocketFactory sslSocketFactory = getSSLSocketFactory(new Buffer().writeUtf8(AppConfig.SSL_KEY).inputStream(), new Buffer().writeUtf8(AppConfig.MIDDLE_KEY).inputStream());
         if (sslSocketFactory != null) {

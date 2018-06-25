@@ -8,6 +8,7 @@ import com.xy.wanandroid.base.fragment.BaseFragment;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.model.constant.EventConstant;
 import com.xy.wanandroid.model.constant.MessageEvent;
+import com.xy.wanandroid.model.cookie.CookiesManager;
 import com.xy.wanandroid.ui.login.LoginActivity;
 import com.xy.wanandroid.ui.mine.activity.AboutUsActivity;
 import com.xy.wanandroid.ui.mine.activity.MyCollectActivity;
@@ -91,9 +92,10 @@ public class PersonalFragment extends BaseFragment {
     }
 
     private void logout() {
-        ToastUtil.show(activity, getString(R.string.login_err));
+        ToastUtil.show(activity, getString(R.string.logout_ok));
         CommonAlertDialog.newInstance().cancelDialog(true);
         SharedPreferenceUtil.clear(activity);
         initData();
+        CookiesManager.clearAllCookies();
     }
 }

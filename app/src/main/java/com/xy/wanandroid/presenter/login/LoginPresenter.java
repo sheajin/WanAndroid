@@ -8,6 +8,10 @@ import com.xy.wanandroid.model.api.ApiStore;
 import com.xy.wanandroid.model.api.BaseResp;
 import com.xy.wanandroid.model.api.HttpObserver;
 import com.xy.wanandroid.model.constant.Constant;
+import com.xy.wanandroid.model.constant.EventConstant;
+import com.xy.wanandroid.model.constant.MessageEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -34,6 +38,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                     @Override
                     public void onNext(BaseResp<UserInfo> baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
+                            EventBus.getDefault().post(new MessageEvent(EventConstant.LOGINSUCCESS, ""));
                             view.loginOk(baseResp.getData());
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
                             view.loginErr(baseResp.getErrorMsg());
