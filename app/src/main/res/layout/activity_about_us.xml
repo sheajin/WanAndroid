@@ -6,80 +6,118 @@
     android:layout_height="match_parent"
     tools:context=".ui.mine.activity.AboutUsActivity">
 
-    <!--<com.scwang.smartrefresh.header.flyrefresh.MountainSceneView-->
-        <!--android:id="@+id/about_us_mountain"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--app:msvPrimaryColor="@color/colorPrimary"-->
-        <!--app:msvViewportHeight="@dimen/dp_340" />-->
-    <!--&lt;!&ndash;srlViewportHeightHeight 设置为&ndash;&gt;-->
-    <!--&lt;!&ndash;AppBarLayout.Height + RefreshHeader.Height&ndash;&gt;-->
-    <!--&lt;!&ndash;效果最佳&ndash;&gt;-->
+    <com.scwang.smartrefresh.header.flyrefresh.MountainSceneView
+        android:id="@+id/about_us_mountain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:msvPrimaryColor="@color/colorPrimary"
+        app:msvViewportHeight="@dimen/dp_340" />
+    <!--srlViewportHeightHeight 设置为-->
+    <!--AppBarLayout.Height + RefreshHeader.Height-->
+    <!--效果最佳-->
 
-    <!--<android.support.design.widget.AppBarLayout-->
-        <!--android:id="@+id/about_us_app_bar"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/dp_240"-->
-        <!--android:background="@android:color/transparent"-->
-        <!--android:clipChildren="false"-->
-        <!--android:theme="@style/AppTheme.AppBarOverlay">-->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/about_us_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_240"
+        android:background="@android:color/transparent"
+        android:clipChildren="false"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <!--<android.support.design.widget.CollapsingToolbarLayout-->
-            <!--android:id="@+id/about_us_toolbar_layout"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--app:contentScrim="?attr/colorPrimary"-->
-            <!--app:expandedTitleMarginBottom="@dimen/dp_120"-->
-            <!--app:layout_scrollFlags="scroll|exitUntilCollapsed">-->
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/about_us_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginBottom="@dimen/dp_120"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <!--<android.support.v7.widget.Toolbar-->
-                <!--android:id="@+id/about_us_toolbar"-->
-                <!--style="@style/AppTheme.Toolbar"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="?attr/actionBarSize"-->
-                <!--app:layout_collapseMode="pin"-->
-                <!--app:navigationIcon="?attr/homeAsUpIndicator"-->
-                <!--app:title="@string/about_us" />-->
-        <!--</android.support.design.widget.CollapsingToolbarLayout>-->
-    <!--</android.support.design.widget.AppBarLayout>-->
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/about_us_toolbar"
+                style="@style/AppTheme.Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="?attr/homeAsUpIndicator"
+                app:title="@string/about_us" />
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
 
-    <!--<com.scwang.smartrefresh.layout.SmartRefreshLayout-->
-        <!--android:id="@+id/about_us_refresh_layout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
-        <!--app:srlEnableLoadMore="false"-->
-        <!--app:srlEnableOverScrollBounce="false"-->
-        <!--app:srlEnablePreviewInEditMode="true"-->
-        <!--app:srlHeaderHeight="@dimen/dp_100"-->
-        <!--app:srlHeaderMaxDragRate="1.5"-->
-        <!--app:srlReboundDuration="200">-->
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/about_us_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:srlEnableLoadMore="false"
+        app:srlEnableOverScrollBounce="false"
+        app:srlEnablePreviewInEditMode="true"
+        app:srlHeaderHeight="@dimen/dp_100"
+        app:srlHeaderMaxDragRate="1.5"
+        app:srlReboundDuration="200">
 
-        <!--<com.scwang.smartrefresh.header.FlyRefreshHeader-->
-            <!--android:id="@+id/about_us_fly_refresh"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent" />-->
+        <com.scwang.smartrefresh.header.FlyRefreshHeader
+            android:id="@+id/about_us_fly_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-        <!--&lt;!&ndash;<include&ndash;&gt;-->
-            <!--&lt;!&ndash;android:id="@+id/about_us_content"&ndash;&gt;-->
-            <!--&lt;!&ndash;layout="@layout/content_about" />&ndash;&gt;-->
-    <!--</com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/about_us_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/card_shape"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/dp_25"
+            tools:showIn="@layout/activity_about_us">
 
-    <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/about_us_fab"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="@dimen/dp_16"-->
-        <!--app:elevation="@dimen/dp_0"-->
-        <!--app:fabSize="normal"-->
-        <!--app:layout_anchor="@id/about_us_content"-->
-        <!--app:layout_anchorGravity="top" />-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dp_10">
+                <ImageView
+                    android:src="@mipmap/app_logo"
+                    android:layout_width="@dimen/dp_60"
+                    android:layout_height="@dimen/dp_60"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dp_16"/>
+                <TextView
+                    android:id="@+id/aboutVersion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:gravity="center"
+                    android:text="@string/app_name"
+                    android:textAllCaps="false"
+                    android:textColor="@color/homepage_color"
+                    android:textSize="@dimen/sp_16" />
 
-    <!--<com.scwang.smartrefresh.header.flyrefresh.FlyView-->
-        <!--android:id="@+id/about_us_fly_view"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:elevation="@dimen/dp_3"-->
-        <!--app:layout_anchor="@id/about_us_fab"-->
-        <!--app:layout_anchorGravity="center" />-->
+                <TextView
+                    android:id="@+id/aboutContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_16"
+                    android:textColor="@color/homepage_color"
+                    tools:text="@string/about_content" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/about_us_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_16"
+        app:elevation="@dimen/dp_0"
+        app:fabSize="normal"
+        app:layout_anchor="@id/about_us_content"
+        app:layout_anchorGravity="top" />
+
+    <com.scwang.smartrefresh.header.flyrefresh.FlyView
+        android:id="@+id/about_us_fly_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:elevation="@dimen/dp_3"
+        app:layout_anchor="@id/about_us_fab"
+        app:layout_anchorGravity="center" />
 </android.support.design.widget.CoordinatorLayout>
