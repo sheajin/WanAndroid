@@ -1,8 +1,7 @@
-package com.xy.wanandroid.presenter.mine;
+package com.xy.wanandroid.presenter.main;
 
 import com.xy.wanandroid.base.presenter.BasePresenter;
-import com.xy.wanandroid.contract.CollectContract;
-import com.xy.wanandroid.data.mine.CollectBean;
+import com.xy.wanandroid.contract.ArticleDetailContact;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;
 import com.xy.wanandroid.model.api.BaseResp;
@@ -13,58 +12,42 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by jxy on 2018/6/25.
+ * Created by jxy on 2018/6/27.
  */
 
-public class CollectPresenter extends BasePresenter<CollectContract.View> implements CollectContract.Presenter {
+public class ArticleDetailPresenter extends BasePresenter<ArticleDetailContact.View> implements ArticleDetailContact.Presenter {
 
-    private CollectContract.View view;
-    private int currentPage;
-    private boolean isRefresh = true;
+    private ArticleDetailContact.View view;
 
-    public CollectPresenter(CollectContract.View view) {
+    public ArticleDetailPresenter(ArticleDetailContact.View view) {
         this.view = view;
     }
 
     @Override
-    public void autoRefresh() {
-        isRefresh = true;
-        currentPage = 0;
-        getCollectList(currentPage);
-    }
-
-    @Override
-    public void loadMore() {
-        isRefresh = false;
-        currentPage++;
-        getCollectList(currentPage);
-    }
-
-    @Override
-    public void getCollectList(int page) {
+    public void collectArticle(int id) {
         ApiStore.createApi(ApiService.class)
-                .getCollectList(page)
+                .collectArticle(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new HttpObserver<BaseResp<CollectBean>>() {
+                .subscribe(new HttpObserver<BaseResp>() {
                     @Override
-                    public void onNext(BaseResp<CollectBean> baseResp) {
+                    public void onNext(BaseResp baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.getCollectListOk(baseResp.getData(), isRefresh);
+                            view.collectArticleOK((String) baseResp.getData());
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.getCollectListErr(baseResp.getErrorMsg());
+                            view.collectArticleErr(baseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.getCollectListErr(e.getMessage());
+                        view.collectArticleErr(e.getMessage());
                     }
                 });
     }
 
     @Override
-    public void cancelCollect(int id) {
+    public void cancelCollectArticle(int id) {
         ApiStore.createApi(ApiService.class)
                 .cancelCollectArticle(id)
                 .subscribeOn(Schedulers.io())
@@ -73,18 +56,16 @@ public class CollectPresenter extends BasePresenter<CollectContract.View> implem
                     @Override
                     public void onNext(BaseResp baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.cancelCollectOk((String) baseResp.getData());
+                            view.cancelCollectArticleOK((String) baseResp.getData());
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.cancelCollectErr(baseResp.getErrorMsg());
+                            view.cancelCollectArticleErr(baseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.cancelCollectErr(e.getMessage());
+                        view.cancelCollectArticleErr(e.getMessage());
                     }
                 });
     }
-
-
 }
