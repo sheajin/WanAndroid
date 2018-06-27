@@ -16,6 +16,10 @@ public class CollectContract {
 
         void getCollectListErr(String info);
 
+        void cancelCollectOk(String info);
+
+        void cancelCollectErr(String info);
+
     }
 
     public interface Presenter extends AbsPresenter<CollectContract.View> {
@@ -26,5 +30,6 @@ public class CollectContract {
 
         void getCollectList(int page);
 
+        void cancelCollect(int id);
     }
 }

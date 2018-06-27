@@ -34,5 +34,7 @@ public class CollectAdapter extends BaseQuickAdapter<CollectBean.DatasBean, Base
         if (!TextUtils.isEmpty(article.getChapterName())) {
             helper.setText(R.id.tv_type, article.getChapterName());
         }
+        helper.setImageResource(R.id.image_collect, R.drawable.icon_collect);
+        helper.addOnClickListener(R.id.image_collect);
     }
 }

@@ -20,5 +20,9 @@ public class EventConstant {
     /**
      * 登陆成功
      */
-    public static int LOGINSUCCESS = 111;
+    public static int LOGINSUCCESS = 107;
+    /**
+     * 刷新主页
+     */
+    public static int REFRESHHOMEPAGE = 108;
 }

@@ -101,10 +101,9 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
     public void onMessageEvent(MessageEvent event) {
         if (event.getCode() == EventConstant.MAINSCROLLTOTOP) {
             mRv.smoothScrollToPosition(0);
+        } else if (event.getCode() == EventConstant.REFRESHHOMEPAGE) {
+            presenter.getHomepageList(0);
         }
-//        else if (event.getCode() == EventConstant.LOGINSUCCESS) {
-//            presenter.getHomepageList(0);
-//        }
     }
 
     @Override
@@ -239,6 +238,8 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
         Bundle bundle = new Bundle();
         bundle.putString(Constant.ARTICLE_TITLE, mAdapter.getData().get(position).getTitle());
         bundle.putString(Constant.ARTICLE_LINK, mAdapter.getData().get(position).getLink());
+        bundle.putInt(Constant.ARTICLE_ID, mAdapter.getData().get(position).getId());
+        bundle.putBoolean(Constant.ARTICLE_IS_COLLECT, mAdapter.getData().get(position).isCollect());
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(activity, view, getString(R.string.share_view));
         startActivity(new Intent(activity, ArticleDetailsActivity.class).putExtras(bundle), options.toBundle());
     }

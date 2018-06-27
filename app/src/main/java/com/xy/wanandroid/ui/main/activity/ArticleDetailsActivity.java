@@ -15,15 +15,25 @@ import android.widget.LinearLayout;
 import com.just.agentweb.AgentWeb;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseRootActivity;
+import com.xy.wanandroid.contract.ArticleDetailContact;
 import com.xy.wanandroid.model.constant.Constant;
+import com.xy.wanandroid.model.constant.EventConstant;
+import com.xy.wanandroid.model.constant.MessageEvent;
+import com.xy.wanandroid.presenter.main.ArticleDetailPresenter;
+import com.xy.wanandroid.ui.login.LoginActivity;
+import com.xy.wanandroid.util.app.JumpUtil;
+import com.xy.wanandroid.util.app.LogUtil;
+import com.xy.wanandroid.util.app.SharedPreferenceUtil;
 import com.xy.wanandroid.util.app.ToastUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.lang.reflect.Method;
 
 import butterknife.BindView;
 
 @SuppressLint("SetJavaScriptEnabled")
-public class ArticleDetailsActivity extends BaseRootActivity {
+public class ArticleDetailsActivity extends BaseRootActivity implements ArticleDetailContact.View {
     @BindView(R.id.article_detail_web_view)
     FrameLayout mWebContent;
     @BindView(R.id.article_toolbar)
@@ -31,7 +41,11 @@ public class ArticleDetailsActivity extends BaseRootActivity {
 
     private String title;
     private String articleLink;
+    private int articleId;
+    private boolean isCollect;
     private AgentWeb mAgentWeb;
+    private ArticleDetailPresenter presenter;
+    private int collectCode = -1;
 
     @Override
     protected int getLayoutId() {
@@ -44,7 +58,15 @@ public class ArticleDetailsActivity extends BaseRootActivity {
         setSupportActionBar(mArticleToolbar);
         getSupportActionBar().setTitle(title);
         mArticleToolbar.setNavigationOnClickListener(v -> onBackPressedSupport());
+    }
 
+    private void getBundleData() {
+        presenter = new ArticleDetailPresenter(this);
+        Bundle bundle = getIntent().getExtras();
+        title = bundle.getString(Constant.ARTICLE_TITLE);
+        articleLink = bundle.getString(Constant.ARTICLE_LINK);
+        articleId = bundle.getInt(Constant.ARTICLE_ID, Constant.REQUEST_ERROR);
+        isCollect = bundle.getBoolean(Constant.ARTICLE_IS_COLLECT);
     }
 
     @Override
@@ -73,12 +95,6 @@ public class ArticleDetailsActivity extends BaseRootActivity {
         }
     }
 
-    private void getBundleData() {
-        Bundle bundle = getIntent().getExtras();
-        title = bundle.getString(Constant.ARTICLE_TITLE);
-        articleLink = bundle.getString(Constant.ARTICLE_LINK);
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_article, menu);
@@ -95,7 +111,17 @@ public class ArticleDetailsActivity extends BaseRootActivity {
                 startActivity(Intent.createChooser(shareIntent, "分享"));
                 break;
             case R.id.menu_article_collect:
-                ToastUtil.show(context, "collect");
+                LogUtil.e("id = " + articleId + "is = " + isCollect);
+                if ((Boolean) SharedPreferenceUtil.get(context, Constant.ISLOGIN, Constant.FALSE)) {
+                    if (isCollect) {
+                        presenter.cancelCollectArticle(articleId);
+                    } else {
+                        presenter.collectArticle(articleId);
+                    }
+                } else {
+                    ToastUtil.show(activity, getString(R.string.please_login));
+                    JumpUtil.overlay(activity, LoginActivity.class);
+                }
                 break;
             case R.id.menu_article_browser:
                 Uri uri = Uri.parse(articleLink);
@@ -158,4 +184,54 @@ public class ArticleDetailsActivity extends BaseRootActivity {
         }
     }
 
+    /**
+     * menu菜单栏发生变化时调用
+     *
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        LogUtil.e("collectCode = " + collectCode);
+        menu.findItem(R.id.menu_article_collect).setIcon(isCollect ? R.drawable.icon_collect : R.drawable.icon_no_collect);
+        switch (collectCode) {
+            case 1:
+            case 4:
+                isCollect = true;
+                menu.findItem(R.id.menu_article_collect).setIcon(R.drawable.icon_collect);
+                break;
+            case 2:
+            case 3:
+                isCollect = false;
+                menu.findItem(R.id.menu_article_collect).setIcon(R.drawable.icon_no_collect);
+                break;
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public void collectArticleOK(String info) {
+        collectCode = 1;
+        ToastUtil.show(activity, getString(R.string.collect_success));
+        EventBus.getDefault().post(new MessageEvent(EventConstant.REFRESHHOMEPAGE, ""));
+    }
+
+    @Override
+    public void collectArticleErr(String info) {
+        collectCode = 2;
+        ToastUtil.show(activity, getString(R.string.collect_fail));
+    }
+
+    @Override
+    public void cancelCollectArticleOK(String info) {
+        collectCode = 3;
+        ToastUtil.show(activity, getString(R.string.cancel_collect_success));
+        EventBus.getDefault().post(new MessageEvent(EventConstant.REFRESHHOMEPAGE, ""));
+    }
+
+    @Override
+    public void cancelCollectArticleErr(String info) {
+        collectCode = 4;
+        ToastUtil.show(activity, getString(R.string.cancel_collect_fail));
+    }
 }
