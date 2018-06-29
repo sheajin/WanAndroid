@@ -13,6 +13,8 @@ import com.xy.wanandroid.model.constant.MessageEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -47,7 +49,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
 
                     @Override
                     public void onError(Throwable e) {
-                        view.loginErr(e.getMessage());
+                        mView.loginErr(e.getMessage());
                     }
                 });
     }

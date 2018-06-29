@@ -4,12 +4,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.xy.wanandroid.R;
+import com.xy.wanandroid.base.presenter.AbsPresenter;
 
 /**
  * Created by jxy on 2018/6/11.
  */
 
-public abstract class BaseRootActivity extends BaseActivity {
+public abstract class BaseRootActivity<T extends AbsPresenter> extends BaseActivity<T> {
 
     private static final int NORMAL_STATE = 0;
     private static final int LOADING_STATE = 1;
