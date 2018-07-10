@@ -16,6 +16,14 @@ public class KnowledgeClassifyContract {
 
         void getKnowledgeClassifyListErr(String info);
 
+        void collectArticleOK(String info);
+
+        void collectArticleErr(String info);
+
+        void cancelCollectArticleOK(String info);
+
+        void cancelCollectArticleErr(String info);
+
     }
 
     public interface Presenter extends AbsPresenter<KnowledgeClassifyContract.View> {
@@ -25,6 +33,10 @@ public class KnowledgeClassifyContract {
         void loadMore();
 
         void getKnowledgeClassifyList(int page,int id);
+
+        void collectArticle(int id);
+
+        void cancelCollectArticle(int id);
 
     }
 }

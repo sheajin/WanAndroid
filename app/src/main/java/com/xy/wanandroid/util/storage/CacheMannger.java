@@ -56,10 +56,5 @@ public class CacheMannger {
             file.delete();
         }
     }
-    //测试用
-//    public  static void test(){
-//        sdCard.test("38.txt",savePath);
-//    }
-
 
 }

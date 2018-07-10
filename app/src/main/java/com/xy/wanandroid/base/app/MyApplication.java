@@ -3,6 +3,9 @@ package com.xy.wanandroid.base.app;
 import android.app.Activity;
 import android.app.Application;
 
+import com.tencent.bugly.crashreport.CrashReport;
+import com.xy.wanandroid.model.constant.Constant;
+
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
@@ -22,6 +25,8 @@ public class MyApplication extends Application implements HasActivityInjector {
     public void onCreate() {
         super.onCreate();
         myApplication = this;
+        //Bugly
+        CrashReport.initCrashReport(getApplicationContext(), Constant.BUGLY_ID, false);
     }
 
     public static synchronized MyApplication getInstance() {

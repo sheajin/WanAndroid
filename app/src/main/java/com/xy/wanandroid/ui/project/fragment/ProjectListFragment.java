@@ -10,22 +10,22 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xy.wanandroid.R;
+import com.xy.wanandroid.base.fragment.BaseRootFragment;
+import com.xy.wanandroid.contract.ProjectListContract;
+import com.xy.wanandroid.data.project.ProjectListBean;
+import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.model.constant.EventConstant;
 import com.xy.wanandroid.model.constant.MessageEvent;
+import com.xy.wanandroid.presenter.project.ProjectListPresenter;
+import com.xy.wanandroid.ui.main.activity.ArticleDetailsActivity;
+import com.xy.wanandroid.ui.project.adapter.ProjectListAdapter;
+import com.xy.wanandroid.util.app.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.xy.wanandroid.base.fragment.BaseRootFragment;
-import com.xy.wanandroid.contract.ProjectListContract;
-import com.xy.wanandroid.data.project.ProjectListBean;
-import com.xy.wanandroid.model.constant.Constant;
-import com.xy.wanandroid.presenter.project.ProjectListPresenter;
-import com.xy.wanandroid.ui.main.activity.ArticleDetailsActivity;
-import com.xy.wanandroid.ui.project.adapter.ProjectListAdapter;
-import com.xy.wanandroid.util.app.ToastUtil;
 import butterknife.BindView;
 
 public class ProjectListFragment extends BaseRootFragment implements ProjectListContract.View, ProjectListAdapter.OnItemClickListener {
@@ -116,8 +116,10 @@ public class ProjectListFragment extends BaseRootFragment implements ProjectList
     @Override
     public void onMessageEvent(MessageEvent event) {
         super.onMessageEvent(event);
-        if (event.getCode() == EventConstant.PROJECTSCROLLTOTOP) {
-            mRv.smoothScrollToPosition(0);
+        switch (event.getCode()) {
+            case EventConstant.PROJECTSCROLLTOTOP:
+                mRv.smoothScrollToPosition(0);
+                break;
         }
     }
 
@@ -134,6 +136,8 @@ public class ProjectListFragment extends BaseRootFragment implements ProjectList
         Bundle bundle = new Bundle();
         bundle.putString(Constant.ARTICLE_TITLE, mAdapter.getData().get(position).getTitle());
         bundle.putString(Constant.ARTICLE_LINK, mAdapter.getData().get(position).getLink());
+        bundle.putInt(Constant.ARTICLE_ID, mAdapter.getData().get(position).getId());
+        bundle.putBoolean(Constant.ARTICLE_IS_COLLECT, mAdapter.getData().get(position).isCollect());
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(activity, view, getString(R.string.share_view));
         startActivity(new Intent(activity, ArticleDetailsActivity.class).putExtras(bundle), options.toBundle());
     }

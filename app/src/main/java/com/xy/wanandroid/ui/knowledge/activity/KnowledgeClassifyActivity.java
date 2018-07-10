@@ -55,8 +55,10 @@ public class KnowledgeClassifyActivity extends BaseActivity {
     @Override
     public void onMessageEvent(MessageEvent event) {
         super.onMessageEvent(event);
-        if (event.getCode() == EventConstant.KNOWLEDGELOADERR) {
-            showError();
+        switch (event.getCode()){
+            case EventConstant.KNOWLEDGELOADERR:
+                showError();
+                break;
         }
     }
 

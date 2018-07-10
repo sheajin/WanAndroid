@@ -35,5 +35,7 @@ public class KnowledgeClassifyAdapter extends BaseQuickAdapter<KnowledgeClassify
             String classifyName = item.getSuperChapterName() + " / " + item.getChapterName();
             helper.setText(R.id.tv_type, classifyName);
         }
+        helper.addOnClickListener(R.id.image_collect);
+        helper.setImageResource(R.id.image_collect, item.isCollect() ? R.drawable.icon_collect : R.drawable.icon_no_collect);
     }
 }

@@ -99,10 +99,13 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
     }
 
     public void onMessageEvent(MessageEvent event) {
-        if (event.getCode() == EventConstant.MAINSCROLLTOTOP) {
-            mRv.smoothScrollToPosition(0);
-        } else if (event.getCode() == EventConstant.REFRESHHOMEPAGE) {
-            presenter.getHomepageList(0);
+        switch (event.getCode()) {
+            case EventConstant.MAINSCROLLTOTOP:
+                mRv.smoothScrollToPosition(0);
+                break;
+            case EventConstant.REFRESHHOMEPAGE:
+                presenter.getHomepageList(0);
+                break;
         }
     }
 

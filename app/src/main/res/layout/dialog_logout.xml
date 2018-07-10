@@ -6,20 +6,22 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_30"
         android:layout_marginEnd="@dimen/dp_30"
         android:background="@drawable/drawable_dialog_logout"
         android:orientation="vertical">
 
         <TextView
+            android:layout_marginTop="@dimen/dp_20"
             android:id="@+id/dialog_title"
+            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/dp_20"
             android:layout_marginStart="@dimen/dp_20"
-            android:visibility="gone"
-            tools:text="标题" />
+            android:visibility="visible"
+            tools:text="" />
 
         <TextView
             android:id="@+id/dialog_content"
@@ -27,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/dp_30"
-            android:text="@string/logout_sure" />
+            android:text="" />
 
         <View
             android:layout_width="match_parent"
@@ -39,7 +41,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_40"
+            android:layout_height="@dimen/dp_44"
             android:layout_marginTop="@dimen/dp_2"
             android:orientation="horizontal"
             android:weightSum="2">

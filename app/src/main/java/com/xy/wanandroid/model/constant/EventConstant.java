@@ -8,21 +8,21 @@ public class EventConstant {
     /**
      * 滑到顶部
      */
-    public static int MAINSCROLLTOTOP = 101;
-    public static int KNOWLEDGESCROLLTOTOP = 102;
-    public static int PROJECTSCROLLTOTOP = 103;
-    public static int KNOWLEDGECLASSIFYSCROLLTOTOP = 104;
+    public static final int MAINSCROLLTOTOP = 101;
+    public static final int KNOWLEDGESCROLLTOTOP = 102;
+    public static final int PROJECTSCROLLTOTOP = 103;
+    public static final int KNOWLEDGECLASSIFYSCROLLTOTOP = 104;
     /**
      * 列表加载失败
      */
-    public static int PROJECTLOADERR = 105;
-    public static int KNOWLEDGELOADERR = 106;
+    public static final int PROJECTLOADERR = 105;
+    public static final int KNOWLEDGELOADERR = 106;
     /**
      * 登陆成功
      */
-    public static int LOGINSUCCESS = 107;
+    public static final int LOGINSUCCESS = 107;
     /**
      * 刷新主页
      */
-    public static int REFRESHHOMEPAGE = 108;
+    public static final int REFRESHHOMEPAGE = 108;
 }

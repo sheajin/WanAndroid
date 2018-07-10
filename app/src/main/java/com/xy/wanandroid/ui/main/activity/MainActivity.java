@@ -1,5 +1,7 @@
 package com.xy.wanandroid.ui.main.activity;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -181,10 +183,11 @@ public class MainActivity extends BaseRootActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBackPressedSupport() {
         if ((System.currentTimeMillis() - mExitTime) > 2000) {
-            ToastUtil.show(context, getString(R.string.exit_system));
+            ToastUtil.show(activity, getString(R.string.exit_system));
             mExitTime = System.currentTimeMillis();
         } else {
             SharedPreferenceUtil.put(activity, Constant.ISLOGIN, Constant.FALSE);

@@ -10,12 +10,16 @@ public class Constant {
      */
     public static final int REQUEST_ERROR = -1;
     public static final int REQUEST_SUCCESS = 0;
+    public static final int TOAST_SHORT = 1000;
+
     /**
      * String
      */
     public static String TOKEN = "token";
     public static final boolean FALSE = false;
+    public static final boolean TRUE = true;
     public static String NETBROADCAST = "CONNECTIVITY_CHANGE";
+    public static final String BUGLY_ID = "8029004728";
 
 
     public static final String ARTICLE_TITLE = "article_title";

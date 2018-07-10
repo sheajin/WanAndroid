@@ -15,6 +15,7 @@
     <string name="reload_content">重新加载</string>
     <string name="share_title">分享</string>
     <string name="like_title">收藏</string>
+    <string name="already_collect_title">已收藏</string>
     <string name="browser_title">使用系统浏览器打开</string>
     <string name="load_more_no_data">没有更多数据了~</string>
     <string name="no_more_data">暂时还没有数据~</string>
@@ -30,6 +31,7 @@
     <string name="about_us">关于我们</string>
     <string name="logout">退出登录</string>
     <string name="logout_sure">确定要退出登录吗?</string>
+    <string name="clear_history">清空历史记录</string>
     <string name="delete_history_sure">确定要删除历史记录吗?</string>
     <string name="sure">确定</string>
     <string name="cancel">取消</string>

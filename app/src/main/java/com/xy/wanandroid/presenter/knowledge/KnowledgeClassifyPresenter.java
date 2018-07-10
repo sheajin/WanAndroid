@@ -69,4 +69,50 @@ public class KnowledgeClassifyPresenter extends BasePresenter<KnowledgeClassifyC
                     }
                 });
     }
+
+    @Override
+    public void collectArticle(int id) {
+        ApiStore.createApi(ApiService.class)
+                .collectArticle(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new HttpObserver<BaseResp>() {
+                    @Override
+                    public void onNext(BaseResp baseResp) {
+                        if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
+                            view.collectArticleOK((String) baseResp.getData());
+                        } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
+                            view.collectArticleErr(baseResp.getErrorMsg());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        view.collectArticleErr(e.getMessage());
+                    }
+                });
+    }
+
+    @Override
+    public void cancelCollectArticle(int id) {
+        ApiStore.createApi(ApiService.class)
+                .cancelCollectArticle(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new HttpObserver<BaseResp>() {
+                    @Override
+                    public void onNext(BaseResp baseResp) {
+                        if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
+                            view.cancelCollectArticleOK((String) baseResp.getData());
+                        } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
+                            view.cancelCollectArticleErr(baseResp.getErrorMsg());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        view.cancelCollectArticleErr(e.getMessage());
+                    }
+                });
+    }
 }

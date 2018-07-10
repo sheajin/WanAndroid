@@ -20,6 +20,7 @@ import com.xy.wanandroid.ui.main.adapter.SearchHistoryAdapter;
 import com.xy.wanandroid.util.app.CommonUtil;
 import com.xy.wanandroid.util.app.JumpUtil;
 import com.xy.wanandroid.util.widget.CommonAlertDialog;
+import com.xy.wanandroid.util.widget.CommonDialog;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -45,6 +46,7 @@ public class SearchActivity extends BaseRootActivity implements SearchContract.V
     private List<SearchHot> hotList;
     private List<String> historyList;
     private SearchHistoryAdapter mAdapter;
+    private CommonDialog dialog;
 
     @Override
     protected int getLayoutId() {
@@ -63,16 +65,17 @@ public class SearchActivity extends BaseRootActivity implements SearchContract.V
         switch (view.getId()) {
             case R.id.tv_clear:
                 if (historyList.size() > 0) {
-                    CommonAlertDialog.newInstance().showDialog(activity, getString(R.string.delete_history_sure),
-                            getString(R.string.sure),
-                            getString(R.string.cancel),
-                            v -> {
+                    dialog = new CommonDialog.Builder(activity)
+                            .setTitle(getString(R.string.clear_history))
+                            .setMessage(getString(R.string.delete_history_sure))
+                            .setNegativeButton(getString(R.string.cancel), v -> dialog.dismiss())
+                            .setPositiveButton(getString(R.string.sure), v -> {
                                 historyList.clear();
                                 mAdapter.notifyDataSetChanged();
                                 presenter.saveSearchHistory(context, historyList);
-                                CommonAlertDialog.newInstance().cancelDialog(true);
-                            },
-                            v -> CommonAlertDialog.newInstance().cancelDialog(true));
+                                dialog.dismiss();
+                            }).create();
+                    dialog.show();
                 }
                 break;
         }

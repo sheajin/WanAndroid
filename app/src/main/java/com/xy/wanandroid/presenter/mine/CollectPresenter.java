@@ -63,28 +63,28 @@ public class CollectPresenter extends BasePresenter<CollectContract.View> implem
                 });
     }
 
-    @Override
-    public void cancelCollect(int id) {
-        ApiStore.createApi(ApiService.class)
-                .cancelCollectArticle(id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new HttpObserver<BaseResp>() {
-                    @Override
-                    public void onNext(BaseResp baseResp) {
-                        if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.cancelCollectOk((String) baseResp.getData());
-                        } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.cancelCollectErr(baseResp.getErrorMsg());
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        view.cancelCollectErr(e.getMessage());
-                    }
-                });
-    }
+//    @Override
+//    public void cancelCollect(int id) {
+//        ApiStore.createApi(ApiService.class)
+//                .cancelCollectArticle(id)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new HttpObserver<BaseResp>() {
+//                    @Override
+//                    public void onNext(BaseResp baseResp) {
+//                        if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
+//                            view.cancelCollectOk((String) baseResp.getData());
+//                        } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
+//                            view.cancelCollectErr(baseResp.getErrorMsg());
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        view.cancelCollectErr(e.getMessage());
+//                    }
+//                });
+//    }
 
 
 }

@@ -42,16 +42,6 @@ public class CommonAlertDialog {
 
     }
 
-    /**
-     * Show alertDialog
-     *
-     * @param mActivity         activity instance
-     * @param content           show content
-     * @param btnContent        ok btn content
-     * @param neContent         negative btn content
-     * @param onPoClickListener ok btn onClickListener
-     * @param onNeClickListener negative btn onClickListener
-     */
     public void showDialog(Activity mActivity, String content, String btnContent, String neContent,
                            final View.OnClickListener onPoClickListener,
                            final View.OnClickListener onNeClickListener) {

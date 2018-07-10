@@ -40,7 +40,6 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                     @Override
                     public void onNext(BaseResp<UserInfo> baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            EventBus.getDefault().post(new MessageEvent(EventConstant.LOGINSUCCESS, ""));
                             view.loginOk(baseResp.getData());
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
                             view.loginErr(baseResp.getErrorMsg());

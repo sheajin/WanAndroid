@@ -26,7 +26,8 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('wanandroid.keystore')
+            //"company" /Users/mjn_ziyu/Downloads/wanandroid.jks
+            storeFile file('/Users/mjn_ziyu/Downloads/wanandroid.jks')
             storePassword "wanandroid"
             keyAlias "wanandroid"
             keyPassword "wanandroid"
@@ -36,6 +37,8 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+
+
 }
 
 repositories {
@@ -90,6 +93,7 @@ dependencies {
     implementation rootProject.ext.dependencies["ByeBurger"]
     implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
     implementation rootProject.ext.dependencies["fragmentation"]
+    implementation rootProject.ext.dependencies["bugly"]
     //unit test
     testImplementation 'junit:junit:4.12'
     testImplementation rootProject.ext.dependencies["junit"]

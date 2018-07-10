@@ -79,6 +79,8 @@ public class HotActivity extends BaseRootActivity implements HotContract.View {
             Bundle bundle = new Bundle();
             bundle.putString(Constant.ARTICLE_TITLE, hotList.get(position).getName());
             bundle.putString(Constant.ARTICLE_LINK, hotList.get(position).getLink());
+//            bundle.putInt(Constant.ARTICLE_ID, hotList.get(position).getId());
+//            bundle.putBoolean(Constant.ARTICLE_IS_COLLECT, hotList.get(position).isCollect());
             JumpUtil.overlay(activity, ArticleDetailsActivity.class, bundle);
             return false;
         });

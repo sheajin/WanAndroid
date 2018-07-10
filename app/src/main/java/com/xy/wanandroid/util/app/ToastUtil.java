@@ -4,9 +4,12 @@ package com.xy.wanandroid.util.app;
  * Created by Administrator on 2017/4/17.
  */
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.Gravity;
 import android.widget.Toast;
+
+import com.xy.wanandroid.model.constant.Constant;
 
 /**
  * Toast统一管理类
@@ -105,6 +108,13 @@ public class ToastUtil {
     public static void show(Context context, int message, int duration) {
         if (isShow)
             Toast.makeText(context, message, duration).show();
+    }
+
+    /**
+     * 顶部Toast
+     */
+    public static void showTop(Activity activity, String message) {
+        ZToast.makeText(activity, message, Constant.TOAST_SHORT).show();
     }
 
 }

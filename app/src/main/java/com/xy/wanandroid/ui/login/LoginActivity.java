@@ -84,12 +84,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         SharedPreferenceUtil.put(activity, Constant.USERNAME, userInfo.getUsername());
         SharedPreferenceUtil.put(activity, Constant.PASSWORD, userInfo.getPassword());
         SharedPreferenceUtil.put(activity, Constant.ISLOGIN, true);
-
+        EventBus.getDefault().post(new MessageEvent(EventConstant.LOGINSUCCESS, ""));
         finish();
     }
 
     @Override
     public void loginErr(String info) {
-        ToastUtil.show(activity, getString(R.string.login_err));
+        ToastUtil.show(activity, info);
     }
 }

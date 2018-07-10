@@ -192,18 +192,22 @@ public class ArticleDetailsActivity extends BaseRootActivity implements ArticleD
      */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        LogUtil.e("collectCode = " + collectCode);
         menu.findItem(R.id.menu_article_collect).setIcon(isCollect ? R.drawable.icon_collect : R.drawable.icon_no_collect);
+        menu.findItem(R.id.menu_article_collect).setTitle(isCollect ? getString(R.string.already_collect_title) : getString(R.string.like_title));
         switch (collectCode) {
             case 1:
             case 4:
                 isCollect = true;
                 menu.findItem(R.id.menu_article_collect).setIcon(R.drawable.icon_collect);
+                menu.findItem(R.id.menu_article_collect).setTitle(getString(R.string.already_collect_title));
+                invalidateOptionsMenu();
                 break;
             case 2:
             case 3:
                 isCollect = false;
                 menu.findItem(R.id.menu_article_collect).setIcon(R.drawable.icon_no_collect);
+                menu.findItem(R.id.menu_article_collect).setTitle(getString(R.string.like_title));
+                invalidateOptionsMenu();
                 break;
         }
         return super.onPrepareOptionsMenu(menu);

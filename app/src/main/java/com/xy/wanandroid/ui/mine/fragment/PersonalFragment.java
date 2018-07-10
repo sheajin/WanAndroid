@@ -18,6 +18,7 @@ import com.xy.wanandroid.util.app.SharedPreferenceUtil;
 import com.xy.wanandroid.util.app.ToastUtil;
 import com.xy.wanandroid.util.glide.GlideUtil;
 import com.xy.wanandroid.util.widget.CommonAlertDialog;
+import com.xy.wanandroid.util.widget.CommonDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,6 +32,7 @@ public class PersonalFragment extends BaseFragment {
     @BindView(R.id.tv_logout)
     TextView mTvLogout;
     private boolean isLogin;
+    private CommonDialog dialog;
 
     @Override
     public int getLayoutResID() {
@@ -79,7 +81,14 @@ public class PersonalFragment extends BaseFragment {
                 JumpUtil.overlay(context, AboutUsActivity.class);
                 break;
             case R.id.tv_logout:
-                CommonAlertDialog.newInstance().showDialog(activity, getString(R.string.logout_sure), getString(R.string.sure), getString(R.string.cancel), v -> logout(), v -> CommonAlertDialog.newInstance().cancelDialog(true));
+                dialog = new CommonDialog.Builder(activity)
+                        .setTitle(getString(R.string.logout))
+                        .setMessage(getString(R.string.logout_sure))
+                        .setPositiveButton(getString(R.string.sure), v -> logout())
+                        .setNegativeButton(getString(R.string.cancel), v -> dialog.dismiss())
+                        .setCancelable(false)
+                        .create();
+                dialog.show();
                 break;
         }
     }
@@ -92,6 +101,7 @@ public class PersonalFragment extends BaseFragment {
     }
 
     private void logout() {
+        dialog.dismiss();
         ToastUtil.show(activity, getString(R.string.logout_ok));
         CommonAlertDialog.newInstance().cancelDialog(true);
         SharedPreferenceUtil.clear(activity);

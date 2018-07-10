@@ -16,9 +16,9 @@ public class CollectContract {
 
         void getCollectListErr(String info);
 
-        void cancelCollectOk(String info);
-
-        void cancelCollectErr(String info);
+//        void cancelCollectOk(String info);
+//
+//        void cancelCollectErr(String info);
 
     }
 
@@ -30,6 +30,6 @@ public class CollectContract {
 
         void getCollectList(int page);
 
-        void cancelCollect(int id);
+//        void cancelCollect(int id);
     }
 }

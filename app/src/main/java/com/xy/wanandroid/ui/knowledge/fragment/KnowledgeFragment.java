@@ -63,8 +63,10 @@ public class KnowledgeFragment extends BaseRootFragment<KnowledgePresenter> impl
     }
 
     public void onMessageEvent(MessageEvent event) {
-        if (event.getCode() == EventConstant.KNOWLEDGESCROLLTOTOP) {
-            mRv.smoothScrollToPosition(0);
+        switch (event.getCode()){
+            case EventConstant.KNOWLEDGESCROLLTOTOP:
+                mRv.smoothScrollToPosition(0);
+                break;
         }
     }
 

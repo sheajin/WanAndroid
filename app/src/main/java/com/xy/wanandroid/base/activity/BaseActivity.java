@@ -3,10 +3,10 @@ package com.xy.wanandroid.base.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 
 import com.xy.wanandroid.base.app.MyApplication;
 import com.xy.wanandroid.base.presenter.AbsPresenter;
+import com.xy.wanandroid.base.view.AbstractView;
 import com.xy.wanandroid.model.constant.MessageEvent;
 import com.xy.wanandroid.util.app.LogUtil;
 import com.xy.wanandroid.util.network.NetUtils;
@@ -16,12 +16,9 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import com.xy.wanandroid.base.view.AbstractView;
-
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
-import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
@@ -51,6 +48,7 @@ public abstract class BaseActivity<T extends AbsPresenter> extends SupportActivi
         activity = this;
         eventActivity = this;
         initBind();
+        initInject();
         onViewCreated();
         initToolbar();
         initUI();
@@ -94,6 +92,13 @@ public abstract class BaseActivity<T extends AbsPresenter> extends SupportActivi
      * 数据初始化
      */
     protected abstract void initData();
+
+    /**
+     * dagger初始化
+     */
+    protected void initInject() {
+
+    }
 
     @Override
     protected void onDestroy() {
