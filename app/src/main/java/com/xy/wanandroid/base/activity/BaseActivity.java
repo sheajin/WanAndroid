@@ -77,6 +77,7 @@ public abstract class BaseActivity<T extends AbsPresenter> extends SupportActivi
     public void initBind() {
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
+        NetUtils.init(MyApplication.getInstance());
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN) //在ui线程执行

@@ -48,7 +48,9 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
 
                     @Override
                     public void onError(Throwable e) {
-                        mView.loginErr(e.getMessage());
+                        if (e.getMessage() != null) {
+                            mView.loginErr(e.getMessage());
+                        }
                     }
                 });
     }

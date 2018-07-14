@@ -145,15 +145,18 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
             titleList.add(bean.getTitle());
             imageList.add(bean.getImagePath());
         }
-        banner.setImageLoader(new GlideImageLoader())
-                .setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE)
-                .setImages(imageList)
-                .setBannerAnimation(Transformer.DepthPage)
-                .setBannerTitles(titleList)
-                .isAutoPlay(true)
-                .setDelayTime(5000)
-                .setIndicatorGravity(BannerConfig.RIGHT)
-                .start();
+        if (!activity.isDestroyed()) {
+            activity.runOnUiThread(() -> banner.setImageLoader(new GlideImageLoader())
+                    .setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE)
+                    .setImages(imageList)
+                    .setBannerAnimation(Transformer.DepthPage)
+                    .setBannerTitles(titleList)
+                    .isAutoPlay(true)
+                    .setDelayTime(5000)
+                    .setIndicatorGravity(BannerConfig.RIGHT)
+                    .start());
+
+        }
         banner.setOnBannerListener(position -> {
             Bundle bundle = new Bundle();
             bundle.putString(Constant.ARTICLE_TITLE, titleList.get(position));

@@ -130,23 +130,23 @@ public class AboutUsActivity extends BaseActivity {
 
         //设置让Toolbar和AppBarLayout的滚动同步
         mAboutUsRefreshLayout.setOnMultiPurposeListener(new SimpleMultiPurposeListener() {
-            @Override
-            public void onHeaderPulling(RefreshHeader header, float percent, int offset, int headerHeight, int extendHeight) {
-                if (mAboutUsAppBar == null || mToolbar == null) {
-                    return;
-                }
-                mAboutUsAppBar.setTranslationY(offset);
-                mToolbar.setTranslationY(-offset);
-            }
+//            @Override
+//            public void onHeaderPulling(RefreshHeader header, float percent, int offset, int headerHeight, int extendHeight) {
+//                if (mAboutUsAppBar == null || mToolbar == null) {
+//                    return;
+//                }
+//                mAboutUsAppBar.setTranslationY(offset);
+//                mToolbar.setTranslationY(-offset);
+//            }
 
-            @Override
-            public void onHeaderReleasing(RefreshHeader header, float percent, int offset, int footerHeight, int extendHeight) {
-                if (mAboutUsAppBar == null || mToolbar == null) {
-                    return;
-                }
-                mAboutUsAppBar.setTranslationY(offset);
-                mToolbar.setTranslationY(-offset);
-            }
+//            @Override
+//            public void onHeaderReleasing(RefreshHeader header, float percent, int offset, int footerHeight, int extendHeight) {
+//                if (mAboutUsAppBar == null || mToolbar == null) {
+//                    return;
+//                }
+//                mAboutUsAppBar.setTranslationY(offset);
+//                mToolbar.setTranslationY(-offset);
+//            }
         });
     }
 

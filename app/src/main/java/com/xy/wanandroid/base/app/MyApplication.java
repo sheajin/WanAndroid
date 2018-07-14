@@ -1,24 +1,15 @@
 package com.xy.wanandroid.base.app;
 
-import android.app.Activity;
 import android.app.Application;
 
 import com.tencent.bugly.crashreport.CrashReport;
 import com.xy.wanandroid.model.constant.Constant;
 
-import javax.inject.Inject;
-
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasActivityInjector;
-
 /**
  * Created by jxy on 2018/6/7.
  */
 
-public class MyApplication extends Application implements HasActivityInjector {
-    @Inject
-    DispatchingAndroidInjector<Activity> mAndroidInjector;
+public class MyApplication extends Application {
     private static MyApplication myApplication;
 
     @Override
@@ -31,10 +22,5 @@ public class MyApplication extends Application implements HasActivityInjector {
 
     public static synchronized MyApplication getInstance() {
         return myApplication;
-    }
-
-    @Override
-    public AndroidInjector<Activity> activityInjector() {
-        return mAndroidInjector;
     }
 }

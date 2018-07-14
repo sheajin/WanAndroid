@@ -11,7 +11,7 @@ ext {
 
     version = [
             supportLibraryVersion   : "27.1.1",
-            smartrefreshVersion     : "1.0.5.1",
+            smartrefreshVersion     : "1.1.0-alpha-5",
             banner                  : "1.4.10",
             circleimageview         : "2.2.0",
             okhttpVersion           : "3.9.0",

@@ -43,8 +43,8 @@ public abstract class BaseFragment<T extends AbsPresenter> extends SupportFragme
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(getLayoutResID(), container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(getLayoutResID(), container,false);
     }
 
     @Override
@@ -78,6 +78,7 @@ public abstract class BaseFragment<T extends AbsPresenter> extends SupportFragme
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
+        NetUtils.init(MyApplication.getInstance());
     }
 
     public abstract int getLayoutResID();

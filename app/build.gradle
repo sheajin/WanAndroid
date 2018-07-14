@@ -25,13 +25,13 @@ android {
         }
     }
     signingConfigs {
-        debug {
-            //"company" /Users/mjn_ziyu/Downloads/wanandroid.jks
-            storeFile file('/Users/mjn_ziyu/Downloads/wanandroid.jks')
-            storePassword "wanandroid"
-            keyAlias "wanandroid"
-            keyPassword "wanandroid"
-        }
+//        debug {
+//            //"company" /Users/mjn_ziyu/Downloads/wanandroid.jks
+//            storeFile file('/Users/mjn_ziyu/Downloads/wanandroid.jks')
+//            storePassword "wanandroid"
+//            keyAlias "wanandroid"
+//            keyPassword "wanandroid"
+//        }
     }
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
