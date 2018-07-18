@@ -11,6 +11,8 @@ import com.xy.wanandroid.model.constant.Constant;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -19,12 +21,9 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class ProjectPresenter extends BasePresenter<ProjectContract.View> implements ProjectContract.Presenter {
 
-    private ProjectContract.View view;
-
-    public ProjectPresenter(ProjectContract.View view) {
-        this.view = view;
+    @Inject
+    public ProjectPresenter() {
     }
-
 
     @Override
     public void getProjectTitle() {
@@ -36,15 +35,15 @@ public class ProjectPresenter extends BasePresenter<ProjectContract.View> implem
                     @Override
                     public void onNext(BaseResp<List<ProjectBean>> listBaseResp) {
                         if (listBaseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.getProjectTitleOk(listBaseResp.getData());
+                            mView.getProjectTitleOk(listBaseResp.getData());
                         } else if (listBaseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.getProjectTitleErr(listBaseResp.getErrorMsg());
+                            mView.getProjectTitleErr(listBaseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.getProjectTitleErr(e.getMessage());
+                        mView.getProjectTitleErr(e.getMessage());
                     }
                 });
     }

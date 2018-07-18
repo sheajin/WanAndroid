@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 import com.xy.wanandroid.base.app.MyApplication;
 import com.xy.wanandroid.base.presenter.AbsPresenter;
 import com.xy.wanandroid.base.view.AbstractView;
+import com.xy.wanandroid.di.component.DaggerFragmentComponent;
+import com.xy.wanandroid.di.component.FragmentComponent;
+import com.xy.wanandroid.di.module.FragmentModule;
 import com.xy.wanandroid.model.constant.MessageEvent;
 import com.xy.wanandroid.util.network.NetUtils;
 import com.xy.wanandroid.util.network.NetworkBroadcastReceiver;
@@ -24,7 +27,6 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import me.yokeyword.fragmentation.SupportFragment;
 
-
 /**
  * Created by jxy on 2018/1/13.
  */
@@ -33,10 +35,11 @@ public abstract class BaseFragment<T extends AbsPresenter> extends SupportFragme
     public View rootView;
     protected Activity activity;
     protected MyApplication context;
-    public static NetworkBroadcastReceiver.NetEvent eventFragment;
+    protected FragmentComponent mFragmentComponent;
     private int netMobile;
+
     @Inject
-    T mPresenter;
+    protected T mPresenter;
 
     public BaseFragment() {
     }
@@ -53,6 +56,9 @@ public abstract class BaseFragment<T extends AbsPresenter> extends SupportFragme
         rootView = view;
         activity = getActivity();
         context = MyApplication.getInstance();
+        initFragmentComponent();
+        initInjector();
+        onViewCreated();
         initBind(view);
     }
 
@@ -61,6 +67,12 @@ public abstract class BaseFragment<T extends AbsPresenter> extends SupportFragme
         super.onLazyInitView(savedInstanceState);
         initUI();
         initData();
+    }
+
+    /**
+     * dagger初始化
+     */
+    protected void initInjector() {
     }
 
     /**
@@ -89,8 +101,28 @@ public abstract class BaseFragment<T extends AbsPresenter> extends SupportFragme
         this.activity = activity;
     }
 
+    protected void onViewCreated() {
+        if (mPresenter != null) {
+            mPresenter.attachView(this);
+        }
+    }
+
+    /**
+     * 初始化FragmentComponent
+     */
+    private void initFragmentComponent() {
+        mFragmentComponent = DaggerFragmentComponent.builder()
+                .applicationComponent(MyApplication.getInstance().getApplicationComponent())
+                .fragmentModule(new FragmentModule(this))
+                .build();
+    }
+
     @Override
     public void onDestroy() {
+        if (mPresenter != null) {
+            mPresenter.detachView();
+            mPresenter = null;
+        }
         super.onDestroy();
         if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this);

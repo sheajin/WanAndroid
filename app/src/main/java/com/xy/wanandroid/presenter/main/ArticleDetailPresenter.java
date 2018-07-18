@@ -8,6 +8,8 @@ import com.xy.wanandroid.model.api.BaseResp;
 import com.xy.wanandroid.model.api.HttpObserver;
 import com.xy.wanandroid.model.constant.Constant;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -17,10 +19,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ArticleDetailPresenter extends BasePresenter<ArticleDetailContact.View> implements ArticleDetailContact.Presenter {
 
-    private ArticleDetailContact.View view;
+    @Inject
+    public ArticleDetailPresenter() {
 
-    public ArticleDetailPresenter(ArticleDetailContact.View view) {
-        this.view = view;
     }
 
     @Override
@@ -33,15 +34,15 @@ public class ArticleDetailPresenter extends BasePresenter<ArticleDetailContact.V
                     @Override
                     public void onNext(BaseResp baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.collectArticleOK((String) baseResp.getData());
+                            mView.collectArticleOK((String) baseResp.getData());
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.collectArticleErr(baseResp.getErrorMsg());
+                            mView.collectArticleErr(baseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.collectArticleErr(e.getMessage());
+                        mView.collectArticleErr(e.getMessage());
                     }
                 });
     }
@@ -56,15 +57,15 @@ public class ArticleDetailPresenter extends BasePresenter<ArticleDetailContact.V
                     @Override
                     public void onNext(BaseResp baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.cancelCollectArticleOK((String) baseResp.getData());
+                            mView.cancelCollectArticleOK((String) baseResp.getData());
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.cancelCollectArticleErr(baseResp.getErrorMsg());
+                            mView.cancelCollectArticleErr(baseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.cancelCollectArticleErr(e.getMessage());
+                        mView.cancelCollectArticleErr(e.getMessage());
                     }
                 });
     }

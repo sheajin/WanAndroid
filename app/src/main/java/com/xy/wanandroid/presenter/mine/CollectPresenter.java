@@ -2,12 +2,14 @@ package com.xy.wanandroid.presenter.mine;
 
 import com.xy.wanandroid.base.presenter.BasePresenter;
 import com.xy.wanandroid.contract.CollectContract;
-import com.xy.wanandroid.data.mine.CollectBean;
+import com.xy.wanandroid.data.main.HomePageArticleBean;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;
 import com.xy.wanandroid.model.api.BaseResp;
 import com.xy.wanandroid.model.api.HttpObserver;
 import com.xy.wanandroid.model.constant.Constant;
+
+import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -18,12 +20,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class CollectPresenter extends BasePresenter<CollectContract.View> implements CollectContract.Presenter {
 
-    private CollectContract.View view;
     private int currentPage;
     private boolean isRefresh = true;
 
-    public CollectPresenter(CollectContract.View view) {
-        this.view = view;
+    @Inject
+    public CollectPresenter() {
+
     }
 
     @Override
@@ -46,45 +48,45 @@ public class CollectPresenter extends BasePresenter<CollectContract.View> implem
                 .getCollectList(page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new HttpObserver<BaseResp<CollectBean>>() {
+                .subscribe(new HttpObserver<BaseResp<HomePageArticleBean>>() {
                     @Override
-                    public void onNext(BaseResp<CollectBean> baseResp) {
+                    public void onNext(BaseResp<HomePageArticleBean> baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.getCollectListOk(baseResp.getData(), isRefresh);
+                            mView.getCollectListOk(baseResp.getData(), isRefresh);
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.getCollectListErr(baseResp.getErrorMsg());
+                            mView.getCollectListErr(baseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.getCollectListErr(e.getMessage());
+                        mView.getCollectListErr(e.getMessage());
                     }
                 });
     }
 
-//    @Override
-//    public void cancelCollect(int id) {
-//        ApiStore.createApi(ApiService.class)
-//                .cancelCollectArticle(id)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new HttpObserver<BaseResp>() {
-//                    @Override
-//                    public void onNext(BaseResp baseResp) {
-//                        if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-//                            view.cancelCollectOk((String) baseResp.getData());
-//                        } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-//                            view.cancelCollectErr(baseResp.getErrorMsg());
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        view.cancelCollectErr(e.getMessage());
-//                    }
-//                });
-//    }
+    @Override
+    public void cancelCollect(int id) {
+        ApiStore.createApi(ApiService.class)
+                .cancelCollectArticleList(id, id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new HttpObserver<BaseResp<HomePageArticleBean>>() {
+                    @Override
+                    public void onNext(BaseResp<HomePageArticleBean> collectBaseResp) {
+                        if (collectBaseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
+                            mView.cancelCollectOk();
+                        } else if (collectBaseResp.getErrorCode() == Constant.REQUEST_ERROR) {
+                            mView.cancelCollectErr(collectBaseResp.getErrorMsg());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mView.cancelCollectErr(e.getMessage());
+                    }
+                });
+    }
 
 
 }

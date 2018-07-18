@@ -11,6 +11,8 @@ import com.xy.wanandroid.model.constant.Constant;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -19,11 +21,11 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class KnowledgePresenter extends BasePresenter<KnowledgeContract.View> implements KnowledgeContract.Presenter {
 
-    private KnowledgeContract.View view;
     private boolean isRefresh = true;
 
-    public KnowledgePresenter(KnowledgeContract.View view) {
-        this.view = view;
+    @Inject
+    public KnowledgePresenter() {
+
     }
 
     @Override
@@ -58,15 +60,15 @@ public class KnowledgePresenter extends BasePresenter<KnowledgeContract.View> im
                     @Override
                     public void onNext(BaseResp<List<KnowledgeListBean>> baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.getKnowledgeListOk(baseResp.getData(), isRefresh);
+                            mView.getKnowledgeListOk(baseResp.getData(), isRefresh);
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.getKnowledgeListErr(baseResp.getErrorMsg());
+                            mView.getKnowledgeListErr(baseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.getKnowledgeListErr(e.getMessage());
+                        mView.getKnowledgeListErr(e.getMessage());
                     }
                 });
     }

@@ -9,20 +9,20 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xy.wanandroid.R;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import com.xy.wanandroid.base.fragment.BaseRootFragment;
+import com.xy.wanandroid.contract.KnowledgeContract;
+import com.xy.wanandroid.data.knowledge.KnowledgeListBean;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.model.constant.EventConstant;
 import com.xy.wanandroid.model.constant.MessageEvent;
-import com.xy.wanandroid.contract.KnowledgeContract;
-import com.xy.wanandroid.data.knowledge.KnowledgeListBean;
 import com.xy.wanandroid.presenter.knowledge.KnowledgePresenter;
 import com.xy.wanandroid.ui.knowledge.activity.KnowledgeClassifyActivity;
 import com.xy.wanandroid.ui.knowledge.adapter.KnowledgeAdapter;
 import com.xy.wanandroid.util.app.ToastUtil;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 
 public class KnowledgeFragment extends BaseRootFragment<KnowledgePresenter> implements KnowledgeContract.View,KnowledgeAdapter.OnItemClickListener {
@@ -33,11 +33,15 @@ public class KnowledgeFragment extends BaseRootFragment<KnowledgePresenter> impl
 
     private List<KnowledgeListBean> knowledgeList;
     private KnowledgeAdapter mAdapter;
-    private KnowledgePresenter presenter;
 
     @Override
     public int getLayoutResID() {
         return R.layout.fragment_knowledge;
+    }
+
+    @Override
+    protected void initInjector() {
+        mFragmentComponent.inject(this);
     }
 
     @Override
@@ -51,8 +55,7 @@ public class KnowledgeFragment extends BaseRootFragment<KnowledgePresenter> impl
     protected void initData() {
         setRefresh();
         knowledgeList = new ArrayList<>();
-        presenter = new KnowledgePresenter(this);
-        presenter.getKnowledgeList();
+        mPresenter.getKnowledgeList();
         mAdapter = new KnowledgeAdapter(R.layout.item_knowledge, knowledgeList);
         mAdapter.setOnItemClickListener(this);
         mRv.setAdapter(mAdapter);
@@ -92,7 +95,7 @@ public class KnowledgeFragment extends BaseRootFragment<KnowledgePresenter> impl
     @Override
     public void reload() {
         showLoading();
-        presenter.getKnowledgeList();
+        mPresenter.getKnowledgeList();
     }
 
     /**
@@ -100,11 +103,11 @@ public class KnowledgeFragment extends BaseRootFragment<KnowledgePresenter> impl
      */
     private void setRefresh() {
         smartRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            presenter.autoRefresh();
+            mPresenter.autoRefresh();
             refreshLayout.finishRefresh(1000);
         });
         smartRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
-            presenter.loadMore();
+            mPresenter.loadMore();
             refreshLayout.finishLoadMore(1000);
         });
     }

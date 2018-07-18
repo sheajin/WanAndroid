@@ -33,7 +33,6 @@ public class ProjectFragment extends BaseRootFragment<ProjectPresenter> implemen
     private List<ProjectBean> projectList;
     private List<String> titles;
     private String[] titleArray;
-    private ProjectPresenter presenter;
 
     @Override
     public int getLayoutResID() {
@@ -41,9 +40,13 @@ public class ProjectFragment extends BaseRootFragment<ProjectPresenter> implemen
     }
 
     @Override
+    protected void initInjector() {
+        mFragmentComponent.inject(this);
+    }
+
+    @Override
     protected void initUI() {
         super.initUI();
-        presenter = new ProjectPresenter(this);
     }
 
     @Override
@@ -52,7 +55,7 @@ public class ProjectFragment extends BaseRootFragment<ProjectPresenter> implemen
         fragments = new ArrayList<>();
         projectList = new ArrayList<>();
         adapter = new SimpleFragmentStateAdapter(getChildFragmentManager(), fragments);
-        presenter.getProjectTitle();
+        mPresenter.getProjectTitle();
     }
 
     public static ProjectFragment getInstance() {
@@ -95,8 +98,8 @@ public class ProjectFragment extends BaseRootFragment<ProjectPresenter> implemen
     @Override
     public void reload() {
         super.reload();
-        if (presenter != null) {
-            presenter.getProjectTitle();
+        if (mPresenter != null) {
+            mPresenter.getProjectTitle();
         }
         showLoading();
     }

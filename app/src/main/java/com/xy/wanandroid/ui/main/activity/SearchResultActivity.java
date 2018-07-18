@@ -24,7 +24,8 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class SearchResultActivity extends BaseRootActivity implements SearchResultContract.View, HomePageAdapter.OnItemClickListener, HomePageAdapter.OnItemChildClickListener {
+public class SearchResultActivity extends BaseRootActivity<SearchResultPresenter> implements SearchResultContract.View,
+        HomePageAdapter.OnItemClickListener, HomePageAdapter.OnItemChildClickListener {
 
     @BindView(R.id.article_toolbar)
     Toolbar mArticleToolbar;
@@ -36,11 +37,15 @@ public class SearchResultActivity extends BaseRootActivity implements SearchResu
     private String key;
     private List<HomePageArticleBean.DatasBean> resultList;
     private HomePageAdapter mAdapter;
-    private SearchResultPresenter presenter;
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_search_result;
+    }
+
+    @Override
+    protected void initInject() {
+        mActivityComponent.inject(this);
     }
 
     @Override
@@ -70,8 +75,7 @@ public class SearchResultActivity extends BaseRootActivity implements SearchResu
     protected void initData() {
         setRefresh();
         resultList = new ArrayList<>();
-        presenter = new SearchResultPresenter(this);
-        presenter.getSearchResult(0, key);
+        mPresenter.getSearchResult(0, key);
         mAdapter = new HomePageAdapter(R.layout.item_homepage, resultList);
         mAdapter.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
@@ -109,11 +113,11 @@ public class SearchResultActivity extends BaseRootActivity implements SearchResu
      */
     private void setRefresh() {
         smartRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            presenter.autoRefresh(key);
+            mPresenter.autoRefresh(key);
             refreshLayout.finishRefresh(1000);
         });
         smartRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
-            presenter.loadMore(key);
+            mPresenter.loadMore(key);
             refreshLayout.finishLoadMore(1000);
         });
     }

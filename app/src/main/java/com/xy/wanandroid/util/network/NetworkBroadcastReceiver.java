@@ -14,7 +14,6 @@ import com.xy.wanandroid.model.constant.Constant;
 
 public class NetworkBroadcastReceiver extends BroadcastReceiver {
     public NetEvent eventActivity = BaseActivity.eventActivity;
-    public NetEvent eventFragment = BaseFragment.eventFragment;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -24,7 +23,6 @@ public class NetworkBroadcastReceiver extends BroadcastReceiver {
             int netWorkState = NetUtils.getNetWorkState();
             // 接口回调传过去状态的类型
             eventActivity.onNetChange(netWorkState);
-//            eventFragment.onNetChange(netWorkState);
         }
     }
 

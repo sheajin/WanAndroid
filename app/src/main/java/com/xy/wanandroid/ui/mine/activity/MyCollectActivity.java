@@ -13,12 +13,11 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseRootActivity;
 import com.xy.wanandroid.contract.CollectContract;
-import com.xy.wanandroid.data.mine.CollectBean;
+import com.xy.wanandroid.data.main.HomePageArticleBean;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.presenter.mine.CollectPresenter;
 import com.xy.wanandroid.ui.main.activity.ArticleDetailsActivity;
 import com.xy.wanandroid.ui.mine.adapter.CollectAdapter;
-import com.xy.wanandroid.util.app.LogUtil;
 import com.xy.wanandroid.util.app.ToastUtil;
 
 import java.util.ArrayList;
@@ -26,7 +25,8 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MyCollectActivity extends BaseRootActivity implements CollectContract.View, CollectAdapter.OnItemClickListener, CollectAdapter.OnItemChildClickListener {
+public class MyCollectActivity extends BaseRootActivity<CollectPresenter> implements CollectContract.View,
+        CollectAdapter.OnItemClickListener, CollectAdapter.OnItemChildClickListener {
 
     @BindView(R.id.normal_view)
     SmartRefreshLayout smartRefreshLayout;
@@ -35,13 +35,18 @@ public class MyCollectActivity extends BaseRootActivity implements CollectContra
     @BindView(R.id.toolbar_collect)
     Toolbar mToolBarCollect;
 
-    private List<CollectBean.DatasBean> collectList;
+    private List<HomePageArticleBean.DatasBean> collectList;
     private CollectAdapter mAdapter;
-    private CollectPresenter presenter;
+    private int poi;
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_my_collect;
+    }
+
+    @Override
+    protected void initInject() {
+        mActivityComponent.inject(this);
     }
 
     @Override
@@ -62,8 +67,7 @@ public class MyCollectActivity extends BaseRootActivity implements CollectContra
     protected void initData() {
         setRefresh();
         collectList = new ArrayList<>();
-        presenter = new CollectPresenter(this);
-        presenter.getCollectList(0);
+        mPresenter.getCollectList(0);
         mAdapter = new CollectAdapter(R.layout.item_homepage, collectList);
         mAdapter.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
@@ -71,13 +75,12 @@ public class MyCollectActivity extends BaseRootActivity implements CollectContra
     }
 
     @Override
-    public void getCollectListOk(CollectBean dataBean, boolean isRefresh) {
-        LogUtil.e("getCollectListOk");
+    public void getCollectListOk(HomePageArticleBean dataBean, boolean isRefresh) {
         if (mAdapter == null) {
             return;
         }
         if (isRefresh) {
-            collectList = dataBean.getDatas();
+            collectList.addAll(dataBean.getDatas());
             mAdapter.replaceData(dataBean.getDatas());
         } else {
             collectList.addAll(dataBean.getDatas());
@@ -91,21 +94,21 @@ public class MyCollectActivity extends BaseRootActivity implements CollectContra
         showError();
     }
 
-//    @Override
-//    public void cancelCollectOk(String info) {
-//        ToastUtil.show(activity, getString(R.string.cancel_collect_success));
-//
-//    }
-//
-//    @Override
-//    public void cancelCollectErr(String info) {
-//        ToastUtil.show(activity, info);
-//    }
+    @Override
+    public void cancelCollectOk() {
+        ToastUtil.show(activity, getString(R.string.cancel_collect_success));
+        mAdapter.remove(poi);
+    }
+
+    @Override
+    public void cancelCollectErr(String info) {
+        ToastUtil.show(activity, info);
+    }
 
     @Override
     public void reload() {
         showLoading();
-        presenter.getCollectList(0);
+        mPresenter.getCollectList(0);
     }
 
     /**
@@ -113,11 +116,11 @@ public class MyCollectActivity extends BaseRootActivity implements CollectContra
      */
     private void setRefresh() {
         smartRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            presenter.autoRefresh();
+            mPresenter.autoRefresh();
             refreshLayout.finishRefresh(1000);
         });
         smartRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
-            presenter.loadMore();
+            mPresenter.loadMore();
             refreshLayout.finishLoadMore(1000);
         });
     }
@@ -135,6 +138,7 @@ public class MyCollectActivity extends BaseRootActivity implements CollectContra
 
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-//        presenter.cancelCollect(mAdapter.getData().get(position).getId());
+        poi = position;
+        mPresenter.cancelCollect(mAdapter.getData().get(position).getId());
     }
 }

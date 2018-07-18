@@ -19,7 +19,6 @@ import com.xy.wanandroid.presenter.main.SearchPresenter;
 import com.xy.wanandroid.ui.main.adapter.SearchHistoryAdapter;
 import com.xy.wanandroid.util.app.CommonUtil;
 import com.xy.wanandroid.util.app.JumpUtil;
-import com.xy.wanandroid.util.widget.CommonAlertDialog;
 import com.xy.wanandroid.util.widget.CommonDialog;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
@@ -31,7 +30,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class SearchActivity extends BaseRootActivity implements SearchContract.View, SearchHistoryAdapter.OnItemChildClickListener, SearchHistoryAdapter.OnItemClickListener {
+public class SearchActivity extends BaseRootActivity<SearchPresenter> implements SearchContract.View,
+        SearchHistoryAdapter.OnItemChildClickListener, SearchHistoryAdapter.OnItemClickListener {
 
     @BindView(R.id.toolbar_search)
     Toolbar mToolBarSearch;
@@ -42,7 +42,6 @@ public class SearchActivity extends BaseRootActivity implements SearchContract.V
     @BindView(R.id.rv_history)
     RecyclerView mRvHistory;
 
-    private SearchPresenter presenter;
     private List<SearchHot> hotList;
     private List<String> historyList;
     private SearchHistoryAdapter mAdapter;
@@ -72,7 +71,7 @@ public class SearchActivity extends BaseRootActivity implements SearchContract.V
                             .setPositiveButton(getString(R.string.sure), v -> {
                                 historyList.clear();
                                 mAdapter.notifyDataSetChanged();
-                                presenter.saveSearchHistory(context, historyList);
+                                mPresenter.saveSearchHistory(context, historyList);
                                 dialog.dismiss();
                             }).create();
                     dialog.show();
@@ -82,9 +81,13 @@ public class SearchActivity extends BaseRootActivity implements SearchContract.V
     }
 
     @Override
+    protected void initInject() {
+        mActivityComponent.inject(this);
+    }
+
+    @Override
     protected void initUI() {
         super.initUI();
-        presenter = new SearchPresenter(this);
         mRvHistory.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -92,12 +95,12 @@ public class SearchActivity extends BaseRootActivity implements SearchContract.V
     protected void initData() {
         hotList = new ArrayList<>();
         historyList = new ArrayList<>();
-        presenter.getSearchHot();
+        mPresenter.getSearchHot();
         mAdapter = new SearchHistoryAdapter(R.layout.item_search_history, historyList);
         mAdapter.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
         mRvHistory.setAdapter(mAdapter);
-        presenter.readSearchHistory(context, historyList);
+        mPresenter.readSearchHistory(context, historyList);
     }
 
     @Override
@@ -124,7 +127,7 @@ public class SearchActivity extends BaseRootActivity implements SearchContract.V
                 if (!historyList.contains(query)) {
                     historyList.add(query);
                     mAdapter.notifyDataSetChanged();
-                    presenter.saveSearchHistory(context, historyList);
+                    mPresenter.saveSearchHistory(context, historyList);
                     jumpToResult(query);
                 }
                 return true;
@@ -165,7 +168,7 @@ public class SearchActivity extends BaseRootActivity implements SearchContract.V
             String name = hotList.get(position1).getName();
             if (!historyList.contains(name)) {
                 historyList.add(name);
-                presenter.saveSearchHistory(context, historyList);
+                mPresenter.saveSearchHistory(context, historyList);
             }
             jumpToResult(name);
             return true;
@@ -176,7 +179,7 @@ public class SearchActivity extends BaseRootActivity implements SearchContract.V
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         historyList.remove(position);
         adapter.notifyDataSetChanged();
-        presenter.saveSearchHistory(context, historyList);
+        mPresenter.saveSearchHistory(context, historyList);
     }
 
     @Override

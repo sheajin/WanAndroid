@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xy.wanandroid.R;
-import com.xy.wanandroid.data.mine.CollectBean;
+import com.xy.wanandroid.data.main.HomePageArticleBean;
 
 import java.util.List;
 
@@ -14,14 +14,14 @@ import java.util.List;
  * Created by jxy on 2018/6/25.
  */
 
-public class CollectAdapter extends BaseQuickAdapter<CollectBean.DatasBean, BaseViewHolder> {
+public class CollectAdapter extends BaseQuickAdapter<HomePageArticleBean.DatasBean, BaseViewHolder> {
 
-    public CollectAdapter(int layoutResId, @Nullable List<CollectBean.DatasBean> data) {
+    public CollectAdapter(int layoutResId, @Nullable List<HomePageArticleBean.DatasBean> data) {
         super(layoutResId, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, CollectBean.DatasBean article) {
+    protected void convert(BaseViewHolder helper, HomePageArticleBean.DatasBean article) {
         if (!TextUtils.isEmpty(article.getTitle())) {
             helper.setText(R.id.tv_content, article.getTitle());
         }
@@ -35,7 +35,6 @@ public class CollectAdapter extends BaseQuickAdapter<CollectBean.DatasBean, Base
             helper.setText(R.id.tv_type, article.getChapterName());
         }
         helper.setImageResource(R.id.image_collect, R.drawable.icon_collect);
-//        helper.addOnClickListener(R.id.image_collect);
-//        helper.setImageResource(R.id.image_collect, article.isCollect() ? R.drawable.icon_collect : R.drawable.icon_no_collect);
+        helper.addOnClickListener(R.id.image_collect);
     }
 }

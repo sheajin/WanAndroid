@@ -10,7 +10,7 @@ import com.xy.wanandroid.base.presenter.BasePresenter;
  * Created by jxy on 2018/6/11.
  */
 
-public abstract class BaseRootFragment<T extends BasePresenter> extends BaseFragment {
+public abstract class BaseRootFragment<T extends BasePresenter> extends BaseFragment<T> {
     /**
      * 处理页面加载中、页面加载失败、页面没数据
      */

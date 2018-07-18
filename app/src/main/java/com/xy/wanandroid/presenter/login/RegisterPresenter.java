@@ -9,6 +9,8 @@ import com.xy.wanandroid.model.api.BaseResp;
 import com.xy.wanandroid.model.api.HttpObserver;
 import com.xy.wanandroid.model.constant.Constant;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -18,10 +20,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RegisterPresenter extends BasePresenter<RegisterContract.View> implements RegisterContract.Presenter {
 
-    private RegisterContract.View view;
-
-    public RegisterPresenter(RegisterContract.View view) {
-        this.view = view;
+    @Inject
+    public RegisterPresenter() {
     }
 
     @Override
@@ -34,15 +34,15 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View> impl
                     @Override
                     public void onNext(BaseResp<UserInfo> baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.registerOk(baseResp.getData());
+                            mView.registerOk(baseResp.getData());
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.registerErr(baseResp.getErrorMsg());
+                            mView.registerErr(baseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.registerErr(e.getMessage());
+                        mView.registerErr(e.getMessage());
                     }
                 });
     }

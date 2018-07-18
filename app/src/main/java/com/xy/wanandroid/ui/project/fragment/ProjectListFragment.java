@@ -28,7 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class ProjectListFragment extends BaseRootFragment implements ProjectListContract.View, ProjectListAdapter.OnItemClickListener {
+public class ProjectListFragment extends BaseRootFragment<ProjectListPresenter> implements ProjectListContract.View, ProjectListAdapter.OnItemClickListener {
 
     @BindView(R.id.normal_view)
     SmartRefreshLayout smartRefreshLayout;
@@ -36,7 +36,6 @@ public class ProjectListFragment extends BaseRootFragment implements ProjectList
     RecyclerView mRv;
 
     private int cid;
-    private ProjectListPresenter presenter;
     private List<ProjectListBean.DatasBean> projectList;
     private ProjectListAdapter mAdapter;
 
@@ -54,6 +53,11 @@ public class ProjectListFragment extends BaseRootFragment implements ProjectList
     }
 
     @Override
+    protected void initInjector() {
+        mFragmentComponent.inject(this);
+    }
+
+    @Override
     protected void initUI() {
         super.initUI();
         showLoading();
@@ -63,11 +67,10 @@ public class ProjectListFragment extends BaseRootFragment implements ProjectList
     @Override
     protected void initData() {
         setRefresh();
-        presenter = new ProjectListPresenter(this);
         projectList = new ArrayList<>();
         if (getArguments() != null) {
             cid = getArguments().getInt(Constant.PROJECT_CID);
-            presenter.getProjectList(1, cid);
+            mPresenter.getProjectList(1, cid);
         }
         mAdapter = new ProjectListAdapter(R.layout.item_project_list, projectList);
         mAdapter.setOnItemClickListener(this);
@@ -102,13 +105,13 @@ public class ProjectListFragment extends BaseRootFragment implements ProjectList
 
     private void setRefresh() {
         smartRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            presenter.setCid(cid);
-            presenter.autoRefresh();
+            mPresenter.setCid(cid);
+            mPresenter.autoRefresh();
             refreshLayout.finishRefresh(1000);
         });
         smartRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
-            presenter.setCid(cid);
-            presenter.loadMore();
+            mPresenter.setCid(cid);
+            mPresenter.loadMore();
             refreshLayout.finishLoadMore(1000);
         });
     }

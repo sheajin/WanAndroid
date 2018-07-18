@@ -9,6 +9,8 @@ import com.xy.wanandroid.model.api.BaseResp;
 import com.xy.wanandroid.model.api.HttpObserver;
 import com.xy.wanandroid.model.constant.Constant;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -16,13 +18,13 @@ import io.reactivex.schedulers.Schedulers;
  * Created by jxy on 2018/6/18.
  */
 public class KnowledgeClassifyPresenter extends BasePresenter<KnowledgeClassifyContract.View> implements KnowledgeClassifyContract.Presenter {
-    private KnowledgeClassifyContract.View view;
     private int currentPage;
     private int cid;
     private boolean isRefresh = true;
 
-    public KnowledgeClassifyPresenter(KnowledgeClassifyContract.View view) {
-        this.view = view;
+    @Inject
+    public KnowledgeClassifyPresenter() {
+
     }
 
     public int getCid() {
@@ -57,15 +59,15 @@ public class KnowledgeClassifyPresenter extends BasePresenter<KnowledgeClassifyC
                     @Override
                     public void onNext(BaseResp<KnowledgeClassifyListBean> baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.getKnowledgeClassifyListOk(baseResp.getData(), isRefresh);
+                            mView.getKnowledgeClassifyListOk(baseResp.getData(), isRefresh);
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.getKnowledgeClassifyListErr(baseResp.getErrorMsg());
+                            mView.getKnowledgeClassifyListErr(baseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.getKnowledgeClassifyListErr(e.getMessage());
+                        mView.getKnowledgeClassifyListErr(e.getMessage());
                     }
                 });
     }
@@ -80,15 +82,15 @@ public class KnowledgeClassifyPresenter extends BasePresenter<KnowledgeClassifyC
                     @Override
                     public void onNext(BaseResp baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.collectArticleOK((String) baseResp.getData());
+                            mView.collectArticleOK((String) baseResp.getData());
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.collectArticleErr(baseResp.getErrorMsg());
+                            mView.collectArticleErr(baseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.collectArticleErr(e.getMessage());
+                        mView.collectArticleErr(e.getMessage());
                     }
                 });
     }
@@ -103,15 +105,15 @@ public class KnowledgeClassifyPresenter extends BasePresenter<KnowledgeClassifyC
                     @Override
                     public void onNext(BaseResp baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.cancelCollectArticleOK((String) baseResp.getData());
+                            mView.cancelCollectArticleOK((String) baseResp.getData());
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.cancelCollectArticleErr(baseResp.getErrorMsg());
+                            mView.cancelCollectArticleErr(baseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.cancelCollectArticleErr(e.getMessage());
+                        mView.cancelCollectArticleErr(e.getMessage());
                     }
                 });
     }

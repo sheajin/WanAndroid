@@ -2,13 +2,14 @@ package com.xy.wanandroid.base.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 
 import com.xy.wanandroid.base.app.MyApplication;
 import com.xy.wanandroid.base.presenter.AbsPresenter;
 import com.xy.wanandroid.base.view.AbstractView;
+import com.xy.wanandroid.di.component.ActivityComponent;
+import com.xy.wanandroid.di.component.DaggerActivityComponent;
+import com.xy.wanandroid.di.module.ActivityModule;
 import com.xy.wanandroid.model.constant.MessageEvent;
-import com.xy.wanandroid.util.app.LogUtil;
 import com.xy.wanandroid.util.network.NetUtils;
 import com.xy.wanandroid.util.network.NetworkBroadcastReceiver;
 
@@ -19,40 +20,46 @@ import org.greenrobot.eventbus.ThreadMode;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
 import me.yokeyword.fragmentation.SupportActivity;
 
 /**
  * Created by jxy on 2018/1/8.
  */
 
-public abstract class BaseActivity<T extends AbsPresenter> extends SupportActivity implements AbstractView,
-        NetworkBroadcastReceiver.NetEvent,HasSupportFragmentInjector {
+public abstract class BaseActivity<T extends AbsPresenter> extends SupportActivity implements AbstractView, NetworkBroadcastReceiver.NetEvent {
     protected MyApplication context;
     protected BaseActivity activity;
-    public static NetworkBroadcastReceiver.NetEvent eventActivity;
+    protected ActivityComponent mActivityComponent;
     private int netMobile;
-    @Inject
-    DispatchingAndroidInjector<Fragment> mFragmentDispatchingAndroidInjector;
+    public static NetworkBroadcastReceiver.NetEvent eventActivity;
+
     @Inject
     protected T mPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-//        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         context = MyApplication.getInstance();
         activity = this;
         eventActivity = this;
+        initActivityComponent();
         initBind();
         initInject();
         onViewCreated();
         initToolbar();
         initUI();
         initData();
+    }
+
+    /**
+     * 初始化ActivityComponent
+     */
+    private void initActivityComponent() {
+        mActivityComponent = DaggerActivityComponent.builder()
+                .applicationComponent(MyApplication.getInstance().getApplicationComponent())
+                .activityModule(new ActivityModule(this))
+                .build();
     }
 
     protected void onViewCreated() {
@@ -69,8 +76,6 @@ public abstract class BaseActivity<T extends AbsPresenter> extends SupportActivi
 
     /**
      * 获取当前Activity的UI布局
-     *
-     * @return 布局id
      */
     protected abstract int getLayoutId();
 
@@ -85,6 +90,13 @@ public abstract class BaseActivity<T extends AbsPresenter> extends SupportActivi
     }
 
     /**
+     * dagger初始化
+     */
+    protected void initInject() {
+
+    }
+
+    /**
      * 界面初始化
      */
     protected abstract void initUI();
@@ -93,13 +105,6 @@ public abstract class BaseActivity<T extends AbsPresenter> extends SupportActivi
      * 数据初始化
      */
     protected abstract void initData();
-
-    /**
-     * dagger初始化
-     */
-    protected void initInject() {
-
-    }
 
     @Override
     protected void onDestroy() {
@@ -111,10 +116,6 @@ public abstract class BaseActivity<T extends AbsPresenter> extends SupportActivi
         EventBus.getDefault().unregister(this);
     }
 
-    @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return mFragmentDispatchingAndroidInjector;
-    }
 
     /**
      * 网络变化之后的类型
@@ -131,14 +132,14 @@ public abstract class BaseActivity<T extends AbsPresenter> extends SupportActivi
      * @return true 有网, false 没有网络.
      */
     public boolean isNetConnect() {
-        if (netMobile == NetUtils.NETWORK_NONE) {
-            LogUtil.e("NETWORK_NONE");
-            return false;
-        } else{
-            reload();
-            LogUtil.e("NETWORK_NORMAL");
+        if (netMobile == NetUtils.NETWORK_WIFI) {
             return true;
+        } else if (netMobile == NetUtils.NETWORK_MOBILE) {
+            return true;
+        } else if (netMobile == NetUtils.NETWORK_NONE) {
+            return false;
         }
+        return false;
     }
 
     @Override

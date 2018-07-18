@@ -9,6 +9,8 @@ import com.xy.wanandroid.model.api.BaseResp;
 import com.xy.wanandroid.model.api.HttpObserver;
 import com.xy.wanandroid.model.constant.Constant;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -18,12 +20,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class SearchResultPresenter extends BasePresenter<SearchResultContract.View> implements SearchResultContract.Presenter {
 
-    private SearchResultContract.View view;
     private boolean isRefresh = true;
     private int currentPage;
 
-    public SearchResultPresenter(SearchResultContract.View view) {
-        this.view = view;
+    @Inject
+    public SearchResultPresenter() {
+
     }
 
     @Override
@@ -50,15 +52,15 @@ public class SearchResultPresenter extends BasePresenter<SearchResultContract.Vi
                     @Override
                     public void onNext(BaseResp<HomePageArticleBean> listBaseResp) {
                         if (listBaseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.getSearchResultOk(listBaseResp.getData(), isRefresh);
+                            mView.getSearchResultOk(listBaseResp.getData(), isRefresh);
                         } else if (listBaseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.getSearchResultErr(listBaseResp.getErrorMsg());
+                            mView.getSearchResultErr(listBaseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.getSearchResultErr(e.getMessage());
+                        mView.getSearchResultErr(e.getMessage());
                     }
                 });
     }

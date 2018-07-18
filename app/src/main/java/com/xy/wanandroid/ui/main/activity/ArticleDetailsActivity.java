@@ -33,7 +33,7 @@ import java.lang.reflect.Method;
 import butterknife.BindView;
 
 @SuppressLint("SetJavaScriptEnabled")
-public class ArticleDetailsActivity extends BaseRootActivity implements ArticleDetailContact.View {
+public class ArticleDetailsActivity extends BaseRootActivity<ArticleDetailPresenter> implements ArticleDetailContact.View {
     @BindView(R.id.article_detail_web_view)
     FrameLayout mWebContent;
     @BindView(R.id.article_toolbar)
@@ -44,12 +44,16 @@ public class ArticleDetailsActivity extends BaseRootActivity implements ArticleD
     private int articleId;
     private boolean isCollect;
     private AgentWeb mAgentWeb;
-    private ArticleDetailPresenter presenter;
     private int collectCode = -1;
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_article_details;
+    }
+
+    @Override
+    protected void initInject() {
+        mActivityComponent.inject(this);
     }
 
     @Override
@@ -61,7 +65,6 @@ public class ArticleDetailsActivity extends BaseRootActivity implements ArticleD
     }
 
     private void getBundleData() {
-        presenter = new ArticleDetailPresenter(this);
         Bundle bundle = getIntent().getExtras();
         title = bundle.getString(Constant.ARTICLE_TITLE);
         articleLink = bundle.getString(Constant.ARTICLE_LINK);
@@ -114,9 +117,9 @@ public class ArticleDetailsActivity extends BaseRootActivity implements ArticleD
                 LogUtil.e("id = " + articleId + "is = " + isCollect);
                 if ((Boolean) SharedPreferenceUtil.get(context, Constant.ISLOGIN, Constant.FALSE)) {
                     if (isCollect) {
-                        presenter.cancelCollectArticle(articleId);
+                        mPresenter.cancelCollectArticle(articleId);
                     } else {
-                        presenter.collectArticle(articleId);
+                        mPresenter.collectArticle(articleId);
                     }
                 } else {
                     ToastUtil.show(activity, getString(R.string.please_login));

@@ -23,7 +23,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class HotActivity extends BaseRootActivity implements HotContract.View {
+public class HotActivity extends BaseRootActivity<HotPresenter> implements HotContract.View {
 
     @BindView(R.id.flow_hot)
     TagFlowLayout mFlowHot;
@@ -32,7 +32,6 @@ public class HotActivity extends BaseRootActivity implements HotContract.View {
 
     private List<SearchHot> hotList;
     private TagAdapter<SearchHot> adapter;
-    private HotPresenter presenter;
 
     @Override
     protected int getLayoutId() {
@@ -48,16 +47,20 @@ public class HotActivity extends BaseRootActivity implements HotContract.View {
     }
 
     @Override
+    protected void initInject() {
+        mActivityComponent.inject(this);
+    }
+
+    @Override
     protected void initUI() {
         super.initUI();
         showLoading();
-        presenter = new HotPresenter(this);
     }
 
     @Override
     protected void initData() {
         hotList = new ArrayList<>();
-        presenter.getHotWeb();
+        mPresenter.getHotWeb();
     }
 
     @Override

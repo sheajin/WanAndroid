@@ -52,7 +52,6 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
     private List<String> imageList;
     private List<String> titleList;
     private HomePageAdapter mAdapter;
-    private HomePagePresenter presenter;
     private Banner banner;
     private LinearLayout bannerView;
     private int clickPosition;
@@ -64,6 +63,11 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
 
     public static HomePageFragment getInstance() {
         return new HomePageFragment();
+    }
+
+    @Override
+    protected void initInjector() {
+        mFragmentComponent.inject(this);
     }
 
     @Override
@@ -84,12 +88,11 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
         linkList = new ArrayList<>();
         imageList = new ArrayList<>();
         titleList = new ArrayList<>();
-        presenter = new HomePagePresenter(this);
         if (SharedPreferenceUtil.get(activity, Constant.USERNAME, Constant.DEFAULT).equals(Constant.DEFAULT)) {
-            presenter.getBanner();
-            presenter.getHomepageList(0);
+            mPresenter.getBanner();
+            mPresenter.getHomepageList(0);
         } else {
-            presenter.loginAndLoad();
+            mPresenter.loginAndLoad();
         }
         mAdapter = new HomePageAdapter(R.layout.item_homepage, articleList);
         mAdapter.addHeaderView(bannerView);
@@ -104,7 +107,7 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
                 mRv.smoothScrollToPosition(0);
                 break;
             case EventConstant.REFRESHHOMEPAGE:
-                presenter.getHomepageList(0);
+                mPresenter.getHomepageList(0);
                 break;
         }
     }
@@ -216,8 +219,8 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
     @Override
     public void reload() {
         showLoading();
-        presenter.getBanner();
-        presenter.autoRefresh();
+        mPresenter.getBanner();
+        mPresenter.autoRefresh();
     }
 
     /**
@@ -225,11 +228,11 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
      */
     private void setRefresh() {
         smartRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            presenter.autoRefresh();
+            mPresenter.autoRefresh();
             refreshLayout.finishRefresh(1000);
         });
         smartRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
-            presenter.loadMore();
+            mPresenter.loadMore();
             refreshLayout.finishLoadMore(1000);
         });
     }
@@ -257,9 +260,9 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
             case R.id.image_collect:
                 if ((Boolean) SharedPreferenceUtil.get(context, Constant.ISLOGIN, Constant.FALSE)) {
                     if (mAdapter.getData().get(clickPosition).isCollect()) {
-                        presenter.cancelCollectArticle(mAdapter.getData().get(clickPosition).getId());
+                        mPresenter.cancelCollectArticle(mAdapter.getData().get(clickPosition).getId());
                     } else {
-                        presenter.collectArticle(mAdapter.getData().get(clickPosition).getId());
+                        mPresenter.collectArticle(mAdapter.getData().get(clickPosition).getId());
                     }
                 } else {
                     ToastUtil.show(activity, getString(R.string.please_login));

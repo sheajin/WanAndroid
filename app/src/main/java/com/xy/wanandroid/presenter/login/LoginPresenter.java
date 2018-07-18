@@ -8,10 +8,6 @@ import com.xy.wanandroid.model.api.ApiStore;
 import com.xy.wanandroid.model.api.BaseResp;
 import com.xy.wanandroid.model.api.HttpObserver;
 import com.xy.wanandroid.model.constant.Constant;
-import com.xy.wanandroid.model.constant.EventConstant;
-import com.xy.wanandroid.model.constant.MessageEvent;
-
-import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
 
@@ -24,10 +20,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class LoginPresenter extends BasePresenter<LoginContract.View> implements LoginContract.Presenter {
 
-    private LoginContract.View view;
+    @Inject
+    public LoginPresenter() {
 
-    public LoginPresenter(LoginContract.View view) {
-        this.view = view;
     }
 
     @Override
@@ -40,9 +35,9 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                     @Override
                     public void onNext(BaseResp<UserInfo> baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.loginOk(baseResp.getData());
+                            mView.loginOk(baseResp.getData());
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.loginErr(baseResp.getErrorMsg());
+                            mView.loginErr(baseResp.getErrorMsg());
                         }
                     }
 

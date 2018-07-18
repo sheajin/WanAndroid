@@ -18,6 +18,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -31,8 +33,13 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
     private boolean isRefresh = true;
     private int currentPage;
 
-    public HomePagePresenter(HomePageContract.View view) {
-        this.view = view;
+//    public HomePagePresenter(HomePageContract.View view) {
+//        this.view = view;
+//    }
+
+    @Inject
+    public HomePagePresenter(){
+
     }
 
     @Override
@@ -65,15 +72,15 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
                     @Override
                     public void onNext(BaseResp<HomePageArticleBean> baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.getHomepageListOk(baseResp.getData(), isRefresh);
+                            mView.getHomepageListOk(baseResp.getData(), isRefresh);
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.getHomepageListErr(baseResp.getErrorMsg());
+                            mView.getHomepageListErr(baseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.getHomepageListErr(e.getMessage());
+                        mView.getHomepageListErr(e.getMessage());
                     }
                 });
     }
@@ -88,15 +95,15 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
                     @Override
                     public void onNext(BaseResp<List<BannerBean>> baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.getBannerOk(baseResp.getData());
+                            mView.getBannerOk(baseResp.getData());
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.getBannerErr(baseResp.getErrorMsg());
+                            mView.getBannerErr(baseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.getBannerErr(e.getMessage());
+                        mView.getBannerErr(e.getMessage());
                     }
                 });
     }
@@ -127,27 +134,27 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
                          */
                         BaseResp<UserInfo> userInfo = RxUtils.cast(map.get(Constant.LOGINDATA));
                         if (userInfo.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.loginSuccess(userInfo.getData());
+                            mView.loginSuccess(userInfo.getData());
                         } else if (userInfo.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.loginErr(userInfo.getErrorMsg());
+                            mView.loginErr(userInfo.getErrorMsg());
                         }
                         /**
                          * banner信息
                          */
                         BaseResp<List<BannerBean>> bannerResp = RxUtils.cast(map.get(Constant.BANNERDATA));
                         if (bannerResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.getBannerOk(bannerResp.getData());
+                            mView.getBannerOk(bannerResp.getData());
                         } else if (bannerResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.getBannerErr(bannerResp.getErrorMsg());
+                            mView.getBannerErr(bannerResp.getErrorMsg());
                         }
                         /**
                          * 主页列表信息
                          */
                         BaseResp<HomePageArticleBean> articleResp = RxUtils.cast(map.get(Constant.HOMEPAGEDATA));
                         if (articleResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.getHomepageListOk(articleResp.getData(), isRefresh);
+                            mView.getHomepageListOk(articleResp.getData(), isRefresh);
                         } else if (articleResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.getHomepageListErr(articleResp.getErrorMsg());
+                            mView.getHomepageListErr(articleResp.getErrorMsg());
                         }
                     }
 
@@ -168,15 +175,15 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
                     @Override
                     public void onNext(BaseResp baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.collectArticleOK((String) baseResp.getData());
+                            mView.collectArticleOK((String) baseResp.getData());
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.collectArticleErr(baseResp.getErrorMsg());
+                            mView.collectArticleErr(baseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.collectArticleErr(e.getMessage());
+                        mView.collectArticleErr(e.getMessage());
                     }
                 });
     }
@@ -191,15 +198,15 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
                     @Override
                     public void onNext(BaseResp baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.cancelCollectArticleOK((String) baseResp.getData());
+                            mView.cancelCollectArticleOK((String) baseResp.getData());
                         } else if (baseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.cancelCollectArticleErr(baseResp.getErrorMsg());
+                            mView.cancelCollectArticleErr(baseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.cancelCollectArticleErr(e.getMessage());
+                        mView.cancelCollectArticleErr(e.getMessage());
                     }
                 });
     }

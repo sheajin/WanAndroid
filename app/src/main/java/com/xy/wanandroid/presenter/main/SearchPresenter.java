@@ -15,6 +15,8 @@ import com.xy.wanandroid.util.app.SharedPreferenceUtil;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -24,10 +26,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class SearchPresenter extends BasePresenter<SearchContract.View> implements SearchContract.Presenter {
 
-    private SearchContract.View view;
+    @Inject
+    public SearchPresenter() {
 
-    public SearchPresenter(SearchContract.View view) {
-        this.view = view;
     }
 
     @Override
@@ -40,7 +41,7 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
                     @Override
                     public void onNext(BaseResp<List<SearchHot>> baseResp) {
                         if (baseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.getSearchHotOk(baseResp.getData());
+                            mView.getSearchHotOk(baseResp.getData());
                         }
                     }
 

@@ -31,11 +31,15 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     EditText mEtEnsurePassword;
 
     private String username, password;
-    private LoginPresenter presenter;
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_login;
+    }
+
+    @Override
+    protected void initInject() {
+        mActivityComponent.inject(this);
     }
 
     @Override
@@ -47,7 +51,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     protected void initUI() {
-        presenter = new LoginPresenter(this);
     }
 
     @Override
@@ -63,7 +66,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 break;
             case R.id.btn_login:
                 if (check())
-                    presenter.login(username, password);
+                    mPresenter.login(username, password);
                 break;
         }
     }

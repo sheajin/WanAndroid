@@ -11,6 +11,8 @@ import com.xy.wanandroid.model.api.HttpObserver;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.util.app.LogUtil;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -18,14 +20,13 @@ import io.reactivex.schedulers.Schedulers;
  * Created by jxy on 2018/6/17.
  */
 public class ProjectListPresenter extends BasePresenter<ProjectListContract.View> implements ProjectListContract.Presenter {
-    private ProjectListContract.View view;
     private int cid;
     private int currentPage = 1;
     private boolean isRefresh = true;
 
+    @Inject
+    public ProjectListPresenter() {
 
-    public ProjectListPresenter(ProjectListContract.View view) {
-        this.view = view;
     }
 
     public int getCid() {
@@ -61,15 +62,15 @@ public class ProjectListPresenter extends BasePresenter<ProjectListContract.View
                     @Override
                     public void onNext(BaseResp<ProjectListBean> listBaseResp) {
                         if (listBaseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.getProjectListOk(listBaseResp.getData(), isRefresh);
+                            mView.getProjectListOk(listBaseResp.getData(), isRefresh);
                         } else if (listBaseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.getProjectListErr(listBaseResp.getErrorMsg());
+                            mView.getProjectListErr(listBaseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.getProjectListErr(e.getMessage());
+                        mView.getProjectListErr(e.getMessage());
                     }
                 });
     }

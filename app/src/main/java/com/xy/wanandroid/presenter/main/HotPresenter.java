@@ -11,6 +11,8 @@ import com.xy.wanandroid.model.constant.Constant;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -20,10 +22,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class HotPresenter extends BasePresenter<HotContract.View> implements HotContract.Presenter {
 
-    private HotContract.View view;
+    @Inject
+    public HotPresenter() {
 
-    public HotPresenter(HotContract.View view) {
-        this.view = view;
     }
 
     @Override
@@ -36,15 +37,15 @@ public class HotPresenter extends BasePresenter<HotContract.View> implements Hot
                     @Override
                     public void onNext(BaseResp<List<SearchHot>> listBaseResp) {
                         if (listBaseResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
-                            view.getHotWebOk(listBaseResp.getData());
+                            mView.getHotWebOk(listBaseResp.getData());
                         } else if (listBaseResp.getErrorCode() == Constant.REQUEST_ERROR) {
-                            view.getHotWebErr(listBaseResp.getErrorMsg());
+                            mView.getHotWebErr(listBaseResp.getErrorMsg());
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        view.getHotWebErr(e.getMessage());
+                        mView.getHotWebErr(e.getMessage());
                     }
                 });
     }

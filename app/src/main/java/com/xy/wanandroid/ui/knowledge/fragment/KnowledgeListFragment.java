@@ -40,7 +40,6 @@ public class KnowledgeListFragment extends BaseRootFragment<KnowledgeClassifyPre
     RecyclerView mRv;
 
     private int cid, clickPosition;
-    private KnowledgeClassifyPresenter presenter;
     private List<KnowledgeClassifyListBean.DatasBean> knowledgeList;
     private KnowledgeClassifyAdapter mAdapter;
 
@@ -58,6 +57,11 @@ public class KnowledgeListFragment extends BaseRootFragment<KnowledgeClassifyPre
     }
 
     @Override
+    protected void initInjector() {
+        mFragmentComponent.inject(this);
+    }
+
+    @Override
     protected void initUI() {
         super.initUI();
         showLoading();
@@ -67,11 +71,10 @@ public class KnowledgeListFragment extends BaseRootFragment<KnowledgeClassifyPre
     @Override
     protected void initData() {
         setRefresh();
-        presenter = new KnowledgeClassifyPresenter(this);
         knowledgeList = new ArrayList<>();
         if (getArguments() != null) {
             cid = getArguments().getInt(Constant.KNOWLEDGE_CID);
-            presenter.getKnowledgeClassifyList(0, cid);
+            mPresenter.getKnowledgeClassifyList(0, cid);
         }
         mAdapter = new KnowledgeClassifyAdapter(R.layout.item_homepage, knowledgeList);
         mAdapter.setOnItemClickListener(this);
@@ -137,13 +140,13 @@ public class KnowledgeListFragment extends BaseRootFragment<KnowledgeClassifyPre
 
     private void setRefresh() {
         smartRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            presenter.setCid(cid);
-            presenter.autoRefresh();
+            mPresenter.setCid(cid);
+            mPresenter.autoRefresh();
             refreshLayout.finishRefresh(1000);
         });
         smartRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
-            presenter.setCid(cid);
-            presenter.loadMore();
+            mPresenter.setCid(cid);
+            mPresenter.loadMore();
             refreshLayout.finishLoadMore(1000);
         });
     }
@@ -182,9 +185,9 @@ public class KnowledgeListFragment extends BaseRootFragment<KnowledgeClassifyPre
         clickPosition = position;
         if ((Boolean) SharedPreferenceUtil.get(context, Constant.ISLOGIN, Constant.FALSE)) {
             if (mAdapter.getData().get(clickPosition).isCollect()) {
-                presenter.cancelCollectArticle(mAdapter.getData().get(clickPosition).getId());
+                mPresenter.cancelCollectArticle(mAdapter.getData().get(clickPosition).getId());
             } else {
-                presenter.collectArticle(mAdapter.getData().get(clickPosition).getId());
+                mPresenter.collectArticle(mAdapter.getData().get(clickPosition).getId());
             }
         } else {
             ToastUtil.show(activity, getString(R.string.please_login));

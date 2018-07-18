@@ -15,7 +15,7 @@ import com.xy.wanandroid.util.app.ToastUtil;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class RegisterActivity extends BaseActivity implements RegisterContract.View {
+public class RegisterActivity extends BaseActivity<RegisterPresenter> implements RegisterContract.View {
 
     @BindView(R.id.toolbar_register)
     Toolbar mToolbarRegister;
@@ -27,7 +27,6 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     EditText mEtEnsurePassword;
 
     private String username,password,ensurePassword;
-    private RegisterPresenter presenter;
 
     @Override
     protected int getLayoutId() {
@@ -42,8 +41,12 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     }
 
     @Override
+    protected void initInject() {
+        mActivityComponent.inject(this);
+    }
+
+    @Override
     protected void initUI() {
-        presenter = new RegisterPresenter(this);
     }
 
     @Override
@@ -56,7 +59,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
         switch (view.getId()){
             case R.id.btn_register:
                 if (check())
-                    presenter.register(username, password, ensurePassword);
+                    mPresenter.register(username, password, ensurePassword);
                 break;
         }
     }
