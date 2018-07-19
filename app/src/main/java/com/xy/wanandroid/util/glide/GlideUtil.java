@@ -5,6 +5,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 
 /**
  * Created by jxy on 2017/8/9.
@@ -20,18 +21,19 @@ public class GlideUtil {
                 .into(imageView);
     }
 
-//    /**
-//     * 加载圆角
-//     * */
-//    public static void loadRoundImage(Context context, Object resId, ImageView imageView) {
-//        Glide.with(context)
-//                .load(resId)
-//                .skipMemoryCache(false)
-//                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .transform(new GlideCircleTransform(context,10))
-//                .into(imageView);
-//    }
-//
+    /**
+     * 加载圆角
+     */
+    public static void loadRoundImage(Context context, Object resId, ImageView imageView) {
+        RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true);
+        Glide.with(context).
+                load(resId).
+                apply(mRequestOptions)
+                .into(imageView);
+    }
+
 //    /**
 //     * 自适应宽度加载图片。保持图片的长宽比例不变，通过修改imageView的高度来完全显示图片。
 //     */

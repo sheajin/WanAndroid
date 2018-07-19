@@ -9,7 +9,7 @@ import com.xy.wanandroid.base.view.AbstractView;
 public class BasePresenter<T extends AbstractView> implements AbsPresenter<T> {
 
     protected T mView;
-    protected int currentPage;
+    private int currentPage;
 
     @Override
     public void attachView(T view) {

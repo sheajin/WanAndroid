@@ -33,10 +33,6 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
     private boolean isRefresh = true;
     private int currentPage;
 
-//    public HomePagePresenter(HomePageContract.View view) {
-//        this.view = view;
-//    }
-
     @Inject
     public HomePagePresenter(){
 
@@ -160,7 +156,7 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
 
                     @Override
                     public void onError(Throwable e) {
-
+                        mView.getHomepageListErr(e.getMessage());
                     }
                 });
     }

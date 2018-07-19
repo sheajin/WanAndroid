@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_item_music"
+        android:icon="@drawable/icon_music"
+        android:title="@string/music" />
+
+    <item
+        android:id="@+id/nav_item_video"
+        android:icon="@drawable/icon_video"
+        android:title="@string/video" />
+</menu>

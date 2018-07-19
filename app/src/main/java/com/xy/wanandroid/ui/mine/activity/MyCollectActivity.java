@@ -54,6 +54,7 @@ public class MyCollectActivity extends BaseRootActivity<CollectPresenter> implem
         super.initToolbar();
         setSupportActionBar(mToolBarCollect);
         getSupportActionBar().setTitle(getString(R.string.my_collect));
+        mToolBarCollect.setNavigationOnClickListener(v -> onBackPressedSupport());
     }
 
     @Override

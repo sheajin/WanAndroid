@@ -61,8 +61,9 @@
         <activity android:name=".ui.main.activity.HotActivity" />
         <activity android:name=".ui.main.activity.SearchActivity" />
         <activity android:name=".ui.main.activity.SearchResultActivity" />
-        <activity android:name=".ui.mine.activity.MyLabelActivity"/>
-
+        <activity android:name=".ui.mine.activity.MyLabelActivity" />
+        <activity android:name=".ui.drawer.activity.MusicActivity" />
+        <activity android:name=".ui.drawer.activity.VideoActivity" />
     </application>
 
 </manifest>

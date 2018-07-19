@@ -70,6 +70,11 @@ public abstract class BaseFragment<T extends AbsPresenter> extends SupportFragme
     }
 
     /**
+     * 获取当前界面的UI布局
+     */
+    public abstract int getLayoutResID();
+
+    /**
      * dagger初始化
      */
     protected void initInjector() {
@@ -92,8 +97,6 @@ public abstract class BaseFragment<T extends AbsPresenter> extends SupportFragme
         }
         NetUtils.init(MyApplication.getInstance());
     }
-
-    public abstract int getLayoutResID();
 
     @Override
     public void onAttach(Activity activity) {

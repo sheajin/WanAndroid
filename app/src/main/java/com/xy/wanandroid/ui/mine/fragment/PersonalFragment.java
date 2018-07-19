@@ -20,6 +20,8 @@ import com.xy.wanandroid.util.glide.GlideUtil;
 import com.xy.wanandroid.util.widget.CommonAlertDialog;
 import com.xy.wanandroid.util.widget.CommonDialog;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -107,5 +109,7 @@ public class PersonalFragment extends BaseFragment {
         SharedPreferenceUtil.clear(activity);
         initData();
         CookiesManager.clearAllCookies();
+        SharedPreferenceUtil.put(activity, Constant.ISLOGIN, false);
+        EventBus.getDefault().post(new MessageEvent(EventConstant.LOGOUTSUCCESS, ""));
     }
 }

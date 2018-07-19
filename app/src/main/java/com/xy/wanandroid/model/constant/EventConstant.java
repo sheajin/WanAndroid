@@ -25,4 +25,8 @@ public class EventConstant {
      * 刷新主页
      */
     public static final int REFRESHHOMEPAGE = 108;
+    /**
+     * 退出成功
+     */
+    public static final int LOGOUTSUCCESS = 109;
 }
