@@ -1,4 +1,4 @@
-package com.xy.wanandroid.util.widget;
+package com.xy.wanandroid.widget;
 
 import android.app.Activity;
 import android.support.v7.app.AlertDialog;

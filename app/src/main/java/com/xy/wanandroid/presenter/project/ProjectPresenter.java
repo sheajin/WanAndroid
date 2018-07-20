@@ -1,7 +1,7 @@
 package com.xy.wanandroid.presenter.project;
 
 import com.xy.wanandroid.base.presenter.BasePresenter;
-import com.xy.wanandroid.contract.ProjectContract;
+import com.xy.wanandroid.contract.project.ProjectContract;
 import com.xy.wanandroid.data.project.ProjectBean;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;

@@ -1,11 +1,8 @@
-package com.xy.wanandroid.contract;
+package com.xy.wanandroid.contract.main;
 
 import com.xy.wanandroid.base.presenter.AbsPresenter;
 import com.xy.wanandroid.base.view.AbstractView;
 import com.xy.wanandroid.data.main.HomePageArticleBean;
-import com.xy.wanandroid.data.main.SearchResult;
-
-import java.util.List;
 
 /**
  * Created by jxy on 2018/6/21.

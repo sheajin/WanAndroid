@@ -6,7 +6,7 @@ import android.widget.EditText;
 
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseActivity;
-import com.xy.wanandroid.contract.LoginContract;
+import com.xy.wanandroid.contract.login.LoginContract;
 import com.xy.wanandroid.data.login.UserInfo;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.model.constant.EventConstant;

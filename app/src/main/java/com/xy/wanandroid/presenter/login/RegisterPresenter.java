@@ -1,7 +1,7 @@
 package com.xy.wanandroid.presenter.login;
 
 import com.xy.wanandroid.base.presenter.BasePresenter;
-import com.xy.wanandroid.contract.RegisterContract;
+import com.xy.wanandroid.contract.login.RegisterContract;
 import com.xy.wanandroid.data.login.UserInfo;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;

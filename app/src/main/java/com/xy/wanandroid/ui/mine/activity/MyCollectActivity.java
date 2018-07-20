@@ -12,7 +12,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseRootActivity;
-import com.xy.wanandroid.contract.CollectContract;
+import com.xy.wanandroid.contract.mine.CollectContract;
 import com.xy.wanandroid.data.main.HomePageArticleBean;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.presenter.mine.CollectPresenter;

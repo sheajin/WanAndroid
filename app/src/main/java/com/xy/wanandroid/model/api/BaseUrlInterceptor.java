@@ -1,6 +1,8 @@
 package com.xy.wanandroid.model.api;
 
 
+import com.xy.wanandroid.model.constant.Constant;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -31,11 +33,11 @@ public class BaseUrlInterceptor implements Interceptor {
             String urlName = urlNameList.get(0);
             HttpUrl baseURL = null;
             //根据头信息中配置的value,来匹配新的base_url地址
-//            if ("match".equals(urlName)) {
-//                baseURL = HttpUrl.parse(AppConfig.TECENT_SERVER);
-//            } else if ("info".equals(urlName)) {
-//                baseURL = HttpUrl.parse(AppConfig.RAYMALL);
-//            }
+            if (urlName.equals(Constant.WANANDROID)) {
+                baseURL = HttpUrl.parse(AppConfig.BASE_URL);
+            } else if (urlName.equals(Constant.DOUYU)) {
+                baseURL = HttpUrl.parse(AppConfig.DOUYU_URL);
+            }
             //重建新的HttpUrl，需要重新设置的url部分
             HttpUrl newHttpUrl = oldUrl.newBuilder()
                     .scheme(baseURL.scheme())//http协议如：http或者https

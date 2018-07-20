@@ -18,12 +18,11 @@ import com.scwang.smartrefresh.header.FlyRefreshHeader;
 import com.scwang.smartrefresh.header.flyrefresh.FlyView;
 import com.scwang.smartrefresh.header.flyrefresh.MountainSceneView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 import com.scwang.smartrefresh.layout.util.DensityUtil;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseActivity;
-import com.xy.wanandroid.util.widget.ElasticOutInterpolator;
+import com.xy.wanandroid.widget.ElasticOutInterpolator;
 
 import butterknife.BindView;
 

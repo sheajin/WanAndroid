@@ -17,8 +17,8 @@ import com.xy.wanandroid.util.app.JumpUtil;
 import com.xy.wanandroid.util.app.SharedPreferenceUtil;
 import com.xy.wanandroid.util.app.ToastUtil;
 import com.xy.wanandroid.util.glide.GlideUtil;
-import com.xy.wanandroid.util.widget.CommonAlertDialog;
-import com.xy.wanandroid.util.widget.CommonDialog;
+import com.xy.wanandroid.widget.CommonAlertDialog;
+import com.xy.wanandroid.widget.CommonDialog;
 
 import org.greenrobot.eventbus.EventBus;
 

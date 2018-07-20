@@ -1,7 +1,7 @@
 package com.xy.wanandroid.presenter.knowledge;
 
 import com.xy.wanandroid.base.presenter.BasePresenter;
-import com.xy.wanandroid.contract.KnowledgeClassifyContract;
+import com.xy.wanandroid.contract.knowledge.KnowledgeClassifyContract;
 import com.xy.wanandroid.data.knowledge.KnowledgeClassifyListBean;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;

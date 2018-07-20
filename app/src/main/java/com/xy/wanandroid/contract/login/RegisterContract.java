@@ -1,4 +1,4 @@
-package com.xy.wanandroid.contract;
+package com.xy.wanandroid.contract.login;
 
 import com.xy.wanandroid.base.presenter.AbsPresenter;
 import com.xy.wanandroid.base.view.AbstractView;

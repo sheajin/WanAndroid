@@ -11,7 +11,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.fragment.BaseRootFragment;
-import com.xy.wanandroid.contract.ProjectListContract;
+import com.xy.wanandroid.contract.project.ProjectListContract;
 import com.xy.wanandroid.data.project.ProjectListBean;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.model.constant.EventConstant;

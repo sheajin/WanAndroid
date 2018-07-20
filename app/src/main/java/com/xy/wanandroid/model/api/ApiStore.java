@@ -28,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiStore {
 
     private static Retrofit retrofit;
-    public static String baseUrl = AppConfig.BASE_URL;
+    private static String baseUrl = AppConfig.BASE_URL;
 
     static {
         createProxy();
@@ -49,6 +49,7 @@ public class ApiStore {
                     Request request = requestBuilder.build();
                     return chain.proceed(request);
                 })
+                .addInterceptor(new BaseUrlInterceptor())
                 .addInterceptor(new HttpLoggingInterceptor())
                 .cookieJar(new CookiesManager());
 

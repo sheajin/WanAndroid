@@ -2,7 +2,7 @@ package com.xy.wanandroid.presenter.main;
 
 import com.xy.wanandroid.base.app.MyApplication;
 import com.xy.wanandroid.base.presenter.BasePresenter;
-import com.xy.wanandroid.contract.HomePageContract;
+import com.xy.wanandroid.contract.main.HomePageContract;
 import com.xy.wanandroid.data.login.UserInfo;
 import com.xy.wanandroid.data.main.BannerBean;
 import com.xy.wanandroid.data.main.HomePageArticleBean;

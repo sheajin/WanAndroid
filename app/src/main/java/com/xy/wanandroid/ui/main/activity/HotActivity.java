@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseRootActivity;
-import com.xy.wanandroid.contract.HotContract;
+import com.xy.wanandroid.contract.main.HotContract;
 import com.xy.wanandroid.data.main.SearchHot;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.presenter.main.HotPresenter;

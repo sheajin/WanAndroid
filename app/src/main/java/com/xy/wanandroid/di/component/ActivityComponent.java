@@ -3,6 +3,8 @@ package com.xy.wanandroid.di.component;
 import android.app.Activity;
 
 import com.xy.wanandroid.di.module.ActivityModule;
+import com.xy.wanandroid.ui.drawer.activity.MusicActivity;
+import com.xy.wanandroid.ui.drawer.activity.VideoActivity;
 import com.xy.wanandroid.ui.login.LoginActivity;
 import com.xy.wanandroid.ui.login.RegisterActivity;
 import com.xy.wanandroid.ui.main.activity.ArticleDetailsActivity;
@@ -36,5 +38,7 @@ public interface ActivityComponent {
     void inject(SearchResultActivity activity);
 
     void inject(MyCollectActivity activity);
+
+    void inject(VideoActivity activity);
 
 }

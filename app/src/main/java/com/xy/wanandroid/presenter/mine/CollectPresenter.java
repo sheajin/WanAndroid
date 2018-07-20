@@ -1,7 +1,7 @@
 package com.xy.wanandroid.presenter.mine;
 
 import com.xy.wanandroid.base.presenter.BasePresenter;
-import com.xy.wanandroid.contract.CollectContract;
+import com.xy.wanandroid.contract.mine.CollectContract;
 import com.xy.wanandroid.data.main.HomePageArticleBean;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;

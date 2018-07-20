@@ -1,4 +1,4 @@
-package com.xy.wanandroid.contract;
+package com.xy.wanandroid.contract.project;
 
 import java.util.List;
 

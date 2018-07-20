@@ -1,7 +1,7 @@
 package com.xy.wanandroid.presenter.main;
 
 import com.xy.wanandroid.base.presenter.BasePresenter;
-import com.xy.wanandroid.contract.HotContract;
+import com.xy.wanandroid.contract.main.HotContract;
 import com.xy.wanandroid.data.main.SearchHot;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;

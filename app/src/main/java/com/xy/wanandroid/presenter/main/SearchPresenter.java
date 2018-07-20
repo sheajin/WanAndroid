@@ -3,7 +3,7 @@ package com.xy.wanandroid.presenter.main;
 import android.content.Context;
 
 import com.xy.wanandroid.base.presenter.BasePresenter;
-import com.xy.wanandroid.contract.SearchContract;
+import com.xy.wanandroid.contract.main.SearchContract;
 import com.xy.wanandroid.data.main.SearchHot;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;

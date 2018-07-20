@@ -1,4 +1,4 @@
-package com.xy.wanandroid.contract;
+package com.xy.wanandroid.contract.knowledge;
 
 import com.xy.wanandroid.data.knowledge.KnowledgeClassifyListBean;
 

@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.xy.wanandroid.R;
-import com.xy.wanandroid.util.widget.ToastLayout;
+import com.xy.wanandroid.widget.ToastLayout;
 
 /**
  * Created by zhhr on 2018/3/27.

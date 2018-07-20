@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import com.just.agentweb.AgentWeb;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseRootActivity;
-import com.xy.wanandroid.contract.ArticleDetailContact;
+import com.xy.wanandroid.contract.main.ArticleDetailContact;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.model.constant.EventConstant;
 import com.xy.wanandroid.model.constant.MessageEvent;

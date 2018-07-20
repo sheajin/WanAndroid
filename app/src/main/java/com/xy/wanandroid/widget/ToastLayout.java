@@ -1,4 +1,4 @@
-package com.xy.wanandroid.util.widget;
+package com.xy.wanandroid.widget;
 
 import android.content.Context;
 import android.graphics.Color;

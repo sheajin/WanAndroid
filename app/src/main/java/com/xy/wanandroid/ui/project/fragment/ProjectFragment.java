@@ -9,7 +9,7 @@ import com.flyco.tablayout.SlidingTabLayout;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.adapter.SimpleFragmentStateAdapter;
 import com.xy.wanandroid.base.fragment.BaseRootFragment;
-import com.xy.wanandroid.contract.ProjectContract;
+import com.xy.wanandroid.contract.project.ProjectContract;
 import com.xy.wanandroid.data.project.ProjectBean;
 import com.xy.wanandroid.model.constant.EventConstant;
 import com.xy.wanandroid.model.constant.MessageEvent;

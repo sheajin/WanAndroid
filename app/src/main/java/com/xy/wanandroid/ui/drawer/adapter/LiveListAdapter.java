@@ -12,9 +12,9 @@ import java.util.List;
  * Created by jxy on 2018/7/19.
  */
 
-public class SortAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+public class LiveListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
-    public SortAdapter(int layoutResId, @Nullable List<String> data) {
+    public LiveListAdapter(int layoutResId, @Nullable List<String> data) {
         super(layoutResId, data);
     }
 

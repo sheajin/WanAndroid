@@ -6,7 +6,7 @@ import android.widget.EditText;
 
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseActivity;
-import com.xy.wanandroid.contract.RegisterContract;
+import com.xy.wanandroid.contract.login.RegisterContract;
 import com.xy.wanandroid.data.login.UserInfo;
 import com.xy.wanandroid.presenter.login.RegisterPresenter;
 import com.xy.wanandroid.util.app.JumpUtil;
