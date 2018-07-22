@@ -9,15 +9,23 @@ import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseActivity;
 import com.xy.wanandroid.base.adapter.SimpleFragmentStateAdapter;
 import com.xy.wanandroid.contract.drawer.VideoContract;
-import com.xy.wanandroid.data.drawer.SortList;
+import com.xy.wanandroid.data.drawer.CategoryTitle;
 import com.xy.wanandroid.presenter.drawer.VideoPresenter;
 import com.xy.wanandroid.ui.drawer.fragment.LiveListFragment;
+import com.xy.wanandroid.util.app.LogUtil;
+import com.xy.wanandroid.util.app.ToastUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * Api
+ * 1.标题分类,取tag_name  http://capi.douyucdn.cn/api/v1/getColumnDetail?client_sys=android&aid=android1&time=1532078715997&shortName=PCgame
+ * 2.内容  http://capi.douyucdn.cn/api/v1/live/1?client_sys=android&aid=android1&time=1532078716457&offset=0&limit=20
+ */
 public class VideoActivity extends BaseActivity<VideoPresenter> implements VideoContract.View {
     @BindView(R.id.toolbar_video)
     Toolbar mToolBar;
@@ -26,6 +34,8 @@ public class VideoActivity extends BaseActivity<VideoPresenter> implements Video
     @BindView(R.id.view_pager)
     ViewPager mPager;
 
+    private String[] titleArray;
+    private List<String> titles;
     private List<Fragment> fragments;
     private SimpleFragmentStateAdapter pagerAdapter;
 
@@ -48,36 +58,45 @@ public class VideoActivity extends BaseActivity<VideoPresenter> implements Video
 
     @Override
     protected void initUI() {
+        titles = new ArrayList<>();
         fragments = new ArrayList<>();
     }
 
     @Override
     protected void initData() {
-        fragments.add(LiveListFragment.getInstance());
         initPager();
+        mPresenter.getLiveTitle();
+    }
+
+    @Override
+    public void getLiveTitleOk(List<CategoryTitle> dataBean) {
+        if (dataBean.size() > 0) {
+            for (int i = 0; i < 12; i++) {
+                titles.add(dataBean.get(i).getTag_name());
+                fragments.add(LiveListFragment.getInstance(dataBean.get(i).getTag_id()));
+            }
+            initTabLayout();
+        }
+    }
+
+    @Override
+    public void getLiveTitleErr(String info) {
+        ToastUtil.show(activity, info);
+    }
+
+    private void initTabLayout() {
+        titleArray = titles.toArray(new String[titles.size()]);
+        mPager.setAdapter(pagerAdapter);
+        mTabLayout.setViewPager(mPager, titleArray);
+        pagerAdapter.notifyDataSetChanged();
+        LogUtil.e(Arrays.toString(titleArray));
     }
 
     /**
      * 设置Viewpager
      */
     private void initPager() {
-        pagerAdapter = new SimpleFragmentStateAdapter(getSupportFragmentManager(), fragments);
+        pagerAdapter = new SimpleFragmentStateAdapter(getSupportFragmentManager(),fragments);
         mPager.setAdapter(pagerAdapter);
     }
-
-    @Override
-    public void getLiveTitleOk(List<SortList> dataBean) {
-
-    }
-
-    @Override
-    public void getLiveTitleErr(String info) {
-
-    }
-
-    /**
-     * Api
-     * 1.标题分类,取tag_name  http://capi.douyucdn.cn/api/v1/getColumnDetail?client_sys=android&aid=android1&time=1532078715997&shortName=PCgame
-     * 2.内容  http://capi.douyucdn.cn/api/v1/live/1?client_sys=android&aid=android1&time=1532078716457&offset=0&limit=20
-     */
 }

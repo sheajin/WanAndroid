@@ -4,10 +4,11 @@ package com.xy.wanandroid.model.api;
  * Created by JinXinYi on 2018/1/7.
  */
 
-public class BaseResp<T>{
+public class BaseResp<T> {
     public T data;
-    public int errorCode;
-    public String errorMsg;
+    private int errorCode;
+    private String errorMsg;
+    private int error;
 
     public T getData() {
         return data;
@@ -31,5 +32,13 @@ public class BaseResp<T>{
 
     public void setErrorMsg(String errorMsg) {
         this.errorMsg = errorMsg;
+    }
+
+    public int getError() {
+        return error;
+    }
+
+    public void setError(int error) {
+        this.error = error;
     }
 }

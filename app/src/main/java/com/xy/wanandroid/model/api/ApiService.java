@@ -1,6 +1,7 @@
 package com.xy.wanandroid.model.api;
 
-import com.xy.wanandroid.data.drawer.SortList;
+import com.xy.wanandroid.data.drawer.CategoryTitle;
+import com.xy.wanandroid.data.drawer.LiveList;
 import com.xy.wanandroid.data.knowledge.KnowledgeClassifyListBean;
 import com.xy.wanandroid.data.knowledge.KnowledgeListBean;
 import com.xy.wanandroid.data.login.UserInfo;
@@ -135,20 +136,20 @@ public interface ApiService {
     @Headers({"baseUrl:normal"})
     @POST("lg/uncollect/{id}/json")
     @FormUrlEncoded
-    Observable<BaseResp<HomePageArticleBean>> cancelCollectArticleList(@Path("id") int id,@Field("originId") int originId);
+    Observable<BaseResp<HomePageArticleBean>> cancelCollectArticleList(@Path("id") int id, @Field("originId") int originId);
 
     /**
      * 斗鱼 直播标题列表
      */
     @Headers({"baseUrl:douyu"})
     @GET("/api/v1/getColumnDetail")
-    Observable<BaseResp<SortList>> getLiveTitle(@QueryMap Map<String, String> params);
+    Observable<BaseResp<List<CategoryTitle>>> getLiveTitle(@QueryMap Map<String, String> params);
 
     /**
      * 斗鱼 直播列表
      */
     @Headers({"baseUrl:douyu"})
-    @GET("/api/v1/live/1")
-    Observable<BaseResp<SortList>> getLiveList(@QueryMap Map<String, String> params);
+    @GET("/api/v1/live/{tag_id}")
+    Observable<BaseResp<List<LiveList>>> getLiveList(@Path("tag_id") String tagId, @QueryMap Map<String, String> params);
 
 }

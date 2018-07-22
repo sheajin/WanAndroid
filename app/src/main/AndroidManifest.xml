@@ -64,6 +64,7 @@
         <activity android:name=".ui.mine.activity.MyLabelActivity" />
         <activity android:name=".ui.drawer.activity.MusicActivity" />
         <activity android:name=".ui.drawer.activity.VideoActivity" />
+        <activity android:name=".ui.drawer.activity.LiveActivity" />
     </application>
 
 </manifest>

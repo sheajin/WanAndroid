@@ -25,6 +25,8 @@ ext {
             butterknifeVersion      : "8.8.1",
             fragmentation           : "1.3.5",
             bugly                   : "2.2.0",
+            ijkplayer               : "0.8.8",
+            GSYVideoPlayer          : "5.0.1",
     ]
 
     dependencies = [
@@ -43,6 +45,10 @@ ext {
             "FlycoTabLayout_Lib"                : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar",
             "shapeLoadingView"                  : "com.github.zzz40500:android-shapeLoadingView:1.0.3.2",
             "flowlayout"                        : "com.hyman:flowlayout-lib:1.1.2",
+            "ijkplayer"                         : "tv.danmaku.ijk.media:ijkplayer-java:${version["ijkplayer"]}",
+            "ijkplayerarm"                      : "tv.danmaku.ijk.media:ijkplayer-armv7a:${version["ijkplayer"]}",
+            "ijkplayerexo"                      : "tv.danmaku.ijk.media:ijkplayer-exo:${version["ijkplayer"]}",
+            "GSYVideoPlayer"                    : "com.shuyu:GSYVideoPlayer:${version["GSYVideoPlayer"]}",
 
             //net
             "okhttp"                            : "com.squareup.okhttp3:okhttp:${version["okhttpVersion"]}",

@@ -65,5 +65,22 @@ public class Constant {
     public static final String WANANDROID = "normal";
     public static final String DOUYU = "douyu";
 
+    /**
+     * params
+     */
+    public static final String PARAMS1 = "client_sys";
+    public static final String PARAMS2 = "aid";
+    public static final String PARAMS3 = "time";
+    public static final String VALUE1 = "android";
+    public static final String VALUE2 = "android1";
+
+    public static final String CATEKEY = "shortName";
+    public static final String CATEVALUE = "PCgame";
+    public static final String OFFSET = "offset";
+    public static final String LIMIT = "limit";
+    public static final String CATEID = "tag_id";
+
+
+
 }
 
