@@ -138,5 +138,6 @@
     <string name="VideoView_player_AndroidMediaPlayer">Player: AndroidMediaPlayer</string>
     <string name="VideoView_player_IjkMediaPlayer">Player: IjkMediaPlayer</string>
     <string name="VideoView_player_IjkExoMediaPlayer">Player: IjkExoMediaPlayer</string>
+    <string name="live_loading">直播视频加载中...</string>
     <!---->
 </resources>

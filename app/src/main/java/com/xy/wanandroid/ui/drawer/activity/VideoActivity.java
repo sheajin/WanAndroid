@@ -21,11 +21,6 @@ import java.util.List;
 
 import butterknife.BindView;
 
-/**
- * Api
- * 1.标题分类,取tag_name  http://capi.douyucdn.cn/api/v1/getColumnDetail?client_sys=android&aid=android1&time=1532078715997&shortName=PCgame
- * 2.内容  http://capi.douyucdn.cn/api/v1/live/1?client_sys=android&aid=android1&time=1532078716457&offset=0&limit=20
- */
 public class VideoActivity extends BaseActivity<VideoPresenter> implements VideoContract.View {
     @BindView(R.id.toolbar_video)
     Toolbar mToolBar;

@@ -37,6 +37,8 @@ public class BaseUrlInterceptor implements Interceptor {
                 baseURL = HttpUrl.parse(AppConfig.BASE_URL);
             } else if (urlName.equals(Constant.DOUYU)) {
                 baseURL = HttpUrl.parse(AppConfig.DOUYU_URL);
+            } else if (urlName.equals(Constant.GETLIVE)) {
+                baseURL = HttpUrl.parse(AppConfig.GETLIVE_URL);
             }
             //重建新的HttpUrl，需要重新设置的url部分
             HttpUrl newHttpUrl = oldUrl.newBuilder()

@@ -2,6 +2,7 @@ package com.xy.wanandroid.base.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.xy.wanandroid.base.app.MyApplication;
 import com.xy.wanandroid.base.presenter.AbsPresenter;
@@ -140,6 +141,36 @@ public abstract class BaseActivity<T extends AbsPresenter> extends SupportActivi
             return false;
         }
         return false;
+    }
+
+    /**
+     * 设置可见
+     */
+    @Override
+    public void setVisible(View... views) {
+        for (View v : views) {
+            v.setVisibility(View.VISIBLE);
+        }
+    }
+
+    /**
+     * 设置隐藏
+     */
+    @Override
+    public void setInVisible(View... views) {
+        for (View v : views) {
+            v.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    /**
+     * 设置不可见
+     */
+    @Override
+    public void setGone(View... views) {
+        for (View v : views) {
+            v.setVisibility(View.GONE);
+        }
     }
 
     @Override

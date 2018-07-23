@@ -157,6 +157,36 @@ public abstract class BaseFragment<T extends AbsPresenter> extends SupportFragme
         return false;
     }
 
+    /**
+     * 设置可见
+     */
+    @Override
+    public void setVisible(View... views) {
+        for (View v : views) {
+            v.setVisibility(View.VISIBLE);
+        }
+    }
+
+    /**
+     * 设置隐藏
+     */
+    @Override
+    public void setInVisible(View... views) {
+        for (View v : views) {
+            v.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    /**
+     * 设置不可见
+     */
+    @Override
+    public void setGone(View... views) {
+        for (View v : views) {
+            v.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     public void showError() {
 

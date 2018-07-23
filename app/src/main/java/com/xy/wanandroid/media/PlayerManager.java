@@ -20,7 +20,6 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.xy.wanandroid.R;
 
 import tv.danmaku.ijk.media.player.IMediaPlayer;
@@ -243,8 +242,10 @@ public class PlayerManager {
     }
 
     public void onDestroy() {
-        orientationEventListener.disable();
-        videoView.stopPlayback();
+        if (videoView != null && videoView.isPlaying()) {
+//            orientationEventListener.disable();
+            videoView.stopPlayback();
+        }
     }
 
     public void play(String url) {
@@ -704,10 +705,13 @@ public class PlayerManager {
     }
 
     public interface PlayerStateListener{
-        void onComplete();
-        void onError();
         void onLoading();
+
         void onPlay();
+
+        void onComplete();
+
+        void onError();
     }
 
     public interface OnErrorListener{

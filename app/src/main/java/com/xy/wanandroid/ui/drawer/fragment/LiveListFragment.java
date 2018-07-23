@@ -11,7 +11,6 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xy.wanandroid.R;
-import com.xy.wanandroid.base.fragment.BaseFragment;
 import com.xy.wanandroid.base.fragment.BaseRootFragment;
 import com.xy.wanandroid.contract.drawer.LiveListContract;
 import com.xy.wanandroid.data.drawer.LiveList;
@@ -19,8 +18,6 @@ import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.presenter.drawer.LiveListPresenter;
 import com.xy.wanandroid.ui.drawer.activity.LiveActivity;
 import com.xy.wanandroid.ui.drawer.adapter.LiveListAdapter;
-import com.xy.wanandroid.util.app.DisplayUtil;
-import com.xy.wanandroid.util.app.LogUtil;
 import com.xy.wanandroid.util.app.ToastUtil;
 
 import java.util.ArrayList;
@@ -128,6 +125,8 @@ public class LiveListFragment extends BaseRootFragment<LiveListPresenter> implem
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         Intent intent = new Intent(activity, LiveActivity.class);
+        intent.putExtra(Constant.ROOMID, mAdapter.getData().get(position).getRoom_id());
+        intent.putExtra(Constant.ROOMNAME, mAdapter.getData().get(position).getRoom_name());
         startActivity(intent);
     }
 }

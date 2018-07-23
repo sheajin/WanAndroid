@@ -68,7 +68,7 @@ dependencies {
     implementation rootProject.ext.dependencies["ijkplayer"]
     implementation rootProject.ext.dependencies["ijkplayerarm"]
     implementation rootProject.ext.dependencies["ijkplayerarm"]
-    implementation rootProject.ext.dependencies["ijkplayerexo"]
+//    implementation rootProject.ext.dependencies["ijkplayerexo"]
 //    implementation rootProject.ext.dependencies["GSYVideoPlayer"]
     //net
     implementation rootProject.ext.dependencies["okhttp"]

@@ -64,6 +64,7 @@ public class Constant {
      */
     public static final String WANANDROID = "normal";
     public static final String DOUYU = "douyu";
+    public static final String GETLIVE = "live";
 
     /**
      * params
@@ -79,6 +80,8 @@ public class Constant {
     public static final String OFFSET = "offset";
     public static final String LIMIT = "limit";
     public static final String CATEID = "tag_id";
+    public static final String ROOMID = "roomId";
+    public static final String ROOMNAME = "room_name";
 
 
 

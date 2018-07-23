@@ -13,6 +13,9 @@ public class AppConfig {
 
     public static final String BASE_URL = "http://www.wanandroid.com/";
     public static final String DOUYU_URL = "http://capi.douyucdn.cn/";
+    public static final String GETLIVE_URL = "https://m.douyu.com/";
 
-
+//        source1 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
+//        source1 = "http://c.brightcove.com/services/mobile/streaming/index/rendition.m3u8?assetId=5330721253001&pubId=4938530621001&videoId=5330694577001";
+//        source1 = "http://11257.liveplay.myqcloud.com/live/11257_f181103_129.flv";
 }

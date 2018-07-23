@@ -2,6 +2,7 @@ package com.xy.wanandroid.model.api;
 
 import com.xy.wanandroid.data.drawer.CategoryTitle;
 import com.xy.wanandroid.data.drawer.LiveList;
+import com.xy.wanandroid.data.drawer.LiveUrl;
 import com.xy.wanandroid.data.knowledge.KnowledgeClassifyListBean;
 import com.xy.wanandroid.data.knowledge.KnowledgeListBean;
 import com.xy.wanandroid.data.login.UserInfo;
@@ -151,5 +152,12 @@ public interface ApiService {
     @Headers({"baseUrl:douyu"})
     @GET("/api/v1/live/{tag_id}")
     Observable<BaseResp<List<LiveList>>> getLiveList(@Path("tag_id") String tagId, @QueryMap Map<String, String> params);
+
+    /**
+     * 斗鱼 获取直播流
+     */
+    @Headers({"baseUrl:live"})
+    @GET("/html5/live")
+    Observable<BaseResp<LiveUrl>> getLiveUrl(@Query("roomId") String roomId);
 
 }

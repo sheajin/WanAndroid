@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--LiveLoadIng-->
+    <declare-styleable name="LoadingView">
+        <attr name="outerCircleRadius" format="dimension|reference" />
+        <attr name="outerCircleColor" format="color|reference" />
+        <attr name="innerTriangleRadius" format="dimension|reference" />
+        <attr name="innerTriangleColor" format="color|reference" />
+        <attr name="backgroundColor" format="color|reference" />
+        <attr name="isNeedBackground" format="boolean" />
+        <attr name="strokeWidth" format="dimension|reference" />
+    </declare-styleable>
+</resources>

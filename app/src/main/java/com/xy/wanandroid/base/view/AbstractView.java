@@ -1,6 +1,8 @@
 package com.xy.wanandroid.base.view;
 
 
+import android.view.View;
+
 /**
  *  View 基类
  *
@@ -35,4 +37,9 @@ public interface AbstractView {
      */
     void reload();
 
+    void setVisible(View... views);
+
+    void setInVisible(View... views);
+
+    void setGone(View... views);
 }
