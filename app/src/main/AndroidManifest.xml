@@ -20,6 +20,7 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
 
     <application
         android:name=".base.app.MyApplication"
@@ -63,8 +64,13 @@
         <activity android:name=".ui.main.activity.SearchResultActivity" />
         <activity android:name=".ui.mine.activity.MyLabelActivity" />
         <activity android:name=".ui.drawer.activity.MusicActivity" />
-        <activity android:name=".ui.drawer.activity.VideoActivity" />
-        <activity android:name=".ui.drawer.activity.LiveActivity" />
+        <activity
+            android:name=".ui.drawer.activity.VideoActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".ui.drawer.activity.LiveActivity"
+            android:configChanges="orientation|screenSize|navigation"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
     </application>
 
 </manifest>

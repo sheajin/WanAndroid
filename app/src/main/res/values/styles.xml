@@ -20,7 +20,7 @@
         <!--<item name="android:windowTranslucentStatus">true</item>-->
         <item name="android:windowBackground">@color/white_255</item>
         <item name="android:itemBackground">@color/white_255</item>
-        <item name="android:windowIsTranslucent">true</item>
+        <!--<item name="android:windowIsTranslucent">true</item>-->
         <item name="android:windowDisablePreview">true</item>
     </style>
 

@@ -139,5 +139,6 @@
     <string name="VideoView_player_IjkMediaPlayer">Player: IjkMediaPlayer</string>
     <string name="VideoView_player_IjkExoMediaPlayer">Player: IjkExoMediaPlayer</string>
     <string name="live_loading">直播视频加载中...</string>
+    <string name="full_screen">全屏</string>
     <!---->
 </resources>

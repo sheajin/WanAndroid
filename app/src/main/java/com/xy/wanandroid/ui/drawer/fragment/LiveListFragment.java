@@ -129,4 +129,5 @@ public class LiveListFragment extends BaseRootFragment<LiveListPresenter> implem
         intent.putExtra(Constant.ROOMNAME, mAdapter.getData().get(position).getRoom_name());
         startActivity(intent);
     }
+
 }
