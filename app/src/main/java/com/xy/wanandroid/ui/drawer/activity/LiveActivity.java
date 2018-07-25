@@ -220,6 +220,7 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
      * @param liveUrl
      */
     private void initPlayer(String liveUrl) {
+        ijkVideoView.setKeepScreenOn(true);
         playerManager = new PlayerManager(this);
         playerManager.live(true);
         playerManager.setScaleType(PlayerManager.SCALETYPE_16_9);
@@ -227,6 +228,7 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
         playerManager.setPlayerStateListener(new PlayerManager.PlayerStateListener() {
             @Override
             public void onLoading() {
+                LogUtil.e("initPlayer onloading");
             }
 
             @Override
@@ -241,43 +243,12 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
 
             @Override
             public void onComplete() {
-                LogUtil.e("player onComplete ");
             }
 
             @Override
             public void onError() {
-                LogUtil.e("player onError ");
-            }
-        });
-    }
 
-    /**
-     * video播放
-     *
-     * @param liveUrl
-     */
-    private void initVideo(String liveUrl) {
-        ijkVideoView.setKeepScreenOn(true);
-        viewLoading.setVisibility(View.VISIBLE);
-        ijkVideoView.setVideoURI(Uri.parse(liveUrl));
-        ijkVideoView.start();
-        ijkVideoView.setOnInfoListener((iMediaPlayer, i, i1) -> {
-            switch (i) {
-                //开始播放
-                case IMediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START:
-                    isPlaying = true;
-                    setVisible(viewTop, viewBottom);
-                    setInVisible(viewLoading);
-                    if (viewTop.getVisibility() == View.VISIBLE) {
-                        ijkVideoView.postDelayed(() -> setGone(viewTop, viewBottom), 2000);
-                    }
-                    break;
             }
-            return false;
-        });
-        ijkVideoView.setOnCompletionListener(iMediaPlayer -> {
-            //加载失败 没有网络等回调
-            isPlaying = false;
         });
     }
 
