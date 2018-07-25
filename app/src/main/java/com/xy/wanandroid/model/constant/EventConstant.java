@@ -29,4 +29,8 @@ public class EventConstant {
      * 退出成功
      */
     public static final int LOGOUTSUCCESS = 109;
+    /**
+     * 发送弹幕数据
+     */
+    public static final int SENDDANMU = 110;
 }

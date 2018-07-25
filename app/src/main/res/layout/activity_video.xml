@@ -41,7 +41,7 @@
             tl:tl_indicator_margin_right="@dimen/dp_5"
             tl:tl_indicator_style="BLOCK"
             tl:tl_textSelectColor="@color/white_255"
-            tl:tl_textUnselectColor="@color/tab_un_select" />
+            tl:tl_textUnselectColor="@color/homepage_color" />
 
         <View
             android:layout_width="match_parent"

@@ -3,6 +3,7 @@ package com.xy.wanandroid.util.app;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.provider.Settings;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -62,6 +63,19 @@ public class CommonUtil {
     }
 
     /**
+     * 获得当前屏幕亮度值 0--255
+     */
+    public static int getScreenBrightness(Activity activity) {
+        int screenBrightness = 255;
+        try {
+            screenBrightness = Settings.System.getInt(activity.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return screenBrightness;
+    }
+
+    /**
      * 隐藏虚拟按键，并且全屏
      */
     public static void hideBottomUIMenu(Activity activity) {
@@ -101,4 +115,6 @@ public class CommonUtil {
             e.printStackTrace();
         }
     }
+
+
 }

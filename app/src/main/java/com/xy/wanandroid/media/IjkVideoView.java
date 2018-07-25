@@ -41,7 +41,6 @@ import android.widget.TextView;
 
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.app.Settings;
-import com.xy.wanandroid.service.MediaPlayerService;
 
 import java.io.File;
 import java.io.IOException;
