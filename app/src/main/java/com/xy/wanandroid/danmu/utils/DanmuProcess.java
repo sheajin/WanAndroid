@@ -59,6 +59,7 @@ public class DanmuProcess {
             0xe0FFC0CB,
             0xe0DB7093,
             0xe87CEEB};
+    private int groupId;
 
     public DanmuProcess(Context context, IDanmakuView danmakuView, int roomId) {
         this.mContext = context;
@@ -139,31 +140,36 @@ public class DanmuProcess {
     }
 
     private void getAndAddDanmu() {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                int groupId = -9999;
+        Thread thread = new Thread(() -> {
+            groupId = -9999;
+            mDanmuClient = DyBulletScreenClient.getInstance();
+            if (mDanmuClient != null) {
+                sendDanmu();
+            } else {
                 mDanmuClient = DyBulletScreenClient.getInstance();
-                //设置需要连接和访问的房间ID，以及弹幕池分组号
-                mDanmuClient.start(mRoomId, groupId);
-                /**
-                 * 收到消息 用户昵称 + 弹幕消息
-                 */
-                mDanmuClient.setmHandleMsgListener(new DyBulletScreenClient.HandleMsgListener() {
-                    @Override
-                    public void handleMessage(String nickname, String txt) {
-                        //发送弹幕
-                        addDanmaku(true, txt);
-                        //将信息保存起来
-//                        if (nickname != null && txt != null) {
-//                            LogUtil.e("LiveActivity getAndAddDanmu key = " + nickname + ",value = " + txt);
-//                            EventBus.getDefault().post(new MessageEvent(EventConstant.SENDDANMU, nickname, txt));
-//                        }
-                    }
-                });
+                sendDanmu();
             }
         });
         thread.start();
+    }
+
+    private void sendDanmu() {
+        //设置需要连接和访问的房间ID，以及弹幕池分组号
+        mDanmuClient.start(mRoomId, groupId);
+        /**
+         * 收到消息 用户昵称 + 弹幕消息
+         */
+        mDanmuClient.setmHandleMsgListener((nickname, txt) -> {
+            //发送弹幕
+            addDanmaku(true, txt);
+            //将信息保存起来
+//            LogUtil.e("LiveActivity getAndAddDanmu key = " + nickname + ",value = " + txt);
+            if (nickname == null || txt == null) {
+                nickname = "用户" + String.valueOf(System.currentTimeMillis()).substring(0, 4);
+                txt = "6666666";
+            }
+            EventBus.getDefault().post(new MessageEvent(EventConstant.SENDDANMU, nickname, txt));
+        });
     }
 
     private void addDanmaku(boolean islive, String txt) {

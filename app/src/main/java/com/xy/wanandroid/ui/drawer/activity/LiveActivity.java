@@ -17,23 +17,28 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
+import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseActivity;
 import com.xy.wanandroid.base.adapter.SimpleFragmentStateAdapter;
 import com.xy.wanandroid.contract.drawer.LiveContract;
 import com.xy.wanandroid.danmu.utils.DanmuProcess;
+import com.xy.wanandroid.data.drawer.LiveList;
 import com.xy.wanandroid.data.drawer.LiveUrl;
 import com.xy.wanandroid.media.IjkVideoView;
 import com.xy.wanandroid.media.PlayerManager;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.presenter.drawer.LivePresenter;
+import com.xy.wanandroid.ui.drawer.fragment.LiveChatFragment;
 import com.xy.wanandroid.ui.drawer.fragment.LiveInfoFragment;
+import com.xy.wanandroid.ui.drawer.fragment.LiveVideoFragment;
 import com.xy.wanandroid.util.app.CommonUtil;
 import com.xy.wanandroid.util.app.DisplayUtil;
 import com.xy.wanandroid.util.app.LogUtil;
 import com.xy.wanandroid.util.app.ToastUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -102,6 +107,7 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
     private int mMaxVolume;//最大声音
     private String roomId;
     private boolean isDanmuOpend = true;
+    private LiveList liveList;
     private DanmuProcess mDanmuProcess;
     private AudioManager mAudioManager;
     private PlayerManager playerManager;
@@ -120,8 +126,9 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
 
     @Override
     protected void initUI() {
-        roomId = getIntent().getStringExtra(Constant.ROOMID);
-        mTvTitle.setText(getIntent().getStringExtra(Constant.ROOMNAME));
+        liveList = (LiveList) getIntent().getSerializableExtra(Constant.ROOMINFO);
+        roomId = liveList.getRoom_id();
+        mTvTitle.setText(liveList.getRoom_name());
         mScreenWidth = DisplayUtil.getScreenWidth(context);
         initPlayer();
         initDanmu();
@@ -135,25 +142,6 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
         initTab();
         viewLoading.setVisibility(View.VISIBLE);
         mPresenter.getLiveUrl(roomId);
-    }
-
-    /**
-     * 设置TabLayout和Viewpager
-     */
-    private void initTab() {
-        String[] title = {"聊天", "主播", "排行榜"};
-        List<String> titles = new ArrayList<>();
-        List<Fragment> fragments = new ArrayList<>();
-        for (int i = 0; i < 1; i++) {
-            titles.add(title[i]);
-            fragments.add(LiveInfoFragment.getInstance());
-        }
-        SimpleFragmentStateAdapter pagerAdapter = new SimpleFragmentStateAdapter(getSupportFragmentManager(), fragments);
-        mPager.setAdapter(pagerAdapter);
-        String[] titleArray = titles.toArray(new String[titles.size()]);
-        mPager.setAdapter(pagerAdapter);
-        mTabLayout.setViewPager(mPager, titleArray);
-        pagerAdapter.notifyDataSetChanged();
     }
 
     @OnClick({R.id.view_back, R.id.view_play, R.id.view_full_screen, R.id.view_share, R.id.view_refresh, R.id.view_danmu})
@@ -240,6 +228,66 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
         mShowLightness = CommonUtil.getScreenBrightness(activity);
     }
 
+    /**
+     * 设置TabLayout和Viewpager
+     */
+    private void initTab() {
+        String[] title = {"聊天", "主播", "排行榜"};
+        List<String> titles = new ArrayList<>();
+        List<Fragment> fragments = new ArrayList<>();
+        titles.addAll(Arrays.asList(title).subList(0, 3));
+        fragments.add(LiveChatFragment.getInstance());
+        fragments.add(LiveInfoFragment.getInstance(liveList));
+        fragments.add(LiveVideoFragment.getInstance());
+        SimpleFragmentStateAdapter pagerAdapter = new SimpleFragmentStateAdapter(getSupportFragmentManager(), fragments);
+        mPager.setAdapter(pagerAdapter);
+        String[] titleArray = titles.toArray(new String[titles.size()]);
+        mPager.setAdapter(pagerAdapter);
+        mTabLayout.setViewPager(mPager, titleArray);
+        pagerAdapter.notifyDataSetChanged();
+        mPager.setOffscreenPageLimit(title.length);
+        mTabLayout.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelect(int position) {
+                switch (position) {
+                    case 0:
+                        mDanmuProcess.start();
+                        break;
+                    case 1:
+                    case 2:
+                        mDanmuProcess.finish();
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabReselect(int position) {
+            }
+        });
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 0:
+                        mDanmuProcess.start();
+                        break;
+                    case 1:
+                    case 2:
+                        mDanmuProcess.finish();
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+    }
+
     @Override
     public void getLiveUrlOk(LiveUrl live) {
         startLive(live.getHls_url());
@@ -265,7 +313,7 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
                 setVisible(viewTop, viewPortraitBottom);
                 setInVisible(viewLoading);
                 if (viewTop.getVisibility() == View.VISIBLE && viewPortraitBottom.getVisibility() == View.VISIBLE) {
-                    ijkVideoView.postDelayed(() -> setGone(viewTop, viewPortraitBottom), Constant.VIEW_POSTDELAY);
+                    ijkVideoView.postDelayed(() -> setGone(viewTop, viewPortraitBottom), Constant.VIEW_POST_DELAY);
                 }
             }
 
@@ -330,13 +378,13 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
             setVisible(viewTop, viewLandscapeBottom);
             setGone(viewPortraitBottom);
             if (viewTop.getVisibility() == View.VISIBLE && viewLandscapeBottom.getVisibility() == View.VISIBLE) {
-                ijkVideoView.postDelayed(() -> setGone(viewTop, viewLandscapeBottom), Constant.VIEW_POSTDELAY);
+                ijkVideoView.postDelayed(() -> setGone(viewTop, viewLandscapeBottom), Constant.VIEW_POST_DELAY);
             }
         } else {
             setVisible(viewTop, viewPortraitBottom);
             setGone(viewLandscapeBottom);
             if (viewTop.getVisibility() == View.VISIBLE && viewPortraitBottom.getVisibility() == View.VISIBLE) {
-                ijkVideoView.postDelayed(() -> setGone(viewTop, viewPortraitBottom), Constant.VIEW_POSTDELAY);
+                ijkVideoView.postDelayed(() -> setGone(viewTop, viewPortraitBottom), Constant.VIEW_POST_DELAY);
             }
         }
     }
@@ -422,7 +470,7 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
         int tagVolume = mShowVolume * mMaxVolume / 100;
         //tagVolume:音量绝对值
         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, tagVolume, 0);
-        ijkVideoView.postDelayed(() -> setGone(viewControl), Constant.VIEW_POSTDELAY);
+        ijkVideoView.postDelayed(() -> setGone(viewControl), Constant.VIEW_POST_DELAY);
     }
 
     /**
@@ -441,7 +489,7 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.screenBrightness = mShowLightness / 255f;
         getWindow().setAttributes(lp);
-        ijkVideoView.postDelayed(() -> setGone(viewControl), Constant.VIEW_POSTDELAY);
+        ijkVideoView.postDelayed(() -> setGone(viewControl), Constant.VIEW_POST_DELAY);
     }
 
     /**
