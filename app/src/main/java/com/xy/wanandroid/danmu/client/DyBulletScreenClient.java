@@ -3,6 +3,7 @@ package com.xy.wanandroid.danmu.client;
 import android.util.Log;
 
 import com.xy.wanandroid.danmu.message.DyMessage;
+import com.xy.wanandroid.danmu.utils.DanmuQueue;
 import com.xy.wanandroid.danmu.utils.KeepAlive;
 import com.xy.wanandroid.danmu.utils.KeepGetMsg;
 import com.xy.wanandroid.danmu.message.MsgView;
@@ -257,8 +258,6 @@ public class DyBulletScreenClient {
                 if (msg.containsKey("txt") && msg.containsKey("nn")) {
                     if (!isHandleMsgListenerNull()) {
                         mHandleMsgListener.handleMessage(msg.get("nn").toString(), msg.get("txt").toString());
-                        LogUtil.e("danmu nickname = " + msg.get("nn").toString());
-
                     }
                 }
             }

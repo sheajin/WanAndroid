@@ -125,8 +125,7 @@ public class LiveListFragment extends BaseRootFragment<LiveListPresenter> implem
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         Intent intent = new Intent(activity, LiveActivity.class);
-        intent.putExtra(Constant.ROOMID, mAdapter.getData().get(position).getRoom_id());
-        intent.putExtra(Constant.ROOMNAME, mAdapter.getData().get(position).getRoom_name());
+        intent.putExtra(Constant.ROOMINFO, mAdapter.getData().get(position));
         startActivity(intent);
     }
 

@@ -1,11 +1,11 @@
 package com.xy.wanandroid.data.drawer;
 
-import java.util.List;
+import java.io.Serializable;
 
 /**
  * Created by jxy on 2018/7/21.
  */
-public class LiveList {
+public class LiveList implements Serializable {
 
     /**
      * room_id : 288016

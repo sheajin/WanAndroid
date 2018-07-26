@@ -11,7 +11,8 @@ public class Constant {
     public static final int REQUEST_ERROR = -1;
     public static final int REQUEST_SUCCESS = 0;
     public static final int TOAST_SHORT = 1000;
-    public static final int VIEW_POSTDELAY = 2000;
+    public static final int VIEW_POST_DELAY = 2000;
+    public static final int SCROLL_BOTTOM = 300;
     public final static int VOLUME_FLAG = 1;
     public final static int LIGHT_FLAG = -1;
 
@@ -83,8 +84,11 @@ public class Constant {
     public static final String OFFSET = "offset";
     public static final String LIMIT = "limit";
     public static final String CATEID = "tag_id";
-    public static final String ROOMID = "roomId";
+    public static final String ROOMINFO = "roomInfo";
     public static final String ROOMNAME = "room_name";
+    public static final String ROOMSRC = "room_src";
+    public static final String ROOMTAG = "room_tag";
+    public static final String ROOMDETAIL = "room_detail";
 
 
 
