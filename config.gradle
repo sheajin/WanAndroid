@@ -27,6 +27,7 @@ ext {
             bugly                   : "2.2.0",
             ijkplayer               : "0.8.8",
             GSYVideoPlayer          : "5.0.1",
+            danmuku                 : "0.4.6",
     ]
 
     dependencies = [
@@ -49,6 +50,7 @@ ext {
             "ijkplayerarm"                      : "tv.danmaku.ijk.media:ijkplayer-armv7a:${version["ijkplayer"]}",
             "ijkplayerexo"                      : "tv.danmaku.ijk.media:ijkplayer-exo:${version["ijkplayer"]}",
             "GSYVideoPlayer"                    : "com.shuyu:GSYVideoPlayer:${version["GSYVideoPlayer"]}",
+            "danmuku"                           : "com.github.ctiao:DanmakuFlameMaster:${version["danmuku"]}",
 
             //net
             "okhttp"                            : "com.squareup.okhttp3:okhttp:${version["okhttpVersion"]}",

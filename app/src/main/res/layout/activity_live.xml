@@ -126,7 +126,7 @@
 
         <!--小窗口底部布局-->
         <RelativeLayout
-            android:id="@+id/view_bottom"
+            android:id="@+id/view_portrait_bottom"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_38"
             android:layout_alignParentBottom="true"
@@ -168,11 +168,225 @@
 
         </RelativeLayout>
 
+        <!--全屏底部布局-->
+        <RelativeLayout
+            android:id="@+id/view_landscape_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_38"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/drawable_live_gradient_bottom"
+            android:visibility="gone">
+
+            <!--播放-->
+            <RelativeLayout
+                android:id="@+id/view_land_play"
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dp_6"
+                android:background="@drawable/drawable_live_circle_play">
+
+                <ImageView
+                    android:id="@+id/image_land_play"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/icon_play" />
+            </RelativeLayout>
+
+            <!--刷新-->
+            <RelativeLayout
+                android:id="@+id/view_refresh"
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dp_6"
+                android:layout_toEndOf="@+id/view_land_play"
+                android:background="@drawable/drawable_live_circle_play">
+
+                <ImageView
+                    android:id="@+id/image_refresh"
+                    android:layout_width="@dimen/dp_16"
+                    android:layout_height="@dimen/dp_16"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/icon_reload" />
+            </RelativeLayout>
+
+            <!--发送弹幕-->
+            <RelativeLayout
+                android:id="@+id/view_send_danmu"
+                android:layout_width="@dimen/dp_180"
+                android:layout_height="@dimen/dp_30"
+                android:layout_centerInParent="true"
+                android:background="@drawable/drawable_send_danmu_bg"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <ImageView
+                    android:id="@+id/image_hot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp_4"
+                    android:padding="@dimen/dp_6"
+                    android:src="@drawable/drawable_danmu_hot" />
+
+                <View
+                    android:layout_width="@dimen/dp_1"
+                    android:layout_height="@dimen/dp_22"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp_1"
+                    android:layout_toEndOf="@+id/image_hot"
+                    android:background="@color/white_255" />
+
+                <EditText
+                    android:id="@+id/edit_danmu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp_6"
+                    android:layout_toEndOf="@+id/image_hot"
+                    android:layout_toStartOf="@+id/image_send_danmu"
+                    android:background="@null"
+                    android:hint="@string/edit_danmu"
+                    android:imeOptions="actionSend|flagNoExtractUi"
+                    android:maxLength="20"
+                    android:padding="@dimen/dp_5"
+                    android:textColor="@color/black_50"
+                    android:textColorHint="@color/black_50"
+                    android:textSize="@dimen/sp_12" />
+
+                <ImageView
+                    android:id="@+id/image_send_danmu"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/dp_4"
+                    android:padding="@dimen/dp_4"
+                    android:src="@drawable/drawable_danmu_send" />
+            </RelativeLayout>
+
+            <!--弹幕开关-->
+            <RelativeLayout
+                android:id="@+id/view_danmu"
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/view_exit_full_screen"
+                android:background="@drawable/drawable_live_circle_play">
+
+                <ImageView
+                    android:id="@+id/image_danmu"
+                    android:layout_width="@dimen/dp_22"
+                    android:layout_height="@dimen/dp_18"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp_6"
+                    android:src="@drawable/icon_danmu_open" />
+            </RelativeLayout>
+
+            <!--全屏-->
+            <RelativeLayout
+                android:id="@+id/view_exit_full_screen"
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:layout_marginStart="@dimen/dp_6"
+                android:background="@drawable/drawable_live_circle_play">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_15"
+                    android:layout_height="@dimen/dp_15"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/icon_full_screen" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <!--弹幕-->
+        <master.flame.danmaku.ui.widget.DanmakuView
+            android:id="@+id/danmuku"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!--声音亮度-->
+        <RelativeLayout
+            android:id="@+id/view_control"
+            android:layout_width="@dimen/dp_110"
+            android:layout_height="@dimen/dp_110"
+            android:layout_centerInParent="true"
+            android:background="@drawable/drawable_control"
+            android:paddingBottom="@dimen/dp_8"
+            android:paddingLeft="@dimen/dp_16"
+            android:paddingRight="@dimen/dp_16"
+            android:paddingTop="@dimen/dp_8"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/image_control"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:layout_centerInParent="true"
+                android:src="@drawable/icon_volume" />
+
+            <TextView
+                android:id="@+id/tv_control_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/image_control"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/dp_7"
+                android:textColor="@color/white_255"
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/tv_control_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_control"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/dp_5"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_12" />
+        </RelativeLayout>
+
     </RelativeLayout>
 
-    <View
-        android:background="@color/black_50"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/view_video"
+        android:background="@color/white_255"
+        android:orientation="vertical">
+
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            app:tl_indicator_color="@color/theme"
+            app:tl_indicator_style="NORMAL"
+            app:tl_indicator_width="@dimen/dp_30"
+            app:tl_tab_space_equal="true"
+            app:tl_textSelectColor="@color/theme"
+            app:tl_textUnselectColor="@color/black_90"
+            app:tl_textsize="@dimen/sp_14"
+            app:tl_underline_gravity="BOTTOM"
+            app:tl_underline_height="@dimen/dp_3" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:layout_marginTop="@dimen/dp_2"
+            android:background="@color/black_15" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 </RelativeLayout>

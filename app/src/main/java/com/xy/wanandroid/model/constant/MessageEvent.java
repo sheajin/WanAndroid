@@ -8,6 +8,15 @@ public class MessageEvent {
 
     public int code;
     public String mess;
+    private String name;
+
+    public String getName() {
+        return name == null ? "" : name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getCode() {
         return code;
@@ -29,4 +38,11 @@ public class MessageEvent {
         this.code = code;
         this.mess = mess;
     }
+
+    public MessageEvent(int code, String name, String mess) {
+        this.code = code;
+        this.name = name;
+        this.mess = mess;
+    }
+
 }

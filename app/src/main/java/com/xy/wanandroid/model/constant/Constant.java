@@ -11,6 +11,9 @@ public class Constant {
     public static final int REQUEST_ERROR = -1;
     public static final int REQUEST_SUCCESS = 0;
     public static final int TOAST_SHORT = 1000;
+    public static final int VIEW_POSTDELAY = 2000;
+    public final static int VOLUME_FLAG = 1;
+    public final static int LIGHT_FLAG = -1;
 
     /**
      * String

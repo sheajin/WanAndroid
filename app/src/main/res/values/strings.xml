@@ -140,5 +140,8 @@
     <string name="VideoView_player_IjkExoMediaPlayer">Player: IjkExoMediaPlayer</string>
     <string name="live_loading">直播视频加载中...</string>
     <string name="full_screen">全屏</string>
+    <string name="edit_danmu">在这里输入弹幕</string>
+    <string name="get_live_fail">获取播放信息失败,请重新载入</string>
+    <string name="internet_error">网络出问题了..</string>
     <!---->
 </resources>

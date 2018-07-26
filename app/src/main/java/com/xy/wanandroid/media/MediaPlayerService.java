@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.xy.wanandroid.service;
+package com.xy.wanandroid.media;
 
 import android.app.Service;
 import android.content.Context;
