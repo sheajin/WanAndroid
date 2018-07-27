@@ -170,7 +170,7 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
                 ToastUtil.show(activity, getString(R.string.share_title));
                 break;
             case R.id.view_refresh:
-//                mPresenter.getLiveUrl(roomId);
+                mPresenter.getLiveUrl(roomId);
                 break;
             case R.id.view_danmu:
                 if (isDanmuOpend) {
@@ -267,6 +267,7 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                mDanmuProcess.finish();
             }
 
             @Override

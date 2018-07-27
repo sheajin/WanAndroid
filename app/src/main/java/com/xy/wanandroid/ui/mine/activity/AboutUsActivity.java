@@ -65,9 +65,10 @@ public class AboutUsActivity extends BaseActivity {
 
     }
 
-
     @Override
     protected void initData() {
+        if (true)
+            return;
         showAboutContent();
         setSmartRefreshLayout();
         //进入界面时自动刷新
@@ -191,3 +192,26 @@ public class AboutUsActivity extends BaseActivity {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
