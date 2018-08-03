@@ -8,26 +8,22 @@
     android:visibility="visible">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:lineSpacingMultiplier="1.4"
-            android:text="@string/data_load_error"
-            android:textSize="@dimen/sp_16"
-            android:textColor="@color/homepage_color" />
+        <ImageView
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_80"
+            android:src="@drawable/load_error" />
 
         <TextView
             android:id="@+id/tv_reload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_30"
-            android:textColor="@color/theme"
-            android:background="@drawable/drawable_reload"
+            android:textColor="@color/text_deep"
             android:paddingBottom="@dimen/dp_10"
             android:paddingEnd="@dimen/dp_20"
             android:paddingStart="@dimen/dp_20"

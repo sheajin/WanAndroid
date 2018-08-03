@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_recommend1"
+        android:icon="@mipmap/ic_launcher"
+        android:title="" />
+
+    <item
+        android:id="@+id/menu_recommend2"
+        android:icon="@mipmap/ic_launcher"
+        android:title="" />
+
+    <item
+        android:id="@+id/menu_recommend3"
+        android:icon="@mipmap/ic_launcher"
+        android:title="" />
+
+    <item
+        android:id="@+id/menu_recommend4"
+        android:icon="@mipmap/ic_launcher"
+        android:title="" />
+
+    <item
+        android:id="@+id/menu_recommend5"
+        android:icon="@mipmap/ic_launcher"
+        android:title="" />
+</menu>

@@ -1,24 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.xy.wanandroid.ui.drawer.activity.MusicActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50"
-        android:theme="@style/EditText">
+        android:layout_height="@dimen/dp_50">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_music"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/theme"
-            app:navigationIcon="@drawable/icon_back" />
+            android:background="@color/netease_red"
+            app:contentInsetStart="0.0dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ToolbarStyle">
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/image_music"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/titlebar_music"
+                        android:theme="@style/SelectToolBar" />
+
+                    <ImageView
+                        android:id="@+id/image_maven"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dp_30"
+                        android:layout_marginRight="@dimen/dp_30"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/titlebar_disco"
+                        android:theme="@style/SelectToolBar" />
+
+                    <ImageView
+                        android:id="@+id/image_friend"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/titlebar_friends"
+                        android:theme="@style/SelectToolBar" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+        </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

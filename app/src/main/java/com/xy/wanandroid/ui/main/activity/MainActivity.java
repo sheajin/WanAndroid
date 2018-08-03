@@ -8,11 +8,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +32,7 @@ import com.xy.wanandroid.ui.main.fragment.HomePageFragment;
 import com.xy.wanandroid.ui.mine.fragment.PersonalFragment;
 import com.xy.wanandroid.ui.project.fragment.ProjectFragment;
 import com.xy.wanandroid.util.app.BottomNavigationViewHelper;
+import com.xy.wanandroid.util.app.DisplayUtil;
 import com.xy.wanandroid.util.app.JumpUtil;
 import com.xy.wanandroid.util.app.SharedPreferenceUtil;
 import com.xy.wanandroid.util.app.ToastUtil;
@@ -37,6 +40,7 @@ import com.xy.wanandroid.util.glide.GlideUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,10 +77,12 @@ public class MainActivity extends BaseRootActivity implements NavigationView.OnN
         View headerView = mNavigationView.inflateHeaderView(R.layout.nav_header_view);
         imageHead = headerView.findViewById(R.id.image_avatar);
         mTvName = headerView.findViewById(R.id.tv_name);
+
         presenter = new BasePresenter();
         initFragment();
         selectFragment(0);
         mNavigationView.setNavigationItemSelectedListener(this);
+        mNavigationView.setItemIconTintList(null);
     }
 
     @Override
@@ -259,4 +265,5 @@ public class MainActivity extends BaseRootActivity implements NavigationView.OnN
         }
         return true;
     }
+
 }

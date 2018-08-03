@@ -44,6 +44,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import master.flame.danmaku.ui.widget.DanmakuView;
+import tv.danmaku.ijk.media.player.IMediaPlayer;
 
 @SuppressLint("SetTextI18n")
 public class LiveActivity extends BaseActivity<LivePresenter> implements LiveContract.View {
@@ -332,6 +333,7 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
             //加载失败 没有网络等回调
             ToastUtil.show(activity, getString(R.string.internet_error));
         });
+
     }
 
     /**

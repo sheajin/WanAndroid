@@ -60,10 +60,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/white_255"
+        app:itemIconTint="@color/theme"
         android:fitsSystemWindows="true"
-        app:menu="@menu/menu_nav">
+        android:background="@color/white_255"
+        app:menu="@menu/menu_nav" />
+    <!--app:headerLayout="@layout/nav_header_view"-->
+    <!--app:menu="@menu/menu_nav"-->
 
-    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
