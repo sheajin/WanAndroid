@@ -24,6 +24,7 @@ public class SplashActivity extends BaseActivity {
     ImageView imageBackground;
     private Disposable timer;
     private int time = 3;
+    private boolean isIn;
 
     @Override
     protected int getLayoutId() {
@@ -60,9 +61,13 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void jump() {
+        if (isIn) {
+            return;
+        }
         JumpUtil.overlay(context, MainActivity.class);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        overridePendingTransition(R.anim.screen_zoom_in, R.anim.screen_zoom_out);
         finish();
+        isIn = true;
     }
 
     @Override

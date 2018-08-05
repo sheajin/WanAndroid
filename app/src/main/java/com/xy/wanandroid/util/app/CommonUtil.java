@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.provider.Settings;
+import android.support.design.widget.NavigationView;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
 import com.xy.wanandroid.base.app.MyApplication;
 
+import java.lang.reflect.Field;
 import java.util.Random;
 
 /**
@@ -112,6 +116,37 @@ public class CommonUtil {
                                 | View.SYSTEM_UI_FLAG_IMMERSIVE);
             }
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 设置Navigation menu item 高度
+     */
+    private void resetItemLayout(NavigationView navigationView) {
+        //通过反射拿到menu的item布局。修改布局参数
+        try {
+            Field mPresenter = NavigationView.class.getDeclaredField("mPresenter");
+            mPresenter.setAccessible(true);
+            //此处mPresenter.get(navigationView)会得到一个NavigationMenuPresenter对象，但是该类是@hide的。所以此处直接再拿其内部的NavigationMenuView。该类也是@hide的。需要注意的是，该类继承自RecyclerView。菜单的布局也就是由其完成的。
+            Field mMenuView = mPresenter.get(navigationView).getClass().getDeclaredField("mMenuView");
+            mMenuView.setAccessible(true);
+            //由于NavigationMenuView是隐藏类。此处用其父类。
+            RecyclerView recycler = (RecyclerView) mMenuView.get(mPresenter.get(navigationView));
+            for (int i = 0; i < recycler.getAdapter().getItemCount(); i++) {
+                RecyclerView.ViewHolder holder = recycler.findViewHolderForLayoutPosition(i);
+                //这里看实际项目了。我的项目中添加了一个head。
+//                if (i == 0 || holder == null)//因为这里有一个header。所以要先排除第一个
+//                    continue;
+                if (holder == null)
+                    return;
+                //剩下的就是修改整体布局参数了。
+                ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();
+                params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                params.height = 10;
+                holder.itemView.setLayoutParams(params);
+            }
+        } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }

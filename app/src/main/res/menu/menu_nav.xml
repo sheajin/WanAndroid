@@ -10,4 +10,5 @@
         android:id="@+id/nav_item_video"
         android:icon="@drawable/icon_video"
         android:title="@string/video" />
+
 </menu>

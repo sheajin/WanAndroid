@@ -11,6 +11,7 @@
     <color name="transparent">#00000000</color>
     <color name="select">#ff595f</color>
     <color name="red">#f9382a</color>
+    <color name="netease_red">#df4b48</color>
     <color name="disable">#dedede</color>
     <color name="normal">#2000</color>
     <color name="themes">#a66adc6c</color>

@@ -65,7 +65,6 @@ public class AboutUsActivity extends BaseActivity {
 
     }
 
-
     @Override
     protected void initData() {
         showAboutContent();
@@ -191,3 +190,26 @@ public class AboutUsActivity extends BaseActivity {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

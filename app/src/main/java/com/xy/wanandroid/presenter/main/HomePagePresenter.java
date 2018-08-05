@@ -11,6 +11,7 @@ import com.xy.wanandroid.model.api.ApiStore;
 import com.xy.wanandroid.model.api.BaseResp;
 import com.xy.wanandroid.model.api.HttpObserver;
 import com.xy.wanandroid.model.constant.Constant;
+import com.xy.wanandroid.util.app.LogUtil;
 import com.xy.wanandroid.util.app.SharedPreferenceUtil;
 import com.xy.wanandroid.util.network.RxUtils;
 
@@ -22,6 +23,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -29,7 +31,6 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class HomePagePresenter extends BasePresenter<HomePageContract.View> implements HomePageContract.Presenter {
 
-    private HomePageContract.View view;
     private boolean isRefresh = true;
     private int currentPage;
 
@@ -62,8 +63,7 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
     public void getHomepageList(int page) {
         ApiStore.createApi(ApiService.class)
                 .getArticleList(page)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(RxUtils.rxSchedulerHelper())
                 .subscribe(new HttpObserver<BaseResp<HomePageArticleBean>>() {
                     @Override
                     public void onNext(BaseResp<HomePageArticleBean> baseResp) {
@@ -122,7 +122,7 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
             hashMap.put(Constant.HOMEPAGEDATA, homepageData);
             return hashMap;
         }).compose(RxUtils.rxSchedulerHelper())
-                .subscribeWith(new HttpObserver<Map<String, Object>>() {
+                .subscribe(new HttpObserver<Map<String, Object>>() {
                     @Override
                     public void onNext(Map<String, Object> map) {
                         /**
@@ -165,8 +165,7 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
     public void collectArticle(int id) {
         ApiStore.createApi(ApiService.class)
                 .collectArticle(id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(RxUtils.rxSchedulerHelper())
                 .subscribe(new HttpObserver<BaseResp>() {
                     @Override
                     public void onNext(BaseResp baseResp) {
@@ -206,4 +205,65 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
                     }
                 });
     }
+
+    //    @Override
+//    public void loginAndLoad2() {
+//        String username = (String) SharedPreferenceUtil.get(MyApplication.getInstance(), Constant.USERNAME, Constant.DEFAULT);
+//        String password = (String) SharedPreferenceUtil.get(MyApplication.getInstance(), Constant.PASSWORD, Constant.DEFAULT);
+//
+//        Observable<BaseResp<UserInfo>> observableUser = ApiStore.createApi(ApiService.class).login(username, password);
+//        Observable<BaseResp<List<BannerBean>>> observableBanner = ApiStore.createApi(ApiService.class).getBanner();
+//        Observable<BaseResp<HomePageArticleBean>> observableArticle = ApiStore.createApi(ApiService.class).getArticleList(currentPage);
+//
+//        ApiStore.createApi(ApiService.class)
+//                .login(username, password)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .flatMap(new Function<BaseResp<UserInfo>, Observable<BaseResp<List<BannerBean>>>>() {
+//                    @Override
+//                    public Observable<BaseResp<List<BannerBean>>> apply(BaseResp<UserInfo> userInfo) throws Exception {
+//                        if (userInfo.getErrorCode() == Constant.REQUEST_SUCCESS) {
+//                            mView.loginSuccess(userInfo.getData());
+//                            LogUtil.e("HomePagePresenter userinfo " + System.currentTimeMillis());
+//                        } else if (userInfo.getErrorCode() == Constant.REQUEST_ERROR) {
+//                            mView.loginErr(userInfo.getErrorMsg());
+//                        }
+//                        return observableBanner;
+//                    }
+//                })
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .flatMap(new Function<BaseResp<List<BannerBean>>, Observable<BaseResp<HomePageArticleBean>>>() {
+//
+//                    @Override
+//                    public Observable<BaseResp<HomePageArticleBean>> apply(BaseResp<List<BannerBean>> bannerResp) throws Exception {
+//                        if (bannerResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
+//                            mView.getBannerOk(bannerResp.getData());
+//                            LogUtil.e("HomePagePresenter banner " + System.currentTimeMillis());
+//                        } else if (bannerResp.getErrorCode() == Constant.REQUEST_ERROR) {
+//                            LogUtil.e("HomePagePresenter banner error");
+//                            mView.getBannerErr(bannerResp.getErrorMsg());
+//                        }
+//                        return observableArticle;
+//                    }
+//                })
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new HttpObserver<BaseResp<HomePageArticleBean>>() {
+//                    @Override
+//                    public void onNext(BaseResp<HomePageArticleBean> articleResp) {
+//                        if (articleResp.getErrorCode() == Constant.REQUEST_SUCCESS) {
+//                            LogUtil.e("HomePagePresenter article " + System.currentTimeMillis());
+//                            mView.getHomepageListOk(articleResp.getData(), isRefresh);
+//                        } else if (articleResp.getErrorCode() == Constant.REQUEST_ERROR) {
+//                            mView.getHomepageListErr(articleResp.getErrorMsg());
+//                            LogUtil.e("HomePagePresenter article error");
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        LogUtil.e("HomePagePresenter article error");
+//                    }
+//                });
+//
+//    }
 }

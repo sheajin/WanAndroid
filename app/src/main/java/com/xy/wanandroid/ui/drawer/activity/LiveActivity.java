@@ -44,6 +44,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import master.flame.danmaku.ui.widget.DanmakuView;
+import tv.danmaku.ijk.media.player.IMediaPlayer;
 
 @SuppressLint("SetTextI18n")
 public class LiveActivity extends BaseActivity<LivePresenter> implements LiveContract.View {
@@ -170,7 +171,7 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
                 ToastUtil.show(activity, getString(R.string.share_title));
                 break;
             case R.id.view_refresh:
-//                mPresenter.getLiveUrl(roomId);
+                mPresenter.getLiveUrl(roomId);
                 break;
             case R.id.view_danmu:
                 if (isDanmuOpend) {
@@ -267,6 +268,7 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                mDanmuProcess.finish();
             }
 
             @Override
@@ -331,6 +333,7 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
             //加载失败 没有网络等回调
             ToastUtil.show(activity, getString(R.string.internet_error));
         });
+
     }
 
     /**
