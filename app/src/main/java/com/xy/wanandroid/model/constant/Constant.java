@@ -69,6 +69,7 @@ public class Constant {
     public static final String WANANDROID = "normal";
     public static final String DOUYU = "douyu";
     public static final String GETLIVE = "live";
+    public static final String GANK_API = "gank";
 
     /**
      * params

@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.xy.wanandroid.di.module.FragmentModule;
 import com.xy.wanandroid.ui.drawer.fragment.LiveListFragment;
+import com.xy.wanandroid.ui.drawer.fragment.RecommendFragment;
 import com.xy.wanandroid.ui.knowledge.fragment.KnowledgeFragment;
 import com.xy.wanandroid.ui.knowledge.fragment.KnowledgeListFragment;
 import com.xy.wanandroid.ui.main.fragment.HomePageFragment;
@@ -32,5 +33,7 @@ public interface FragmentComponent {
     void inject(ProjectListFragment fragment);
 
     void inject(LiveListFragment fragment);
+
+    void inject(RecommendFragment fragment);
 
 }
