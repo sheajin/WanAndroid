@@ -71,7 +71,6 @@
             android:name=".ui.drawer.activity.LiveActivity"
             android:configChanges="orientation|screenSize|navigation"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity android:name=".ui.drawer.fragment.RecommendFragment"></activity>
     </application>
 
 </manifest>

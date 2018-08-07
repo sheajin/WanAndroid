@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/dp_12"
     android:layout_marginRight="@dimen/dp_12"
     android:layout_marginTop="@dimen/dp_12"
-    android:layout_width="match_parent"
     android:background="?attr/selectableItemBackground"
-    app:cardBackgroundColor="@color/white_255"
     android:clickable="true"
     android:focusable="true"
+    app:cardBackgroundColor="@color/white_255"
     app:cardCornerRadius="@dimen/dp_3"
     app:cardElevation="@dimen/dp_1"
-    app:cardPreventCornerOverlap="false"
-    android:layout_height="wrap_content">
+    app:cardPreventCornerOverlap="false">
 
     <RelativeLayout
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="@dimen/dp_6">
 
-        <TextView
-            android:id="@+id/tv_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="@color/homepage_color" />
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/image_pic"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_160"
+            android:src="@color/black_15" />
 
         <TextView
-            android:id="@+id/tv_author"
+            android:id="@+id/tv_pic_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_content"
+            android:layout_below="@+id/image_pic"
             android:layout_marginTop="@dimen/dp_20"
             android:text=""
             android:textColor="@color/finish"
             android:textSize="@dimen/sp_13" />
 
         <TextView
-            android:id="@+id/tv_time"
+            android:id="@+id/tv_pic_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/tv_content"
+            android:layout_below="@+id/image_pic"
             android:layout_marginTop="@dimen/dp_20"
             android:text=""
             android:textColor="@color/finish"

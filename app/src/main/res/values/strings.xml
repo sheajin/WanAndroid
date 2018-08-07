@@ -6,7 +6,7 @@
     <string name="knowledge_hierarchy">知识体系</string>
     <string name="tab_project">项目</string>
     <string name="tab_mine">我的</string>
-    <string name="data_loading">加载中...</string>
+    <string name="data_loading">努力加载中...</string>
     <string name="data_load_error">加载失败,请重试~</string>
     <string name="exit_system">再按一次退出</string>
     <string name="share_view">shareView</string>
@@ -144,5 +144,12 @@
     <string name="get_live_fail">获取播放信息失败,请重新载入</string>
     <string name="internet_error">网络出问题了..</string>
     <string name="live_collect">关注</string>
+    <string name="choose_cate">选择分类</string>
+    <string name="all">全部</string>
+    <string name="android">Android</string>
+    <string name="app">app</string>
+    <string name="js">前端</string>
+    <string name="rest">休息视频</string>
+    <string name="extra">拓展资源</string>
     <!---->
 </resources>

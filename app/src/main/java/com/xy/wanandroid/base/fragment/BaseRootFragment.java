@@ -18,9 +18,11 @@ public abstract class BaseRootFragment<T extends BasePresenter> extends BaseFrag
     private static final int LOADING_STATE = 1;
     public static final int ERROR_STATE = 2;
     public static final int EMPTY_STATE = 3;
+    public static final int NETEASE_LOADING_STATE = 4;
 
     private View mErrorView;
     private View mLoadingView;
+    private View mLoadingNetease;
     private View mEmptyView;
     private ViewGroup mNormalView;
     private int currentState = NORMAL_STATE;
@@ -42,15 +44,18 @@ public abstract class BaseRootFragment<T extends BasePresenter> extends BaseFrag
         }
         ViewGroup parent = (ViewGroup) mNormalView.getParent();
         View.inflate(activity, R.layout.view_loading, parent);
+        View.inflate(activity, R.layout.netease_loading, parent);
         View.inflate(activity, R.layout.view_error, parent);
         View.inflate(activity, R.layout.view_empty, parent);
         mLoadingView = parent.findViewById(R.id.loading_group);
+        mLoadingNetease = parent.findViewById(R.id.loading_netease);
         mErrorView = parent.findViewById(R.id.error_group);
         mEmptyView = parent.findViewById(R.id.empty_group);
         mErrorView.setOnClickListener(v -> reload());
         mErrorView.setVisibility(View.GONE);
         mEmptyView.setVisibility(View.GONE);
         mLoadingView.setVisibility(View.GONE);
+        mLoadingNetease.setVisibility(View.GONE);
         mNormalView.setVisibility(View.VISIBLE);
     }
 
@@ -62,6 +67,16 @@ public abstract class BaseRootFragment<T extends BasePresenter> extends BaseFrag
         hideCurrentView();
         currentState = LOADING_STATE;
         mLoadingView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showNeteaseLoading() {
+        if (currentState == NETEASE_LOADING_STATE) {
+            return;
+        }
+        hideCurrentView();
+        currentState = NETEASE_LOADING_STATE;
+        mLoadingNetease.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -104,6 +119,9 @@ public abstract class BaseRootFragment<T extends BasePresenter> extends BaseFrag
                 break;
             case LOADING_STATE:
                 mLoadingView.setVisibility(View.GONE);
+                break;
+            case NETEASE_LOADING_STATE:
+                mLoadingNetease.setVisibility(View.GONE);
                 break;
             case ERROR_STATE:
                 mErrorView.setVisibility(View.GONE);

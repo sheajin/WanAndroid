@@ -33,4 +33,8 @@ public class EventConstant {
      * 发送弹幕数据
      */
     public static final int SENDDANMU = 110;
+    /**
+     * 项目列表重加载
+     */
+    public static final int RELOADPROJECT = 111;
 }

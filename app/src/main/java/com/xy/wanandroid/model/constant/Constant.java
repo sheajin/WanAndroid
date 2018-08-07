@@ -42,12 +42,21 @@ public class Constant {
     public static final String SEARCH_RESULT_TITLE = "search_result_title";
     public static final String SEARCH_RESULT_CONTENT = "search_result_content";
     public static final String SS = "homepage_super_name";
+    public static final String ALL = "all";
+    public static final String ALLS = "全部";
+    public static final String ANDROID = "Android";
+    public static final String JS = "前端";
+    public static final String REST = "休息视频";
+    public static final String EXTRA = "拓展资源";
+    public static final String WELFARE = "福利";
+
 
     /**
      * SharedPreference
      */
     public static final String DEFAULT = "default";
     public static final String SEARCH_HISTORY = "search_history";
+    public static final String GANK_TYPE = "gank_type";
 
     /**
      * user info

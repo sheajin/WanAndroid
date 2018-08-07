@@ -22,6 +22,7 @@
         <item name="android:itemBackground">@color/white_255</item>
         <!--<item name="android:windowIsTranslucent">true</item>-->
         <item name="android:windowDisablePreview">true</item>
+        <item name="android:actionMenuTextAppearance">@style/MenuTextStyle</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -96,6 +97,11 @@
         <item name="colorPrimary">@color/netease_red</item>
         <item name="colorPrimaryDark">@color/netease_red</item>
         <item name="colorAccent">@color/netease_red</item>
+    </style>
+
+    <style name="MenuTextStyle">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/homepage_color</item>
     </style>
 
 </resources>

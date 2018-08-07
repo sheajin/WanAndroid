@@ -2,14 +2,10 @@ package com.xy.wanandroid.presenter.drawer;
 
 import com.xy.wanandroid.base.presenter.BasePresenter;
 import com.xy.wanandroid.contract.drawer.RecommendContract;
-import com.xy.wanandroid.data.drawer.RecommendData;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;
-import com.xy.wanandroid.model.api.BaseResp;
-import com.xy.wanandroid.model.api.GankBaseResp;
 import com.xy.wanandroid.model.api.HttpObserver;
-
-import java.util.List;
+import com.xy.wanandroid.ui.drawer.viewholder.RecommendEntity;
 
 import javax.inject.Inject;
 
@@ -21,8 +17,6 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class RecommendListPresenter extends BasePresenter<RecommendContract.View> implements RecommendContract.Presenter {
 
-    private int page = 1;
-    private int pre_page = 20;
     private boolean isRefresh = true;
 
     @Inject
@@ -31,33 +25,28 @@ public class RecommendListPresenter extends BasePresenter<RecommendContract.View
     }
 
     @Override
-    public void autoRefresh(String id, int page, int pre_page) {
+    public void autoRefresh(String type, int page) {
         isRefresh = true;
-        page = 1;
-        getRecommendList(id, page, pre_page);
+        getRecommendList(type, 15, page);
     }
 
     @Override
-    public void loadMore(String id, int page, int pre_page) {
-        page++;
+    public void loadMore(String type, int page) {
         isRefresh = false;
-        getRecommendList(id, page, pre_page);
+        getRecommendList(type, 15, page);
     }
 
     @Override
-    public void getRecommendList(String id, int page, int pre_page) {
+    public void getRecommendList(String type, int offset, int page) {
         ApiStore.createApi(ApiService.class)
-                .getRecommendList(id, page, pre_page)
+                .getRecommendList(type, offset, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new HttpObserver<GankBaseResp<List<RecommendData>>>() {
+                .subscribe(new HttpObserver<RecommendEntity>() {
                     @Override
-                    public void onNext(GankBaseResp<List<RecommendData>> baseResp) {
-                        if (!baseResp.isError()) {
-                            mView.getRecommendOk(baseResp.getResults(), isRefresh);
-                        } else {
-                            mView.getRecommendErr("获取推荐列表失败");
-                        }
+                    public void onNext(RecommendEntity baseResp) {
+                        if (mView != null)
+                            mView.getRecommendOk(baseResp, isRefresh);
                     }
 
                     @Override

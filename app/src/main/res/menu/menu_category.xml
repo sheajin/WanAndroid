@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/cate_all"
+        android:icon="@drawable/home_title_all"
+        android:title="@string/all" />
+
+    <item
+        android:id="@+id/cate_android"
+        android:icon="@drawable/home_title_android"
+        android:title="@string/android" />
+
+    <item
+        android:id="@+id/cate_js"
+        android:icon="@drawable/home_title_qian"
+        android:title="@string/js" />
+
+    <item
+        android:id="@+id/cate_rest"
+        android:icon="@drawable/home_title_movie"
+        android:title="@string/rest" />
+
+    <item
+        android:id="@+id/cate_extra"
+        android:icon="@drawable/home_title_source"
+        android:title="@string/extra" />
+</menu>

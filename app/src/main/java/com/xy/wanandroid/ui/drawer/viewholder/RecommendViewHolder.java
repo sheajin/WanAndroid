@@ -11,10 +11,11 @@ import com.xy.wanandroid.R;
  */
 public class RecommendViewHolder extends BaseViewHolder {
 
-    public ImageView imageContent;
+    public ImageView imageContent,imagePicture;
 
     public RecommendViewHolder(View view) {
         super(view);
         imageContent = view.findViewById(R.id.image_content);
+        imagePicture = view.findViewById(R.id.image_pic);
     }
 }

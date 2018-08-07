@@ -47,6 +47,7 @@ public class ProjectFragment extends BaseRootFragment<ProjectPresenter> implemen
     @Override
     protected void initUI() {
         super.initUI();
+        showLoading();
     }
 
     @Override
@@ -65,6 +66,7 @@ public class ProjectFragment extends BaseRootFragment<ProjectPresenter> implemen
     @Override
     public void getProjectTitleOk(List<ProjectBean> dataBean) {
         mProjectTabLayout.setVisibility(View.VISIBLE);
+//        mProjectTabLayout.setCurrentTab(0);
         projectList.clear();
         fragments.clear();
         titles.clear();

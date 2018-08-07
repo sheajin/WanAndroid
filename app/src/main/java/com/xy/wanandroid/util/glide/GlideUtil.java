@@ -6,6 +6,9 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.xy.wanandroid.R;
+
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 /**
  * Created by jxy on 2017/8/9.
@@ -18,6 +21,7 @@ public class GlideUtil {
     public static void loadImage(Context context, Object resId, ImageView imageView) {
         Glide.with(context)
                 .load(resId)
+                .transition(withCrossFade(android.R.anim.fade_in, 100))
                 .into(imageView);
     }
 
@@ -31,6 +35,32 @@ public class GlideUtil {
         Glide.with(context).
                 load(resId).
                 apply(mRequestOptions)
+                .into(imageView);
+    }
+
+    /**
+     * 禁止加载gif
+     */
+    public static void loadImageWithoutGif(Context context, Object resId, ImageView imageView) {
+        RequestOptions mRequestOptions = RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL)
+                .dontAnimate(); //禁止播放动画
+        Glide.with(context)
+                .load(resId)
+                .apply(mRequestOptions)
+                .into(imageView);
+    }
+
+    /**
+     * 加载大图预览图
+     */
+    public static void loadPlaceImage(Context context, Object resId, ImageView imageView) {
+        RequestOptions mRequestOptions = RequestOptions
+                .diskCacheStrategyOf(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.icon_placeholder_welfare)
+                .error(R.drawable.icon_placeholder_welfare);
+        Glide.with(context)
+                .load(resId)
+                .apply(mRequestOptions)
                 .into(imageView);
     }
 

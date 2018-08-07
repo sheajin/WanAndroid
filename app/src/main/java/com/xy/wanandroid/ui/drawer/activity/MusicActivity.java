@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseActivity;
 import com.xy.wanandroid.base.adapter.SimpleFragmentStateAdapter;
+import com.xy.wanandroid.ui.drawer.fragment.LiveVideoFragment;
 import com.xy.wanandroid.ui.drawer.fragment.RecommendFragment;
 import com.xy.wanandroid.util.statusbar.StatusBarUtil;
 
@@ -43,15 +44,15 @@ public class MusicActivity extends BaseActivity {
 
     @Override
     protected void initUI() {
-        selectItem(1);
+        selectItem(0);
     }
 
     @Override
     protected void initData() {
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(RecommendFragment.getInstance());
-        fragments.add(RecommendFragment.getInstance());
-        fragments.add(RecommendFragment.getInstance());
+        fragments.add(LiveVideoFragment.getInstance());
+        fragments.add(LiveVideoFragment.getInstance());
         SimpleFragmentStateAdapter pagerAdapter = new SimpleFragmentStateAdapter(getSupportFragmentManager(), fragments);
         mPager.setAdapter(pagerAdapter);
         mPager.setOffscreenPageLimit(3);

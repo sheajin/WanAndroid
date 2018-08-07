@@ -198,4 +198,8 @@ public abstract class BaseActivity<T extends AbsPresenter> extends SupportActivi
 
     }
 
+    @Override
+    public void showNeteaseLoading() {
+
+    }
 }

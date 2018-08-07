@@ -27,6 +27,8 @@ public interface AbstractView {
      */
     void showLoading();
 
+    void showNeteaseLoading();
+
     /**
      * Show empty
      */

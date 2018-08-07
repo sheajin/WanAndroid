@@ -3,7 +3,6 @@ package com.xy.wanandroid.model.api;
 import com.xy.wanandroid.data.drawer.CategoryTitle;
 import com.xy.wanandroid.data.drawer.LiveList;
 import com.xy.wanandroid.data.drawer.LiveUrl;
-import com.xy.wanandroid.data.drawer.RecommendData;
 import com.xy.wanandroid.data.knowledge.KnowledgeClassifyListBean;
 import com.xy.wanandroid.data.knowledge.KnowledgeListBean;
 import com.xy.wanandroid.data.login.UserInfo;
@@ -12,6 +11,7 @@ import com.xy.wanandroid.data.main.HomePageArticleBean;
 import com.xy.wanandroid.data.main.SearchHot;
 import com.xy.wanandroid.data.project.ProjectBean;
 import com.xy.wanandroid.data.project.ProjectListBean;
+import com.xy.wanandroid.ui.drawer.viewholder.RecommendEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -169,7 +169,7 @@ public interface ApiService {
      * eg: http://gank.io/api/data/Android/10/1
      */
     @Headers({"baseUrl:gank"})
-    @GET("api/data/{type}/{pre_page}/{page}")
-    Observable<GankBaseResp<List<RecommendData>>> getRecommendList(@Path("type") String id, @Path("page") int page, @Path("pre_page") int pre_page);
+    @GET("api/data/{type}/{offset}/{page}")
+    Observable<RecommendEntity> getRecommendList(@Path("type") String type, @Path("offset") int offset, @Path("page") int page);
 
 }

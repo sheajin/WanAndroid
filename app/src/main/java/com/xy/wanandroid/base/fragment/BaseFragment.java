@@ -198,6 +198,11 @@ public abstract class BaseFragment<T extends AbsPresenter> extends SupportFragme
     }
 
     @Override
+    public void showNeteaseLoading() {
+
+    }
+
+    @Override
     public void showNormal() {
 
     }
