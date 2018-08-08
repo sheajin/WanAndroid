@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 import com.xy.wanandroid.base.app.MyApplication;
 
 import java.lang.reflect.Field;
+import java.util.Calendar;
 import java.util.Random;
 
 /**
@@ -149,6 +150,15 @@ public class CommonUtil {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 随机图
+     */
+    public static String getRandomImage() {
+        int index = new Random().nextInt(23);
+        String imageUrl = "http://ojyz0c8un.bkt.clouddn.com/home_six_";
+        return imageUrl + index + ".png";
     }
 
 }

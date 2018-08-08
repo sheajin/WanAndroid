@@ -57,6 +57,7 @@ public class Constant {
     public static final String DEFAULT = "default";
     public static final String SEARCH_HISTORY = "search_history";
     public static final String GANK_TYPE = "gank_type";
+    public static final String GANK_BANNER = "gank_banner";
 
     /**
      * user info
@@ -79,6 +80,7 @@ public class Constant {
     public static final String DOUYU = "douyu";
     public static final String GETLIVE = "live";
     public static final String GANK_API = "gank";
+    public static final String MUSIC_BANNER = "music";
 
     /**
      * params

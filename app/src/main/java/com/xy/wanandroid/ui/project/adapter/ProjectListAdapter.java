@@ -35,6 +35,6 @@ public class ProjectListAdapter extends BaseQuickAdapter<ProjectListBean.DatasBe
         if (!TextUtils.isEmpty(bean.getAuthor())) {
             helper.setText(R.id.tv_author, bean.getAuthor());
         }
-        GlideUtil.loadImage(mContext, bean.getEnvelopePic(), helper.getView(R.id.image_simple));
+        GlideUtil.loadImageWithoutGif(mContext, bean.getEnvelopePic(), helper.getView(R.id.image_simple));
     }
 }

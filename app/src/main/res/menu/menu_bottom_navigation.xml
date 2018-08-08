@@ -24,9 +24,16 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/tab_mine"
+        android:id="@+id/tab_gank"
         android:enabled="true"
         android:icon="@drawable/icon_navigation_not_selected"
+        android:title="@string/tab_gank"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/tab_mine"
+        android:enabled="true"
+        android:icon="@drawable/icon_navigation_mine"
         android:title="@string/tab_mine"
         app:showAsAction="ifRoom" />
 

@@ -3,6 +3,8 @@ package com.xy.wanandroid.model.api;
 import com.xy.wanandroid.data.drawer.CategoryTitle;
 import com.xy.wanandroid.data.drawer.LiveList;
 import com.xy.wanandroid.data.drawer.LiveUrl;
+import com.xy.wanandroid.data.gank.EverydayData;
+import com.xy.wanandroid.data.gank.MusicBanner;
 import com.xy.wanandroid.data.knowledge.KnowledgeClassifyListBean;
 import com.xy.wanandroid.data.knowledge.KnowledgeListBean;
 import com.xy.wanandroid.data.login.UserInfo;
@@ -172,4 +174,17 @@ public interface ApiService {
     @GET("api/data/{type}/{offset}/{page}")
     Observable<RecommendEntity> getRecommendList(@Path("type") String type, @Path("offset") int offset, @Path("page") int page);
 
+    /**
+     * 获取音乐界面banner
+     */
+    @Headers({"baseUrl:music"})
+    @GET("v1/restserver/ting?from=android&version=5.8.1.0&channel=ppzs&operator=3&method=baidu.ting.plaza.index&cuid=89CF1E1A06826F9AB95A34DC0F6AAA14")
+    Observable<MusicBanner> getMusicBanner();
+
+    /**
+     * 获取每日推荐数据
+     */
+    @Headers({"baseUrl:gank"})
+    @GET("api/today")
+    Observable<EverydayData> getEveryDayData();
 }

@@ -8,13 +8,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,13 +24,13 @@ import com.xy.wanandroid.model.constant.EventConstant;
 import com.xy.wanandroid.model.constant.MessageEvent;
 import com.xy.wanandroid.ui.drawer.activity.MusicActivity;
 import com.xy.wanandroid.ui.drawer.activity.VideoActivity;
+import com.xy.wanandroid.ui.gank.fragment.GankFragment;
 import com.xy.wanandroid.ui.knowledge.fragment.KnowledgeFragment;
 import com.xy.wanandroid.ui.login.LoginActivity;
 import com.xy.wanandroid.ui.main.fragment.HomePageFragment;
 import com.xy.wanandroid.ui.mine.fragment.PersonalFragment;
 import com.xy.wanandroid.ui.project.fragment.ProjectFragment;
 import com.xy.wanandroid.util.app.BottomNavigationViewHelper;
-import com.xy.wanandroid.util.app.DisplayUtil;
 import com.xy.wanandroid.util.app.JumpUtil;
 import com.xy.wanandroid.util.app.SharedPreferenceUtil;
 import com.xy.wanandroid.util.app.ToastUtil;
@@ -40,7 +38,6 @@ import com.xy.wanandroid.util.glide.GlideUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,6 +103,7 @@ public class MainActivity extends BaseRootActivity implements NavigationView.OnN
         fragments.add(HomePageFragment.getInstance());
         fragments.add(KnowledgeFragment.getInstance());
         fragments.add(ProjectFragment.getInstance());
+        fragments.add(GankFragment.getInstance());
         fragments.add(PersonalFragment.getInstance());
     }
 
@@ -195,9 +193,13 @@ public class MainActivity extends BaseRootActivity implements NavigationView.OnN
                     mFloatingButton.setVisibility(View.VISIBLE);
                     selectFragment(2);
                     break;
-                case R.id.tab_mine:
+                case R.id.tab_gank:
                     mFloatingButton.setVisibility(View.GONE);
                     selectFragment(3);
+                    break;
+                case R.id.tab_mine:
+                    mFloatingButton.setVisibility(View.GONE);
+                    selectFragment(4);
                     break;
             }
             return true;
