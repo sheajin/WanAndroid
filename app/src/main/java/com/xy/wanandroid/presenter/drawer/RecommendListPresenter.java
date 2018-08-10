@@ -5,7 +5,7 @@ import com.xy.wanandroid.contract.drawer.RecommendContract;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;
 import com.xy.wanandroid.model.api.HttpObserver;
-import com.xy.wanandroid.ui.drawer.viewholder.RecommendEntity;
+import com.xy.wanandroid.data.drawer.RecommendEntity;
 
 import javax.inject.Inject;
 

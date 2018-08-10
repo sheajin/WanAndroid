@@ -3,7 +3,8 @@ package com.xy.wanandroid.model.api;
 import com.xy.wanandroid.data.drawer.CategoryTitle;
 import com.xy.wanandroid.data.drawer.LiveList;
 import com.xy.wanandroid.data.drawer.LiveUrl;
-import com.xy.wanandroid.data.gank.EverydayData;
+import com.xy.wanandroid.data.drawer.RecommendData;
+import com.xy.wanandroid.data.drawer.RecommendEntity;
 import com.xy.wanandroid.data.gank.MusicBanner;
 import com.xy.wanandroid.data.knowledge.KnowledgeClassifyListBean;
 import com.xy.wanandroid.data.knowledge.KnowledgeListBean;
@@ -13,7 +14,6 @@ import com.xy.wanandroid.data.main.HomePageArticleBean;
 import com.xy.wanandroid.data.main.SearchHot;
 import com.xy.wanandroid.data.project.ProjectBean;
 import com.xy.wanandroid.data.project.ProjectListBean;
-import com.xy.wanandroid.ui.drawer.viewholder.RecommendEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -184,7 +184,10 @@ public interface ApiService {
     /**
      * 获取每日推荐数据
      */
+//    @Headers({"baseUrl:gank"})
+//    @GET("api/today")
+//    Observable<EverydayData> getEveryDayData();
     @Headers({"baseUrl:gank"})
-    @GET("api/today")
-    Observable<EverydayData> getEveryDayData();
+    @GET("api/data/all/18/1")
+    Observable<RecommendData> getEveryDayData();
 }

@@ -156,7 +156,7 @@ public class CommonUtil {
      * 随机图
      */
     public static String getRandomImage() {
-        int index = new Random().nextInt(23);
+        int index = new Random().nextInt(22);
         String imageUrl = "http://ojyz0c8un.bkt.clouddn.com/home_six_";
         return imageUrl + index + ".png";
     }

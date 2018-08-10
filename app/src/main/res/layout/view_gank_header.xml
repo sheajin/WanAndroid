@@ -35,6 +35,7 @@
                 android:orientation="vertical">
 
                 <ImageButton
+                    android:id="@+id/view_category"
                     android:layout_width="@dimen/dp_50"
                     android:layout_height="@dimen/dp_50"
                     android:background="@drawable/drawable_gank_one" />
@@ -44,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/dp_8"
-                    android:text="@string/tab_gank" />
+                    android:text="@string/net_ease_ui" />
             </LinearLayout>
 
             <LinearLayout
@@ -56,6 +57,7 @@
                 android:orientation="vertical">
 
                 <ImageButton
+                    android:id="@+id/view_douyu"
                     android:layout_width="@dimen/dp_50"
                     android:layout_height="@dimen/dp_50"
                     android:background="@drawable/drawable_gank_two" />
@@ -65,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/dp_8"
-                    android:text="@string/tab_gank" />
+                    android:text="@string/douyu" />
             </LinearLayout>
 
             <LinearLayout
@@ -86,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/dp_8"
-                    android:text="@string/tab_gank" />
+                    android:text="@string/extra" />
             </LinearLayout>
 
             <LinearLayout
@@ -107,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/dp_8"
-                    android:text="@string/tab_gank" />
+                    android:text="@string/rank" />
             </LinearLayout>
         </LinearLayout>
 

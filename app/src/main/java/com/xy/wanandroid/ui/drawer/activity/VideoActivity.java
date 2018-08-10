@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseActivity;
+import com.xy.wanandroid.base.activity.BaseRootActivity;
 import com.xy.wanandroid.base.adapter.SimpleFragmentStateAdapter;
 import com.xy.wanandroid.contract.drawer.VideoContract;
 import com.xy.wanandroid.data.drawer.CategoryTitle;
@@ -21,7 +22,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class VideoActivity extends BaseActivity<VideoPresenter> implements VideoContract.View {
+public class VideoActivity extends BaseRootActivity<VideoPresenter> implements VideoContract.View {
     @BindView(R.id.toolbar_video)
     Toolbar mToolBar;
     @BindView(R.id.tab_layout)
@@ -53,6 +54,8 @@ public class VideoActivity extends BaseActivity<VideoPresenter> implements Video
 
     @Override
     protected void initUI() {
+        super.initUI();
+        showLoading();
         titles = new ArrayList<>();
         fragments = new ArrayList<>();
     }
@@ -65,6 +68,7 @@ public class VideoActivity extends BaseActivity<VideoPresenter> implements Video
 
     @Override
     public void getLiveTitleOk(List<CategoryTitle> dataBean) {
+        showNormal();
         if (dataBean.size() > 0) {
             for (int i = 0; i < 12; i++) {
                 titles.add(dataBean.get(i).getTag_name());
