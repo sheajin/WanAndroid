@@ -3,7 +3,7 @@ package com.xy.wanandroid.ui.drawer.adapter;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.app.MyApplication;
-import com.xy.wanandroid.ui.drawer.viewholder.RecommendEntity;
+import com.xy.wanandroid.data.drawer.RecommendEntity;
 import com.xy.wanandroid.ui.drawer.viewholder.RecommendViewHolder;
 import com.xy.wanandroid.util.glide.GlideUtil;
 

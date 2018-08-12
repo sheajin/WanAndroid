@@ -1,32 +1,22 @@
 package com.xy.wanandroid.ui.main.activity;
 
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.xy.wanandroid.R;
-import com.xy.wanandroid.base.activity.BaseRootActivity;
+import com.xy.wanandroid.base.activity.BaseActivity;
 import com.xy.wanandroid.base.presenter.BasePresenter;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.model.constant.EventConstant;
 import com.xy.wanandroid.model.constant.MessageEvent;
-import com.xy.wanandroid.ui.drawer.activity.MusicActivity;
-import com.xy.wanandroid.ui.drawer.activity.VideoActivity;
 import com.xy.wanandroid.ui.gank.fragment.GankFragment;
 import com.xy.wanandroid.ui.knowledge.fragment.KnowledgeFragment;
-import com.xy.wanandroid.ui.login.LoginActivity;
 import com.xy.wanandroid.ui.main.fragment.HomePageFragment;
 import com.xy.wanandroid.ui.mine.fragment.PersonalFragment;
 import com.xy.wanandroid.ui.project.fragment.ProjectFragment;
@@ -34,7 +24,6 @@ import com.xy.wanandroid.util.app.BottomNavigationViewHelper;
 import com.xy.wanandroid.util.app.JumpUtil;
 import com.xy.wanandroid.util.app.SharedPreferenceUtil;
 import com.xy.wanandroid.util.app.ToastUtil;
-import com.xy.wanandroid.util.glide.GlideUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -44,7 +33,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseRootActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.bottom_navigation_view)
     BottomNavigationView mBottomNavigation;
@@ -52,17 +41,11 @@ public class MainActivity extends BaseRootActivity implements NavigationView.OnN
     FloatingActionButton mFloatingButton;
     @BindView(R.id.toolbar_common)
     Toolbar mToolBar;
-    @BindView(R.id.drawer_layout)
-    DrawerLayout mDrawerLayout;
-    @BindView(R.id.nav_view)
-    NavigationView mNavigationView;
 
     private List<Fragment> fragments;
     private BasePresenter presenter;
     private int lastIndex;
     private long mExitTime;
-    private ImageView imageHead;
-    private TextView mTvName;
 
     @Override
     protected int getLayoutId() {
@@ -71,31 +54,19 @@ public class MainActivity extends BaseRootActivity implements NavigationView.OnN
 
     @Override
     protected void initUI() {
-        View headerView = mNavigationView.inflateHeaderView(R.layout.nav_header_view);
-        imageHead = headerView.findViewById(R.id.image_avatar);
-        mTvName = headerView.findViewById(R.id.tv_name);
-
         presenter = new BasePresenter();
         initFragment();
         selectFragment(0);
-        mNavigationView.setNavigationItemSelectedListener(this);
-        mNavigationView.setItemIconTintList(null);
     }
 
     @Override
     protected void initData() {
-        initNavigationHeader();
         initNavigation();
     }
 
     @Override
     protected void initToolbar() {
         setSupportActionBar(mToolBar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ActionBarDrawerToggle mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolBar, R.string.drawer_open, R.string.drawer_close);
-        mToggle.syncState();
-        mDrawerLayout.addDrawerListener(mToggle);
     }
 
     private void initFragment() {
@@ -112,17 +83,6 @@ public class MainActivity extends BaseRootActivity implements NavigationView.OnN
         switch (view.getId()) {
             case R.id.float_button:
                 scrollToTop();
-                break;
-        }
-    }
-
-    @Override
-    public void onMessageEvent(MessageEvent event) {
-        super.onMessageEvent(event);
-        switch (event.getCode()) {
-            case EventConstant.LOGINSUCCESS:
-            case EventConstant.LOGOUTSUCCESS:
-                initNavigationHeader();
                 break;
         }
     }
@@ -162,16 +122,6 @@ public class MainActivity extends BaseRootActivity implements NavigationView.OnN
         ft.show(currentFragment);
         ft.commitAllowingStateLoss();
         presenter.setCurrentPage(position);
-    }
-
-    /**
-     * 设置Navigation Header
-     */
-    private void initNavigationHeader() {
-        mTvName.setText((Boolean) SharedPreferenceUtil.get(activity, Constant.ISLOGIN, false) ?
-                (String) SharedPreferenceUtil.get(activity, Constant.USERNAME, "") : getString(R.string.click_head_login));
-        GlideUtil.loadRoundImage(activity, R.drawable.image_head, imageHead);
-        imageHead.setOnClickListener(v -> JumpUtil.overlay(activity, LoginActivity.class));
     }
 
     /**
@@ -246,26 +196,6 @@ public class MainActivity extends BaseRootActivity implements NavigationView.OnN
             SharedPreferenceUtil.put(activity, Constant.ISLOGIN, Constant.FALSE);
             finish();
         }
-    }
-
-    /**
-     * Navigation菜单选择
-     *
-     * @param item
-     */
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_item_music:
-                mDrawerLayout.closeDrawer(Gravity.START);
-                mDrawerLayout.postDelayed(() -> JumpUtil.overlay(activity, MusicActivity.class), 400);
-                break;
-            case R.id.nav_item_video:
-                mDrawerLayout.closeDrawer(Gravity.START);
-                mDrawerLayout.postDelayed(() -> JumpUtil.overlay(activity, VideoActivity.class), 400);
-                break;
-        }
-        return true;
     }
 
 }

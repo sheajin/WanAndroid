@@ -71,7 +71,8 @@
             android:name=".ui.drawer.activity.LiveActivity"
             android:configChanges="orientation|screenSize|navigation"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity android:name=".ui.gank.fragment.GankFragment"></activity>
+        <activity android:name=".ui.gank.fragment.GankFragment" />
+        <activity android:name=".ui.gank.fragment.ExtraFragment"></activity>
     </application>
 
 </manifest>

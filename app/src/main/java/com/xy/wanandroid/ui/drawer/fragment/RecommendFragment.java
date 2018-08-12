@@ -15,7 +15,7 @@ import com.xy.wanandroid.contract.drawer.RecommendContract;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.presenter.drawer.RecommendListPresenter;
 import com.xy.wanandroid.ui.drawer.adapter.RecommendAdapter;
-import com.xy.wanandroid.ui.drawer.viewholder.RecommendEntity;
+import com.xy.wanandroid.data.drawer.RecommendEntity;
 import com.xy.wanandroid.util.app.DisplayUtil;
 import com.xy.wanandroid.util.app.LogUtil;
 import com.xy.wanandroid.util.app.ToastUtil;
@@ -35,7 +35,7 @@ public class RecommendFragment extends BaseRootFragment<RecommendListPresenter> 
     private List<RecommendEntity.ResultsBean> entityList;
     private RecommendAdapter mAdapter;
     private TextView mTvCate;
-    private int page;
+    private int page = 1;
     private String type = Constant.ALL;
 
     @Override
@@ -141,7 +141,7 @@ public class RecommendFragment extends BaseRootFragment<RecommendListPresenter> 
 
     @Override
     public void getRecommendErr(String info) {
-        ToastUtil.show(activity,info);
+        ToastUtil.show(activity, info);
         LogUtil.e(info);
         showError();
     }

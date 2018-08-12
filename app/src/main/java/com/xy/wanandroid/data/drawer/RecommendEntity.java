@@ -1,4 +1,4 @@
-package com.xy.wanandroid.ui.drawer.viewholder;
+package com.xy.wanandroid.data.drawer;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 

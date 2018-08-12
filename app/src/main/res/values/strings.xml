@@ -149,8 +149,12 @@
     <string name="all">全部</string>
     <string name="android">Android</string>
     <string name="app">app</string>
-    <string name="js">前端</string>
-    <string name="rest">休息视频</string>
+    <string name="js">js</string>
+    <string name="rest">rest</string>
     <string name="extra">拓展资源</string>
+    <string name="net_ease_ui">网易云UI</string>
+    <string name="douyu">斗鱼直播</string>
+    <string name="recommend">每日推荐</string>
+    <string name="rank">排行榜</string>
     <!---->
 </resources>

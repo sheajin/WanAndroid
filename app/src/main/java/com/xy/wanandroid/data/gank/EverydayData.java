@@ -9,9 +9,9 @@ import java.util.List;
 public class EverydayData {
 
     /**
-     * category : ["iOS","App","Android","js","welfare","rest"]
+     * category : ["前端","iOS","瞎推荐","App","拓展资源","Android","福利","休息视频"]
      * error : false
-     * results : {"Android":[{"_id":"5b62b9209d21225e0d3f58c5","createdAt":"2018-08-02T15:56:16.4Z","desc":"一个具有多种视图类型，内部水平RecyclerView和布局动画的RecyclerView。","images":["https://ww1.sinaimg.cn/large/0073sXn7ly1ftztj5b3nkg308o0f2wsi"],"publishedAt":"2018-08-06T00:00:00.0Z","source":"api","type":"Android","url":"https://github.com/pavelpoley/AdvancedRecycleView","used":true,"who":"lijinshan"},{"_id":"5b6407b69d2122195a5d426d","createdAt":"2018-08-03T15:43:50.581Z","desc":"仿微信朋友圈查看图片下拽返回。集成轻松，效果超赞~","images":["https://ww1.sinaimg.cn/large/0073sXn7ly1ftztj6hhkig30910g0npf","https://ww1.sinaimg.cn/large/0073sXn7ly1ftztj784kmg30910g0u0y","https://ww1.sinaimg.cn/large/0073sXn7ly1ftztj93atwg30910g0qv6","https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjbmwohg30910g0e12"],"publishedAt":"2018-08-06T00:00:00.0Z","source":"web","type":"Android","url":"https://github.com/iielse/ImageWatcher","used":true,"who":"else"},{"_id":"5b6413c79d21221963c630e3","createdAt":"2018-08-03T16:35:19.406Z","desc":"Android 快速实现新手引导层的库，通过简洁链式调用，一行代码实现引导层的显示","images":["https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjbtvopj30a00hs75a","https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjbwuqvj30a00hsjsc"],"publishedAt":"2018-08-06T00:00:00.0Z","source":"chrome","type":"Android","url":"https://github.com/huburt-Hu/NewbieGuide","used":true,"who":"枫叶"},{"_id":"5b6596d69d2122195bdbd802","createdAt":"2018-08-04T20:06:46.869Z","desc":"图片滤镜处理，相机滤镜处理，拍照，录制视频","images":["https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjjns4og308h0i01kz"],"publishedAt":"2018-08-06T00:00:00.0Z","source":"web","type":"Android","url":"https://github.com/DingMouRen/AndroidCameraFilter","used":true,"who":"DingMouRen"}],"App":[{"_id":"5b62b87b9d21225e14070613","createdAt":"2018-08-06T11:01:16.331Z","desc":"Flutter版本的Gank客户端","images":["https://ww1.sinaimg.cn/large/0073sXn7ly1ftztj1f9cqj31401z4n77","https://ww1.sinaimg.cn/large/0073sXn7ly1ftztj2coq1j31401z4gue","https://ww1.sinaimg.cn/large/0073sXn7ly1ftztj3pl3lj31401z44qp","https://ww1.sinaimg.cn/large/0073sXn7ly1ftztj4tc01j31401z4e83"],"publishedAt":"2018-08-06T00:00:00.0Z","source":"web","type":"App","url":"https://github.com/pknan520/flutter_gank","used":true,"who":"pknan520"},{"_id":"5b6420fb9d2122195a5d426e","createdAt":"2018-08-06T10:59:34.797Z","desc":"一款体验很好的Android app,Pixiv( P站 ) / Hitokoto( 一言 )","images":["https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjcnqhsj30u01hce1u","https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjd3czxj30u01hcki7","https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjdjbp3j30u01hcnof","https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjdqvjfj30u01hcgo3","https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjeh8kqj30u01hcnpd"],"publishedAt":"2018-08-06T00:00:00.0Z","source":"api","type":"App","url":"https://github.com/CeuiLiSA/Pixiv-android","used":true,"who":"魔君"}],"iOS":[{"_id":"5b614c2f9d212251fdac787e","createdAt":"2018-08-03T11:54:50.290Z","desc":"一个iOS 截图快捷库。","images":[],"publishedAt":"2018-08-06T00:00:00.0Z","source":"api","type":"iOS","url":"https://github.com/VernonVan/PPSnapshotKit","used":true,"who":"lijinshan"},{"_id":"5b6427749d2122195bdbd7ff","createdAt":"2018-08-03T17:59:16.48Z","desc":"一个使用简单，交互友好的BottomSheetView，swift编写","images":["https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjexap2g309a0ggdwd","https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjf7lpfg309a0ggqay","https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjig93qg309a0ggdjx"],"publishedAt":"2018-08-06T00:00:00.0Z","source":"web","type":"iOS","url":"https://github.com/pujiaxin33/JXBottomSheetView","used":true,"who":"暴走的鑫鑫"},{"_id":"5b67be219d2122195a5d4277","createdAt":"2018-08-06T11:18:57.551Z","desc":"iOS / Objective C：一种非常简单的UIAlertView替代方案.","images":["https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjovr28g308t0foe02","https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjp78csg308t0fojvq","https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjpi41bg308t0foq44","https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjppj3xg308t0fodgk"],"publishedAt":"2018-08-06T00:00:00.0Z","source":"chrome","type":"iOS","url":"https://github.com/cwRichardKim/RKDropdownAlert","used":true,"who":"lijinshan"}],"rest":[{"_id":"5b67b89d9d2122195a5d4275","createdAt":"2018-08-06T10:55:25.717Z","desc":"这会是让他永远后悔的一次点球#陈翔六点半#","publishedAt":"2018-08-06T00:00:00.0Z","source":"web","type":"rest","url":"http://v.douyin.com/e9sR9f/","used":true,"who":"lijinshanmx"}],"js":[{"_id":"5b64277d9d2122195e3db643","createdAt":"2018-08-03T17:59:25.703Z","desc":"基于Vue实现动态组织结构图","images":["https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjir736j30o10dvwg2"],"publishedAt":"2018-08-06T00:00:00.0Z","source":"web","type":"js","url":"https://refined-x.com/2018/08/03/%E5%9F%BA%E4%BA%8EVue%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84%E5%9B%BE/","used":true,"who":"zangtao"},{"_id":"5b67bb209d2122195bdbd807","createdAt":"2018-08-06T11:06:08.284Z","desc":"超赞的Vue管理后台。","images":["https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjmmmesj31fl0p5ael"],"publishedAt":"2018-08-06T00:00:00.0Z","source":"chrome","type":"js","url":"https://github.com/PanJiaChen/vue-element-admin","used":true,"who":"lijinshan"},{"_id":"5b67bbdc9d2122195e3db64c","createdAt":"2018-08-06T11:09:16.63Z","desc":"基于G2和React的数据可视化库","images":["https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjniqadj318g0t2qpn"],"publishedAt":"2018-08-06T00:00:00.0Z","source":"chrome","type":"js","url":"https://github.com/alibaba/BizCharts","used":true,"who":"lijinshan"},{"_id":"5b67bd729d2122195e3db64e","createdAt":"2018-08-06T11:17:00.165Z","desc":"React Slider","images":["https://ww1.sinaimg.cn/large/0073sXn7ly1ftztjo7nf8g30fv028dvb"],"publishedAt":"2018-08-06T00:00:00.0Z","source":"chrome","type":"js","url":"https://github.com/react-component/slider","used":true,"who":"lijinshan"}],"welfare":[{"_id":"5b67b7fd9d2122195bdbd806","createdAt":"2018-08-06T10:52:45.809Z","desc":"2018-08-06","publishedAt":"2018-08-06T00:00:00.0Z","source":"api","type":"welfare","url":"https://ww1.sinaimg.cn/large/0065oQSqly1ftzsj15hgvj30sg15hkbw.jpg","used":true,"who":"lijinshan"}]}
+     * results : {"Android":[{"_id":"5b6aac809d21226f48f68bf0","createdAt":"2018-08-08T16:40:32.198Z","desc":"功能完备的Drawable工具箱，通过代码构建种类多样的Drawable，摆脱枯燥重复的drawable.xml文件","images":["https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhjbgc3g30a00hs1kx","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhju7n3j31401z4qh6","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhklcekg30a00hs18m","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhl25zvj31401z417j"],"publishedAt":"2018-08-09T00:00:00.0Z","source":"web","type":"Android","url":"https://github.com/duanhong169/DrawableToolbox","used":true,"who":"Hong Duan"},{"_id":"5b6ba1409d21226f4e09c771","createdAt":"2018-08-09T10:04:48.564Z","desc":"XHttp2 一个功能强悍的网络请求库，使用RxJava2 + Retrofit2 + OKHttp组合进行封装。","publishedAt":"2018-08-09T00:00:00.0Z","source":"chrome","type":"Android","url":"https://github.com/xuexiangjys/XHttp2","used":true,"who":"xuexiangjys"},{"_id":"5b6bae639d21226f4a61f713","createdAt":"2018-08-09T11:00:51.163Z","desc":"Material Design应用程序的自定义抽屉实现。","images":["https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhly3akj30u01hcarm","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhmuipcj30u01hc1b1","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhnfpzej30u01hc7kp"],"publishedAt":"2018-08-09T00:00:00.0Z","source":"chrome","type":"Android","url":"https://github.com/heinrichreimer/material-drawer","used":true,"who":"lijinshanmx"},{"_id":"5b6baea09d21226f4e09c773","createdAt":"2018-08-09T11:01:52.50Z","desc":"自定义开关锁View。","images":["https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bho8cibg30dc0np1f4"],"publishedAt":"2018-08-09T00:00:00.0Z","source":"chrome","type":"Android","url":"https://github.com/zhpanvip/OvalLockView","used":true,"who":"lijinshanmx"},{"_id":"5b6bb0589d21226f48f68bf3","createdAt":"2018-08-09T11:09:12.925Z","desc":"一个通用的android UI库，用于根据浮动操作按钮显示用户显示菜单。","images":["https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhucz1qg309m03gtda","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhup59vg307g086ten","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhv25qtg304c08en3b"],"publishedAt":"2018-08-09T00:00:00.0Z","source":"chrome","type":"Android","url":"https://github.com/HarinTrivedi/FABRevealMenu-master","used":true,"who":"lijinshanmx"}],"App":[{"_id":"5b699a049d21226f4575557f","createdAt":"2018-08-09T11:10:30.111Z","desc":"又一个 Flutter 编写的 Gank.io App, 支持 Android、iOS平台","images":["https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhd81wvj30920g4q49","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhdjsv7j30920g4dgd","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhdvpeij30920g4t9g","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhe9bw4j30920g4q3o"],"publishedAt":"2018-08-09T00:00:00.0Z","source":"web","type":"App","url":"https://github.com/cfelixw/GankIOFlutter","used":true,"who":"cfelixmac"},{"_id":"5b69a0329d21226f4e09c76d","createdAt":"2018-08-09T10:54:47.311Z","desc":"超完整的Flutter项目，功能丰富，适合学习和日常使用。","images":["https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhfiotdj30xr190n46","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhh3mhaj30xr190qem","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhhvvb0j30xr190akl"],"publishedAt":"2018-08-09T00:00:00.0Z","source":"web","type":"App","url":"https://github.com/CarGuo/GSYGithubAppFlutter","used":true,"who":"Shuyu Guo"}],"iOS":[{"_id":"5b682eee9d21226f4e09c766","createdAt":"2018-08-06T19:20:14.808Z","desc":"iOS专业K线第一版：K线主副图、趋势图、成交量、滚动、放大缩小、MACD、KDJ等","images":["https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhanqwsj30vk0hsmzw","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhbq8dwj30vk0hs0vv","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhckdy1j30vk0hs40z"],"publishedAt":"2018-08-09T00:00:00.0Z","source":"chrome","type":"iOS","url":"https://github.com/WillkYang/Y_KLine","used":true,"who":"lijinshanmx"},{"_id":"5b6bb85f9d21226f4a61f716","createdAt":"2018-08-09T11:43:27.875Z","desc":"iOS的自适应可滚动图形视图，用于显示简单的离散数据集。 用Swift写的。","images":["https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhwyfuog30dc07gkjl","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bi1rxxag30dc07iqva","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bi33blhg30dc07eb29","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bi3bs2sj30m80et765","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bi5ob4pg30dc07jnpe"],"publishedAt":"2018-08-09T00:00:00.0Z","source":"chrome","type":"iOS","url":"https://github.com/philackm/ScrollableGraphView","used":true,"who":"lijinshanmx"},{"_id":"5b6bb87f9d21226f48f68bf7","createdAt":"2018-08-09T11:43:59.438Z","desc":"ViewAnimator只需一行即可实现您的用户界面","images":["https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bi6r0c6g30m80gob29"],"publishedAt":"2018-08-09T00:00:00.0Z","source":"chrome","type":"iOS","url":"https://github.com/marcosgriselli/ViewAnimator","used":true,"who":"lijinshanmx"}],"休息视频":[{"_id":"5b6bad5f9d21226f4a61f711","createdAt":"2018-08-09T10:56:31.965Z","desc":"教育猫咪的最佳办法。。。。。。","publishedAt":"2018-08-09T00:00:00.0Z","source":"web","type":"休息视频","url":"https://v.douyin.com/eqD9W1/","used":true,"who":"lijinshanmx"}],"前端":[{"_id":"5b67d98f9d2122195a5d4278","createdAt":"2018-08-06T13:15:59.171Z","desc":"微信小程序WebStorm插件，支持PHPSTORM,WEBSTORM等全部intellij产品","publishedAt":"2018-08-09T00:00:00.0Z","source":"web","type":"前端","url":"https://www.jianshu.com/p/a436b4f9e4ed","used":true,"who":"Ysnow"},{"_id":"5b69a09e9d21226f48f68bee","createdAt":"2018-08-09T10:53:28.67Z","desc":"对cordova、ionic、react-native、weex、kotlin-native、flutter等跨平台框架的分析。","publishedAt":"2018-08-09T00:00:00.0Z","source":"web","type":"前端","url":"https://juejin.im/post/5b395eb96fb9a00e556123ef","used":true,"who":"Shuyu Guo"}],"拓展资源":[{"_id":"5b69a0669d21226f4a61f70e","createdAt":"2018-08-09T10:54:14.976Z","desc":"如何快速从0开发一个完整的 Flutter APP，并针对开发过程中可能遇到的问题进行填坑。","publishedAt":"2018-08-09T00:00:00.0Z","source":"web","type":"拓展资源","url":"https://juejin.im/entry/5b631e3e51882519861c2ef1","used":true,"who":"Shuyu Guo"},{"_id":"5b6ba0aa9d21226f4e09c770","createdAt":"2018-08-09T10:50:23.848Z","desc":"终于，我还是码造一个了中国地图","publishedAt":"2018-08-09T00:00:00.0Z","source":"web","type":"拓展资源","url":"https://mp.weixin.qq.com/s/f505bQ8w89WHaAkB1NWp9A","used":true,"who":"codeGoogler"}],"瞎推荐":[{"_id":"5b698fa69d21226f4a61f70d","createdAt":"2018-08-07T20:25:10.814Z","desc":"一言·古诗词版 API，可以随机返回一条古诗词名句。支持 png / svg / json / txt 返回","publishedAt":"2018-08-09T00:00:00.0Z","source":"web","type":"瞎推荐","url":"https://github.com/xenv/gushici","used":true,"who":"不那么空"},{"_id":"5b6baf289d21226f4a61f714","createdAt":"2018-08-09T11:04:08.205Z","desc":"几个不错的小轮子集合。网上类似的很多，这里只是多提供一种选择。","images":["https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhoroetj30av0dcta7","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhr9dirg306x0dc4qq","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhsyapfg306y0dbe81","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhtvxl3g30ir093wz8"],"publishedAt":"2018-08-09T00:00:00.0Z","source":"chrome","type":"瞎推荐","url":"https://github.com/Simon-Leeeeeeeee/SLWidget","used":true,"who":"lijinshan"}],"福利":[{"_id":"5b6bad449d21226f45755582","createdAt":"2018-08-09T10:56:04.962Z","desc":"2018-08-09","publishedAt":"2018-08-09T00:00:00.0Z","source":"web","type":"福利","url":"https://ww1.sinaimg.cn/large/0065oQSqgy1fu39hosiwoj30j60qyq96.jpg","used":true,"who":"lijinshanmx"}]}
      */
 
     private boolean error;
@@ -44,72 +44,58 @@ public class EverydayData {
 
     public static class ResultsBean {
         private List<AndroidBean> Android;
-        private List<AndroidBean> App;
-        private List<AndroidBean> iOS;
-        private List<AndroidBean> rest;
-        private List<AndroidBean> js;
-        private List<AndroidBean> welfare;
+        private List<AppBean> App;
+        private List<IOSBean> iOS;
+        private List<RestBean> 休息视频;
+        private List<JsBean> 前端;
+        private List<ExtraBean> 拓展资源;
+        private List<RecommendBean> 瞎推荐;
+        private List<WelfereBean> 福利;
 
         public List<AndroidBean> getAndroid() {
             return Android;
         }
 
-        public void setAndroid(List<AndroidBean> Android) {
-            this.Android = Android;
-        }
-
-        public List<AndroidBean> getApp() {
+        public List<AppBean> getApp() {
             return App;
         }
 
-        public void setApp(List<AndroidBean> app) {
-            App = app;
-        }
-
-        public List<AndroidBean> getiOS() {
+        public List<IOSBean> getIOS() {
             return iOS;
         }
 
-        public void setiOS(List<AndroidBean> iOS) {
-            this.iOS = iOS;
+        public List<RestBean> getRest() {
+            return 休息视频;
         }
 
-        public List<AndroidBean> getRest() {
-            return rest;
+        public List<JsBean> getJs() {
+            return 前端;
         }
 
-        public void setRest(List<AndroidBean> rest) {
-            this.rest = rest;
+        public List<ExtraBean> getExtra() {
+            return 拓展资源;
         }
 
-        public List<AndroidBean> getJs() {
-            return js;
+        public List<RecommendBean> getRecommend() {
+            return 瞎推荐;
         }
 
-        public void setJs(List<AndroidBean> js) {
-            this.js = js;
-        }
-
-        public List<AndroidBean> getWelfare() {
-            return welfare;
-        }
-
-        public void setWelfare(List<AndroidBean> welfare) {
-            this.welfare = welfare;
+        public List<WelfereBean> getWelfere() {
+            return 福利;
         }
 
         public static class AndroidBean {
             /**
-             * _id : 5b62b9209d21225e0d3f58c5
-             * createdAt : 2018-08-02T15:56:16.4Z
-             * desc : 一个具有多种视图类型，内部水平RecyclerView和布局动画的RecyclerView。
-             * images : ["https://ww1.sinaimg.cn/large/0073sXn7ly1ftztj5b3nkg308o0f2wsi"]
-             * publishedAt : 2018-08-06T00:00:00.0Z
-             * source : api
+             * _id : 5b6aac809d21226f48f68bf0
+             * createdAt : 2018-08-08T16:40:32.198Z
+             * desc : 功能完备的Drawable工具箱，通过代码构建种类多样的Drawable，摆脱枯燥重复的drawable.xml文件
+             * images : ["https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhjbgc3g30a00hs1kx","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhju7n3j31401z4qh6","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhklcekg30a00hs18m","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhl25zvj31401z417j"]
+             * publishedAt : 2018-08-09T00:00:00.0Z
+             * source : web
              * type : Android
-             * url : https://github.com/pavelpoley/AdvancedRecycleView
+             * url : https://github.com/duanhong169/DrawableToolbox
              * used : true
-             * who : lijinshan
+             * who : Hong Duan
              */
 
             private String _id;
@@ -204,5 +190,706 @@ public class EverydayData {
             }
         }
 
+        public static class AppBean {
+            /**
+             * _id : 5b699a049d21226f4575557f
+             * createdAt : 2018-08-09T11:10:30.111Z
+             * desc : 又一个 Flutter 编写的 Gank.io App, 支持 Android、iOS平台
+             * images : ["https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhd81wvj30920g4q49","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhdjsv7j30920g4dgd","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhdvpeij30920g4t9g","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhe9bw4j30920g4q3o"]
+             * publishedAt : 2018-08-09T00:00:00.0Z
+             * source : web
+             * type : App
+             * url : https://github.com/cfelixw/GankIOFlutter
+             * used : true
+             * who : cfelixmac
+             */
+
+            private String _id;
+            private String createdAt;
+            private String desc;
+            private String publishedAt;
+            private String source;
+            private String type;
+            private String url;
+            private boolean used;
+            private String who;
+            private List<String> images;
+
+            public String get_id() {
+                return _id;
+            }
+
+            public void set_id(String _id) {
+                this._id = _id;
+            }
+
+            public String getCreatedAt() {
+                return createdAt;
+            }
+
+            public void setCreatedAt(String createdAt) {
+                this.createdAt = createdAt;
+            }
+
+            public String getDesc() {
+                return desc;
+            }
+
+            public void setDesc(String desc) {
+                this.desc = desc;
+            }
+
+            public String getPublishedAt() {
+                return publishedAt;
+            }
+
+            public void setPublishedAt(String publishedAt) {
+                this.publishedAt = publishedAt;
+            }
+
+            public String getSource() {
+                return source;
+            }
+
+            public void setSource(String source) {
+                this.source = source;
+            }
+
+            public String getType() {
+                return type;
+            }
+
+            public void setType(String type) {
+                this.type = type;
+            }
+
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
+            }
+
+            public boolean isUsed() {
+                return used;
+            }
+
+            public void setUsed(boolean used) {
+                this.used = used;
+            }
+
+            public String getWho() {
+                return who;
+            }
+
+            public void setWho(String who) {
+                this.who = who;
+            }
+
+            public List<String> getImages() {
+                return images;
+            }
+
+            public void setImages(List<String> images) {
+                this.images = images;
+            }
+        }
+
+        public static class IOSBean {
+            /**
+             * _id : 5b682eee9d21226f4e09c766
+             * createdAt : 2018-08-06T19:20:14.808Z
+             * desc : iOS专业K线第一版：K线主副图、趋势图、成交量、滚动、放大缩小、MACD、KDJ等
+             * images : ["https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhanqwsj30vk0hsmzw","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhbq8dwj30vk0hs0vv","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhckdy1j30vk0hs40z"]
+             * publishedAt : 2018-08-09T00:00:00.0Z
+             * source : chrome
+             * type : iOS
+             * url : https://github.com/WillkYang/Y_KLine
+             * used : true
+             * who : lijinshanmx
+             */
+
+            private String _id;
+            private String createdAt;
+            private String desc;
+            private String publishedAt;
+            private String source;
+            private String type;
+            private String url;
+            private boolean used;
+            private String who;
+            private List<String> images;
+
+            public String get_id() {
+                return _id;
+            }
+
+            public void set_id(String _id) {
+                this._id = _id;
+            }
+
+            public String getCreatedAt() {
+                return createdAt;
+            }
+
+            public void setCreatedAt(String createdAt) {
+                this.createdAt = createdAt;
+            }
+
+            public String getDesc() {
+                return desc;
+            }
+
+            public void setDesc(String desc) {
+                this.desc = desc;
+            }
+
+            public String getPublishedAt() {
+                return publishedAt;
+            }
+
+            public void setPublishedAt(String publishedAt) {
+                this.publishedAt = publishedAt;
+            }
+
+            public String getSource() {
+                return source;
+            }
+
+            public void setSource(String source) {
+                this.source = source;
+            }
+
+            public String getType() {
+                return type;
+            }
+
+            public void setType(String type) {
+                this.type = type;
+            }
+
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
+            }
+
+            public boolean isUsed() {
+                return used;
+            }
+
+            public void setUsed(boolean used) {
+                this.used = used;
+            }
+
+            public String getWho() {
+                return who;
+            }
+
+            public void setWho(String who) {
+                this.who = who;
+            }
+
+            public List<String> getImages() {
+                return images;
+            }
+
+            public void setImages(List<String> images) {
+                this.images = images;
+            }
+        }
+
+        public static class RestBean {
+            /**
+             * _id : 5b6bad5f9d21226f4a61f711
+             * createdAt : 2018-08-09T10:56:31.965Z
+             * desc : 教育猫咪的最佳办法。。。。。。
+             * publishedAt : 2018-08-09T00:00:00.0Z
+             * source : web
+             * type : 休息视频
+             * url : https://v.douyin.com/eqD9W1/
+             * used : true
+             * who : lijinshanmx
+             */
+
+            private String _id;
+            private String createdAt;
+            private String desc;
+            private String publishedAt;
+            private String source;
+            private String type;
+            private String url;
+            private boolean used;
+            private String who;
+
+            public String get_id() {
+                return _id;
+            }
+
+            public void set_id(String _id) {
+                this._id = _id;
+            }
+
+            public String getCreatedAt() {
+                return createdAt;
+            }
+
+            public void setCreatedAt(String createdAt) {
+                this.createdAt = createdAt;
+            }
+
+            public String getDesc() {
+                return desc;
+            }
+
+            public void setDesc(String desc) {
+                this.desc = desc;
+            }
+
+            public String getPublishedAt() {
+                return publishedAt;
+            }
+
+            public void setPublishedAt(String publishedAt) {
+                this.publishedAt = publishedAt;
+            }
+
+            public String getSource() {
+                return source;
+            }
+
+            public void setSource(String source) {
+                this.source = source;
+            }
+
+            public String getType() {
+                return type;
+            }
+
+            public void setType(String type) {
+                this.type = type;
+            }
+
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
+            }
+
+            public boolean isUsed() {
+                return used;
+            }
+
+            public void setUsed(boolean used) {
+                this.used = used;
+            }
+
+            public String getWho() {
+                return who;
+            }
+
+            public void setWho(String who) {
+                this.who = who;
+            }
+        }
+
+        public static class JsBean {
+            /**
+             * _id : 5b67d98f9d2122195a5d4278
+             * createdAt : 2018-08-06T13:15:59.171Z
+             * desc : 微信小程序WebStorm插件，支持PHPSTORM,WEBSTORM等全部intellij产品
+             * publishedAt : 2018-08-09T00:00:00.0Z
+             * source : web
+             * type : 前端
+             * url : https://www.jianshu.com/p/a436b4f9e4ed
+             * used : true
+             * who : Ysnow
+             */
+
+            private String _id;
+            private String createdAt;
+            private String desc;
+            private String publishedAt;
+            private String source;
+            private String type;
+            private String url;
+            private boolean used;
+            private String who;
+
+            public String get_id() {
+                return _id;
+            }
+
+            public void set_id(String _id) {
+                this._id = _id;
+            }
+
+            public String getCreatedAt() {
+                return createdAt;
+            }
+
+            public void setCreatedAt(String createdAt) {
+                this.createdAt = createdAt;
+            }
+
+            public String getDesc() {
+                return desc;
+            }
+
+            public void setDesc(String desc) {
+                this.desc = desc;
+            }
+
+            public String getPublishedAt() {
+                return publishedAt;
+            }
+
+            public void setPublishedAt(String publishedAt) {
+                this.publishedAt = publishedAt;
+            }
+
+            public String getSource() {
+                return source;
+            }
+
+            public void setSource(String source) {
+                this.source = source;
+            }
+
+            public String getType() {
+                return type;
+            }
+
+            public void setType(String type) {
+                this.type = type;
+            }
+
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
+            }
+
+            public boolean isUsed() {
+                return used;
+            }
+
+            public void setUsed(boolean used) {
+                this.used = used;
+            }
+
+            public String getWho() {
+                return who;
+            }
+
+            public void setWho(String who) {
+                this.who = who;
+            }
+        }
+
+        public static class ExtraBean {
+            /**
+             * _id : 5b69a0669d21226f4a61f70e
+             * createdAt : 2018-08-09T10:54:14.976Z
+             * desc : 如何快速从0开发一个完整的 Flutter APP，并针对开发过程中可能遇到的问题进行填坑。
+             * publishedAt : 2018-08-09T00:00:00.0Z
+             * source : web
+             * type : 拓展资源
+             * url : https://juejin.im/entry/5b631e3e51882519861c2ef1
+             * used : true
+             * who : Shuyu Guo
+             */
+
+            private String _id;
+            private String createdAt;
+            private String desc;
+            private String publishedAt;
+            private String source;
+            private String type;
+            private String url;
+            private boolean used;
+            private String who;
+
+            public String get_id() {
+                return _id;
+            }
+
+            public void set_id(String _id) {
+                this._id = _id;
+            }
+
+            public String getCreatedAt() {
+                return createdAt;
+            }
+
+            public void setCreatedAt(String createdAt) {
+                this.createdAt = createdAt;
+            }
+
+            public String getDesc() {
+                return desc;
+            }
+
+            public void setDesc(String desc) {
+                this.desc = desc;
+            }
+
+            public String getPublishedAt() {
+                return publishedAt;
+            }
+
+            public void setPublishedAt(String publishedAt) {
+                this.publishedAt = publishedAt;
+            }
+
+            public String getSource() {
+                return source;
+            }
+
+            public void setSource(String source) {
+                this.source = source;
+            }
+
+            public String getType() {
+                return type;
+            }
+
+            public void setType(String type) {
+                this.type = type;
+            }
+
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
+            }
+
+            public boolean isUsed() {
+                return used;
+            }
+
+            public void setUsed(boolean used) {
+                this.used = used;
+            }
+
+            public String getWho() {
+                return who;
+            }
+
+            public void setWho(String who) {
+                this.who = who;
+            }
+        }
+
+        public static class RecommendBean {
+            /**
+             * _id : 5b698fa69d21226f4a61f70d
+             * createdAt : 2018-08-07T20:25:10.814Z
+             * desc : 一言·古诗词版 API，可以随机返回一条古诗词名句。支持 png / svg / json / txt 返回
+             * publishedAt : 2018-08-09T00:00:00.0Z
+             * source : web
+             * type : 瞎推荐
+             * url : https://github.com/xenv/gushici
+             * used : true
+             * who : 不那么空
+             * images : ["https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhoroetj30av0dcta7","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhr9dirg306x0dc4qq","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhsyapfg306y0dbe81","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhtvxl3g30ir093wz8"]
+             */
+
+            private String _id;
+            private String createdAt;
+            private String desc;
+            private String publishedAt;
+            private String source;
+            private String type;
+            private String url;
+            private boolean used;
+            private String who;
+            private List<String> images;
+
+            public String get_id() {
+                return _id;
+            }
+
+            public void set_id(String _id) {
+                this._id = _id;
+            }
+
+            public String getCreatedAt() {
+                return createdAt;
+            }
+
+            public void setCreatedAt(String createdAt) {
+                this.createdAt = createdAt;
+            }
+
+            public String getDesc() {
+                return desc;
+            }
+
+            public void setDesc(String desc) {
+                this.desc = desc;
+            }
+
+            public String getPublishedAt() {
+                return publishedAt;
+            }
+
+            public void setPublishedAt(String publishedAt) {
+                this.publishedAt = publishedAt;
+            }
+
+            public String getSource() {
+                return source;
+            }
+
+            public void setSource(String source) {
+                this.source = source;
+            }
+
+            public String getType() {
+                return type;
+            }
+
+            public void setType(String type) {
+                this.type = type;
+            }
+
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
+            }
+
+            public boolean isUsed() {
+                return used;
+            }
+
+            public void setUsed(boolean used) {
+                this.used = used;
+            }
+
+            public String getWho() {
+                return who;
+            }
+
+            public void setWho(String who) {
+                this.who = who;
+            }
+
+            public List<String> getImages() {
+                return images;
+            }
+
+            public void setImages(List<String> images) {
+                this.images = images;
+            }
+        }
+
+        public static class WelfereBean {
+            /**
+             * _id : 5b6bad449d21226f45755582
+             * createdAt : 2018-08-09T10:56:04.962Z
+             * desc : 2018-08-09
+             * publishedAt : 2018-08-09T00:00:00.0Z
+             * source : web
+             * type : 福利
+             * url : https://ww1.sinaimg.cn/large/0065oQSqgy1fu39hosiwoj30j60qyq96.jpg
+             * used : true
+             * who : lijinshanmx
+             */
+
+            private String _id;
+            private String createdAt;
+            private String desc;
+            private String publishedAt;
+            private String source;
+            private String type;
+            private String url;
+            private boolean used;
+            private String who;
+
+            public String get_id() {
+                return _id;
+            }
+
+            public void set_id(String _id) {
+                this._id = _id;
+            }
+
+            public String getCreatedAt() {
+                return createdAt;
+            }
+
+            public void setCreatedAt(String createdAt) {
+                this.createdAt = createdAt;
+            }
+
+            public String getDesc() {
+                return desc;
+            }
+
+            public void setDesc(String desc) {
+                this.desc = desc;
+            }
+
+            public String getPublishedAt() {
+                return publishedAt;
+            }
+
+            public void setPublishedAt(String publishedAt) {
+                this.publishedAt = publishedAt;
+            }
+
+            public String getSource() {
+                return source;
+            }
+
+            public void setSource(String source) {
+                this.source = source;
+            }
+
+            public String getType() {
+                return type;
+            }
+
+            public void setType(String type) {
+                this.type = type;
+            }
+
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
+            }
+
+            public boolean isUsed() {
+                return used;
+            }
+
+            public void setUsed(boolean used) {
+                this.used = used;
+            }
+
+            public String getWho() {
+                return who;
+            }
+
+            public void setWho(String who) {
+                this.who = who;
+            }
+        }
     }
 }

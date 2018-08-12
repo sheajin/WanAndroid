@@ -20,7 +20,6 @@ public class LiveVideoFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-
     }
 
 }
