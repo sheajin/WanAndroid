@@ -14,6 +14,7 @@ import com.xy.wanandroid.data.gank.MusicBanner;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.presenter.gank.GankPresenter;
 import com.xy.wanandroid.ui.gank.adapter.GankAdapter;
+import com.xy.wanandroid.util.app.LogUtil;
 import com.xy.wanandroid.util.app.SharedPreferenceUtil;
 import com.xy.wanandroid.util.app.ToastUtil;
 import com.xy.wanandroid.util.glide.GlideImageLoader;
@@ -32,7 +33,8 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
     @BindView(R.id.normal_view)
     RecyclerView mRv;
 
-    private List<EverydayData> gankList;
+    private EverydayData.ResultsBean resultsBean;
+    private List<EverydayData.ResultsBean.AndroidBean> gankList;
     private GankAdapter mAdapter;
     private List<String> imageList;
     private Banner banner;
@@ -124,10 +126,19 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
     }
 
     @Override
-    public void getEveryDayListOk(EverydayData dataList, boolean isRefresh) {
+    public void getEveryDayListOk(EverydayData.ResultsBean result, boolean isRefresh) {
         if (mAdapter == null) {
             return;
         }
+        resultsBean = result;
+//        gankList.addAll();
+//        gankList.addAll(resultsBean.getApp());
+//        gankList.addAll(resultsBean.getiOS());
+//        gankList.addAll(resultsBean.getJs());
+//        gankList.addAll(resultsBean.getRest());
+//        gankList.addAll(resultsBean.getWelfare());
+
+        LogUtil.e("gankList"+ (result.getAndroid().size()));
         showNormal();
     }
 

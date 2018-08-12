@@ -186,5 +186,5 @@ public interface ApiService {
      */
     @Headers({"baseUrl:gank"})
     @GET("api/today")
-    Observable<EverydayData> getEveryDayData();
+    Observable<EverydayData.ResultsBean> getEveryDayData();
 }

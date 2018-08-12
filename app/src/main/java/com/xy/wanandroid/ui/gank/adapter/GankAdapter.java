@@ -12,14 +12,14 @@ import java.util.List;
  * Created by jxy on 2018/8/8.
  */
 
-public class GankAdapter extends BaseQuickAdapter<EverydayData, BaseViewHolder> {
+public class GankAdapter extends BaseQuickAdapter<EverydayData.ResultsBean.AndroidBean, BaseViewHolder> {
 
-    public GankAdapter(int layoutResId, @Nullable List<EverydayData> data) {
+    public GankAdapter(int layoutResId, @Nullable List<EverydayData.ResultsBean.AndroidBean> data) {
         super(layoutResId, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, EverydayData item) {
+    protected void convert(BaseViewHolder helper, EverydayData.ResultsBean.AndroidBean item) {
 
     }
 }

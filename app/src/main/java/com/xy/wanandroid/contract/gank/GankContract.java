@@ -13,7 +13,7 @@ public class GankContract {
 
     public interface View extends AbstractView {
 
-        void getEveryDayListOk(EverydayData data, boolean isRefresh);
+        void getEveryDayListOk(EverydayData.ResultsBean data, boolean isRefresh);
 
         void getEveryDayListErr(String info);
 

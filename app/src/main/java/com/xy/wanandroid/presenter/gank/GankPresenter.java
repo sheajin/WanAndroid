@@ -51,9 +51,9 @@ public class GankPresenter extends BasePresenter<GankContract.View> implements G
                 .getEveryDayData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new HttpObserver<EverydayData>() {
+                .subscribe(new HttpObserver<EverydayData.ResultsBean>() {
                     @Override
-                    public void onNext(EverydayData data) {
+                    public void onNext(EverydayData.ResultsBean data) {
                         mView.getEveryDayListOk(data, isRefresh);
                     }
 
