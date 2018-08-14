@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/dp_8"
-                    android:text="@string/net_ease_ui" />
+                    android:text="@string/music" />
             </LinearLayout>
 
             <LinearLayout

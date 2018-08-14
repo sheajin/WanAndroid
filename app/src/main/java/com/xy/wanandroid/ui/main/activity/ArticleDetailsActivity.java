@@ -180,10 +180,8 @@ public class ArticleDetailsActivity extends BaseRootActivity<ArticleDetailPresen
 
     @Override
     public void onBackPressedSupport() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
-            pop();
-        } else {
-            supportFinishAfterTransition();
+        if (!mAgentWeb.back()) {
+            finish();
         }
     }
 

@@ -28,6 +28,7 @@ ext {
             ijkplayer               : "0.8.8",
             GSYVideoPlayer          : "5.0.1",
             danmuku                 : "0.4.6",
+            photoview               : "2.0.0",
     ]
 
     dependencies = [
@@ -87,6 +88,7 @@ ext {
             "ByeBurger"                         : "com.github.githubwing:ByeBurger:${version["ByeBurger"]}",
             "fragmentation"                     : "me.yokeyword:fragmentation:${version["fragmentation"]}",
             "bugly"                             : "com.tencent.bugly:crashreport:${version["bugly"]}",
+            "photoview"                         : "com.github.chrisbanes:PhotoView:${version["photoview"]}",
 //            "logger"                            : "com.orhanobut:logger:2.1.1",
 
             //unit test , 为了整合mockito和PowerMockito，mockito暂时最高只支持2.8.9

@@ -1,12 +1,14 @@
 package com.xy.wanandroid.model.api;
 
-import com.xy.wanandroid.data.drawer.CategoryTitle;
-import com.xy.wanandroid.data.drawer.LiveList;
-import com.xy.wanandroid.data.drawer.LiveUrl;
-import com.xy.wanandroid.data.drawer.RecommendData;
-import com.xy.wanandroid.data.drawer.RecommendEntity;
+import com.xy.wanandroid.data.gank.CategoryTitle;
 import com.xy.wanandroid.data.gank.EverydayData;
+import com.xy.wanandroid.data.gank.HotMovieBean;
+import com.xy.wanandroid.data.gank.LiveList;
+import com.xy.wanandroid.data.gank.LiveUrl;
+import com.xy.wanandroid.data.gank.MovieDetailBean;
 import com.xy.wanandroid.data.gank.MusicBanner;
+import com.xy.wanandroid.data.gank.RecommendData;
+import com.xy.wanandroid.data.gank.RecommendEntity;
 import com.xy.wanandroid.data.knowledge.KnowledgeClassifyListBean;
 import com.xy.wanandroid.data.knowledge.KnowledgeListBean;
 import com.xy.wanandroid.data.login.UserInfo;
@@ -20,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -28,6 +31,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 
 /**
  * Created by JinXinYi on 2018/1/7.
@@ -183,14 +187,48 @@ public interface ApiService {
     Observable<MusicBanner> getMusicBanner();
 
     /**
+     * 获取所有数据
+     */
+    @Headers({"baseUrl:gank"})
+    @GET("api/data/all/8/1")
+    Observable<RecommendData> getEveryDayData();
+
+    /**
      * 获取每日推荐数据
      */
     @Headers({"baseUrl:gank"})
-    @GET("api/data/all/18/1")
-    Observable<RecommendData> getEveryDayData();
-
-
-        @Headers({"baseUrl:gank"})
     @GET("api/today")
     Observable<EverydayData> getToday();
+
+    /**
+     * 下载图片
+     */
+    @GET
+    Observable<ResponseBody> download(@Url String url);
+
+    /**
+     * 豆瓣热映电影，每日更新
+     */
+    @Headers({"baseUrl:douban"})
+    @GET("v2/movie/in_theaters")
+    Observable<HotMovieBean> getHotMovie();
+
+    /**
+     * 获取电影详情
+     *
+     * @param id 电影bean里的id
+     */
+    @Headers({"baseUrl:douban"})
+    @GET("v2/movie/subject/{id}")
+    Observable<MovieDetailBean> getMovieDetail(@Path("id") String id);
+
+    /**
+     * 获取豆瓣电影top250
+     *
+     * @param start 从多少开始，如从"0"开始
+     * @param count 一次请求的数目，如"10"条，最多100
+     */
+    @Headers({"baseUrl:douban"})
+    @GET("v2/movie/top250")
+    Observable<HotMovieBean> getMovieTop(@Query("start") int start, @Query("count") int count);
 }

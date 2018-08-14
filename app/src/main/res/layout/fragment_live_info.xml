@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xy.wanandroid.ui.drawer.fragment.LiveInfoFragment">
+    tools:context="com.xy.wanandroid.ui.gank.fragment.LiveInfoFragment">
 
     <LinearLayout
         android:id="@+id/normal_view"
@@ -51,6 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:text=""
+                        android:layout_alignParentStart="true"
                         android:singleLine="true"
                         android:textColor="@color/finish"
                         android:textSize="@dimen/sp_12" />

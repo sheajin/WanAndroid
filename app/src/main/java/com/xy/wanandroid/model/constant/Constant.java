@@ -49,6 +49,7 @@ public class Constant {
     public static final String REST = "休息视频";
     public static final String EXTRA = "拓展资源";
     public static final String WELFARE = "福利";
+    public static final String BIGPICTURE = "image";
 
 
     /**
@@ -81,6 +82,7 @@ public class Constant {
     public static final String GETLIVE = "live";
     public static final String GANK_API = "gank";
     public static final String MUSIC_BANNER = "music";
+    public static final String DOUBAN_API = "douban";
 
     /**
      * params
@@ -101,8 +103,6 @@ public class Constant {
     public static final String ROOMSRC = "room_src";
     public static final String ROOMTAG = "room_tag";
     public static final String ROOMDETAIL = "room_detail";
-
-
 
 }
 

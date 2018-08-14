@@ -4,10 +4,9 @@
     xmlns:tl="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:id="@+id/normal_view"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.xy.wanandroid.ui.drawer.activity.VideoActivity">
+    tools:context="com.xy.wanandroid.ui.gank.activity.VideoActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -24,6 +23,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
+        android:id="@+id/normal_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">

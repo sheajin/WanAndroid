@@ -3,6 +3,7 @@ package com.xy.wanandroid.util.app;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Environment;
 import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.v7.widget.RecyclerView;
@@ -12,8 +13,8 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.xy.wanandroid.base.app.MyApplication;
 
+import java.io.File;
 import java.lang.reflect.Field;
-import java.util.Calendar;
 import java.util.Random;
 
 /**
@@ -159,6 +160,27 @@ public class CommonUtil {
         int index = new Random().nextInt(22);
         String imageUrl = "http://ojyz0c8un.bkt.clouddn.com/home_six_";
         return imageUrl + index + ".png";
+    }
+
+    /**
+     * 设置文件下载路径
+     */
+    public static String getDownloadPath(String path) {
+        String rootPath = Environment.getExternalStorageDirectory() + "/WanAndroid";
+        if (path == null) {
+            return rootPath;
+        }
+        try {
+            // 指定路径如果没有则创建并添加
+            File file = new File(rootPath + path);
+            //判断是否存在
+            if (!file.exists()) {
+                file.mkdirs();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rootPath + path;
     }
 
 }

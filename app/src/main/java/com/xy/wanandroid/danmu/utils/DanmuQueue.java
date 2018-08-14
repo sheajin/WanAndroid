@@ -1,6 +1,6 @@
 package com.xy.wanandroid.danmu.utils;
 
-import com.xy.wanandroid.data.drawer.DanmuBean;
+import com.xy.wanandroid.data.gank.DanmuBean;
 
 import java.util.ArrayList;
 import java.util.List;

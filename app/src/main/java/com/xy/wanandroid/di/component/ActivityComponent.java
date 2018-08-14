@@ -3,8 +3,9 @@ package com.xy.wanandroid.di.component;
 import android.app.Activity;
 
 import com.xy.wanandroid.di.module.ActivityModule;
-import com.xy.wanandroid.ui.drawer.activity.LiveActivity;
-import com.xy.wanandroid.ui.drawer.activity.VideoActivity;
+import com.xy.wanandroid.ui.gank.activity.LiveActivity;
+import com.xy.wanandroid.ui.gank.activity.RecommendActivity;
+import com.xy.wanandroid.ui.gank.activity.VideoActivity;
 import com.xy.wanandroid.ui.login.LoginActivity;
 import com.xy.wanandroid.ui.login.RegisterActivity;
 import com.xy.wanandroid.ui.main.activity.ArticleDetailsActivity;
@@ -42,5 +43,7 @@ public interface ActivityComponent {
     void inject(VideoActivity activity);
 
     void inject(LiveActivity activity);
+
+    void inject(RecommendActivity activity);
 
 }

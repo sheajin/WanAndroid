@@ -8,6 +8,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/normal_view"
+        android:layout_marginBottom="@dimen/dp_20"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

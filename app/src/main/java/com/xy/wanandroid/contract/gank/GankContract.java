@@ -2,11 +2,8 @@ package com.xy.wanandroid.contract.gank;
 
 import com.xy.wanandroid.base.presenter.AbsPresenter;
 import com.xy.wanandroid.base.view.AbstractView;
-import com.xy.wanandroid.data.drawer.RecommendData;
-import com.xy.wanandroid.data.gank.EverydayData;
+import com.xy.wanandroid.data.gank.RecommendData;
 import com.xy.wanandroid.data.gank.MusicBanner;
-
-import java.util.List;
 
 /**
  * Created by jxy on 2018/8/8.

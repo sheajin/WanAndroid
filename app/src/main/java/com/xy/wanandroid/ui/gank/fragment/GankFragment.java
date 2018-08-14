@@ -1,22 +1,29 @@
 package com.xy.wanandroid.ui.gank.fragment;
 
+import android.content.Intent;
+import android.graphics.Rect;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.app.MyApplication;
 import com.xy.wanandroid.base.fragment.BaseRootFragment;
 import com.xy.wanandroid.contract.gank.GankContract;
-import com.xy.wanandroid.data.drawer.RecommendData;
 import com.xy.wanandroid.data.gank.MusicBanner;
+import com.xy.wanandroid.data.gank.RecommendData;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.presenter.gank.GankPresenter;
-import com.xy.wanandroid.ui.drawer.activity.MusicActivity;
-import com.xy.wanandroid.ui.drawer.activity.VideoActivity;
+import com.xy.wanandroid.ui.gank.activity.RecommendActivity;
+import com.xy.wanandroid.ui.gank.activity.VideoActivity;
 import com.xy.wanandroid.ui.gank.adapter.GankAdapter;
+import com.xy.wanandroid.ui.main.activity.ArticleDetailsActivity;
+import com.xy.wanandroid.util.app.DisplayUtil;
 import com.xy.wanandroid.util.app.JumpUtil;
+import com.xy.wanandroid.util.app.LogUtil;
 import com.xy.wanandroid.util.app.SharedPreferenceUtil;
 import com.xy.wanandroid.util.app.ToastUtil;
 import com.xy.wanandroid.util.glide.GlideImageLoader;
@@ -30,7 +37,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class GankFragment extends BaseRootFragment<GankPresenter> implements GankContract.View {
+public class GankFragment extends BaseRootFragment<GankPresenter> implements GankContract.View, GankAdapter.OnItemClickListener {
 
     @BindView(R.id.normal_view)
     RecyclerView mRv;
@@ -39,6 +46,7 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
     private GankAdapter mAdapter;
     private List<String> urlList;
     private Banner banner;
+    private int retryCount = 2;
 
     @Override
     public int getLayoutResID() {
@@ -58,7 +66,25 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
     protected void initUI() {
         super.initUI();
         showLoading();
-        mRv.setLayoutManager(new LinearLayoutManager(activity));
+        GridLayoutManager manager = new GridLayoutManager(context, 3);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRv.setLayoutManager(manager);
+        RecyclerView.ItemDecoration itemDecoration = new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
+                if ((itemPosition - 1) % 3 == 0) {
+                    outRect.left = DisplayUtil.dip2px(context, 6);
+                }
+                if ((itemPosition - 1) % 3 == 1) {
+                    outRect.left = DisplayUtil.dip2px(context, 6);
+                    outRect.right = DisplayUtil.dip2px(context, 6);
+                }
+                if ((itemPosition - 1) % 3 == 2) {
+                    outRect.right = DisplayUtil.dip2px(context, 6);
+                }
+            }
+        };
+        mRv.addItemDecoration(itemDecoration);
     }
 
     @Override
@@ -66,9 +92,10 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
         gankList = new ArrayList<>();
         urlList = new ArrayList<>();
         getBanner();
-        mAdapter = new GankAdapter(gankList);
+        mAdapter = new GankAdapter(R.layout.item_gank, gankList);
         initHeader();
         mPresenter.getEveryDayList();
+        mAdapter.setOnItemClickListener(this);
         mRv.setAdapter(mAdapter);
     }
 
@@ -80,7 +107,7 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
         View view = headerView.findViewById(R.id.view_header);
         View cateView = headerView.findViewById(R.id.view_category);
         View douYuView = headerView.findViewById(R.id.view_douyu);
-        cateView.setOnClickListener(v -> JumpUtil.overlay(activity, MusicActivity.class));
+        cateView.setOnClickListener(v -> JumpUtil.overlay(activity, RecommendActivity.class));
         douYuView.setOnClickListener(v -> JumpUtil.overlay(activity, VideoActivity.class));
         banner = headerView.findViewById(R.id.banner);
         headerView.removeView(view);
@@ -100,7 +127,6 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
             String banner = (String) SharedPreferenceUtil.get(context, Constant.GANK_BANNER, Constant.DEFAULT);
             urlList = Arrays.asList(banner.split("="));
         }
-
     }
 
     private void showBanner() {
@@ -129,6 +155,11 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
     @Override
     public void getMusicBannerErr(String info) {
         ToastUtil.show(context, info);
+        retryCount--;
+        if (retryCount > 0) {
+            showError();
+            mPresenter.getMusicBanner();
+        }
     }
 
     @Override
@@ -138,7 +169,6 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
         }
         gankList = dataList.getResults();
         mAdapter.replaceData(mPresenter.getList(gankList));
-        mAdapter.setGankList(mPresenter.getList(gankList));
         showNormal();
     }
 
@@ -148,4 +178,25 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
         showError();
     }
 
+    @Override
+    public void reload() {
+        showLoading();
+        mPresenter.getEveryDayList();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (banner != null) {
+            banner.stopAutoPlay();
+        }
+    }
+
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        Intent intent = new Intent(activity, ArticleDetailsActivity.class);
+        intent.putExtra(Constant.ARTICLE_TITLE, mAdapter.getData().get(position).getDesc());
+        intent.putExtra(Constant.ARTICLE_LINK, mAdapter.getData().get(position).getUrl());
+        startActivity(intent);
+    }
 }

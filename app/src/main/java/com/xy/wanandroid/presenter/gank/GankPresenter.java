@@ -2,12 +2,12 @@ package com.xy.wanandroid.presenter.gank;
 
 import com.xy.wanandroid.base.presenter.BasePresenter;
 import com.xy.wanandroid.contract.gank.GankContract;
-import com.xy.wanandroid.data.drawer.RecommendData;
+import com.xy.wanandroid.data.gank.RecommendData;
 import com.xy.wanandroid.data.gank.MusicBanner;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;
 import com.xy.wanandroid.model.api.HttpObserver;
-import com.xy.wanandroid.util.app.LogUtil;
+import com.xy.wanandroid.util.app.CommonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +24,13 @@ import io.reactivex.schedulers.Schedulers;
 public class GankPresenter extends BasePresenter<GankContract.View> implements GankContract.Presenter {
 
     private boolean isRefresh = true;
+    private List<String> images = new ArrayList<>();
     private List<RecommendData.ResultsBean> js = new ArrayList<>();
     private List<RecommendData.ResultsBean> android = new ArrayList<>();
     private List<RecommendData.ResultsBean> ios = new ArrayList<>();
     private List<RecommendData.ResultsBean> recommend = new ArrayList<>();
     private List<RecommendData.ResultsBean> app = new ArrayList<>();
     private List<RecommendData.ResultsBean> rest = new ArrayList<>();
-    private List<RecommendData.ResultsBean> welfare = new ArrayList<>();
     private List<RecommendData.ResultsBean> extra = new ArrayList<>();
 
     @Inject
@@ -63,7 +63,6 @@ public class GankPresenter extends BasePresenter<GankContract.View> implements G
                 .getEveryDayData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-
                 .subscribe(new HttpObserver<RecommendData>() {
                     @Override
                     public void onNext(RecommendData data) {
@@ -94,11 +93,32 @@ public class GankPresenter extends BasePresenter<GankContract.View> implements G
                 extra.add(resultsBean);
             } else if (resultsBean.getType().equals("瞎推荐")) {
                 recommend.add(resultsBean);
-            } else if (resultsBean.getType().equals("福利")) {
-                welfare.add(resultsBean);
             } else if (resultsBean.getType().equals("休息视频")) {
                 rest.add(resultsBean);
             }
+        }
+        addRecommendBean(android, "Android");
+        addRecommendBean(ios, "iOS");
+        addRecommendBean(app, "App");
+        addRecommendBean(js, "前端");
+        addRecommendBean(extra, "拓展资源");
+        addRecommendBean(recommend, "瞎推荐");
+        addRecommendBean(rest, "休息视频");
+    }
+
+    /**
+     * 数量不足添加数据以填充列表
+     *
+     * @param list
+     * @param type
+     */
+    private void addRecommendBean(List<RecommendData.ResultsBean> list, String type) {
+        images.add(CommonUtil.getRandomImage());
+        if (list.size() % 3 == 1) {
+            list.add(new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ONE, "", "", type, "", "", images));
+            list.add(new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ONE, "", "", type, "", "", images));
+        } else if (list.size() % 3 == 2) {
+            list.add(new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ONE, "", "", type, "", "", images));
         }
     }
 
@@ -110,12 +130,11 @@ public class GankPresenter extends BasePresenter<GankContract.View> implements G
         sortList(gankList);
         lists.addAll(chooseLayout(android));
         lists.addAll(chooseLayout(ios));
-        lists.addAll(chooseLayout(app));
         lists.addAll(chooseLayout(js));
+        lists.addAll(chooseLayout(app));
         lists.addAll(chooseLayout(extra));
         lists.addAll(chooseLayout(recommend));
         lists.addAll(chooseLayout(rest));
-        lists.addAll(chooseLayout(welfare));
         return lists;
     }
 

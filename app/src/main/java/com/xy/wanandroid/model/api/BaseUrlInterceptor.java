@@ -43,6 +43,8 @@ public class BaseUrlInterceptor implements Interceptor {
                 baseURL = HttpUrl.parse(AppConfig.GANK_API);
             } else if (urlName.equals(Constant.MUSIC_BANNER)) {
                 baseURL = HttpUrl.parse(AppConfig.MUSIC_BANNER);
+            } else if (urlName.equals(Constant.DOUBAN_API)) {
+                baseURL = HttpUrl.parse(AppConfig.DOUBAN_API);
             }
             //重建新的HttpUrl，需要重新设置的url部分
             HttpUrl newHttpUrl = oldUrl.newBuilder()

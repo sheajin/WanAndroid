@@ -60,7 +60,6 @@ dependencies {
     implementation rootProject.ext.dependencies["SmartRefreshLayout"]
     implementation rootProject.ext.dependencies["SmartRefreshHeader"]
     implementation rootProject.ext.dependencies["banner"]
-//    implementation 'com.github.wenchaosong:Banner:2.1.6'
     implementation rootProject.ext.dependencies["circleimageview"]
     implementation rootProject.ext.dependencies["agentweb"]
     implementation rootProject.ext.dependencies["FlycoTabLayout_Lib"]
@@ -98,6 +97,7 @@ dependencies {
     implementation rootProject.ext.dependencies["multidex"]
     //other
     implementation rootProject.ext.dependencies["ByeBurger"]
+    implementation rootProject.ext.dependencies["photoview"]
     implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
     implementation rootProject.ext.dependencies["fragmentation"]
     implementation rootProject.ext.dependencies["bugly"]

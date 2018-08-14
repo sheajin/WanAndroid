@@ -3,8 +3,7 @@ package com.xy.wanandroid.di.component;
 import android.app.Activity;
 
 import com.xy.wanandroid.di.module.FragmentModule;
-import com.xy.wanandroid.ui.drawer.fragment.LiveListFragment;
-import com.xy.wanandroid.ui.drawer.fragment.RecommendFragment;
+import com.xy.wanandroid.ui.gank.fragment.LiveListFragment;
 import com.xy.wanandroid.ui.gank.fragment.GankFragment;
 import com.xy.wanandroid.ui.knowledge.fragment.KnowledgeFragment;
 import com.xy.wanandroid.ui.knowledge.fragment.KnowledgeListFragment;
@@ -34,8 +33,6 @@ public interface FragmentComponent {
     void inject(ProjectListFragment fragment);
 
     void inject(LiveListFragment fragment);
-
-    void inject(RecommendFragment fragment);
 
     void inject(GankFragment fragment);
 }

@@ -63,16 +63,15 @@
         <activity android:name=".ui.main.activity.SearchActivity" />
         <activity android:name=".ui.main.activity.SearchResultActivity" />
         <activity android:name=".ui.mine.activity.MyLabelActivity" />
-        <activity android:name=".ui.drawer.activity.MusicActivity" />
+        <activity android:name=".ui.gank.activity.RecommendActivity" />
         <activity
-            android:name=".ui.drawer.activity.VideoActivity"
+            android:name=".ui.gank.activity.VideoActivity"
             android:configChanges="orientation|screenSize" />
         <activity
-            android:name=".ui.drawer.activity.LiveActivity"
+            android:name=".ui.gank.activity.LiveActivity"
             android:configChanges="orientation|screenSize|navigation"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity android:name=".ui.gank.fragment.GankFragment" />
-        <activity android:name=".ui.gank.fragment.ExtraFragment"></activity>
+        <activity android:name=".ui.gank.activity.PictureBrowseActivity" />
     </application>
 
 </manifest>
