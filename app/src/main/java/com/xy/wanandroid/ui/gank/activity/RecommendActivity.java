@@ -58,7 +58,7 @@ public class RecommendActivity extends BaseRootActivity<RecommendListPresenter> 
     @Override
     protected void initToolbar() {
         setSupportActionBar(mToolBar);
-        getSupportActionBar().setTitle(getString(R.string.music));
+        getSupportActionBar().setTitle(getString(R.string.recommend));
         mToolBar.setNavigationOnClickListener(v -> onBackPressedSupport());
     }
 

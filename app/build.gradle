@@ -70,7 +70,7 @@ dependencies {
     implementation rootProject.ext.dependencies["ijkplayerarm"]
     implementation rootProject.ext.dependencies["danmuku"]
     implementation rootProject.ext.dependencies["bottomsheet"]
-//    implementation rootProject.ext.dependencies["GSYVideoPlayer"]
+    //    implementation rootProject.ext.dependencies["GSYVideoPlayer"]
     //net
     implementation rootProject.ext.dependencies["okhttp"]
     implementation rootProject.ext.dependencies["logging-interceptor"]

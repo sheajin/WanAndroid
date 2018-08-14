@@ -72,6 +72,7 @@
             android:configChanges="orientation|screenSize|navigation"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".ui.gank.activity.PictureBrowseActivity" />
+        <activity android:name=".ui.gank.activity.DoubanHotActivity" />
     </application>
 
 </manifest>

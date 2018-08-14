@@ -58,6 +58,7 @@ public class ApiStore {
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(new NullOnEmptyConverterFactory())
                 .client(builder.build())
                 .build();
     }

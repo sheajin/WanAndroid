@@ -3,6 +3,7 @@ package com.xy.wanandroid.di.component;
 import android.app.Activity;
 
 import com.xy.wanandroid.di.module.ActivityModule;
+import com.xy.wanandroid.ui.gank.activity.DoubanHotActivity;
 import com.xy.wanandroid.ui.gank.activity.LiveActivity;
 import com.xy.wanandroid.ui.gank.activity.RecommendActivity;
 import com.xy.wanandroid.ui.gank.activity.VideoActivity;
@@ -45,5 +46,7 @@ public interface ActivityComponent {
     void inject(LiveActivity activity);
 
     void inject(RecommendActivity activity);
+
+    void inject(DoubanHotActivity activity);
 
 }

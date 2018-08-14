@@ -17,6 +17,7 @@ import com.xy.wanandroid.data.gank.MusicBanner;
 import com.xy.wanandroid.data.gank.RecommendData;
 import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.presenter.gank.GankPresenter;
+import com.xy.wanandroid.ui.gank.activity.DoubanHotActivity;
 import com.xy.wanandroid.ui.gank.activity.RecommendActivity;
 import com.xy.wanandroid.ui.gank.activity.VideoActivity;
 import com.xy.wanandroid.ui.gank.adapter.GankAdapter;
@@ -107,8 +108,10 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
         View view = headerView.findViewById(R.id.view_header);
         View cateView = headerView.findViewById(R.id.view_category);
         View douYuView = headerView.findViewById(R.id.view_douyu);
+        View rankView = headerView.findViewById(R.id.view_rank);
         cateView.setOnClickListener(v -> JumpUtil.overlay(activity, RecommendActivity.class));
         douYuView.setOnClickListener(v -> JumpUtil.overlay(activity, VideoActivity.class));
+        rankView.setOnClickListener(v -> JumpUtil.overlay(activity, DoubanHotActivity.class));
         banner = headerView.findViewById(R.id.banner);
         headerView.removeView(view);
         headerView.addView(view);

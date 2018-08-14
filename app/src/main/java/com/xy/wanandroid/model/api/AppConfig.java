@@ -16,7 +16,7 @@ public class AppConfig {
     static final String GETLIVE_URL = "https://m.douyu.com/";
     static final String GANK_API = "https://gank.io/";
     static final String MUSIC_BANNER = "https://tingapi.ting.baidu.com/";
-    public final static String DOUBAN_API = "https://api.douban.com/";
+    public final static String DOUBAN_API = "http://api.douban.com/";
 
     public static final String source1 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
     public static final String source2 = "http://c.brightcove.com/services/mobile/streaming/index/rendition.m3u8?assetId=5330721253001&pubId=4938530621001&videoId=5330694577001";

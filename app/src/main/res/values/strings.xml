@@ -159,5 +159,6 @@
     <string name="resource_fail">资源加载失败</string>
     <string name="save">保存</string>
     <string name="open_storage">请开启存储权限</string>
+    <string name="douban_hot">热映榜</string>
     <!---->
 </resources>
