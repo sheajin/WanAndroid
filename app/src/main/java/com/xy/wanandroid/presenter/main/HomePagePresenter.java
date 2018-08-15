@@ -41,11 +41,6 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
     }
 
     @Override
-    public void attachView(HomePageContract.View view) {
-        super.attachView(view);
-    }
-
-    @Override
     public void autoRefresh() {
         isRefresh = true;
         currentPage = 0;

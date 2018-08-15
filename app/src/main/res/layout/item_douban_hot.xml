@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@color/white_255"
+    app:cardCornerRadius="@dimen/dp_4"
+    app:cardElevation="0px"
+    app:cardPreventCornerOverlap="false">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dp_6"
+        android:background="?attr/selectableItemBackgroundBorderless">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/view_preview"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="0dp"
+            app:cardBackgroundColor="@color/white_255"
+            app:cardCornerRadius="@dimen/dp_4"
+            app:cardElevation="0px"
+            app:cardPreventCornerOverlap="false"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_score"
+            app:layout_constraintDimensionRatio="2:3"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image_preview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@color/black_15" />
+
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_22"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/homepage_color"
+            android:textSize="@dimen/sp_15"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/view_preview"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="一出好戏" />
+
+        <TextView
+            android:id="@+id/tv_director"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_4"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/homepage_color"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintLeft_toRightOf="@+id/view_preview"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:text=" 导演sss导演sss" />
+
+        <TextView
+            android:id="@+id/tv_actor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_4"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/homepage_color"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintLeft_toRightOf="@+id/view_preview"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_director"
+            tools:text="导演sss导演sss " />
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_4"
+            android:ellipsize="end"
+            android:textColor="@color/homepage_color"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintLeft_toRightOf="@+id/view_preview"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_actor"
+            tools:text="导演sss导演sss " />
+
+        <TextView
+            android:id="@+id/tv_score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_12"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_4"
+            android:textColor="@color/homepage_color"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintLeft_toRightOf="@+id/view_preview"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_type"
+            tools:text="导演sss导演sss " />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

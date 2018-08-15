@@ -1,4 +1,4 @@
-package com.xy.wanandroid.model.api;
+package com.xy.wanandroid.model.Interceptor;
 
 import android.util.Log;
 

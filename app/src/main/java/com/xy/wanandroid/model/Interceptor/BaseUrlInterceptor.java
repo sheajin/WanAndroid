@@ -1,6 +1,7 @@
-package com.xy.wanandroid.model.api;
+package com.xy.wanandroid.model.Interceptor;
 
 
+import com.xy.wanandroid.model.api.AppConfig;
 import com.xy.wanandroid.model.constant.Constant;
 
 import java.io.IOException;

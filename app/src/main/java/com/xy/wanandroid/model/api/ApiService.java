@@ -210,7 +210,7 @@ public interface ApiService {
      * 豆瓣热映电影，每日更新
      */
     @Headers({"baseUrl:douban"})
-    @GET("v2/movie/in_theaters")
+    @POST("v2/movie/in_theaters")
     Observable<HotMovieBean> getHotMovie();
 
     /**

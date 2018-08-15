@@ -79,6 +79,8 @@ dependencies {
     implementation rootProject.ext.dependencies["adapter-rxjava2"]
     implementation rootProject.ext.dependencies["glide"]
     annotationProcessor rootProject.ext.dependencies["glide_compiler"]
+    // add cookie
+    implementation files('libs/commons-lang-2.6.jar')
     //rx
     implementation rootProject.ext.dependencies["rxjava"]
     implementation rootProject.ext.dependencies["rxandroid"]

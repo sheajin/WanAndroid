@@ -160,5 +160,7 @@
     <string name="save">保存</string>
     <string name="open_storage">请开启存储权限</string>
     <string name="douban_hot">热映榜</string>
+    <string name="top250">豆瓣电影Top250</string>
+    <string name="ever">从前现在过去了再不来~</string>
     <!---->
 </resources>

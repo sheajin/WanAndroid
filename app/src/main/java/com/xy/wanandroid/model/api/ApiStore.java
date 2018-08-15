@@ -4,11 +4,15 @@ import android.annotation.SuppressLint;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.xy.wanandroid.model.cookie.CookiesManager;
+import com.xy.wanandroid.model.Interceptor.AddCookiesInterceptor;
+import com.xy.wanandroid.model.Interceptor.BaseUrlInterceptor;
+import com.xy.wanandroid.model.Interceptor.HttpLoggingInterceptor;
+import com.xy.wanandroid.model.Interceptor.ReceivedCookiesInterceptor;
 
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -48,11 +52,22 @@ public class ApiStore {
                     Request request = requestBuilder.build();
                     return chain.proceed(request);
                 })
+                //信任证书
                 .sslSocketFactory(getSSLSocketFactory())
+                //设置超时时间
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
+                .writeTimeout(20, TimeUnit.SECONDS)
                 .addInterceptor(new BaseUrlInterceptor())
                 .addInterceptor(new HttpLoggingInterceptor())
+                //错误重连
+                .retryOnConnectionFailure(true)
+                //(错误原因是验证证书时发现真正请求和服务器的证书域名不一致) 此代码为忽略hostname 的验证
                 .hostnameVerifier((hostname, session) -> true)
-                .cookieJar(new CookiesManager());
+                //Cookie 豆瓣API会无法调用,还没搞懂 使用下面的
+                //.cookieJar(new CookiesManager())
+                .addInterceptor(new ReceivedCookiesInterceptor())
+                .addInterceptor(new AddCookiesInterceptor());
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -74,6 +89,11 @@ public class ApiStore {
 
                 @Override
                 public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+                    try {
+                        chain[0].checkValidity();
+                    } catch (Exception e) {
+                        throw new CertificateException("Certificate not valid or trusted.");
+                    }
                 }
 
                 @Override
@@ -89,6 +109,5 @@ public class ApiStore {
             return null;
         }
     }
-
 
 }

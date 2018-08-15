@@ -1,31 +1,39 @@
 package com.xy.wanandroid.ui.gank.activity;
 
 import android.graphics.Rect;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
 
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseRootActivity;
 import com.xy.wanandroid.contract.gank.HotContract;
 import com.xy.wanandroid.data.gank.HotMovieBean;
-import com.xy.wanandroid.data.gank.RecommendEntity;
 import com.xy.wanandroid.presenter.gank.HotPresenter;
-import com.xy.wanandroid.ui.gank.adapter.RecommendAdapter;
+import com.xy.wanandroid.ui.gank.adapter.DoubanHotAdapter;
+import com.xy.wanandroid.util.app.CommonUtil;
 import com.xy.wanandroid.util.app.DisplayUtil;
+import com.xy.wanandroid.util.app.JumpUtil;
+import com.xy.wanandroid.util.glide.GlideUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class DoubanHotActivity extends BaseRootActivity<HotPresenter> implements HotContract.View {
 
     @BindView(R.id.toolbar_douban_hot)
     Toolbar mToolBar;
-    @BindView(R.id.normal_view)
+    @BindView(R.id.rv)
     RecyclerView mRv;
+    @BindView(R.id.image_head)
+    ImageView mIvHead;
 
-    private List<HotMovieBean> hotList;
+    private List<HotMovieBean.SubjectsBean> hotList;
+    private DoubanHotAdapter mAdapter;
 
     @Override
     protected int getLayoutId() {
@@ -47,31 +55,49 @@ public class DoubanHotActivity extends BaseRootActivity<HotPresenter> implements
     @Override
     protected void initUI() {
         super.initUI();
-//        showLoading();
+        showLoading();
+        GlideUtil.loadImage(context, CommonUtil.getRandomImage(), mIvHead);
+        mRv.setLayoutManager(new LinearLayoutManager(activity));
         RecyclerView.ItemDecoration itemDecoration = new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
                 super.getItemOffsets(outRect, itemPosition, parent);
-                if (itemPosition == hotList.size())
+                if (itemPosition == hotList.size() - 1)
                     outRect.bottom = DisplayUtil.dip2px(context, 12);
+                outRect.top = DisplayUtil.dip2px(context, 12);
+                outRect.left = DisplayUtil.dip2px(context, 12);
+                outRect.right = DisplayUtil.dip2px(context, 12);
             }
         };
         mRv.addItemDecoration(itemDecoration);
+        mRv.setNestedScrollingEnabled(false);
     }
 
     @Override
     protected void initData() {
         hotList = new ArrayList<>();
         mPresenter.getHotMovie();
+        mAdapter = new DoubanHotAdapter(R.layout.item_douban_hot, hotList);
+        mRv.setAdapter(mAdapter);
+    }
+
+    @OnClick(R.id.view_movie_top)
+    void click() {
+        JumpUtil.overlay(context, DoubanTopActivity.class);
     }
 
     @Override
     public void getHotMovieOk(HotMovieBean hotMovieBean) {
-
+        if (mAdapter == null) {
+            return;
+        }
+        hotList.addAll(hotMovieBean.getSubjects());
+        mAdapter.replaceData(hotList);
+        showNormal();
     }
 
     @Override
     public void getHotMovieErr(String info) {
-
+        showError();
     }
 }

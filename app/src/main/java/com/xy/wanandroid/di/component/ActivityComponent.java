@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.xy.wanandroid.di.module.ActivityModule;
 import com.xy.wanandroid.ui.gank.activity.DoubanHotActivity;
+import com.xy.wanandroid.ui.gank.activity.DoubanTopActivity;
 import com.xy.wanandroid.ui.gank.activity.LiveActivity;
 import com.xy.wanandroid.ui.gank.activity.RecommendActivity;
 import com.xy.wanandroid.ui.gank.activity.VideoActivity;
@@ -48,5 +49,7 @@ public interface ActivityComponent {
     void inject(RecommendActivity activity);
 
     void inject(DoubanHotActivity activity);
+
+    void inject(DoubanTopActivity activity);
 
 }

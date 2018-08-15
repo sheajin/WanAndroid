@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dp_10"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/view_preview"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_150"
+        app:cardBackgroundColor="@color/white_255"
+        app:cardCornerRadius="@dimen/dp_4"
+        app:cardElevation="0px"
+        app:cardPreventCornerOverlap="false">
+
+        <ImageView
+            android:id="@+id/image_preview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_6"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/finish"
+        android:textSize="@dimen/sp_13"
+        tools:text="导演sss导演sss " />
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_4"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/finish"
+        android:textSize="@dimen/sp_12"
+        tools:text="导演sss导演sss " />
+</LinearLayout>
