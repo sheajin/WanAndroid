@@ -190,7 +190,7 @@ public interface ApiService {
      * 获取所有数据
      */
     @Headers({"baseUrl:gank"})
-    @GET("api/data/all/8/1")
+    @GET("api/data/all/15/1")
     Observable<RecommendData> getEveryDayData();
 
     /**

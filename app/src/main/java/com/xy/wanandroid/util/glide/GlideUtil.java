@@ -106,4 +106,16 @@ public class GlideUtil {
                 .into(imageView);
     }
 
+    /**
+     * 高斯模糊
+     */
+    public static void loadBlurImage(Context context, Object resId, ImageView imageView) {
+        RequestOptions mOptions = new RequestOptions().bitmapTransform(new GlideBlurFormation(context));
+        Glide.with(context)
+                .load(resId)
+                .apply(mOptions)
+                .into(imageView);
+    }
+
+
 }

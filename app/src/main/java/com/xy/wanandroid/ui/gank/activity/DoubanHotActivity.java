@@ -1,11 +1,17 @@
 package com.xy.wanandroid.ui.gank.activity;
 
+import android.content.Intent;
+import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseRootActivity;
 import com.xy.wanandroid.contract.gank.HotContract;
@@ -23,7 +29,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class DoubanHotActivity extends BaseRootActivity<HotPresenter> implements HotContract.View {
+public class DoubanHotActivity extends BaseRootActivity<HotPresenter> implements HotContract.View, DoubanHotAdapter.OnItemClickListener {
 
     @BindView(R.id.toolbar_douban_hot)
     Toolbar mToolBar;
@@ -78,7 +84,14 @@ public class DoubanHotActivity extends BaseRootActivity<HotPresenter> implements
         hotList = new ArrayList<>();
         mPresenter.getHotMovie();
         mAdapter = new DoubanHotAdapter(R.layout.item_douban_hot, hotList);
+        mAdapter.setOnItemClickListener(this);
         mRv.setAdapter(mAdapter);
+        WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+                WindowManager.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
+                , 0, 0, PixelFormat.TRANSPARENT
+        );
+        params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;
+        params.type = WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
     }
 
     @OnClick(R.id.view_movie_top)
@@ -99,5 +112,11 @@ public class DoubanHotActivity extends BaseRootActivity<HotPresenter> implements
     @Override
     public void getHotMovieErr(String info) {
         showError();
+    }
+
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        Intent intent = new Intent(activity, MovieDetailsActivity.class);
+        startActivity(intent);
     }
 }

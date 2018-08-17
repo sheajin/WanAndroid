@@ -17,7 +17,7 @@ public class GankViewHolder extends BaseViewHolder {
 
     public GankViewHolder(View view) {
         super(view);
-        viewType = view.findViewById(R.id.view_type);
+//        viewType = view.findViewById(R.id.view_type);
         imageView = view.findViewById(R.id.image_view);
     }
 }

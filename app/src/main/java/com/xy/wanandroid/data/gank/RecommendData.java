@@ -7,7 +7,6 @@ import java.util.List;
 /**
  * Created by jxy on 2018/8/9.
  */
-
 public class RecommendData {
 
     /**
@@ -48,20 +47,20 @@ public class RecommendData {
          * images : ["https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhanqwsj30vk0hsmzw","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhbq8dwj30vk0hs0vv","https://ww1.sinaimg.cn/large/0073sXn7gy1fu3bhckdy1j30vk0hs40z"]
          */
 
-        private String _id;
-        private String createdAt;
+        public static final int ENTITY_TITLE = 1;
+        public static final int ENTITY_ITEM = 2;
+        private int layoutType;
         private String desc;
         private String publishedAt;
-        private String source;
         private String type;
         private String url;
-        private boolean used;
         private String who;
-        private int layoutType;
         private List<String> images;
-        public static final int ENTITY_ONE = 1;
-        public static final int ENTITY_TWO = 2;
-        public static final int ENTITY_THREE = 3;
+
+        public ResultsBean(int layoutType, String type) {
+            this.layoutType = layoutType;
+            this.type = type;
+        }
 
         public ResultsBean(int layoutType, String desc, String publishedAt, String type, String url, String who, List<String> images) {
             this.layoutType = layoutType;
@@ -71,22 +70,6 @@ public class RecommendData {
             this.url = url;
             this.who = who;
             this.images = images;
-        }
-
-        public String get_id() {
-            return _id;
-        }
-
-        public void set_id(String _id) {
-            this._id = _id;
-        }
-
-        public String getCreatedAt() {
-            return createdAt;
-        }
-
-        public void setCreatedAt(String createdAt) {
-            this.createdAt = createdAt;
         }
 
         public String getDesc() {
@@ -105,14 +88,6 @@ public class RecommendData {
             this.publishedAt = publishedAt;
         }
 
-        public String getSource() {
-            return source;
-        }
-
-        public void setSource(String source) {
-            this.source = source;
-        }
-
         public String getType() {
             return type;
         }
@@ -127,14 +102,6 @@ public class RecommendData {
 
         public void setUrl(String url) {
             this.url = url;
-        }
-
-        public boolean isUsed() {
-            return used;
-        }
-
-        public void setUsed(boolean used) {
-            this.used = used;
         }
 
         public String getWho() {

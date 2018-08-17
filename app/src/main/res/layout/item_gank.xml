@@ -11,55 +11,65 @@
         android:layout_marginTop="@dimen/dp_20"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:visibility="gone"
-            android:id="@+id/view_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="@dimen/dp_3"
-                android:layout_height="@dimen/dp_18"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/dp_3"
-                android:background="@drawable/drawable_circle_view" />
-
-            <TextView
-                android:id="@+id/tv_cate_one"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/dp_12"
-                android:layout_toEndOf="@+id/view"
-                android:textColor="@color/black_255"
-                android:textSize="@dimen/sp_14" />
-        </RelativeLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
             android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_110"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="@dimen/dp_3"
+                    android:layout_height="@dimen/dp_18"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/drawable_circle_view" />
+
+                <TextView
+                    android:id="@+id/tv_cate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp_12"
+                    android:layout_toEndOf="@+id/view"
+                    android:textColor="@color/black_255"
+                    android:textSize="@dimen/sp_14" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_height="@dimen/dp_141"
+                android:layout_width="match_parent"
                 app:cardBackgroundColor="@color/white_255"
                 app:cardCornerRadius="@dimen/dp_3"
                 app:cardElevation="0px"
                 app:cardPreventCornerOverlap="false">
 
-                <ImageView
-                    android:id="@+id/image_view"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop" />
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/image_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:id="@+id/tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:textSize="@dimen/sp_16"
+                        android:visibility="gone" />
+                </RelativeLayout>
 
             </android.support.v7.widget.CardView>
 
             <TextView
-                android:id="@+id/tv_content_one"
+                android:id="@+id/tv_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_6"

@@ -73,7 +73,8 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".ui.gank.activity.PictureBrowseActivity" />
         <activity android:name=".ui.gank.activity.DoubanHotActivity" />
-        <activity android:name=".ui.gank.activity.DoubanTopActivity"></activity>
+        <activity android:name=".ui.gank.activity.DoubanTopActivity" />
+        <activity android:name=".ui.gank.activity.MovieDetailsActivity"></activity>
     </application>
 
 </manifest>

@@ -2,12 +2,11 @@ package com.xy.wanandroid.presenter.gank;
 
 import com.xy.wanandroid.base.presenter.BasePresenter;
 import com.xy.wanandroid.contract.gank.GankContract;
-import com.xy.wanandroid.data.gank.RecommendData;
 import com.xy.wanandroid.data.gank.MusicBanner;
+import com.xy.wanandroid.data.gank.RecommendData;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;
 import com.xy.wanandroid.model.api.HttpObserver;
-import com.xy.wanandroid.util.app.CommonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,30 +79,30 @@ public class GankPresenter extends BasePresenter<GankContract.View> implements G
      * 把集合分类
      */
     private void sortList(List<RecommendData.ResultsBean> gankList) {
-        for (RecommendData.ResultsBean resultsBean : gankList) {
-            if (resultsBean.getType().equals("Android")) {
-                android.add(resultsBean);
-            } else if (resultsBean.getType().equals("iOS")) {
-                ios.add(resultsBean);
-            } else if (resultsBean.getType().equals("App")) {
-                app.add(resultsBean);
-            } else if (resultsBean.getType().equals("前端")) {
-                js.add(resultsBean);
-            } else if (resultsBean.getType().equals("拓展资源")) {
-                extra.add(resultsBean);
-            } else if (resultsBean.getType().equals("瞎推荐")) {
-                recommend.add(resultsBean);
-            } else if (resultsBean.getType().equals("休息视频")) {
-                rest.add(resultsBean);
+        for (RecommendData.ResultsBean bean : gankList) {
+            if (bean.getType().equals("Android")) {
+                android.add(bean);
+            } else if (bean.getType().equals("iOS")) {
+                ios.add(bean);
+            } else if (bean.getType().equals("App")) {
+                app.add(bean);
+            } else if (bean.getType().equals("前端")) {
+                js.add(bean);
+            } else if (bean.getType().equals("拓展资源")) {
+                extra.add(bean);
+            } else if (bean.getType().equals("瞎推荐")) {
+                recommend.add(bean);
+            } else if (bean.getType().equals("休息视频")) {
+                rest.add(bean);
             }
         }
-        addRecommendBean(android, "Android");
-        addRecommendBean(ios, "iOS");
-        addRecommendBean(app, "App");
-        addRecommendBean(js, "前端");
-        addRecommendBean(extra, "拓展资源");
-        addRecommendBean(recommend, "瞎推荐");
-        addRecommendBean(rest, "休息视频");
+//        addRecommendBean(android, "Android");
+//        addRecommendBean(ios, "iOS");
+//        addRecommendBean(app, "App");
+//        addRecommendBean(js, "前端");
+//        addRecommendBean(extra, "拓展资源");
+//        addRecommendBean(recommend, "瞎推荐");
+//        addRecommendBean(rest, "休息视频");
     }
 
     /**
@@ -112,15 +111,15 @@ public class GankPresenter extends BasePresenter<GankContract.View> implements G
      * @param list
      * @param type
      */
-    private void addRecommendBean(List<RecommendData.ResultsBean> list, String type) {
-        images.add(CommonUtil.getRandomImage());
-        if (list.size() % 3 == 1) {
-            list.add(new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ONE, "", "", type, "", "", images));
-            list.add(new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ONE, "", "", type, "", "", images));
-        } else if (list.size() % 3 == 2) {
-            list.add(new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ONE, "", "", type, "", "", images));
-        }
-    }
+//    private void addRecommendBean(List<RecommendData.ResultsBean> list, String type) {
+//        images.add(CommonUtil.getRandomImage());
+//        if (list.size() % 3 == 1) {
+//            list.add(new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_TITLE, "", "", type, "", "", images));
+//            list.add(new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_TITLE, "", "", type, "", "", images));
+//        } else if (list.size() % 3 == 2) {
+//            list.add(new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_TITLE, "", "", type, "", "", images));
+//        }
+//    }
 
     /**
      * 分类完成添加进新的集合
@@ -148,12 +147,10 @@ public class GankPresenter extends BasePresenter<GankContract.View> implements G
         RecommendData.ResultsBean resultsBean = null;
         List<RecommendData.ResultsBean> resultsBeanList = new ArrayList<>();
         for (RecommendData.ResultsBean bean : list) {
-            if (list.size() >= 3) {
-                resultsBean = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_THREE, bean.getDesc(), bean.getPublishedAt(), bean.getType(), bean.getUrl(), bean.getWho(), bean.getImages());
-            } else if (list.size() == 2) {
-                resultsBean = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_TWO, bean.getDesc(), bean.getPublishedAt(), bean.getType(), bean.getUrl(), bean.getWho(), bean.getImages());
-            } else if (list.size() == 1) {
-                resultsBean = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ONE, bean.getDesc(), bean.getPublishedAt(), bean.getType(), bean.getUrl(), bean.getWho(), bean.getImages());
+            if (list.size() % 2 == 0) {
+                resultsBean = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_TITLE, bean.getType());
+            } else {
+                resultsBean = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ITEM, bean.getDesc(), bean.getPublishedAt(), bean.getType(), bean.getUrl(), bean.getWho(), bean.getImages());
             }
             resultsBeanList.add(resultsBean);
         }
