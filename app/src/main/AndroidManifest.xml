@@ -64,6 +64,7 @@
         <activity android:name=".ui.main.activity.SearchResultActivity" />
         <activity android:name=".ui.mine.activity.MyLabelActivity" />
         <activity android:name=".ui.gank.activity.RecommendActivity" />
+        <activity android:name=".ui.gank.activity.ExtraActivity" />
         <activity
             android:name=".ui.gank.activity.VideoActivity"
             android:configChanges="orientation|screenSize" />
@@ -74,7 +75,7 @@
         <activity android:name=".ui.gank.activity.PictureBrowseActivity" />
         <activity android:name=".ui.gank.activity.DoubanHotActivity" />
         <activity android:name=".ui.gank.activity.DoubanTopActivity" />
-        <activity android:name=".ui.gank.activity.MovieDetailsActivity"></activity>
+        <activity android:name=".ui.gank.activity.MovieDetailsActivity" />
     </application>
 
 </manifest>

@@ -162,19 +162,22 @@ public class ArticleDetailsActivity extends BaseRootActivity<ArticleDetailPresen
 
     @Override
     protected void onPause() {
-        mAgentWeb.getWebLifeCycle().onPause();
+        if (mAgentWeb != null)
+            mAgentWeb.getWebLifeCycle().onPause();
         super.onPause();
     }
 
     @Override
     protected void onResume() {
-        mAgentWeb.getWebLifeCycle().onResume();
+        if (mAgentWeb != null)
+            mAgentWeb.getWebLifeCycle().onResume();
         super.onResume();
     }
 
     @Override
     public void onDestroy() {
-        mAgentWeb.getWebLifeCycle().onDestroy();
+        if (mAgentWeb != null)
+            mAgentWeb.getWebLifeCycle().onDestroy();
         super.onDestroy();
     }
 
