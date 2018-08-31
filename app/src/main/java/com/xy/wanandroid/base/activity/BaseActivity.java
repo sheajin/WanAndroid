@@ -11,6 +11,7 @@ import com.xy.wanandroid.di.component.ActivityComponent;
 import com.xy.wanandroid.di.component.DaggerActivityComponent;
 import com.xy.wanandroid.di.module.ActivityModule;
 import com.xy.wanandroid.model.constant.MessageEvent;
+import com.xy.wanandroid.util.app.DisplayUtil;
 import com.xy.wanandroid.util.network.NetUtils;
 import com.xy.wanandroid.util.network.NetworkBroadcastReceiver;
 
@@ -40,6 +41,7 @@ public abstract class BaseActivity<T extends AbsPresenter> extends SupportActivi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DisplayUtil.setCustomDensity(this, MyApplication.getInstance());
         setContentView(getLayoutId());
         context = MyApplication.getInstance();
         activity = this;

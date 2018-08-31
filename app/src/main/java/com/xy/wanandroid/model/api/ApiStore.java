@@ -4,11 +4,13 @@ import android.annotation.SuppressLint;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.xy.wanandroid.base.app.MyApplication;
 import com.xy.wanandroid.model.Interceptor.AddCookiesInterceptor;
 import com.xy.wanandroid.model.Interceptor.BaseUrlInterceptor;
 import com.xy.wanandroid.model.Interceptor.HttpLoggingInterceptor;
 import com.xy.wanandroid.model.Interceptor.ReceivedCookiesInterceptor;
 
+import java.io.File;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -19,6 +21,7 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Retrofit;
@@ -45,6 +48,11 @@ public class ApiStore {
     public static void createProxy() {
         Gson gson = new GsonBuilder().setDateFormat("yyyy.MM.dd HH:mm:ss").create();
 
+        //设置缓存目录
+        File cacheFile = new File(MyApplication.getInstance().getCacheDir(), "cache");
+        Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
+
+        //配置OkHttpBuilder
         OkHttpClient.Builder builder = new OkHttpClient().newBuilder()
                 .addInterceptor(chain -> {
                     Request original = chain.request();
@@ -60,6 +68,7 @@ public class ApiStore {
                 .writeTimeout(20, TimeUnit.SECONDS)
                 .addInterceptor(new BaseUrlInterceptor())
                 .addInterceptor(new HttpLoggingInterceptor())
+                .cache(cache)
                 //错误重连
                 .retryOnConnectionFailure(true)
                 //(错误原因是验证证书时发现真正请求和服务器的证书域名不一致) 此代码为忽略hostname 的验证

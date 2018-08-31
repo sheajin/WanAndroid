@@ -18,7 +18,8 @@ public class BasePresenter<T extends AbstractView> implements AbsPresenter<T> {
 
     @Override
     public void detachView() {
-        this.mView = null;
+        if (mView != null)
+            this.mView = null;
     }
 
     public int getCurrentPage() {
