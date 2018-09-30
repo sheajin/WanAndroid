@@ -110,7 +110,7 @@ public class GlideUtil {
      * 高斯模糊
      */
     public static void loadBlurImage(Context context, Object resId, ImageView imageView) {
-        RequestOptions mOptions = new RequestOptions().bitmapTransform(new GlideBlurFormation(context));
+        RequestOptions mOptions = new RequestOptions().bitmapTransform(new GlideBlurFormation(context, 300, 200));
         Glide.with(context)
                 .load(resId)
                 .apply(mOptions)

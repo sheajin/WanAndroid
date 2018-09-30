@@ -48,7 +48,8 @@ public class TopPresenter extends BasePresenter<TopContract.View> implements Top
                 .subscribe(new HttpObserver<HotMovieBean>() {
                     @Override
                     public void onNext(HotMovieBean hotMovieBean) {
-                        mView.getTopOk(hotMovieBean, isRefresh);
+                        if (mView != null)
+                            mView.getTopOk(hotMovieBean, isRefresh);
                     }
 
                     @Override

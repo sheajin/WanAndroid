@@ -103,6 +103,7 @@ public class Constant {
     public static final String ROOMSRC = "room_src";
     public static final String ROOMTAG = "room_tag";
     public static final String ROOMDETAIL = "room_detail";
+    public static final String MOVIE = "movie";
 
 }
 

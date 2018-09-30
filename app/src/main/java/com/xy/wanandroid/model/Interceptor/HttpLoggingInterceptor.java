@@ -68,14 +68,30 @@ public class HttpLoggingInterceptor implements Interceptor {
         }
         rBody = buffer.clone().readString(charset);
 //        }
-
+        printNetLog(response, rBody);
         Log.e("jxy",
                 "收到响应: code:" + response.code()
-//                + "\n请求url："+response.request().url()
-//                + "\n请求body：" + body
+                        + "\n请求url：" + response.request().url()
+                        + "\n请求body：" + body
                         + "\nResponse: " + rBody);
 
         return response;
+    }
+
+    private static void printNetLog(Response response, String content) {
+        content = content.trim();
+        int index = 0;
+        int maxLength = 4000;
+        String sub;
+        while (index < content.length()) {
+            if (content.length() <= index + maxLength)
+                sub = content.substring(index);
+            else
+                sub = content.substring(index, index + maxLength);
+            index += maxLength;
+            Log.e("jxy1", sub);
+//            Log.e("jxy", "收到响应: code:" + response.code() + "\n Response:" + sub);
+        }
     }
 
 //        private static final Charset UTF8 = Charset.forName("UTF-8");

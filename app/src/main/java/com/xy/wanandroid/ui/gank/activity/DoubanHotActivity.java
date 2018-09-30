@@ -1,6 +1,5 @@
 package com.xy.wanandroid.ui.gank.activity;
 
-import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutManager;
@@ -87,9 +86,7 @@ public class DoubanHotActivity extends BaseRootActivity<HotPresenter> implements
         mAdapter.setOnItemClickListener(this);
         mRv.setAdapter(mAdapter);
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-                WindowManager.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
-                , 0, 0, PixelFormat.TRANSPARENT
-        );
+                WindowManager.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 0, 0, PixelFormat.TRANSPARENT);
         params.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;
         params.type = WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
     }
@@ -116,7 +113,8 @@ public class DoubanHotActivity extends BaseRootActivity<HotPresenter> implements
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        Intent intent = new Intent(activity, MovieDetailsActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(activity, MovieDetailsActivity.class);
+//        intent.putExtra(Constant.MOVIE, hotList.get(position));
+//        startActivity(intent);
     }
 }

@@ -2,11 +2,7 @@ package com.xy.wanandroid.ui.gank.adapter;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -14,7 +10,6 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.app.MyApplication;
 import com.xy.wanandroid.data.gank.HotMovieBean;
-import com.xy.wanandroid.util.app.LogUtil;
 import com.xy.wanandroid.util.glide.GlideUtil;
 
 import java.util.List;
@@ -48,7 +43,8 @@ public class DoubanHotAdapter extends BaseQuickAdapter<HotMovieBean.SubjectsBean
                 stringBuilder.append(item.getCasts().get(i).getName()).append("、");
             }
         }
-        helper.setText(R.id.tv_actor, "主演: " + stringBuilder);
+        if (stringBuilder.toString().endsWith("、"))
+            helper.setText(R.id.tv_actor, "主演: " + stringBuilder.toString().substring(0, stringBuilder.lastIndexOf("、")));
         //类型
         stringBuilder.delete(0, stringBuilder.length());
         for (int i = 0; i < item.getGenres().size(); i++) {

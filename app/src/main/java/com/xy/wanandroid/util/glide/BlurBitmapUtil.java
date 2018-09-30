@@ -53,9 +53,7 @@ public class BlurBitmapUtil {
         Allocation tmpIn = Allocation.createFromBitmap(rs, inputBitmap);
         Allocation tmpOut = Allocation.createFromBitmap(rs, outputBitmap);
         // 设置渲染的模糊程度, 25f是最大模糊度
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            blurScript.setRadius(blurRadius);
-        }
+        blurScript.setRadius(blurRadius);
         // 设置blurScript对象的输入内存
         blurScript.setInput(tmpIn);
         // 将输出数据保存到输出内存中
