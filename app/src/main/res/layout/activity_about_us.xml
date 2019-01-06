@@ -75,6 +75,7 @@
                 android:orientation="vertical"
                 android:paddingTop="@dimen/dp_10">
                 <ImageView
+                    android:id="@+id/image"
                     android:src="@mipmap/app_logo"
                     android:layout_width="@dimen/dp_60"
                     android:layout_height="@dimen/dp_60"

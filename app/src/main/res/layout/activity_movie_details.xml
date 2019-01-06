@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="com.xy.wanandroid.ui.gank.activity.MovieDetailsActivity">
 
     <android.support.v4.widget.NestedScrollView
@@ -21,23 +23,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_240">
 
+                <!--高斯模糊背景-->
                 <ImageView
                     android:id="@+id/image_blur"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
 
+                <!--影片详情介绍-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_60"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/dp_10">
 
                     <android.support.v7.widget.CardView
                         android:id="@+id/view_preview"
                         android:layout_width="@dimen/dp_120"
                         android:layout_height="@dimen/dp_160"
-                        android:layout_marginStart="@dimen/dp_30"
                         app:cardBackgroundColor="@color/white_255"
                         app:cardCornerRadius="@dimen/dp_4"
                         app:cardElevation="0px"
@@ -115,17 +120,18 @@
                             tools:text="@string/movie_time" />
 
                     </LinearLayout>
-
                 </LinearLayout>
 
             </RelativeLayout>
 
+            <!--电影简介 下半部分-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_8"
                 android:layout_marginTop="@dimen/dp_10"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -155,6 +161,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/dp_10"
                     android:layout_marginStart="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_12"
                     tools:text="sssss" />
 
                 <LinearLayout
@@ -185,6 +192,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/dp_10"
                     android:layout_marginStart="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_12"
                     tools:text="sssss" />
 
                 <LinearLayout
@@ -209,30 +217,42 @@
                         android:textSize="@dimen/sp_16" />
                 </LinearLayout>
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/dp_10"
-                    android:layout_marginStart="@dimen/dp_10" />
             </LinearLayout>
 
-            <View
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv"
                 android:layout_width="match_parent"
-                android:layout_height="1000dp"
-                android:background="@color/black_15" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
-    <RelativeLayout
+    <!--顶部标题栏-->
+    <LinearLayout
         android:id="@+id/view_title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50">
+        android:layout_height="@dimen/dp_50"
+        android:alpha="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/image_back"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_26"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:src="@drawable/back_white" />
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:text="@string/movie_details"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16" />
+    </LinearLayout>
+
 </RelativeLayout>

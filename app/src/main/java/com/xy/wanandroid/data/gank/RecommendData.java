@@ -1,7 +1,5 @@
 package com.xy.wanandroid.data.gank;
 
-import com.chad.library.adapter.base.entity.MultiItemEntity;
-
 import java.util.List;
 
 /**
@@ -33,7 +31,7 @@ public class RecommendData {
         this.results = results;
     }
 
-    public static class ResultsBean implements MultiItemEntity {
+    public static class ResultsBean {
         /**
          * _id : 5b67d98f9d2122195a5d4278
          * createdAt : 2018-08-06T13:15:59.171Z
@@ -48,7 +46,9 @@ public class RecommendData {
          */
 
         public static final int ENTITY_TITLE = 1;
-        public static final int ENTITY_ITEM = 2;
+        public static final int ENTITY_ITEM_ONE = 2;
+        public static final int ENTITY_ITEM_TWO = 3;
+        public static final int ENTITY_ITEM_THREE = 4;
         private int layoutType;
         private String desc;
         private String publishedAt;
@@ -128,7 +128,6 @@ public class RecommendData {
             this.images = images;
         }
 
-        @Override
         public int getItemType() {
             return layoutType;
         }

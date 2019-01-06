@@ -165,10 +165,13 @@
     <string name="another_name">另称</string>
     <string name="introduce">剧情简介</string>
     <string name="actor">导演&amp;演员</string>
-    <string name="movie_score">评分: %f</string>
+    <string name="movie_score">评分: %.1f</string>
     <string name="movie_director">导演: %s</string>
     <string name="movie_actor">演员: %s</string>
     <string name="movie_type">类型: %s</string>
     <string name="movie_time">时间: %s</string>
+    <string name="movie_details">影片详情</string>
+    <string name="actors">演员</string>
+    <string name="hot_wx_article">热门公众号</string>
     <!---->
 </resources>

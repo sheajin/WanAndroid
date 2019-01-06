@@ -1,5 +1,6 @@
 package com.xy.wanandroid.model.api;
 
+import com.xy.wanandroid.data.gank.ArticleTitleBean;
 import com.xy.wanandroid.data.gank.CategoryTitle;
 import com.xy.wanandroid.data.gank.EverydayData;
 import com.xy.wanandroid.data.gank.HotMovieBean;
@@ -9,6 +10,7 @@ import com.xy.wanandroid.data.gank.MovieDetailBean;
 import com.xy.wanandroid.data.gank.MusicBanner;
 import com.xy.wanandroid.data.gank.RecommendData;
 import com.xy.wanandroid.data.gank.RecommendEntity;
+import com.xy.wanandroid.data.gank.WxArticleList;
 import com.xy.wanandroid.data.knowledge.KnowledgeClassifyListBean;
 import com.xy.wanandroid.data.knowledge.KnowledgeListBean;
 import com.xy.wanandroid.data.login.UserInfo;
@@ -190,7 +192,7 @@ public interface ApiService {
      * 获取所有数据
      */
     @Headers({"baseUrl:gank"})
-    @GET("api/data/all/15/1")
+    @GET("api/data/all/18/1")
     Observable<RecommendData> getEveryDayData();
 
     /**
@@ -231,4 +233,19 @@ public interface ApiService {
     @Headers({"baseUrl:douban"})
     @GET("v2/movie/top250")
     Observable<HotMovieBean> getMovieTop(@Query("start") int start, @Query("count") int count);
+
+    /**
+     * 获取公众号title
+     */
+    @Headers({"baseUrl:normal"})
+    @GET("wxarticle/chapters/json")
+    Observable<BaseResp<List<ArticleTitleBean>>> getArticleTitle();
+
+    /**
+     * 获取公众号文章列表
+     */
+    @Headers({"baseUrl:normal"})
+    @GET("wxarticle/list/{id}/{page}/json")
+    Observable<BaseResp<WxArticleList>> getWxArticleList(@Path("id") String id, @Path("page") int page);
+
 }

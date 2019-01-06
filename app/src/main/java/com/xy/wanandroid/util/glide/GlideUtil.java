@@ -1,7 +1,9 @@
 package com.xy.wanandroid.util.glide;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,10 +12,14 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.xy.wanandroid.R;
+
+import java.security.MessageDigest;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
@@ -109,13 +115,19 @@ public class GlideUtil {
     /**
      * 高斯模糊
      */
-    public static void loadBlurImage(Context context, Object resId, ImageView imageView) {
-        RequestOptions mOptions = new RequestOptions().bitmapTransform(new GlideBlurFormation(context, 300, 200));
-        Glide.with(context)
-                .load(resId)
-                .apply(mOptions)
-                .into(imageView);
-    }
+    public static void loadBlurImage(Context context, Object res, ImageView imageView) {
+        RequestOptions mOptions = new RequestOptions().bitmapTransform(new BitmapTransformation() {
+            @Override
+            protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
+                return BlurBitmapUtil.instance().rsBlur(context, toTransform, 25);
+            }
 
+            @Override
+            public void updateDiskCacheKey(MessageDigest messageDigest) {
+
+            }
+        });
+        Glide.with(context).load(res).apply(mOptions).into(imageView);
+    }
 
 }

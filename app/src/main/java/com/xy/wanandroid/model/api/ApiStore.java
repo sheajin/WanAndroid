@@ -1,6 +1,8 @@
 package com.xy.wanandroid.model.api;
 
+
 import android.annotation.SuppressLint;
+import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -87,6 +89,7 @@ public class ApiStore {
                 .build();
     }
 
+    @NonNull
     @SuppressLint("TrustAllX509TrustManager")
     private static SSLSocketFactory getSSLSocketFactory() {
         try {

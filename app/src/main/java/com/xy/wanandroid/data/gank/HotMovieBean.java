@@ -7,7 +7,7 @@ import java.util.List;
  * Created by jxy on 2018/8/14.
  */
 
-public class HotMovieBean implements Serializable{
+public class HotMovieBean implements Serializable {
     private int count;
     private int start;
     private int total;
@@ -54,7 +54,7 @@ public class HotMovieBean implements Serializable{
         this.subjects = subjects;
     }
 
-    public static class SubjectsBean implements Serializable{
+    public static class SubjectsBean implements Serializable {
 
         private RatingBean rating;
         private String title;
@@ -64,10 +64,19 @@ public class HotMovieBean implements Serializable{
         private String year;
         private ImagesBean images;
         private String alt;
+        private String summary;
         private String id;
         private List<String> genres;
         private List<CastsBean> casts;
         private List<DirectorsBean> directors;
+
+        public String getSummary() {
+            return summary;
+        }
+
+        public void setSummary(String summary) {
+            this.summary = summary;
+        }
 
         public RatingBean getRating() {
             return rating;
@@ -165,7 +174,7 @@ public class HotMovieBean implements Serializable{
             this.directors = directors;
         }
 
-        public static class RatingBean implements Serializable{
+        public static class RatingBean implements Serializable {
             /**
              * max : 10
              * average : 7.4
@@ -174,7 +183,7 @@ public class HotMovieBean implements Serializable{
              */
 
             private int max;
-            private double average;
+            private float average;
             private String stars;
             private int min;
 
@@ -186,11 +195,11 @@ public class HotMovieBean implements Serializable{
                 this.max = max;
             }
 
-            public double getAverage() {
+            public float getAverage() {
                 return average;
             }
 
-            public void setAverage(double average) {
+            public void setAverage(float average) {
                 this.average = average;
             }
 
@@ -211,7 +220,7 @@ public class HotMovieBean implements Serializable{
             }
         }
 
-        public static class ImagesBean implements Serializable{
+        public static class ImagesBean implements Serializable {
             /**
              * small : http://img7.doubanio.com/view/photo/s_ratio_poster/public/p2529571873.webp
              * large : http://img7.doubanio.com/view/photo/s_ratio_poster/public/p2529571873.webp
@@ -247,7 +256,7 @@ public class HotMovieBean implements Serializable{
             }
         }
 
-        public static class CastsBean implements Serializable{
+        public static class CastsBean implements Serializable {
             /**
              * alt : https://movie.douban.com/celebrity/1274242/
              * avatars : {"small":"http://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1656.webp","large":"http://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1656.webp","medium":"http://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1656.webp"}
@@ -292,7 +301,7 @@ public class HotMovieBean implements Serializable{
                 this.id = id;
             }
 
-            public static class AvatarsBean implements Serializable{
+            public static class AvatarsBean implements Serializable {
                 /**
                  * small : http://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1656.webp
                  * large : http://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1656.webp
@@ -329,7 +338,7 @@ public class HotMovieBean implements Serializable{
             }
         }
 
-        public static class DirectorsBean implements Serializable{
+        public static class DirectorsBean implements Serializable {
             /**
              * alt : https://movie.douban.com/celebrity/1274242/
              * avatars : {"small":"http://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1656.webp","large":"http://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1656.webp","medium":"http://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1656.webp"}
@@ -374,7 +383,7 @@ public class HotMovieBean implements Serializable{
                 this.id = id;
             }
 
-            public static class AvatarsBeanX implements Serializable{
+            public static class AvatarsBeanX implements Serializable {
                 /**
                  * small : http://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1656.webp
                  * large : http://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p1656.webp

@@ -6,20 +6,29 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseActivity;
-import com.xy.wanandroid.data.gank.HotMovieBean;
+import com.xy.wanandroid.data.gank.MovieDetailBean;
+import com.xy.wanandroid.model.api.ApiService;
+import com.xy.wanandroid.model.api.ApiStore;
+import com.xy.wanandroid.model.api.HttpObserver;
 import com.xy.wanandroid.model.constant.Constant;
-import com.xy.wanandroid.util.app.LogUtil;
+import com.xy.wanandroid.ui.gank.adapter.HotMovieDetailAdapter;
+import com.xy.wanandroid.util.app.DisplayUtil;
 import com.xy.wanandroid.util.app.StringFormatUtils;
+import com.xy.wanandroid.util.app.ToastUtil;
 import com.xy.wanandroid.util.glide.GlideUtil;
+import com.xy.wanandroid.util.statusbar.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class MovieDetailsActivity extends BaseActivity {
 
@@ -49,9 +58,13 @@ public class MovieDetailsActivity extends BaseActivity {
     NestedScrollView nestedScrollView;
     @BindView(R.id.view_title)
     View mViewTitle;
+    @BindView(R.id.image_back)
+    ImageView mImageBack;
 
-    private HotMovieBean.SubjectsBean hotMovieBean;
-    private List<String> actorList;
+    private List<MovieDetailBean.CastsBean> actorList;
+    private float imageHeight;
+    private HotMovieDetailAdapter mAdapter;
+    private String movieId, movieTitle;
 
     @Override
     protected int getLayoutId() {
@@ -60,31 +73,73 @@ public class MovieDetailsActivity extends BaseActivity {
 
     @Override
     protected void initUI() {
-        hotMovieBean = (HotMovieBean.SubjectsBean) getIntent().getSerializableExtra(Constant.MOVIE);
+        StatusBarUtil.setImmeriseStatusBar(activity);
+        mViewTitle.setPadding(0, StatusBarUtil.getStatusBarHeight(activity), 0, 0);
+        movieId = getIntent().getStringExtra(Constant.MOVIE_ID);
+        movieTitle = getIntent().getStringExtra(Constant.MOVIE_TITLE);
         mRv.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.bottomMargin = DisplayUtil.dip2px(context, 12f);
+        mRv.setLayoutParams(params);
         actorList = new ArrayList<>();
-        mTvTitle.setText(hotMovieBean.getTitle());
+        mTvTitle.setText(movieTitle);
+        imageHeight = DisplayUtil.px2dip(activity, getResources().getDimensionPixelSize(R.dimen.dp_240));
+//        mAdapter = new HotMovieDetailAdapter(R.layout.item_movie_detail_actor, actorList);
+//        mRv.setAdapter(mAdapter);
     }
 
     @SuppressLint("StringFormatMatches")
     @Override
     protected void initData() {
-        if (hotMovieBean != null) {
-            mTvScore.setText(getString(R.string.movie_score, hotMovieBean.getRating().getAverage()));
-            mTvDirector.setText(getString(R.string.movie_director, hotMovieBean.getDirectors().get(0).getName()));
-            mTvActor.setText(getString(R.string.movie_actor, StringFormatUtils.getActor(hotMovieBean)));
-            mTvType.setText(getString(R.string.movie_type, StringFormatUtils.getType(hotMovieBean)));
-            mTvTime.setText(getString(R.string.movie_time, hotMovieBean.getYear()));
-            GlideUtil.loadImage(activity, hotMovieBean.getImages().getMedium(), mImagePreview);
-            //高斯模糊
-            GlideUtil.loadBlurImage(activity, hotMovieBean.getImages().getSmall(), mViewBlur);
+        setAlpha();
+        if (movieId != null) {
+            ApiStore.createApi(ApiService.class)
+                    .getMovieDetail(movieId)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new HttpObserver<MovieDetailBean>() {
+                        @Override
+                        public void onNext(MovieDetailBean movieDetailBean) {
+                            if (movieDetailBean != null) {
+                                //如果直接指定%f，默认保留小数点后6位。可以通过%.2f来指定保留几位小数
+                                mTvScore.setText(getString(R.string.movie_score, movieDetailBean.getRating().getAverage()));
+                                mTvDirector.setText(getString(R.string.movie_director, movieDetailBean.getDirectors().get(0).getName()));
+                                mTvActor.setText(getString(R.string.movie_actor, StringFormatUtils.getActor(movieDetailBean)));
+                                mTvType.setText(getString(R.string.movie_type, StringFormatUtils.getType(movieDetailBean)));
+                                mTvTime.setText(getString(R.string.movie_time, movieDetailBean.getYear()));
+                                GlideUtil.loadImage(activity, movieDetailBean.getImages().getMedium(), mImagePreview);
+                                GlideUtil.loadImage(activity, movieDetailBean.getImages().getSmall(), mViewBlur);
+                                GlideUtil.loadBlurImage(activity, movieDetailBean.getImages().getSmall(), mViewBlur);//高斯模糊
+                                mTvAnotherName.setText(movieDetailBean.getOriginal_title());
+                                mTvIntroduce.setText(movieDetailBean.getSummary());
+                                actorList.addAll(movieDetailBean.getCasts());
+                                mAdapter.notifyDataSetChanged();
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            ToastUtil.show(activity, e.getMessage());
+                        }
+                    });
         }
-        //nestedScrollView滑动分析
+    }
+
+    /**
+     * nestedScrollView滑动改变标题栏Alpha
+     */
+    private void setAlpha() {
         nestedScrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-            LogUtil.e("scrollY - oldScrollY = " + (scrollY - oldScrollY));
+            int realScrollY = DisplayUtil.px2dip(activity, scrollY);
+            float alpha = realScrollY / imageHeight;
             if (scrollY - oldScrollY > 0) {
-//                mViewTitle.setAlpha(0.8f);
+                //屏幕向上滚动
+                mViewTitle.setAlpha(1 - alpha);
+            } else {
+                //屏幕向下滚动
+                mViewTitle.setAlpha(realScrollY == 0 ? 1 : (1 - alpha));
             }
         });
     }
+
 }

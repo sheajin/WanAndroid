@@ -1,10 +1,10 @@
 ext {
 
     android = [
-            compileSdkVersion       : 27,
-            buildToolsVersion       : "27.0.3",
+            compileSdkVersion       : 28,
+            buildToolsVersion       : "28.0.3",
             minSdkVersion           : 21,
-            targetSdkVersion        : 27,
+            targetSdkVersion        : 28,
             versionCode             : 1,
             versionName             : "1.0",
     ]
@@ -29,6 +29,7 @@ ext {
             GSYVideoPlayer          : "5.0.1",
             danmuku                 : "0.4.6",
             photoview               : "2.0.0",
+            blur                    : "0.0.4",
     ]
 
     dependencies = [
@@ -89,6 +90,7 @@ ext {
             "fragmentation"                     : "me.yokeyword:fragmentation:${version["fragmentation"]}",
             "bugly"                             : "com.tencent.bugly:crashreport:${version["bugly"]}",
             "photoview"                         : "com.github.chrisbanes:PhotoView:${version["photoview"]}",
+            "blur"                              : "com.dasu.image:blur:${version["blur"]}",
 //            "logger"                            : "com.orhanobut:logger:2.1.1",
 
             //unit test , 为了整合mockito和PowerMockito，mockito暂时最高只支持2.8.9

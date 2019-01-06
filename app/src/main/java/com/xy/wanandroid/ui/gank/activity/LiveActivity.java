@@ -1,10 +1,18 @@
 package com.xy.wanandroid.ui.gank.activity;
 
 import android.annotation.SuppressLint;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.media.AudioManager;
+import android.net.Uri;
+import android.os.Build;
+import android.os.IBinder;
+import android.provider.Settings;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.GestureDetector;
@@ -32,9 +40,11 @@ import com.xy.wanandroid.presenter.gank.LivePresenter;
 import com.xy.wanandroid.ui.gank.fragment.LiveChatFragment;
 import com.xy.wanandroid.ui.gank.fragment.LiveInfoFragment;
 import com.xy.wanandroid.ui.gank.fragment.LiveVideoFragment;
+import com.xy.wanandroid.ui.gank.service.WindowService;
 import com.xy.wanandroid.util.app.CommonUtil;
 import com.xy.wanandroid.util.app.DisplayUtil;
 import com.xy.wanandroid.util.app.LogUtil;
+import com.xy.wanandroid.util.app.MiUI;
 import com.xy.wanandroid.util.app.ToastUtil;
 
 import java.util.ArrayList;
@@ -152,6 +162,7 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
                     clickFullScreen();
                 } else {
                     onBackPressedSupport();
+                    openFloatingWindow();
                 }
                 break;
             case R.id.view_play:
@@ -188,6 +199,40 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
 
         }
     }
+
+    /**
+     * 开启悬浮窗
+     */
+    private void openFloatingWindow() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                ToastUtil.show(activity, "当前无权限");
+                startActivityForResult(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())), Constant.LIVE_REQUEST_CODE);
+            } else {
+                bindService(new Intent(activity, WindowService.class), connection, BIND_AUTO_CREATE);
+            }
+        } else {
+            if (MiUI.rom()) {
+                if (MiUI.hasPermission(getApplicationContext())) {
+                    bindService(new Intent(activity, WindowService.class), connection, BIND_AUTO_CREATE);
+                } else {
+                    MiUI.req(getApplicationContext());
+                }
+            }
+        }
+    }
+
+    private ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
 
     /**
      * 初始化播放器
@@ -533,4 +578,18 @@ public class LiveActivity extends BaseActivity<LivePresenter> implements LiveCon
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constant.LIVE_REQUEST_CODE) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (!Settings.canDrawOverlays(this)) {
+                    ToastUtil.show(activity, "授权失败");
+                } else {
+                    ToastUtil.show(activity, "授权成功");
+                    bindService(new Intent(activity, WindowService.class), connection, BIND_AUTO_CREATE);
+                }
+            }
+        }
+    }
 }

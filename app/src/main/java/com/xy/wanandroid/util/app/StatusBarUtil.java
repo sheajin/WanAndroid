@@ -32,4 +32,5 @@ public class StatusBarUtil {
             ViewCompat.requestApplyInsets(mChildView);
         }
     }
+
 }

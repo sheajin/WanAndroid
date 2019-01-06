@@ -22,9 +22,21 @@ import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 import com.scwang.smartrefresh.layout.util.DensityUtil;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseActivity;
+import com.xy.wanandroid.model.api.ApiService;
+import com.xy.wanandroid.model.api.ApiStore;
+import com.xy.wanandroid.model.api.HttpObserver;
+import com.xy.wanandroid.util.app.CommonUtil;
+import com.xy.wanandroid.util.app.LogUtil;
 import com.xy.wanandroid.widget.ElasticOutInterpolator;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+
 import butterknife.BindView;
+import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
 
 /**
  * Created by jxy on 2018/6/17.
@@ -54,6 +66,7 @@ public class AboutUsActivity extends BaseActivity {
     @BindView(R.id.aboutVersion)
     TextView mAboutVersion;
     private View.OnClickListener mThemeListener;
+    private String path;
 
     @Override
     protected int getLayoutId() {
@@ -188,6 +201,96 @@ public class AboutUsActivity extends BaseActivity {
         }
         mThemeListener.onClick(null);
     }
+
+    String url = "http://video.ahaschool.com/1a9389308d414a4882d31f037c2e96e4/a5abe6c200d64ff6a3aefc3655781cf4-4b6ffae84f2e1d243955ecaedcf11a3e.m3u8";
+    String urls = "http://video.ahaschool.com/a5abe6c200d64ff6a3aefc3655781cf4-4b6ffae84f2e1d243955ecaedcf11a3e-00042.mp4";
+//    String urls = "http://video.ahaschool.com/a5abe6c200d64ff6a3aefc36.ts";
+    @OnClick(R.id.image)
+    void click() {
+        readFile();
+        LogUtil.e("readFile \n" + readFile());
+        getFile();
+    }
+
+    private void getFile() {
+        ApiStore.createApi(ApiService.class)
+                .download(urls)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new HttpObserver<ResponseBody>() {
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+
+//                        path = CommonUtil.getDownloadPath("/files");   //设置下载路径
+//                        File file = new File(path, "file.txt");   //设置文件名
+//                        if (!file.exists()) {
+//                            InputStream is = null;
+//                            FileOutputStream fos = null;
+//                            byte[] buffer = new byte[2048];
+//                            long total = responseBody.contentLength();
+//                            try {
+//                                int len = 0;
+//                                long current = 0;
+//                                int progress = 0;
+//                                is = responseBody.byteStream();
+//                                fos = new FileOutputStream(file);
+//                                while ((len = is.read(buffer)) != -1) {
+//                                    fos.write(buffer, 0, len);
+//                                    current += len;
+//                                    progress = (int) (current * 100 / total);
+//                                    LogUtil.e("progress = " + progress + " %");
+//                                }
+//                                fos.flush();
+//                                ToastUtil.show(MyApplication.getInstance(), "保存成功");
+//                                readFile();
+//                                LogUtil.e("readFile" + readFile());
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            } finally {
+//                                try {
+//                                    if (fos != null) {
+//                                        fos.close();
+//                                    }
+//                                    if (is != null) {
+//                                        is.close();
+//                                    }
+//                                } catch (IOException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        }
+////                        else {
+////                            ToastUtil.show(MyApplication.getInstance(), "文件已存在");
+////                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                });
+    }
+
+    private String readFile() {
+        StringBuilder sb = new StringBuilder();
+        try {
+            path = CommonUtil.getDownloadPath("/files");
+            String fileName = path + "/file.txt";
+            LogUtil.e("readFile  =" + fileName);
+            FileInputStream fis = new FileInputStream(fileName);
+            byte[] temp = new byte[1024];
+            int lines = 0;
+            while ((lines = fis.read(temp)) > 0) {
+                sb.append(new String(temp, 0, lines, "utf-8"));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String str = sb.toString();
+        str.lastIndexOf(",");
+        return sb.toString();
+    }
+
 
 }
 

@@ -55,7 +55,6 @@ dependencies {
     implementation rootProject.ext.dependencies["cardview-v7"]
     implementation rootProject.ext.dependencies["support-v4"]
     implementation rootProject.ext.dependencies["design"]
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     //ui
     implementation rootProject.ext.dependencies["SmartRefreshLayout"]
     implementation rootProject.ext.dependencies["SmartRefreshHeader"]
@@ -91,7 +90,7 @@ dependencies {
     implementation rootProject.ext.dependencies["dagger-android"]
     implementation rootProject.ext.dependencies["dagger-android-support"]
     annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
-    //annotate
+    //annotat6
     implementation rootProject.ext.dependencies["eventbus"]
     implementation rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
@@ -103,6 +102,8 @@ dependencies {
     implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
     implementation rootProject.ext.dependencies["fragmentation"]
     implementation rootProject.ext.dependencies["bugly"]
+    implementation rootProject.ext.dependencies["blur"]
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     //unit test
     testImplementation 'junit:junit:4.12'
     testImplementation rootProject.ext.dependencies["junit"]

@@ -1,15 +1,15 @@
 package com.xy.wanandroid.util.app;
 
-import com.xy.wanandroid.data.gank.HotMovieBean;
+import com.xy.wanandroid.data.gank.MovieDetailBean;
 
 /**
  * Created by jxy on 2018/9/27
  */
 public class StringFormatUtils {
 
-    public static String getActor(HotMovieBean.SubjectsBean bean) {
+    public static String getActor(MovieDetailBean bean) {
         StringBuilder sb = new StringBuilder();
-        for (HotMovieBean.SubjectsBean.CastsBean castsBean : bean.getCasts()) {
+        for (MovieDetailBean.CastsBean castsBean : bean.getCasts()) {
             sb.append(castsBean.getName());
             sb.append("/");
         }
@@ -20,7 +20,7 @@ public class StringFormatUtils {
         return "";
     }
 
-    public static String getType(HotMovieBean.SubjectsBean bean) {
+    public static String getType(MovieDetailBean bean) {
         StringBuilder sb = new StringBuilder();
         for (String s : bean.getGenres()) {
             sb.append(s);

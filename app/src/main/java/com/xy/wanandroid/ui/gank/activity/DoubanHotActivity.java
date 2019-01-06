@@ -114,7 +114,8 @@ public class DoubanHotActivity extends BaseRootActivity<HotPresenter> implements
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 //        Intent intent = new Intent(activity, MovieDetailsActivity.class);
-//        intent.putExtra(Constant.MOVIE, hotList.get(position));
+//        intent.putExtra(Constant.MOVIE_ID, hotList.get(position).getId());
+//        intent.putExtra(Constant.MOVIE_TITLE, hotList.get(position).getTitle());
 //        startActivity(intent);
     }
 }

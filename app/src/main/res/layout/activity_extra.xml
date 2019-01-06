@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/normal_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white_255"
+    android:orientation="vertical"
     tools:context="com.xy.wanandroid.ui.gank.activity.ExtraActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/AppTheme.Toolbar"
+            android:background="@color/theme"
+            app:navigationIcon="@drawable/icon_back"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            app:titleTextColor="@color/white_255" />
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabBackground="@color/white"
+        app:tabIndicatorColor="@color/theme"
+        app:tabIndicatorHeight="@dimen/dp_2"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/theme"
+        app:tabTextAppearance="@style/TabTextStyle"
+        app:tabTextColor="@color/black_90" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

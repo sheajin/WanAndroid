@@ -2,13 +2,12 @@ package com.xy.wanandroid.ui.gank.fragment;
 
 import android.content.Intent;
 import android.graphics.Rect;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.LinearLayout;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.app.MyApplication;
 import com.xy.wanandroid.base.fragment.BaseRootFragment;
@@ -37,18 +36,21 @@ import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
-public class GankFragment extends BaseRootFragment<GankPresenter> implements GankContract.View, GankAdapter.OnItemClickListener {
+public class GankFragment extends BaseRootFragment<GankPresenter> implements GankContract.View {
 
-    @BindView(R.id.normal_view)
+    @BindView(R.id.rv)
     RecyclerView mRv;
+    @BindView(R.id.banner)
+    Banner banner;
+    @BindView(R.id.scrollView)
+    NestedScrollView scrollView;
 
     private List<RecommendData.ResultsBean> gankList;
     private GankAdapter mAdapter;
     private List<String> urlList;
-    private Banner banner;
     private int retryCount = 2;
-    private GridLayoutManager manager;
 
     @Override
     public int getLayoutResID() {
@@ -68,24 +70,69 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
     protected void initUI() {
         super.initUI();
         showLoading();
-        manager = new GridLayoutManager(context, 2);
+        GridLayoutManager manager = new GridLayoutManager(context, 6);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRv.setLayoutManager(manager);
+        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                int count = 0;
+                switch (gankList.get(position).getItemType()) {
+                    case RecommendData.ResultsBean.ENTITY_ITEM_ONE:
+                        count = 6;
+                        break;
+                    case RecommendData.ResultsBean.ENTITY_ITEM_TWO:
+                        count = 3;
+                        break;
+                    case RecommendData.ResultsBean.ENTITY_ITEM_THREE:
+                        count = 2;
+                        break;
+                    case RecommendData.ResultsBean.ENTITY_TITLE:
+                        count = 6;
+                        break;
+                    default:
+                        break;
+                }
+                return count;
+            }
+        });
         RecyclerView.ItemDecoration itemDecoration = new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
-                if (itemPosition != 0) {
-                    if ((itemPosition - 1) % 2 == 1) {
-                        outRect.left = DisplayUtil.dip2px(context, 6);
-                        outRect.right = DisplayUtil.dip2px(context, 12);
-                    } else {
-                        outRect.left = DisplayUtil.dip2px(context, 12);
-                        outRect.right = DisplayUtil.dip2px(context, 6);
-                    }
+                super.getItemOffsets(outRect, itemPosition, parent);
+                switch (gankList.get(itemPosition).getItemType()) {
+                    case RecommendData.ResultsBean.ENTITY_ITEM_ONE:
+                        outRect.left = DisplayUtil.dip2px(context, 3);
+                        outRect.right = DisplayUtil.dip2px(context, 3);
+                        break;
+                    case RecommendData.ResultsBean.ENTITY_ITEM_TWO:
+                        if (itemPosition % 2 == 1) {
+                            outRect.left = DisplayUtil.dip2px(context, 3);
+                            outRect.right = DisplayUtil.dip2px(context, 6);
+                        } else {
+                            outRect.left = DisplayUtil.dip2px(context, 6);
+                            outRect.right = DisplayUtil.dip2px(context, 3);
+                        }
+                        break;
+                    case RecommendData.ResultsBean.ENTITY_ITEM_THREE:
+                        if (itemPosition % 3 == 0) {
+                            outRect.left = DisplayUtil.dip2px(context, 6);
+                        }
+                        if (itemPosition % 3 == 1) {
+                            outRect.left = DisplayUtil.dip2px(context, 3);
+                            outRect.right = DisplayUtil.dip2px(context, 3);
+                        }
+                        if (itemPosition % 3 == 2) {
+                            outRect.right = DisplayUtil.dip2px(context, 6);
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
         };
         mRv.addItemDecoration(itemDecoration);
+        mRv.setLayoutManager(manager);
+        mRv.setNestedScrollingEnabled(false);
     }
 
     @Override
@@ -93,33 +140,35 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
         gankList = new ArrayList<>();
         urlList = new ArrayList<>();
         getBanner();
-        mAdapter = new GankAdapter(R.layout.item_gank, gankList);
-        initHeader();
+        mAdapter = new GankAdapter(gankList, activity);
         mPresenter.getEveryDayList();
-        mAdapter.setOnItemClickListener(this);
         mRv.setAdapter(mAdapter);
-//        setSpan();
+        mAdapter.setOnItemClickListener(position -> {
+            Intent intent = new Intent(activity, ArticleDetailsActivity.class);
+            intent.putExtra(Constant.ARTICLE_TITLE, gankList.get(position).getDesc());
+            intent.putExtra(Constant.ARTICLE_LINK, gankList.get(position).getUrl());
+            startActivity(intent);
+        });
     }
 
-    /**
-     * 设置Header
-     */
-    private void initHeader() {
-        LinearLayout headerView = (LinearLayout) getLayoutInflater().inflate(R.layout.view_gank_header, null);
-        View view = headerView.findViewById(R.id.view_header);
-        View cateView = headerView.findViewById(R.id.view_category);
-        View douYuView = headerView.findViewById(R.id.view_douyu);
-        View extraView = headerView.findViewById(R.id.view_extra);
-        View rankView = headerView.findViewById(R.id.view_rank);
-        cateView.setOnClickListener(v -> JumpUtil.overlay(activity, RecommendActivity.class));
-        douYuView.setOnClickListener(v -> JumpUtil.overlay(activity, VideoActivity.class));
-        extraView.setOnClickListener(v -> JumpUtil.overlay(activity, ExtraActivity.class));
-        rankView.setOnClickListener(v -> JumpUtil.overlay(activity, DoubanHotActivity.class));
-        banner = headerView.findViewById(R.id.banner);
-        headerView.removeView(view);
-        headerView.addView(view);
-        mAdapter.addHeaderView(headerView);
-        showBanner();
+    @OnClick({R.id.view_category, R.id.view_douyu, R.id.view_extra, R.id.view_rank})
+    void click(View view) {
+        switch (view.getId()) {
+            case R.id.view_category:
+                JumpUtil.overlay(activity, RecommendActivity.class);
+                break;
+            case R.id.view_douyu:
+                JumpUtil.overlay(activity, VideoActivity.class);
+                break;
+            case R.id.view_extra:
+                JumpUtil.overlay(activity, ExtraActivity.class);
+                break;
+            case R.id.view_rank:
+                JumpUtil.overlay(activity, DoubanHotActivity.class);
+                break;
+            default:
+                break;
+        }
     }
 
     /**
@@ -131,8 +180,11 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
             mPresenter.getMusicBanner();
         } else {
             String banner = (String) SharedPreferenceUtil.get(context, Constant.GANK_BANNER, Constant.DEFAULT);
-            urlList = Arrays.asList(banner.split("="));
+            if (banner != null) {
+                urlList = Arrays.asList(banner.split("="));
+            }
         }
+        showBanner();
     }
 
     private void showBanner() {
@@ -173,10 +225,9 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
         if (mAdapter == null) {
             return;
         }
-//        addToMultiList(dataList);
-//        mAdapter.replaceData(gankList);
-        gankList = dataList.getResults();
-        mAdapter.replaceData(gankList);
+        gankList.clear();
+        gankList.addAll(mPresenter.getList(dataList.getResults()));
+        mAdapter.notifyDataSetChanged();
         showNormal();
     }
 
@@ -200,71 +251,4 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
         }
     }
 
-    @Override
-    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        Intent intent = new Intent(activity, ArticleDetailsActivity.class);
-        intent.putExtra(Constant.ARTICLE_TITLE, mAdapter.getData().get(position).getDesc());
-        intent.putExtra(Constant.ARTICLE_LINK, mAdapter.getData().get(position).getUrl());
-        startActivity(intent);
-    }
-
-    /**
-     * 多布局
-     */
-    private void addToMultiList(RecommendData dataList) {
-        int size = dataList.getResults().size();
-        for (int i = 0; i < size; i++) {
-            RecommendData.ResultsBean data = dataList.getResults().get(i);
-            //前四项
-            if (i < 4) {
-                if (i % 3 == 0 && i != 3) {
-                    RecommendData.ResultsBean item = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_TITLE, data.getType());
-                    gankList.add(item);
-                } else {
-                    RecommendData.ResultsBean item = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ITEM, data.getDesc(), data.getPublishedAt(), data.getType(), data.getUrl(), data.getWho(), data.getImages());
-                    gankList.add(item);
-                }
-                if (i == 3) {
-                    RecommendData.ResultsBean item = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ITEM, data.getDesc(), data.getPublishedAt(), data.getType(), data.getUrl(), data.getWho(), data.getImages());
-                    gankList.add(item);
-                }
-            } else if (i > 3) {    //4-7
-                if (i % 4 == 0 && i != 4) {
-                    RecommendData.ResultsBean item = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_TITLE, dataList.getResults().get(i).getType());
-                    gankList.add(item);
-                } else {
-                    RecommendData.ResultsBean item = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ITEM, data.getDesc(), data.getPublishedAt(), data.getType(), data.getUrl(), data.getWho(), data.getImages());
-                    gankList.add(item);
-                }
-                if (i == 4) {
-                    RecommendData.ResultsBean item = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_TITLE, dataList.getResults().get(i).getType());
-                    gankList.add(item);
-                }
-            }
-        }
-    }
-
-    /**
-     * 每个item
-     */
-    private void setSpan() {
-        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                int count = 0;
-                if (position != 0) {
-                    int type = mAdapter.getItemViewType(position);
-                    switch (type) {
-                        case RecommendData.ResultsBean.ENTITY_TITLE:
-                            count = 3;
-                            break;
-                        case RecommendData.ResultsBean.ENTITY_ITEM:
-                            count = 1;
-                            break;
-                    }
-                }
-                return count;
-            }
-        });
-    }
 }

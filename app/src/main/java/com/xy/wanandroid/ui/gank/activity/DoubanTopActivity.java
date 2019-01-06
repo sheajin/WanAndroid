@@ -1,16 +1,20 @@
 package com.xy.wanandroid.ui.gank.activity;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xy.wanandroid.R;
 import com.xy.wanandroid.base.activity.BaseRootActivity;
 import com.xy.wanandroid.contract.gank.TopContract;
 import com.xy.wanandroid.data.gank.HotMovieBean;
+import com.xy.wanandroid.model.constant.Constant;
 import com.xy.wanandroid.presenter.gank.TopPresenter;
 import com.xy.wanandroid.ui.gank.adapter.DoubanTopAdapter;
 import com.xy.wanandroid.util.app.DisplayUtil;
@@ -21,7 +25,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class DoubanTopActivity extends BaseRootActivity<TopPresenter> implements TopContract.View {
+public class DoubanTopActivity extends BaseRootActivity<TopPresenter> implements TopContract.View, DoubanTopAdapter.OnItemClickListener {
 
     @BindView(R.id.toolbar_douban_top)
     Toolbar mToolBar;
@@ -82,6 +86,7 @@ public class DoubanTopActivity extends BaseRootActivity<TopPresenter> implements
         topList = new ArrayList<>();
         mPresenter.getTop();
         mAdapter = new DoubanTopAdapter(R.layout.item_douban_top, topList);
+        mAdapter.setOnItemClickListener(this);
         mRv.setAdapter(mAdapter);
     }
 
@@ -118,5 +123,13 @@ public class DoubanTopActivity extends BaseRootActivity<TopPresenter> implements
             mPresenter.loadMore();
             refreshLayout.finishLoadMore(1000);
         });
+    }
+
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        Intent intent = new Intent(activity, MovieDetailsActivity.class);
+        intent.putExtra(Constant.MOVIE_ID, topList.get(position).getId());
+        intent.putExtra(Constant.MOVIE_TITLE, topList.get(position).getTitle());
+        startActivity(intent);
     }
 }

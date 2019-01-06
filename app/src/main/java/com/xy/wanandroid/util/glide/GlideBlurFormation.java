@@ -16,13 +16,6 @@ import java.security.MessageDigest;
 public class GlideBlurFormation extends BitmapTransformation {
 
     private Context context;
-    private int width, height;
-
-    public GlideBlurFormation(Context context, int outWidth, int outHeight) {
-        this.context = context;
-        this.width = outWidth;
-        this.height = outHeight;
-    }
 
     /**
      * @param outWidth  输入出的宽度
@@ -30,7 +23,7 @@ public class GlideBlurFormation extends BitmapTransformation {
      */
     @Override
     protected Bitmap transform(@NonNull BitmapPool pool, @NonNull Bitmap toTransform, int outWidth, int outHeight) {
-        return BlurBitmapUtil.instance().blurBitmap(context, toTransform, 25, width, height);
+        return BlurBitmapUtil.instance().rsBlur(context, toTransform, 10);
     }
 
     @Override

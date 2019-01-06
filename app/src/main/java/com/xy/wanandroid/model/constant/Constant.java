@@ -15,6 +15,7 @@ public class Constant {
     public static final int SCROLL_BOTTOM = 300;
     public final static int VOLUME_FLAG = 1;
     public final static int LIGHT_FLAG = -1;
+    public final static int LIVE_REQUEST_CODE = 3000;
 
     /**
      * String
@@ -50,6 +51,7 @@ public class Constant {
     public static final String EXTRA = "拓展资源";
     public static final String WELFARE = "福利";
     public static final String BIGPICTURE = "image";
+    public static final String WX_ARTICLE_ID = "article_id";
 
 
     /**
@@ -103,7 +105,8 @@ public class Constant {
     public static final String ROOMSRC = "room_src";
     public static final String ROOMTAG = "room_tag";
     public static final String ROOMDETAIL = "room_detail";
-    public static final String MOVIE = "movie";
+    public static final String MOVIE_ID = "movie_id";
+    public static final String MOVIE_TITLE = "movie_title";
 
 }
 

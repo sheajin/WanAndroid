@@ -7,8 +7,10 @@ import com.xy.wanandroid.data.gank.RecommendData;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;
 import com.xy.wanandroid.model.api.HttpObserver;
+import com.xy.wanandroid.util.app.LogUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -23,7 +25,6 @@ import io.reactivex.schedulers.Schedulers;
 public class GankPresenter extends BasePresenter<GankContract.View> implements GankContract.Presenter {
 
     private boolean isRefresh = true;
-    private List<String> images = new ArrayList<>();
     private List<RecommendData.ResultsBean> js = new ArrayList<>();
     private List<RecommendData.ResultsBean> android = new ArrayList<>();
     private List<RecommendData.ResultsBean> ios = new ArrayList<>();
@@ -51,6 +52,7 @@ public class GankPresenter extends BasePresenter<GankContract.View> implements G
 
                     @Override
                     public void onError(Throwable e) {
+                        LogUtil.e("获取Banner失败" + e.getMessage());
                         mView.getMusicBannerErr("获取Banner失败");
                     }
                 });
@@ -96,30 +98,64 @@ public class GankPresenter extends BasePresenter<GankContract.View> implements G
                 rest.add(bean);
             }
         }
-//        addRecommendBean(android, "Android");
-//        addRecommendBean(ios, "iOS");
-//        addRecommendBean(app, "App");
-//        addRecommendBean(js, "前端");
-//        addRecommendBean(extra, "拓展资源");
-//        addRecommendBean(recommend, "瞎推荐");
-//        addRecommendBean(rest, "休息视频");
+        /**
+         * 对allList中的每一个集合的size进行排序。
+         * 尽可能确保第一个集合的数量大于3,否则item之间间距有问题。
+         */
+        List<List<RecommendData.ResultsBean>> allList = new ArrayList<>();
+        allList.add(android);
+        allList.add(ios);
+        allList.add(app);
+        allList.add(js);
+        allList.add(extra);
+        allList.add(recommend);
+        allList.add(rest);
+        Collections.sort(allList, (o1, o2) -> {
+            if (o1.size() < o2.size()) {
+                return 1;
+            } else if (o1.size() == o2.size()) {
+                return 0;
+            }
+            return -1;
+        });
     }
 
     /**
-     * 数量不足添加数据以填充列表
+     * 根据某个具体分类集合的数量判断布局
      *
      * @param list
-     * @param type
+     * @return
      */
-//    private void addRecommendBean(List<RecommendData.ResultsBean> list, String type) {
-//        images.add(CommonUtil.getRandomImage());
-//        if (list.size() % 3 == 1) {
-//            list.add(new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_TITLE, "", "", type, "", "", images));
-//            list.add(new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_TITLE, "", "", type, "", "", images));
-//        } else if (list.size() % 3 == 2) {
-//            list.add(new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_TITLE, "", "", type, "", "", images));
-//        }
-//    }
+    private List<RecommendData.ResultsBean> chooseLayout(List<RecommendData.ResultsBean> list) {
+        RecommendData.ResultsBean resultsBean = null;
+        List<RecommendData.ResultsBean> resultsBeanList = new ArrayList<>();
+        int size = list.size();
+        if (size > 0)
+            for (RecommendData.ResultsBean bean : list) {
+                //第一种方式(错误)
+//                if (size > 3) {
+//                    resultsBean = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ITEM_THREE, bean.getDesc(), bean.getPublishedAt(), bean.getType(), bean.getUrl(), bean.getWho(), bean.getImages());
+//                    size--;
+//                } else {
+//                    if (size > 0)
+//                        if (size % 2 == 0 || size % 3 == 2) {
+//                            resultsBean = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ITEM_TWO, bean.getDesc(), bean.getPublishedAt(), bean.getType(), bean.getUrl(), bean.getWho(), bean.getImages());
+//                        } else if (size % 3 == 1) {
+//                            resultsBean = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ITEM_ONE, bean.getDesc(), bean.getPublishedAt(), bean.getType(), bean.getUrl(), bean.getWho(), bean.getImages());
+//                        }
+//                }
+                //第二种方式
+                if (size % 3 == 0) {
+                    resultsBean = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ITEM_THREE, bean.getDesc(), bean.getPublishedAt(), bean.getType(), bean.getUrl(), bean.getWho(), bean.getImages());
+                } else if (size % 2 == 0 || size % 3 == 2) {
+                    resultsBean = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ITEM_TWO, bean.getDesc(), bean.getPublishedAt(), bean.getType(), bean.getUrl(), bean.getWho(), bean.getImages());
+                } else if (size % 3 == 1) {
+                    resultsBean = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ITEM_ONE, bean.getDesc(), bean.getPublishedAt(), bean.getType(), bean.getUrl(), bean.getWho(), bean.getImages());
+                }
+                resultsBeanList.add(resultsBean);
+            }
+        return resultsBeanList;
+    }
 
     /**
      * 分类完成添加进新的集合
@@ -135,25 +171,5 @@ public class GankPresenter extends BasePresenter<GankContract.View> implements G
         lists.addAll(chooseLayout(recommend));
         lists.addAll(chooseLayout(rest));
         return lists;
-    }
-
-    /**
-     * 根据某个具体分类集合的数量判断布局
-     *
-     * @param list
-     * @return
-     */
-    private List<RecommendData.ResultsBean> chooseLayout(List<RecommendData.ResultsBean> list) {
-        RecommendData.ResultsBean resultsBean = null;
-        List<RecommendData.ResultsBean> resultsBeanList = new ArrayList<>();
-        for (RecommendData.ResultsBean bean : list) {
-            if (list.size() % 2 == 0) {
-                resultsBean = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_TITLE, bean.getType());
-            } else {
-                resultsBean = new RecommendData.ResultsBean(RecommendData.ResultsBean.ENTITY_ITEM, bean.getDesc(), bean.getPublishedAt(), bean.getType(), bean.getUrl(), bean.getWho(), bean.getImages());
-            }
-            resultsBeanList.add(resultsBean);
-        }
-        return resultsBeanList;
     }
 }
