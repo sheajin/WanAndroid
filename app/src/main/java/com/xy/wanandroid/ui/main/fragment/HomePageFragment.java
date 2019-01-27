@@ -101,6 +101,7 @@ public class HomePageFragment extends BaseRootFragment<HomePagePresenter> implem
         mRv.setAdapter(mAdapter);
     }
 
+    @Override
     public void onMessageEvent(MessageEvent event) {
         switch (event.getCode()) {
             case EventConstant.MAINSCROLLTOTOP:

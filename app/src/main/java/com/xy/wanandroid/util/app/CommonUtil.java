@@ -161,9 +161,18 @@ public class CommonUtil {
      * 随机图
      */
     public static String getRandomImage() {
-        int index = new Random().nextInt(22);
-        String imageUrl = "http://ojyz0c8un.bkt.clouddn.com/home_six_";
-        return imageUrl + index + ".png";
+        String[] urls = {"http://pic1.win4000.com/wallpaper/2018-01-09/5a5472458e9cb.jpg",
+                "http://f.hiphotos.baidu.com/zhidao/pic/item/58ee3d6d55fbb2fb66bd66df494a20a44723dc6c.jpg",
+                "http://img8.zol.com.cn/bbs/upload/23765/23764198.jpg",
+                "http://img15.3lian.com/2015/h1/280/d/8.jpg",
+                "http://img1.imgtn.bdimg.com/it/u=2699155829,2605520982&fm=26&gp=0.jpg",
+                "http://pic1.win4000.com/wallpaper/2017-12-06/5a27d03b3bdc4.jpg",
+                "http://hbimg.b0.upaiyun.com/4b8bfa989db31e3f37302e8f9c39c59f9431507616a9e-bzIfqn_fw658",
+                "http://pic1.win4000.com/wallpaper/c/547d804631f98_860_710.jpg",
+                "http://upload.chinapet.com/forum/201505/08/182915usuxfxas8f3s333o.jpg",
+                "http://img3.duitang.com/uploads/item/201601/13/20160113153455_2STuB.thumb.700_0.jpeg"};
+        int index = new Random().nextInt(urls.length);
+        return urls[index];
     }
 
     /**
@@ -189,6 +198,7 @@ public class CommonUtil {
 
     /**
      * 设置tabLayout下划线间距
+     *
      * @param tabs
      * @param leftDip
      * @param rightDip

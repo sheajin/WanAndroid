@@ -32,7 +32,7 @@
                     <com.youth.banner.Banner
                         android:id="@+id/banner"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_141"
+                        android:layout_height="@dimen/dp_140"
                         app:indicator_drawable_selected="@drawable/drawable_indecator_select"
                         app:indicator_drawable_unselected="@drawable/drawable_indecator_unselect"
                         app:indicator_height="@dimen/dp_6"
@@ -40,6 +40,7 @@
                         app:indicator_width="@dimen/dp_6" />
 
                     <LinearLayout
+                        android:paddingBottom="@dimen/dp_12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -136,7 +137,6 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_05"
-                        android:layout_marginTop="@dimen/dp_12"
                         android:background="@color/grey" />
                 </LinearLayout>
 

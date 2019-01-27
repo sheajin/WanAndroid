@@ -6,7 +6,9 @@ package com.xy.wanandroid.model.api;
 
 public class BaseResp<T> {
     public T data;
+    public T result;
     private int errorCode;
+    private int error_code;
     private String errorMsg;
     private int error;
 
@@ -22,16 +24,12 @@ public class BaseResp<T> {
         return errorCode;
     }
 
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
+    public int getError_code() {
+        return error_code;
     }
 
     public String getErrorMsg() {
         return errorMsg;
-    }
-
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
     }
 
     public int getError() {

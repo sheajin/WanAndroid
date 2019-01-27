@@ -11,7 +11,6 @@ import com.xy.wanandroid.model.api.ApiStore;
 import com.xy.wanandroid.model.api.BaseResp;
 import com.xy.wanandroid.model.api.HttpObserver;
 import com.xy.wanandroid.model.constant.Constant;
-import com.xy.wanandroid.util.app.LogUtil;
 import com.xy.wanandroid.util.app.SharedPreferenceUtil;
 import com.xy.wanandroid.util.network.RxUtils;
 
@@ -23,8 +22,6 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Function;
-import io.reactivex.functions.Function3;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -36,7 +33,7 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
     private int currentPage;
 
     @Inject
-    public HomePagePresenter(){
+    public HomePagePresenter() {
 
     }
 
@@ -75,6 +72,7 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
                         mView.getHomepageListErr(e.getMessage());
                     }
                 });
+
     }
 
     @Override
@@ -127,8 +125,6 @@ public class HomePagePresenter extends BasePresenter<HomePageContract.View> impl
                         BaseResp<UserInfo> userInfo = RxUtils.cast(map.get(Constant.LOGINDATA));
                         if (userInfo.getErrorCode() == Constant.REQUEST_SUCCESS) {
                             mView.loginSuccess(userInfo.getData());
-                        } else if (userInfo.getErrorCode() == Constant.REQUEST_ERROR) {
-                            mView.loginErr(userInfo.getErrorMsg());
                         }
                         /**
                          * banner信息

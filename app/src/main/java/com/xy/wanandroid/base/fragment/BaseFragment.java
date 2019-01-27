@@ -47,7 +47,7 @@ public abstract class BaseFragment<T extends AbsPresenter> extends SupportFragme
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(getLayoutResID(), container,false);
+        return inflater.inflate(getLayoutResID(), container, false);
     }
 
     @Override
@@ -71,6 +71,8 @@ public abstract class BaseFragment<T extends AbsPresenter> extends SupportFragme
 
     /**
      * 获取当前界面的UI布局
+     *
+     * @return layoutId
      */
     public abstract int getLayoutResID();
 

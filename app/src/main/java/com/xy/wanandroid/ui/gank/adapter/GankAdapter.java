@@ -55,7 +55,6 @@ public class GankAdapter extends RecyclerView.Adapter<GankAdapter.GankViewHolder
             holder = new GankViewHolder(View.inflate(activity, R.layout.item_gank_title, null));
         }
         return holder;
-
     }
 
     @Override

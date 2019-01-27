@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -131,10 +132,12 @@ public class ArticleDetailsActivity extends BaseRootActivity<ArticleDetailPresen
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
                 break;
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
 
-}
+    }
 
     /**
      * 让菜单同时显示图标和文字
@@ -162,29 +165,32 @@ public class ArticleDetailsActivity extends BaseRootActivity<ArticleDetailPresen
 
     @Override
     protected void onPause() {
-        if (mAgentWeb != null)
+        if (mAgentWeb != null) {
             mAgentWeb.getWebLifeCycle().onPause();
+        }
         super.onPause();
     }
 
     @Override
     protected void onResume() {
-        if (mAgentWeb != null)
+        if (mAgentWeb != null) {
             mAgentWeb.getWebLifeCycle().onResume();
+        }
         super.onResume();
     }
 
     @Override
     public void onDestroy() {
-        if (mAgentWeb != null)
+        if (mAgentWeb != null) {
             mAgentWeb.getWebLifeCycle().onDestroy();
+        }
         super.onDestroy();
     }
 
     @Override
     public void onBackPressedSupport() {
         if (!mAgentWeb.back()) {
-            finish();
+            ActivityCompat.finishAfterTransition(this);
         }
     }
 
@@ -212,6 +218,8 @@ public class ArticleDetailsActivity extends BaseRootActivity<ArticleDetailPresen
                 menu.findItem(R.id.menu_article_collect).setIcon(R.drawable.icon_no_collect);
                 menu.findItem(R.id.menu_article_collect).setTitle(getString(R.string.like_title));
                 invalidateOptionsMenu();
+                break;
+            default:
                 break;
         }
         return super.onPrepareOptionsMenu(menu);

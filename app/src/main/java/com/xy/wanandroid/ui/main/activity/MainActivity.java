@@ -84,6 +84,8 @@ public class MainActivity extends BaseActivity {
             case R.id.float_button:
                 scrollToTop();
                 break;
+            default:
+                break;
         }
     }
 
@@ -100,6 +102,8 @@ public class MainActivity extends BaseActivity {
                 break;
             case 2:
                 EventBus.getDefault().post(new MessageEvent(EventConstant.PROJECTSCROLLTOTOP, ""));
+                break;
+            default:
                 break;
         }
     }
@@ -151,6 +155,8 @@ public class MainActivity extends BaseActivity {
                     mFloatingButton.setVisibility(View.GONE);
                     selectFragment(4);
                     break;
+                default:
+                    break;
             }
             return true;
         });
@@ -182,6 +188,8 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.menu_main_search:
                 JumpUtil.overlay(activity, SearchActivity.class);
+                break;
+            default:
                 break;
         }
         return super.onOptionsItemSelected(item);

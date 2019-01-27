@@ -18,6 +18,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * splash页
+ */
 public class SplashActivity extends BaseActivity {
 
     @BindView(R.id.image_bg)
@@ -43,7 +46,8 @@ public class SplashActivity extends BaseActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
-                    if (time - aLong == 1 && !timer.isDisposed()) {    //aLong -> 0,1,2
+                    // aLong -> 0,1,2
+                    if (time - aLong == 1 && !timer.isDisposed()) {
                         jump();
                     }
                 });
@@ -53,9 +57,12 @@ public class SplashActivity extends BaseActivity {
     void click(View view) {
         switch (view.getId()) {
             case R.id.tv_time:
-                if (!timer.isDisposed())
+                if (!timer.isDisposed()) {
                     timer.dispose();
+                }
                 jump();
+                break;
+            default:
                 break;
         }
     }

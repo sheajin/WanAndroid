@@ -186,7 +186,7 @@ public interface ApiService {
      */
     @Headers({"baseUrl:music"})
     @GET("v1/restserver/ting?from=android&version=5.8.1.0&channel=ppzs&operator=3&method=baidu.ting.plaza.index&cuid=89CF1E1A06826F9AB95A34DC0F6AAA14")
-    Observable<MusicBanner> getMusicBanner();
+    Observable<BaseResp<MusicBanner>> getMusicBanner();
 
     /**
      * 获取所有数据

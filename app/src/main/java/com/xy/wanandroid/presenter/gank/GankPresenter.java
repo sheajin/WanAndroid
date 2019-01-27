@@ -6,8 +6,8 @@ import com.xy.wanandroid.data.gank.MusicBanner;
 import com.xy.wanandroid.data.gank.RecommendData;
 import com.xy.wanandroid.model.api.ApiService;
 import com.xy.wanandroid.model.api.ApiStore;
+import com.xy.wanandroid.model.api.BaseResp;
 import com.xy.wanandroid.model.api.HttpObserver;
-import com.xy.wanandroid.util.app.LogUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,19 +40,21 @@ public class GankPresenter extends BasePresenter<GankContract.View> implements G
 
     @Override
     public void getMusicBanner() {
+        int successCode = 22000;
         ApiStore.createApi(ApiService.class)
                 .getMusicBanner()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new HttpObserver<MusicBanner>() {
+                .subscribe(new HttpObserver<BaseResp<MusicBanner>>() {
                     @Override
-                    public void onNext(MusicBanner banner) {
-                        mView.getMusicBannerOK(banner);
+                    public void onNext(BaseResp<MusicBanner> baseResp) {
+                        if (baseResp.getError_code() == successCode && mView != null) {
+                            mView.getMusicBannerOK(baseResp.result);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        LogUtil.e("获取Banner失败" + e.getMessage());
                         mView.getMusicBannerErr("获取Banner失败");
                     }
                 });

@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.xy.wanandroid.R;
-import com.xy.wanandroid.base.app.MyApplication;
 import com.xy.wanandroid.base.fragment.BaseRootFragment;
 import com.xy.wanandroid.contract.gank.GankContract;
 import com.xy.wanandroid.data.gank.MusicBanner;
@@ -24,7 +23,6 @@ import com.xy.wanandroid.ui.gank.adapter.GankAdapter;
 import com.xy.wanandroid.ui.main.activity.ArticleDetailsActivity;
 import com.xy.wanandroid.util.app.DisplayUtil;
 import com.xy.wanandroid.util.app.JumpUtil;
-import com.xy.wanandroid.util.app.SharedPreferenceUtil;
 import com.xy.wanandroid.util.app.ToastUtil;
 import com.xy.wanandroid.util.glide.GlideImageLoader;
 import com.youth.banner.Banner;
@@ -32,7 +30,6 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -50,7 +47,6 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
     private List<RecommendData.ResultsBean> gankList;
     private GankAdapter mAdapter;
     private List<String> urlList;
-    private int retryCount = 2;
 
     @Override
     public int getLayoutResID() {
@@ -173,17 +169,9 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
 
     /**
      * 获取banner
-     * 由于json很庞大,所以存储到本地。不必每次请求
      */
     private void getBanner() {
-        if (SharedPreferenceUtil.get(context, Constant.GANK_BANNER, Constant.DEFAULT).equals(Constant.DEFAULT)) {
-            mPresenter.getMusicBanner();
-        } else {
-            String banner = (String) SharedPreferenceUtil.get(context, Constant.GANK_BANNER, Constant.DEFAULT);
-            if (banner != null) {
-                urlList = Arrays.asList(banner.split("="));
-            }
-        }
+        mPresenter.getMusicBanner();
         showBanner();
     }
 
@@ -200,24 +188,18 @@ public class GankFragment extends BaseRootFragment<GankPresenter> implements Gan
 
     @Override
     public void getMusicBannerOK(MusicBanner musicBanner) {
-        StringBuilder sb = new StringBuilder();
-        for (MusicBanner.ResultBeanX.FocusBean.ResultBeanx resultBean : musicBanner.getResult().getFocus().getResult()) {
-            sb.append(resultBean.getRandpic());
-            sb.append("=");
-            urlList.add(resultBean.getRandpic());
+        for (MusicBanner.FocusBean.ResultBean resultBean : musicBanner.focus.result) {
+            urlList.add(resultBean.randpic);
         }
-        SharedPreferenceUtil.put(MyApplication.getInstance(), Constant.GANK_BANNER, sb);
-        showBanner();
+        if (urlList.size() > 0) {
+            showBanner();
+        }
     }
 
     @Override
     public void getMusicBannerErr(String info) {
         ToastUtil.show(context, info);
-        retryCount--;
-        if (retryCount > 0) {
-            showError();
-            mPresenter.getMusicBanner();
-        }
+        showError();
     }
 
     @Override

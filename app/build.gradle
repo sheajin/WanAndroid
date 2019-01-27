@@ -26,7 +26,7 @@ android {
     }
     signingConfigs {
 //        debug {
-//            //"company" /Users/mjn_ziyu/Downloads/wanandroid.jks
+//            //Users/mjn_ziyu/Downloads/wanandroid.jks
 //            storeFile file('/Users/mjn_ziyu/Downloads/wanandroid.jks')
 //            storePassword "wanandroid"
 //            keyAlias "wanandroid"
@@ -37,7 +37,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
-
+    lintOptions{
+        disable 'RestrictedApi'
+    }
 
 }
 
